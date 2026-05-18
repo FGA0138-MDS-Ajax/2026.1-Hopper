@@ -1,23 +1,22 @@
-# template-repository - Branch DOCS
+# 📚 Documentação Oficial — HopLife
 
-Template de Repositório para a matéria de Métodos de Desenvolvimento de Software lecionado pelo professor Ricardo Ajax.
+Este espaço é dedicado exclusivamente à gestão, escrita e publicação da documentação do projeto **HopLife**. Utilizamos o **MkDocs** com o tema **Material** para gerar o nosso site estático de forma automatizada.
 
-Essa Branch de desenvolvimento "docs" deve ser mantida somente para fins de documentação, onde já se encontra uma estrutura inicial montada com MKDocs.
+O site oficial da nossa documentação pode ser acessado em:  
+🌐 (https://fga0138-mds-ajax.github.io/2026.1-Hopper/)
 
-## Especificações Técnicas do Repositório
+---
 
-Este repositório é planejado e estruturado para que seja realizado documentações de software. Caso haja outra necessidades, deve-se consultar a professora.
+## 📁 Estrutura de Arquivos
 
-Atualmente se usa a ferramenta MkDocs para gerar sua documentação baseado nos seus arquivos markdowns, vocês podem achar mais instruções sobre o MkDocs através do link da documentação da ferramenta: [https://www.mkdocs.org/](https://www.mkdocs.org/).
+A organização desta branch segue a estrutura necessária para o funcionamento da esteira de Integração Contínua (CI):
 
-Também é usado uma "sub-ferramenta" do MkDocs para sua estilização, o Material Theme, que pode ser consultado através do link: [https://squidfunk.github.io/mkdocs-material/](https://squidfunk.github.io/mkdocs-material/).
-
-Este repositório também conta com uma pipeline de automatização de deploy do seu conteúdo MkDocs, para que a cada commit feito na main, a pipeline gere uma versão atualizada da sua documentação em minutos. Vale ressaltar que é importante realizar uma configuração para que tudo funcione da forma correta, as instruções são as seguintes:
-
-* Acesse as configurações do repositório;
-* Procure a aba de "Pages"
-* Em "Source" escolha a opção "Deploy from a branch";
-* Em "Branch" escolha "gh-pages";
-* Clique em salvar e pronto;
-
-Após essas etapas de configuração, o seu GitPages deve funcionar normalmente.
+```text
+├── .github/workflows/ci.yml # Robô de automação do deploy
+├── zdocs/                   # Todos os arquivos .md e imagens da documentação
+│   ├── arquiteturaimgs/     # Imagens e diagramas de arquitetura
+│   ├── visaoimgs/           # Imagens do documento de visão
+│   ├── arquitetura.md       # Documento de Arquitetura de Software
+│   ├── index.md             # Página inicial da documentação
+│   └── visao.md             # Documento de Visão
+└── mkdocs.yml               # Arquivo de configuração global do MkDocs

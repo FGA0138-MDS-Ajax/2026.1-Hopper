@@ -1,9 +1,14 @@
-site_name: Documentação
-
-nav:
-  - Instruções mkdocs: "index.md"
-  - Atas de Reunião:
-    - Ata 1: "atas-reuniao/ata-reuniao-1.md"
+site_name: HopLife
 
 theme:
   name: material
+  features:
+    - navigation.sections
+    - navigation.expand
+
+docs_dir: zdocs
+
+nav:
+  - Home: index.md
+  - Documento de Visão: visao.md
+  - Documento de Arquitetura: arquitetura.md
