@@ -44,6 +44,7 @@ O **Ruff** é uma extensão que pode ser instalada diretamente dentro da aba **E
 
 ## 4. Nomenclatura (Naming Conventions)
 Manter um padrão ao nomear objetos é fundamental para identificar o que eles são:
+
 * **Variáveis, funções e métodos:** `snake_case` (letras minúsculas com palavras separadas por sublinhado). 
   * Ex: `minha_variavel_local`, `calcular_total_da_compra()`.
 * **Classes e Exceções:** `PascalCase` / `CapWords` (iniciais maiúsculas sem sublinhados). 
