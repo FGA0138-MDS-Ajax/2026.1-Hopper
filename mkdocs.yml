@@ -12,3 +12,4 @@ nav:
   - Home: index.md
   - Documento de Visão: visao.md
   - Documento de Arquitetura: arquitetura.md
+  - PEP 8: PEP8.md

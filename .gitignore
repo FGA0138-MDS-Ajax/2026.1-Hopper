@@ -1,0 +1,16 @@
+# Ambientes Virtuais
+venv/
+env/
+
+# Arquivos compilados do Python
+__pycache__/
+*.pyc
+
+# Banco de dados local (Cada desenvolvedor terá o seu)
+db.sqlite3
+
+# Arquivos de ambiente (Nunca suba suas senhas pro GitHub!)
+.env
+
+# Configurações de IDE
+.vscode/
