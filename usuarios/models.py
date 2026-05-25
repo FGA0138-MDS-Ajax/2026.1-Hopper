@@ -1,3 +1,37 @@
+# usuarios/models.py
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
+class PerfilUsuario(models.Model):
+    # Ligação com o User do Django (usado no views.py atual)
+    usuario = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name='perfil'
+    )
+    
+    # ID do Keycloak para identificar o usuário externamente
+    keycloak_id = models.CharField(
+        max_length=255,
+        unique=True,
+        null=True,
+        blank=True,
+        db_index=True
+    )
+
+    data_nascimento = models.DateField(null=True, blank=True)
+    foto = models.ImageField(
+        upload_to='fotos_perfil/',
+        null=True,
+        blank=True
+    )
+
+    criado_em = models.DateTimeField(auto_now_add=True)
+    atualizado_em = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.usuario.username} ({self.keycloak_id})'
+
+    class Meta:
+        verbose_name = 'Perfil de Usuário'
+        verbose_name_plural = 'Perfis de Usuários'
