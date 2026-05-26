@@ -14,3 +14,6 @@ db.sqlite3
 
 # Configurações de IDE
 .vscode/
+
+keycloakdb*.db
+keycloak_data/

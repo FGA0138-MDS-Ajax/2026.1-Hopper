@@ -180,8 +180,8 @@ A tabela a seguir apresenta o ciclo de vida do projeto, estruturado em iteraçõ
 
 | Sprint | Produto (Entrega) | Data Início | Data Fim | Entregável(eis) | Responsáveis | % conclusão |
 |---|---|---|---|---|---|---|
-| **Sprint 1** | Definição e Infraestrutura | 07/05/2026 | 14/05/2026 | DOC-ARQ, INFRA-BASE | Scrum Master, QA, PO | 0% |
-| **Sprint 2** | Acesso e Autenticação | 15/05/2026 | 22/05/2026 | US2, US3 | Desenvolvedores | 0% |
+| **Sprint 1** | Definição e Infraestrutura | 07/05/2026 | 14/05/2026 | DOC-ARQ, INFRA-BASE | Scrum Master, QA, PO | 100% |
+| **Sprint 2** | Acesso e Autenticação | 15/05/2026 | 22/05/2026 | US2, US3 | Desenvolvedores | 50% |
 | **Sprint 3** | Interface Acessível | 23/05/2026 | 30/05/2026 | US1 | Desenvolvedores, QA | 0% |
 | **Sprint 4** | Core: Cadastro de Metas | 31/05/2026 | 07/06/2026 | US4 | Desenvolvedores | 0% |
 | **Sprint 5** | Interatividade e Prevenção | 08/06/2026 | 15/06/2026 | US5, US8 | Desenvolvedores, QA | 0% |
