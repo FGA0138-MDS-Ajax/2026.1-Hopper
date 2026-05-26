@@ -15,7 +15,6 @@ class PerfilUsuario(models.Model):
     )
 
     data_nascimento = models.DateField(null=True, blank=True)
-    foto = models.ImageField(upload_to="fotos_perfil/", null=True, blank=True)
 
     criado_em = models.DateTimeField(auto_now_add=True)
     atualizado_em = models.DateTimeField(auto_now=True)

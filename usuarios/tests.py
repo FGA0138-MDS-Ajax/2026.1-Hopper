@@ -1,19 +1,38 @@
+from unittest.mock import patch
+
+from django.contrib.auth.models import User
 from django.test import TestCase
 
+from .models import PerfilUsuario
 
-class UsuariosUrlsTest(TestCase):
-    def test_login_url_resolves_and_returns_200(self):
-        """
-        Garante que a URL /login/ responde com status HTTP 200 e contém o texto esperado.
-        """
-        response = self.client.get("/login/")
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Página de Login (Em Construção)")
 
-    def test_registro_url_resolves_and_returns_200(self):
-        """
-        Garante que a URL /registro/ responde com status HTTP 200 e contém o texto esperado.
-        """
-        response = self.client.get("/registro/")
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Página de Registro (Em Construção)")
+class AutenticacaoIntegracaoTest(TestCase):
+    @patch("usuarios.services.keycloak_openid.token")
+    @patch("usuarios.services.keycloak_openid.userinfo")
+    def test_ct01_registro_e_login_com_redirecionamento(
+        self, mock_userinfo, mock_token
+    ):
+        """CT-01: Simula o retorno do Keycloak, garante a criação do usuário no banco
+        e verifica o redirecionamento para a página inicial."""
+
+        mock_token.return_value = {"access_token": "token_testes"}
+
+        mock_userinfo.return_value = {
+            "sub": "abc-123-codigo-unico",
+            "preferred_username": "usuario.teste",
+            "email": "teste@hoplife.com",
+            "given_name": "Usuário",
+        }
+
+        response = self.client.get("/usuarios/callback/?code=token_falso_de_teste")
+
+        self.assertRedirects(response, "/", target_status_code=200)
+
+        usuario_criado = User.objects.filter(username="usuario.teste").first()
+        self.assertIsNotNone(usuario_criado, "O User nativo não foi criado.")
+
+        perfil_criado = PerfilUsuario.objects.filter(
+            keycloak_id="abc-123-codigo-unico"
+        ).first()
+        self.assertIsNotNone(perfil_criado, "O PerfilUsuario não foi criado.")
+        self.assertEqual(perfil_criado.usuario, usuario_criado)

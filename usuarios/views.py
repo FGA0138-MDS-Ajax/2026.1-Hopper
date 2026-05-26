@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import redirect
 
+from .models import PerfilUsuario
 from .services import REDIRECT_URI, keycloak_openid
 
 
@@ -37,10 +38,16 @@ def callback_view(request):
         username = user_info["preferred_username"]
         email = user_info.get("email", "")
         first_name = user_info.get("given_name", "")
+        keycloak_sub = user_info.get("sub")
 
         # Cria ou recupera o usuário na base local
         user, _ = User.objects.get_or_create(
             username=username, defaults={"email": email, "first_name": first_name}
+        )
+
+        # Cria o anexo com a id do keycloak
+        PerfilUsuario.objects.get_or_create(
+            usuario=user, defaults={"keycloak_id": keycloak_sub}
         )
 
         # Registra a sessão do usuário
