@@ -2,21 +2,25 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 from .models import PerfilUsuario
 from .services import REDIRECT_URI, keycloak_openid
 
 
 def login_view(request):
-    """Redirecionamento do user para a tela de autenticação do keycloak"""
+    """Renderiza página de login com botão para autenticação do Keycloak"""
     auth_url = keycloak_openid.auth_url(
         redirect_uri=REDIRECT_URI, scope="openid email profile"
     )
 
     auth_url = auth_url.replace("http://keycloak:8080/", "http://localhost:8080/")
 
-    return redirect(auth_url)
+    context = {
+        "login_url": auth_url
+    }
+    
+    return render(request, "login.html", context)
 
 
 def callback_view(request):
@@ -53,8 +57,11 @@ def callback_view(request):
         # Registra a sessão do usuário
         auth_login(request=request, user=user)
 
-        # Redireciona para o dashboard principal
-        return redirect("home")
+        # Renderiza página de sucesso
+        context = {
+            "user": user
+        }
+        return render(request, "success.html", context)
 
     except Exception as e:
         # Tratamento genérico de erro
@@ -62,14 +69,9 @@ def callback_view(request):
 
 
 def logout_view(request):
-    """Termina a sessão no Django e limpa os cookies do Keycloak"""
+    """Termina a sessão no Django e renderiza página de logout"""
 
     auth_logout(request)
 
-    keycloak_logout_url = (
-        "http://localhost:8080/realms/hoplife-realm/protocol/openid-connect/logout"
-        "?client_id=hoplife-backend"
-        "&post_logout_redirect_uri=http://localhost:8000/"
-    )
-
-    return redirect(keycloak_logout_url)
+    # Renderiza página de logout com informações
+    return render(request, "logout.html")
