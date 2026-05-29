@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm border text-center">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold text-warm">Login realizado com sucesso!</h1>
+        <p class="col-md-8 mx-auto fs-5 text-muted mt-3">
+            Olá, {{ user.first_name|default:user.username }}. Seu acesso foi concluído com o Keycloak.
+        </p>
+        <a href="/" class="btn btn-warm btn-lg mt-4 px-5">Voltar para a página inicial</a>
+    </div>
+</div>
+{% endblock %}

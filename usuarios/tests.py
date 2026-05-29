@@ -26,7 +26,9 @@ class AutenticacaoIntegracaoTest(TestCase):
 
         response = self.client.get("/usuarios/callback/?code=token_falso_de_teste")
 
-        self.assertRedirects(response, "/", target_status_code=200)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Login realizado com sucesso!")
+        self.assertContains(response, "Olá, Usuário")
 
         usuario_criado = User.objects.filter(username="usuario.teste").first()
         self.assertIsNotNone(usuario_criado, "O User nativo não foi criado.")

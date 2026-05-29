@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm border text-center">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold text-warm">Você saiu do HopLife</h1>
+        <p class="col-md-8 mx-auto fs-5 text-muted mt-3">
+            Sua sessão local foi encerrada. Para finalizar no Keycloak, use o botão abaixo.
+        </p>
+        <a href="{{ keycloak_logout_url }}" class="btn btn-warm btn-lg mt-4 px-5">Finalizar sessão no Keycloak</a>
+    </div>
+</div>
+{% endblock %}

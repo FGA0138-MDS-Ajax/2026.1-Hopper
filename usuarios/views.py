@@ -2,21 +2,21 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 from .models import PerfilUsuario
 from .services import REDIRECT_URI, keycloak_openid
 
 
 def login_view(request):
-    """Redirecionamento do user para a tela de autenticação do keycloak"""
+    """Exibe a página de login e prepara o link de autenticação do Keycloak."""
     auth_url = keycloak_openid.auth_url(
         redirect_uri=REDIRECT_URI, scope="openid email profile"
     )
 
     auth_url = auth_url.replace("http://keycloak:8080/", "http://localhost:8080/")
 
-    return redirect(auth_url)
+    return render(request, "usuarios/login.html", {"auth_url": auth_url})
 
 
 def callback_view(request):
@@ -53,8 +53,8 @@ def callback_view(request):
         # Registra a sessão do usuário
         auth_login(request=request, user=user)
 
-        # Redireciona para o dashboard principal
-        return redirect("home")
+        # Renderiza a página de callback após autenticar o usuário
+        return render(request, "usuarios/callback.html", {"user": user})
 
     except Exception as e:
         # Tratamento genérico de erro
@@ -62,7 +62,7 @@ def callback_view(request):
 
 
 def logout_view(request):
-    """Termina a sessão no Django e limpa os cookies do Keycloak"""
+    """Termina a sessão no Django e renderiza a página de logout."""
 
     auth_logout(request)
 
@@ -72,4 +72,4 @@ def logout_view(request):
         "&post_logout_redirect_uri=http://localhost:8000/"
     )
 
-    return redirect(keycloak_logout_url)
+    return render(request, "usuarios/logout.html", {"keycloak_logout_url": keycloak_logout_url})
