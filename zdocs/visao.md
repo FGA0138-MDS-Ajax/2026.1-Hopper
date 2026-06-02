@@ -38,12 +38,12 @@
 
 ## Sumário
 
-1. Visão Geral do Produto  
+1 Visão Geral do Produto  
    1.1 Problema  
    1.2 Declaração de Posição do Produto  
    1.3 Objetivos do Produto  
    1.4 Tecnologias a Serem Utilizadas  
-2. Visão Geral do Projeto  
+2 Visão Geral do Projeto  
    2.1 Ciclo de vida do projeto de desenvolvimento de software  
    2.2 Organização do Projeto  
    2.3 Planejamento das Fases e/ou Iterações do Projeto  
@@ -51,18 +51,18 @@
    2.4 Matriz de Comunicação  
    2.5 Gerenciamento de Riscos  
    2.6 Critérios de Replanejamento  
-3. Processo de Desenvolvimento de Software  
-4. Declaração de Escopo do Projeto  
+3 Processo de Desenvolvimento de Software  
+4 Declaração de Escopo do Projeto  
    4.1 Backlog do produto  
    4.2 Perfis  
    4.3 Cenários  
    4.4 Tabela de Backlog do produto  
-5. Métricas e Medições  
+5 Métricas e Medições  
    5.1 GQM de medições  
-6. Testes de Software  
+6 Testes de Software  
    6.1 Estratégia de testes  
    6.2 Roteiro de teste  
-7. Referências Bibliográficas  
+7 Referências Bibliográficas  
 
 ---
 
