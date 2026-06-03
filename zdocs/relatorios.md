@@ -214,9 +214,10 @@ DP = 12,5%
 * Meta de Rejeição atendida? (X) Sim ( ) Não
 * Meta de Prazo atendida? ( ) Sim (X) Não
 
-#### Observações: 
+#### Observações:
 
-* Durante a sprint ocorreram atrasos no deselvolvimento das interfaces
+* Durante a sprint ocorreram atrasos no desenvolvimento das interfaces
+
 ---
 
 ### Sprint 3
