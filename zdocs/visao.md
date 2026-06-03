@@ -2,7 +2,7 @@
 
 ## Visão do Produto e do Projeto
 
-**Versão 1.0**
+**Versão 1.1**
 
 ---
 
@@ -10,18 +10,16 @@
 
 | Matrícula | Nome | Função (responsabilidade) | Pontos de participação |
 |---|---|---|---|
-| 242028628 | Arthur Rezende Barreto | Scrum Master / Analista do Problema / Desenvolvedor Back-End | 29 |
+| 242028628 | Arthur Rezende Barreto | Scrum Master / Analista do Problema / Desenvolvedor Back-End | 30 |
 | 222006570 | Arthur Souto Santos | Analista do Problema / Desenvolvedor Front-End | 0 |
-| 241012131 | Davi Barbosa Alves | Product Owner / Desenvolvedor Front-End | 5 |
+| 241012131 | Davi Barbosa Alves | Product Owner / Desenvolvedor Front-End | 10 |
 | 242015586 | Daniel Almeida Torquato | Analista de Qualidade / Desenvolvedor Back-End | 0 |
-| 232002717 | Gabriela de Paula Nascimento | Product Owner / Desenvolvedora Front-End | 16 |
-| 222006759 | Guilherme Augusto Rodrigues Sá | Analista de Qualidade / Desenvolvedor Back-End | 0 |
+| 232002717 | Gabriela de Paula Nascimento | Product Owner / Desenvolvedora Front-End | 20 |
 | 222008824 | Ithalo Ribeiro Dias | Analista do Problema / Desenvolvedor Front-End | 0 |
-| 241011949 | Josué Xavier Carneiro | Analista de Qualidade / Desenvolvedor Back-End | 18 |
-| 241012042 | Levi Evangelista Santos | Analista do Problema / Desenvolvedor Back-End | 16 |
+| 241012042 | Levi Evangelista Santos | Analista do Problema / Desenvolvedor Back-End | 20 |
 | 232014511 | Maria Eduarda do Nascimento Vieira | Analista de Qualidade / Desenvolvedora Front-End | 0 |
 | 232021928 | Maria Eduarda Rodrigues Morais | Product Owner / Desenvolvedora Front-End | 0 |
-| 242005051 | Roberto de Oliveira Brito Filho | Scrum Master / Product Owner / Desenvolvedor Back-End | 16 |
+| 242005051 | Roberto de Oliveira Brito Filho | Scrum Master / Product Owner / Desenvolvedor Back-End | 20 |
 
 > Pontos de participação dos membros da equipe.  
 > Devem fechar 100 pontos para toda a equipe.
@@ -32,37 +30,38 @@
 
 | Data | Versão | Descrição | Autor(es) |
 |---|---|---|---|
-| | | | |
+| 05/05/2026 | 1.0 | Criação do Documento | Equipe Hopper |
+| 02/06/2026 | 1.1 | Correções textuais, ajustes estruturais e revisão geral | Arthur Rezende |
 
 ---
 
 ## Sumário
 
-1 Visão Geral do Produto  
-   1.1 Problema  
-   1.2 Declaração de Posição do Produto  
-   1.3 Objetivos do Produto  
-   1.4 Tecnologias a Serem Utilizadas  
-2 Visão Geral do Projeto  
-   2.1 Ciclo de vida do projeto de desenvolvimento de software  
-   2.2 Organização do Projeto  
-   2.3 Planejamento das Fases e/ou Iterações do Projeto  
-      2.3.1 Definições dos Entregáveis (Aliases)  
-   2.4 Matriz de Comunicação  
-   2.5 Gerenciamento de Riscos  
-   2.6 Critérios de Replanejamento  
-3 Processo de Desenvolvimento de Software  
-4 Declaração de Escopo do Projeto  
-   4.1 Backlog do produto  
-   4.2 Perfis  
-   4.3 Cenários  
-   4.4 Tabela de Backlog do produto  
-5 Métricas e Medições  
-   5.1 GQM de medições  
-6 Testes de Software  
-   6.1 Estratégia de testes  
-   6.2 Roteiro de teste  
-7 Referências Bibliográficas  
+* 1 Visão Geral do Produto
+    * 1.1 Problema
+    * 1.2 Declaração de Posição do Produto
+    * 1.3 Objetivos do Produto
+    * 1.4 Tecnologias a Serem Utilizadas
+* 2 Visão Geral do Projeto
+    * 2.1 Ciclo de vida do projeto de desenvolvimento de software
+    * 2.2 Organização do Projeto
+    * 2.3 Planejamento das Fases e/ou Iterações do Projeto
+        * 2.3.1 Definições dos Entregáveis (Aliases)
+    * 2.4 Matriz de Comunicação
+    * 2.5 Gerenciamento de Riscos
+    * 2.6 Critérios de Replanejamento
+* 3 Processo de Desenvolvimento de Software
+* 4 Declaração de Escopo do Projeto
+    * 4.1 Backlog do produto
+    * 4.2 Perfis
+    * 4.3 Cenários
+    * 4.4 Tabela de Backlog do produto
+* 5 Métricas e Medições
+    * 5.1 GQM de medições
+* 6 Testes de Software
+    * 6.1 Estratégia de testes
+    * 6.2 Roteiro de teste
+* 7 Referências Bibliográficas  
 
 ---
 
@@ -109,6 +108,8 @@ O produto proposto busca atender a uma lacuna identificada no mercado de aplica�
 | **Ao contrário:** | de outras opções que não tem foco em acessibilidade e podem se demonstrar complexas demais e pouco engajantes. |
 | **Nosso produto:** | visa ser acessível e estimulante para todos os usuários tirarem o melhor proveito desse através de gestão de metas pessoais e um sistema engajante que propõe sentimento de satisfação e recompensa, ao mesmo tempo que integra usuários não muito acostumados ao ambiente digital. |
 
+> Fonte: Elaboração própria
+
 ---
 
 ### 1.3 Objetivos do Produto
@@ -127,16 +128,16 @@ O projeto visa desenvolver uma aplicação web de gerenciamento de tarefas e met
 
 ### 1.4 Tecnologias a Serem Utilizadas
 
-O projeto utilizará uma arquitetura tecnológica selecionada para garantir robustez, segurança e alta acessibilidade, fatores críticos para o público-alvo da aplicação. A pilha de tecnologias (tech stack) abrange linguagens, frameworks, ferramentas de qualidade e ambientes conteinerizados, descritos a seguir:
+O projeto utilizará uma arquitetura tecnológica selecionada para garantir robustez, segurança e alta acessibilidade, fatores críticos para o público-alvo da aplicação. A adoção de tecnologias adequadas ao contexto do projeto é um fator importante para garantir qualidade, manutenibilidade e evolução do software ao longo do ciclo de desenvolvimento (PRESSMAN; MAXIM, 2020). A pilha de tecnologias (tech stack) abrange linguagens, frameworks, ferramentas de qualidade e ambientes conteinerizados, descritos a seguir:
 
-* **Linguagem de Programação e Back-end:** A linguagem principal adotada para a lógica de negócios e estruturação do servidor será Python, utilizando o framework Django. Esta escolha visa acelerar o desenvolvimento de uma base sólida e facilitar a comunicação direta e otimizada com o banco de dados;
+* **Linguagem de Programação e Back-end:** A linguagem principal adotada para a lógica de negócios e estruturação do servidor será Python, utilizando o framework Django. Esta escolha visa acelerar o desenvolvimento de uma base sólida, favorecendo a produtividade e a organização do projeto (PRESSMAN; MAXIM, 2020) e facilitando a comunicação direta e otimizada com o banco de dados;
 * **Front-end e Responsividade:** Para a interface com o usuário, serão utilizados HTML, CSS e JavaScript, integrados ao framework Bootstrap. O uso do Bootstrap garante que a aplicação seja responsiva (adaptável a telas de dispositivos móveis) e permite a implementação nativa de componentes de acessibilidade visual, como botões de grande proporção e esquemas de alto contraste;
 * **Banco de Dados:** O armazenamento e a persistência das informações serão gerenciados pelo SQLite. Por ser um banco de dados relacional leve e embutido no ambiente Python, ele elimina a necessidade de configuração de infraestruturas complexas de servidores, atendendo perfeitamente aos requisitos de concorrência e volume de dados previstos para o escopo desta entrega. O acesso e a manipulação dos dados serão abstraídos por meio de um mapeamento objeto-relacional (ORM), facilitando o desenvolvimento da equipe sem exigir a escrita de consultas SQL manuais;
-* **Segurança e Autenticação (IAM):** O gerenciamento de identidades e acessos será feito por meio do Keycloak. Esta ferramenta será responsável por garantir a criptografia de dados sensíveis e gerenciar protocolos de segurança avançados, oferecendo uma camada extra de proteção e confiabilidade contra fraudes e acessos indevidos;
-* **Qualidade e Inspeção de Código:** O SonarQube será integrado ao repositório para realizar a análise estática contínua do código-fonte. A ferramenta automatizará a detecção de code smells, rastreamento de débito técnico e a prevenção de vulnerabilidades de segurança;
+* **Segurança e Autenticação (IAM):** O gerenciamento de identidades e acessos será feito por meio do Keycloak. Esta ferramenta será responsável pelo gerenciamento de identidade, autenticação e autorização dos usuários, utilizando protocolos de segurança consolidados como OAuth2 e OpenID Connect. Oferecendo uma camada extra de proteção e confiabilidade contra fraudes e acessos indevidos;
+* **Qualidade e Inspeção de Código:** O SonarQube será integrado ao repositório para realizar a análise estática contínua do código-fonte. A ferramenta automatizará a detecção de code smells, rastreamento de débito técnico e a prevenção de vulnerabilidades de segurança. A utilização de inspeção estática de código contribui para a identificação precoce de defeitos e redução da dívida técnica (PRESSMAN; MAXIM, 2020);
 * **Ambiente, Versionamento e Ferramentas:** O ambiente de desenvolvimento integrado (IDE) padronizado pela equipe será o Visual Studio Code (VS Code). O controle de versão e a hospedagem do código ocorrerão via Git e GitHub. Adicionalmente, o Docker será empregado para a conteinerização dos serviços (como o Keycloak e o SonarQube), facilitando a padronização do ambiente de execução entre os membros da equipe.
 
-Detalhaments posteriores e especificações técnicas de infraestrutura poderão ser necessários ao longo do tempo. Eles serão o alvo do documento de arquitetura do software, que descreverá de forma aprofundada como essas tecnologias serão aplicadas e integradas no desenvolvimento da solução.
+Detalhamentos posteriores e especificações técnicas de infraestrutura poderão ser necessários ao longo do tempo. Eles serão o alvo do documento de arquitetura do software, que descreverá de forma aprofundada como essas tecnologias serão aplicadas e integradas no desenvolvimento da solução.
 
 ---
 
@@ -146,10 +147,10 @@ Detalhaments posteriores e especificações técnicas de infraestrutura poderão
 
 A definição do ciclo de vida deste projeto busca um equilíbrio entre a organização necessária para um trabalho acadêmico e a flexibilidade para criar um aplicativo voltado ao público idoso. A seguir, detalhamos como esse modelo vai funcionar na prática:
 
-* **Metodologia (abordagem filosófica):** Vamos utilizar a Metodologia Ágil. Como nosso objetivo central é a acessibilidade para pessoas com baixa familiaridade tecnológica, o desenvolvimento precisa ser adaptável. O modelo ágil nos permite evoluir o software com base nos feedbacks reais dos usuários, evitando gastar tempo em funcionalidades que possam gerar sobrecarga visual ou confusão;
-* **Processo (conjunto de atividades):** Trabalharemos com uma abordagem híbrida, unindo Scrum e Extreme Programming (XP). O Scrum será usado para organizar a gestão do projeto e nosso backlog de metas e gamificação. Já o XP entra para garantir a qualidade técnica, ajudando a equipe a produzir um código limpo, robusto e fácil de manter;
+   * **Metodologia (abordagem filosófica):** As metodologias ágeis enfatizam adaptação contínua, colaboração entre os envolvidos e entregas incrementais de software ao longo do desenvolvimento (SOMMERVILLE, 2019). Como nosso objetivo central é a acessibilidade para pessoas com baixa familiaridade tecnológica, o desenvolvimento precisa ser adaptável. O modelo ágil nos permite evoluir o software com base nos feedbacks reais dos usuários, evitando gastar tempo em funcionalidades que possam gerar sobrecarga visual ou confusão;
+   * **Processo (conjunto de atividades):** Trabalharemos com uma abordagem híbrida, unindo Scrum e Extreme Programming (XP). O Scrum fornece uma estrutura de gerenciamento baseada em iterações curtas e inspeção contínua, enquanto o XP complementa o processo com práticas técnicas voltadas à qualidade do software (SCHWABER; SUTHERLAND, 2020; SOMMERVILLE, 2019). O Scrum será usado para organizar a gestão do projeto e nosso backlog de metas e gamificação. Já o XP entra para garantir a qualidade técnica, ajudando a equipe a produzir um código limpo, robusto e fácil de manter;
 * **Procedimentos (guia o modo de fazer):** Nosso trabalho será dividido em Sprints de 8 dias, acompanhadas de reuniões periódicas para monitorar o progresso e possíveis riscos. Também vamos adotar a Programação em Pares (Pair Programming) para diminuir a chance de erros lógicos e manter um padrão de qualidade no código feito por diferentes membros da equipe;
-* **Métodos (técnica formal):** Para define o que o sistema precisa ter, usaremos Histórias de Usuário (User Stories), entrevistas e sessões de brainstorming. Isso é essencial para transformar as dificuldades dos idosos em soluções técnicas. Nosso esquema de priorização garante que os requisitos obrigatórios (MUST), como botões grandes e navegação simples, sejam entregues logo na primeira versão funcional (MVP);
+* **Métodos (técnica formal):** Para definir o que o sistema precisa ter, usaremos Histórias de Usuário (User Stories), entrevistas e sessões de brainstorming. Isso é essencial para transformar as dificuldades dos idosos em soluções técnicas. Nosso esquema de priorização garante que os requisitos obrigatórios (MUST), como botões grandes e navegação simples, sejam entregues logo na primeira versão funcional (MVP);
 * **Ferramentas (instrumentos de apoio):** Para a gestão e o desenvolvimento, usaremos o Trello para controlar o fluxo de tarefas e o Notion para centralizar toda a documentação. Na comunicação, o WhatsApp será usado para o alinhamento rápido do dia a dia da equipe, enquanto o Microsoft Teams será o nosso canal oficial para as reuniões formais e ritos do Scrum.
 
 ---
@@ -165,10 +166,12 @@ A tabela a seguir apresenta a organização das responsabilidades entre os membr
 | **Scrum Master** | Garantir a aplicação do framework ágil, remover impedimentos, facilitar as cerimônias e promover a comunicação fluida entre todas as frentes de trabalho. | Integrantes AR e R | Arthur Rezende, Roberto Filho |
 | **Product Owner** | Levantar os requisitos, criar e priorizar o Backlog, além de validar as entregas junto ao cliente. | Integrantes R, DB, P e MR | Roberto Filho, Davi Barbosa, Gabriela de Paula, Maria Eduarda Rodrigues |
 | **Analista do Problema** | Analisar o problema do usuário (público idoso) | Integrantes AR, AS, L e I | Arthur Rezende, Arthur Souto, Levi Evangelista e Ithalo Ribeiro |
-| **Analista de Qualidade** | Executar os Casos de Teste (CTs), garantir o cumprimento do Definition of Done, configurar o Docker e realizar inspeções de código via SonarQube. | Integrantes G, MN, J e DT | Guilherme Rodrigues, Maria Eduarda do Nascimento, Josué Xavier, Daniel Torquato |
-| **Desenvolvedor Front-End** | Codificar a interface visual (HTML/CSS/Bootstrap), garantindo a responsividade e a aplicação de todos os requisitos de acessibilidade visual. | Integrantes AS, G, I, MN, MR e DB | Arthur Souto, Guilherme Rodrigues, Ithalo Ribeiro, Maria Eduarda do Nascimento, Maria Eduarda Rodrigues e Davi Barbosa |
-| **Desenvolvedor Back-End** | Estruturar o banco de dados, implementar a lógica de negócios em Python (Django), integrar a segurança e fornecer os dados para a interface. | Integrantes AR, R, DT, L, P e J | Arthur Rezende, Roberto Filho, Daniel Torquato, Levi Evangelista Santos, Gabriela de Paula e Josué Xavier |
+| **Analista de Qualidade** | Executar os Casos de Teste (CTs), garantir o cumprimento do Definition of Done, configurar o Docker e realizar inspeções de código via SonarQube. | Integrantes MN e DT | Maria Eduarda do Nascimento, Daniel Torquato |
+| **Desenvolvedor Front-End** | Codificar a interface visual (HTML/CSS/Bootstrap), garantindo a responsividade e a aplicação de todos os requisitos de acessibilidade visual. | Integrantes AS, G, I, MN, MR, DB e P | Arthur Souto, Ithalo Ribeiro, Maria Eduarda do Nascimento, Maria Eduarda Rodrigues, Davi Barbosa e Gabriela de Paula |
+| **Desenvolvedor Back-End** | Estruturar o banco de dados, implementar a lógica de negócios em Python (Django), integrar a segurança e fornecer os dados para a interface. | Integrantes AR, R, DT, L | Arthur Rezende, Roberto Filho, Daniel Torquato, Levi Evangelista Santos |
 | **Cliente** | Fornecer feedback contínuo sobre a usabilidade, validar as telas e garantir que o produto atende às necessidades reais do público-alvo. | Stakeholders | Voluntários idosos |
+
+> Fonte: Elaboração própria
 
 ---
 
@@ -181,14 +184,16 @@ A tabela a seguir apresenta o ciclo de vida do projeto, estruturado em iteraçõ
 | Sprint | Produto (Entrega) | Data Início | Data Fim | Entregável(eis) | Responsáveis | % conclusão |
 |---|---|---|---|---|---|---|
 | **Sprint 1** | Definição e Infraestrutura | 07/05/2026 | 14/05/2026 | DOC-ARQ, INFRA-BASE | Scrum Master, QA, PO | 100% |
-| **Sprint 2** | Acesso e Autenticação | 15/05/2026 | 22/05/2026 | US2, US3 | Desenvolvedores | 50% |
-| **Sprint 3** | Interface Acessível | 23/05/2026 | 30/05/2026 | US1 | Desenvolvedores, QA | 0% |
+| **Sprint 2** | Acesso e Autenticação | 15/05/2026 | 22/05/2026 | US2, US3 | Desenvolvedores | 100% |
+| **Sprint 3** | Interface Acessível | 23/05/2026 | 30/05/2026 | US1 | Desenvolvedores, QA | 50% |
 | **Sprint 4** | Core: Cadastro de Metas | 31/05/2026 | 07/06/2026 | US4 | Desenvolvedores | 0% |
 | **Sprint 5** | Interatividade e Prevenção | 08/06/2026 | 15/06/2026 | US5, US8 | Desenvolvedores, QA | 0% |
-| **Sprint 6** | Categorias e Tutoriais | 16/06/2026 | 23/06/2026 | US6 | Desenvolvedores | 0% |
+| **Sprint 6** | Categorias e Tutoriais | 16/06/2026 | 23/06/2026 | US6, US11 | Desenvolvedores | 0% |
 | **Sprint 7** | Gamificação e Progresso | 24/06/2026 | 01/07/2026 | US7, US9 | Desenvolvedores | 0% |
 | **Sprint 8** | Acessibilidade Avançada | 02/07/2026 | 09/07/2026 | US10 | Desenvolvedores | 0% |
 | **Sprint 9** | Homologação e Entrega | 10/07/2026 | 17/07/2026 | TEST-FINAL, RELAT-SONAR | Equipe Inteira, Cliente | 0% |
+
+> Fonte: Elaboração própria
 
 #### 2.3.1 Definições dos Entregáveis (Aliases)
 
@@ -198,12 +203,13 @@ A tabela a seguir apresenta o ciclo de vida do projeto, estruturado em iteraçõ
 * **US2:** Como usuário idoso, quero entrar e usar facilmente o site.
 * **US3:** Como usuário idoso, quero criar e entrar na minha conta rapidamente.
 * **US4:** Como usuário idoso, quero ter minhas metas diárias bem explicitas por meio de interfaces óbvias.
-* **US5:** Como usuário idoso, quero ser capaz de inserir novas metas, além das que eu ja tinha colocado.
+* **US5:** Como usuário idoso, quero ser capaz de inserir novas metas, além das que eu já tinha colocado.
 * **US6:** Como usuário idoso, quero categorizar minhas metas em áreas da vida (saúde, estudos, hábitos, lazer etc.) para organizar melhor meus objetivos.
-* **US7:** Como usuário idoso, quero ser capaz de ver quais metas eu ja cumpri de forma gráfica.
+* **US7:** Como usuário idoso, quero ser capaz de ver quais metas eu já cumpri de forma gráfica.
 * **US8:** Como usuário idoso, quero ter a opção de desfazer uma ação de exclusão imediatamente, para que eu não perca meus dados caso clique no botão errado sem querer.
 * **US9:** Como usuário idoso, quero ter um estímulo positivo ao ter cumprido minhas metas.
 * **US10:** Como usuário idoso, quero que o sistema ignore toques acidentais ou repetidos muito rápidos, para que eu não abra páginas ou exclua itens por erro de precisão motora.
+* **US11:** Como usuário idoso, quero aprender a usar o sistema.
 * **TEST-FINAL:** Bateria completa de testes do sistema executada com sucesso.
 * **RELAT-SONAR:** Relatório de inspeção de código (ausência de vulnerabilidades) gerado pela ferramenta de qualidade.
 
@@ -220,6 +226,8 @@ Esta seção descreve a estratégia de comunicação adotada para monitoramento 
 | Acompanhamento das atividades em andamento (Daily Scrum / Alinhamento técnico) | Equipe de desenvolvimento / Scrum Master | Diária (Pode ser assíncrona via grupo de mensagens) | Atualização do Trello (movimentação dos cards da sprint) e relato de impedimentos. |
 | Acompanhamento dos Riscos, Compromissos, Ações Pendentes e Indicadores (Sprint Planning e Retrospective) | Toda a equipe do projeto | Semanal (A cada final/início de Sprint) | Ata de reunião registrada no Notion, Painel de Riscos atualizado e Planilha de Métricas (GQM) preenchida. |
 | Relatório de situação do projeto e Validação (Sprint Review) | Product Owner (PO), Equipe e Cliente (Voluntários Idosos) | Quinzenal (A cada 2 Sprints) | Relatório de situação do projeto (documentado no Notion) comunicando o andamento geral, feedbacks documentados e aceite de User Stories. |
+
+> Fonte: Elaboração própria
 
 ---
 
@@ -245,6 +253,8 @@ A tabela a seguir apresenta os riscos iniciais registrados no Painel de Controle
 | **Baixa usabilidade ou rejeição pelo público-alvo (Idosos)** | Alto | Desenvolver a interface utilizando componentes acessíveis nativos do Bootstrap desde a Sprint 3 (US1) e focar na redução da carga cognitiva na tela. | Realizar reuniões de validação emergenciais com os Stakeholders (Cliente/Voluntários) para redesenhar o fluxo de telas ou o tamanho dos elementos visuais. |
 | **Falha na Integração de Tecnologias (Django, Keycloak, Docker)** | Médio | Inicializar a infraestrutura completa na Sprint 1 antes de qualquer tela ser codificada, garantindo a estabilidade dos contêineres e banco de dados. | Alocar os membros com perfil Full-Stack temporariamente para atuar junto à infraestrutura, resolvendo os bloqueios de comunicação entre os serviços. |
 | **Desfalque temporário ou indisponibilidade de membro da equipe** | Médio | Promover a ausência de hierarquia, garantindo que o conhecimento sobre o código seja compartilhado e não centralizado em uma única pessoa. | Redistribuir as tarefas essenciais do membro ausente entre os demais integrantes, reduzindo proporcionalmente o número de entregáveis da sprint afetada. |
+
+> Fonte: Elaboração própria
 
 ---
 
@@ -286,6 +296,8 @@ O processo possui um fluxo lógico estruturado em Sprints de 8 dias. Cada ciclo 
 
 ### 4.1 Backlog do produto
 
+A Tabela 6 apresenta os requisitos identificados durante o processo de elicitação, bem como sua classificação de prioridade segundo a técnica MoSCoW, que classifica os requisitos em Must, Should, Could e Won’t, permitindo identificar os elementos essenciais para a entrega do produto. Além disso, são apresentados os tipos de requisitos e as respectivas técnicas utilizadas para sua obtenção, permitindo rastrear a origem das necessidades do sistema.   
+
 #### Tabela 6 - Elicitação e Priorização do Backlog do Produto
 
 | Cenário | Requisito | Prioridade (MoSCoW) | Tipo | Forma de Elicitação |
@@ -307,7 +319,10 @@ O processo possui um fluxo lógico estruturado em Sprints de 8 dias. Cada ciclo 
 | Interação e acessibilidade motora | O sistema deve possuir “Dead Zone” e suavização de cliques (debounce), ignorando toques rápidos repetidos no mesmo botão | SHOULD | Não funcional | Pesquisas em guias de acessibilidade |
 | Interação e acessibilidade motora | Clique de permanência (Dwell click) que permite o usuário clicar automaticamente ao colocar o mouse em cima de um botão, por exemplo | COULD | Funcional | Brainstorm e pesquisas |
 
+> Fonte: Elaboração própria
+
 **Classificação de Prioridades (Visão da Equipe):**
+
 * **MUST (Obrigatório):** Requisitos essenciais para a viabilidade e utilidade mínima do produto. Como o foco principal do software é a inclusão digital do público 60+ com baixa familiaridade tecnológica, todos os requisitos básicos de acessibilidade visual (letras grandes, alto contraste) e navegação estruturada (poucos cliques, tutorial) foram classificados como MUST. Sem eles, o público-alvo não conseguirá utilizar a aplicação.
 * **SHOULD (Desejável):** Requisitos que agregam valor significativo à experiência e segurança do usuário, como feedback visual/sonoro e rastreabilidade de onde ele está no sistema. São importantes para evitar frustrações, mas o sistema central de metas pode operar em uma versão inicial (MVP) sem eles.
 * **COULD (Pode ter):** Funcionalidades extras, como alta personalização de cores e tamanhos de fonte pelo próprio usuário. Melhoram o engajamento, mas não são vitais para o funcionamento da aplicação, podendo ser implementados em versões futuras.
@@ -316,16 +331,20 @@ O processo possui um fluxo lógico estruturado em Sprints de 8 dias. Cada ciclo 
 
 ### 4.2 Perfis
 
+A Tabela 7 descreve os perfis considerados durante o levantamento dos requisitos do sistema. Para cada perfil são apresentadas suas características, permissões de acesso e as técnicas utilizadas para compreender suas necessidades e expectativas em relação ao produto.
+
 #### Tabela 7 - Perfis de acesso
 
 | # | Nome do perfil | Características do perfil | Permissões de acesso | Técnicas de elicitação |
 |---|---|---|---|---|
 | 1 | Usuário Idoso | Cliente principal para a utilização do software, deve saber usá-lo de forma fácil e intuitiva | Telas de usuário | Entrevistas, pesquisas, brainstorm e feedback |
-| 2 | Usuário jogador | Cliente que já tem experiência com outros aplicativos gamificados, ou jogos, utilizará o software de forma mais direta | Telas de usuário | Feedback, pesquisas |
-| 3 | Equipe de desenvolvimento | Própria equipe que desenvolverá, manterá a manutenção e inovação do software | Telas de usuário, front-end, back-end | Brainstorm, pesquisas |
+| 2 | Equipe de desenvolvimento | Própria equipe que fará a manutenção por meio de uma interface de administrador | Telas de usuário, front-end, back-end | Brainstorm, pesquisas |
+
+> Fonte: Elaboração própria
 
 **Técnicas de Elicitação:**
-* **Pesquisas (Análise de Concorrência e Feedback):** Utilizadas para compreender as necessidades do "Usuário Idoso" e do "Usuário Jogador". A pesquisa baseou-se na análise de comentários e avaliações de usuários em lojas de aplicativos (como Play Store e App Store) sobre aplicações gamificadas já existentes. Isso permitiu identificar frustrações reais com interfaces complexas e validar a necessidade de uma solução mais limpa e acessível.
+
+* **Pesquisas (Análise de Concorrência e Feedback):** Utilizadas para compreender as necessidades do "Usuário Idoso". A pesquisa baseou-se na análise de comentários e avaliações de usuários em lojas de aplicativos (como Play Store e App Store) sobre aplicações gamificadas já existentes. Isso permitiu identificar frustrações reais com interfaces complexas e validar a necessidade de uma solução mais limpa e acessível.
 * **Brainstorming:** Utilizado pela "Equipe de desenvolvimento" como ferramenta principal para cruzar as dores encontradas nas pesquisas com soluções técnicas viáveis. O brainstorming permitiu definir as regras de negócio, como a restrição de navegação e o uso de alto contraste, de forma colaborativa.
 * **Entrevistas e Feedback:** Aplicadas para validar as ideias geradas no brainstorming diretamente com potenciais usuários do público-alvo, garantindo que propostas como o "tutorial obrigatório" sejam realmente eficazes para a inclusão digital do idoso.
 * **Análise de Concorrentes:** Foi realizada uma análise de concorrentes em aplicativos de gerenciamento de metas e hábitos disponíveis na Play Store e App Store. A pesquisa revelou que a maioria das soluções apresenta interfaces sobrecarregadas, navegação complexa e baixa acessibilidade, especialmente para usuários com pouca familiaridade com tecnologia. Essa análise reforçou a necessidade de desenvolver um sistema mais simples, intuitivo e acessível, com foco em usabilidade e gamificação leve, diferenciando-se das soluções existentes no mercado.
@@ -333,6 +352,8 @@ O processo possui um fluxo lógico estruturado em Sprints de 8 dias. Cada ciclo 
 ---
 
 ### 4.3 Cenários
+
+Os cenários funcionais foram descritos utilizando User Stories, uma técnica amplamente utilizada em projetos ágeis para representar necessidades do usuário de forma simples e orientada a valor (COHN, 2004). A Tabela 8 apresenta os cenários funcionais do sistema representados por meio de User Stories. Cada cenário descreve uma necessidade do usuário final e sua respectiva sprint de implementação, permitindo visualizar a distribuição das funcionalidades ao longo do cronograma do projeto.
 
 #### Tabela 8 – User Stories (Cenários funcionais)
 
@@ -342,47 +363,54 @@ O processo possui um fluxo lógico estruturado em Sprints de 8 dias. Cada ciclo 
 | **US2** | Como usuário idoso, quero entrar e usar facilmente o site | 2 |
 | **US3** | Como usuário idoso, quero criar e entrar na minha conta rapidamente | 2 |
 | **US4** | Como usuário idoso, quero ter minhas metas diárias bem explicitas por meio de interfaces óbvias | 4 |
-| **US5** | Como usuário idoso, quero ser capaz de inserir novas metas, além das que eu ja tinha colocado | 5 |
+| **US5** | Como usuário idoso, quero ser capaz de inserir novas metas, além das que eu já tinha colocado | 5 |
 | **US6** | Como usuário idoso, quero categorizar minhas metas em áreas da vida (saúde, estudos, hábitos, lazer etc.) para organizar melhor meus objetivos | 6 |
-| **US7** | Como usuário idoso, quero ser capaz de ver quais metas eu ja cumpri de forma gráfica | 7 |
+| **US7** | Como usuário idoso, quero ser capaz de ver quais metas eu já cumpri de forma gráfica | 7 |
 | **US8** | Como usuário idoso, quero ter a opção de desfazer uma ação de exclusão imediatamente, para que eu não perca meus dados caso clique no botão errado sem querer. | 5 |
 | **US9** | Como usuário idoso, quero ter um estímulo positivo ao ter cumprido minhas metas | 7 |
 | **US10** | Como usuário idoso, quero que o sistema ignore toques acidentais ou repetidos muito rápidos, para que eu não abra páginas ou exclua itens por erro de precisão motora. | 8 |
+| **US11** | Como usuário idoso, quero aprender a usar o sistema. | 6 |
+
+
+> Fonte: Elaboração própria
 
 ---
 
 ### 4.4 Tabela de Backlog do produto
 
+A Tabela 9 detalha o backlog do produto, relacionando os requisitos identificados com suas respectivas prioridades, descrições e User Stories associadas. Esse detalhamento permite compreender como os requisitos serão implementados e organizados ao longo das sprints planejadas.
+
 #### Tabela 9: Backlog do produto detalhado
 
-| Numeração | Sprint | Nome do requisito | Tipo de requisito | Priorização | Descrição suscinta do requisito | User Stories associadas |
+| Numeração | Sprint | Nome do requisito | Tipo de requisito | Priorização | Descrição sucinta do requisito | User Stories associadas |
 |---|---|---|---|---|---|---|
 | 1 | 3 | Acessibilidade Visual e Navegação | Não funcional | Must | Interface com letras e botões grandes, alto contraste, poucas abas e redirecionamento objetivo. | US1 |
 | 2 | 2 | Tela de login/registro | Funcional | Must | Tela capaz de registrar as informações do usuário e guardá-las para um acesso posterior. | US2, US3 |
-| 3 | 6 | Tutorial Inicial | Funcional | Must | Tutorial obrigatório ao acessar pela primeira vez, disponível para ser usado depois. | US1, US3 |
-| 4 | 4 e 5 | Gerenciamento/registro de Metas | Funcional | Must | Funcionalidade que permite ao usuário adicionar, retirar, editar e preencher metas diárias com feedback imediato. | US4, US5 |
+| 3 | 6 | Tutorial Inicial | Funcional | Must | Tutorial obrigatório ao acessar pela primeira vez, disponível para ser usado depois. | US11 |
+| 4 | 4 e 5 | Gerenciamento/registro de Metas | Funcional | Must | Funcionalidade que permite ao usuário adicionar, remover, editar e preencher metas diárias com feedback imediato. | US4, US5 |
 | 5 | 5 | Feedback Sensorial | Funcional | Should | Sons e mudança visual imediata ao clicar em botões para confirmar a interação. | US1, US4 |
-| 6 | 7 | Histórico e Progresso | Funcional | Must | Demonstração com gráficos e dados em relação ao cumprimento de metas do usuário com metas concluídas por dia e resumos semanais. | US6 |
-| 7 | 7 | Sistema de Recompensa (Gamificação) | Funcional | Should | Sistema de parabenização e estímulo positivo ao usuário ao cumprir metas executado por meio de feedback positivo, mensagens motivacionais, streaks e conquistas simples. | US7 |
+| 6 | 7 | Histórico e Progresso | Funcional | Must | Demonstração com gráficos e dados em relação ao cumprimento de metas do usuário com metas concluídas por dia e resumos semanais. | US7 |
+| 7 | 7 | Sistema de Recompensa (Gamificação) | Funcional | Should | Sistema de parabenização e estímulo positivo ao usuário ao cumprir metas executado por meio de feedback positivo, mensagens motivacionais, streaks e conquistas simples. | US9 |
 | 8 | 8 | Personalização de Interface | Funcional | Could | Capacidade de o próprio usuário alterar o tamanho e cores de letras e da interface. | US1 |
-| 9 | 7 | Acompanhamento e visualização de progresso | Funcional | Must | Visualizar o progresso das metas de forma clara e visual (pendentes e concluídas). | US6 |
-| 10 | 6 | Categorização de metas | Funcional | Should | Categorizar metas em áreas da vida (saúde, estudos, hábitos, lazer e etc). | US8 |
-| 11 | 5 | Recuperação de erros (undo) | Funcional | Must | Confirmação antes de excluir e opção de "Desfazer" para evitar perda de dados por cliques acidentais. | US10 |
+| 9 | 7 | Acompanhamento e visualização de progresso | Funcional | Must | Visualizar o progresso das metas de forma clara e visual (pendentes e concluídas). | US7 |
+| 10 | 6 | Categorização de metas | Funcional | Should | Categorizar metas em áreas da vida (saúde, estudos, hábitos, lazer e etc). | US6 |
+| 11 | 5 | Recuperação de erros (undo) | Funcional | Must | Confirmação antes de excluir e opção de "Desfazer" para evitar perda de dados por cliques acidentais. | US8 |
 | 12 | 6 | Ajuda contextual fixa | Funcional | Should | Ícone de interrogação fixo em todas as páginas com explicações simples sobre as funções da tela. | US11 |
 | 13 | 6 | Sistema de lembretes | Funcional | Should | Notificações ou alertas visuais para lembrar o usuário de atualizar suas metas diárias. | US4 |
-| 14 | 8 | Acessibilidade motora | Não funcional | Should | Implementação de Deadzone e Debounce para ignorar toques acidentais ou tremores. | US9 |
-| 15 | 8 | Clique de permanência | Funcional | Could | Recurso de Dwell Click que aciona o botão apenas mantendo o cursor ou dedo sobre ele. | US9 |
-| 16 | 8 | Entrada por voz | Funcional | Could | Possibilidade de ditar metas usando o microfone, evitando a necessidade de digitar no teclado. | US12 |
+| 14 | 8 | Acessibilidade motora | Não funcional | Should | Implementação de Deadzone e Debounce para ignorar toques acidentais ou tremores. | US10 |
+| 15 | 8 | Clique de permanência | Funcional | Could | Recurso de Dwell Click que aciona o botão apenas mantendo o cursor ou dedo sobre ele. | US10 |
+
+> Fonte: Elaboração própria
 
 ---
 
 ## 5 Métricas e Medições
 
-Esta seção apresenta o plano de medição do projeto, elaborado com base na abordagem Goal/Question/Metric (GQM), conforme proposta por Basili et al. e descrita em Wangenheim, Wangenheim e Lino (2009).
+Esta seção apresenta o plano de medição do projeto, elaborado com base na abordagem Goal/Question/Metric (GQM), proposta para derivar métricas a partir de objetivos específicos de medição (WANGENHEIM; WANGENHEIM; LINO, 2009; MOURA et al., 2009).
 
 ### 5.1 GQM de Medições
 
-O objetivo de medição foi definido considerando o contexto do projeto e as necessidades de informação da equipe para monitoramento de qualidade e desempenho do processo. A tabela 10 apresenta o objetivo de medição estruturado.
+O objetivo de medição foi definido considerando o contexto do projeto e as necessidades de informação da equipe para monitoramento da qualidade do produto e do desempenho do processo de desenvolvimento. A Tabela 10 apresenta a estruturação desse objetivo segundo o paradigma GQM, detalhando seus componentes e o contexto de aplicação no projeto.
 
 #### Tabela 10 – Objetivo de Medição GQM
 
@@ -396,7 +424,7 @@ O objetivo de medição foi definido considerando o contexto do projeto e as nec
 
 > Fonte: elaborado pelos autores, com base em Wangenheim, Wangenheim e Lino (2009).
 
-A partir do objetivo de medição definido na Tabela 10 foram elaboradas três questões que operacionalizam o objetivo, desdobrando-o em aspectos mensuráveis. Para cada questão, foram identificadas métricas com suas respectivas definições, formas de cálculo, escalas, valores esperados e formas de análise, conforme apresentado na tabela 11.
+A partir do objetivo de medição definido na Tabela 10 foram elaboradas três questões que operacionalizam o objetivo, desdobrando-o em aspectos mensuráveis. A Tabela 11 apresenta as métricas associadas a cada questão, incluindo suas fórmulas de cálculo, valores esperados e formas de análise utilizadas para monitorar o andamento do projeto.
 
 #### Tabela 11 - Métricas e suas definições
 
@@ -418,9 +446,11 @@ Os dados serão coletados ao final de cada sprint, registrados no repositório d
 
 ## 6 Testes de Software
 
+Os testes de software têm como objetivo verificar e validar se o sistema atende aos requisitos especificados e apresenta comportamento adequado durante sua utilização (PRESSMAN; MAXIM, 2020).
+
 ### 6.1 Estratégia de Testes
 
-A tabela 12 apresenta a estratégia de testes adotada, em consonância com as práticas de XP descritas na seção 3.
+A estratégia adotada contempla testes unitários, de integração e de sistema, níveis amplamente empregados para assegurar a qualidade do software ao longo do desenvolvimento (SOMMERVILLE, 2019). A Tabela 12 apresenta a estratégia de testes adotada no projeto, especificando os níveis e tipos de testes, os ambientes utilizados, a política de versionamento e a forma de análise dos resultados. Essas definições têm como objetivo garantir a qualidade do produto e apoiar o acompanhamento das métricas apresentadas na seção anterior.
 
 #### Tabela 12 - Estratégia de Testes de Software
 
@@ -431,6 +461,8 @@ A tabela 12 apresenta a estratégia de testes adotada, em consonância com as pr
 | **Ambientes de Teste** | Local e Homologação |
 | **Política de Branches** | Local (feature/*) → Homologação (develop) → Produção (main). Commits sobem para develop somente após aprovação nos testes unitários e de integração. |
 | **Forma de Análise** | Previsto x Realizado: divergência = reprovação, registro do defeito, correção e reexecução. Resultados alimentam as métricas de Densidade de Defeitos e Taxa de Rejeição (seção 5). |
+
+> Fonte: Elaboração própria
 
 ---
 
@@ -608,3 +640,7 @@ Os casos de teste a seguir estão alinhados às User Stories e requisitos do bac
 * MOURA, Déborah Carvalho de; NERY, Paulo; SILVA, Carlos Vinícius Pereira da; CAMPOS, Danylo de Castro. **GQM: Goal – Question – Metric**. 2009.
 * WANGENHEIM, Christiane Gresse von; WANGENHEIM, Aldo von; LINO, Juliana Izabel. **Medição de Software: Guia Prático**. Florianópolis: Bookess, 2009.
 * FARIAS, Josivania Silva; VITOR, Thayane da Luz; LINS, Paula Valente; PEDROZA FILHO, Luiz Eduardo Azevedo. **Inclusão digital na terceira idade: um estudo sobre a propensão de idosos à adoção de tecnologias da informação e comunicação (TICs)**. Revista Gestão & Tecnologia, Pedro Leopoldo, v. 15, n. 3, p. 164–188, set./dez. 2015. Disponível em: <https://www.repositorio.unb.br/handle/10482/21740>. Acesso em: 29 abr. 2026.
+* COHN, Mike. User Stories Applied: For Agile Software Development. Boston: Addison-Wesley, 2004.
+* PRESSMAN, Roger S.; MAXIM, Bruce R. Engenharia de Software: Uma Abordagem Profissional. 9. ed. Porto Alegre: AMGH, 2020.
+* SOMMERVILLE, Ian. Engenharia de Software. 10. ed. São Paulo: Pearson, 2019.
+* SCHWABER, Ken; SUTHERLAND, Jeff. The Scrum Guide: The Definitive Guide to Scrum: The Rules of the Game. 2020. Disponível em: <https://scrumguides.org>. Acesso em: 02 jun. 2026.
