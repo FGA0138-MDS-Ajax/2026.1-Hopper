@@ -16,7 +16,10 @@ A organização desta branch segue a estrutura necessária para o funcionamento 
 ├── zdocs/                   # Todos os arquivos .md e imagens da documentação
 │   ├── arquiteturaimgs/     # Imagens e diagramas de arquitetura
 │   ├── visaoimgs/           # Imagens do documento de visão
-│   ├── arquitetura.md       # Documento de Arquitetura de Software
 │   ├── index.md             # Página inicial da documentação
 │   └── visao.md             # Documento de Visão
+│   ├── arquitetura.md       # Documento de Arquitetura de Software
+|   └── PEP8.md              # Documento que explicativo sobre o PEP8 e guia de como utilizar o Ruff
+|   └── configuracoes.md     # Documento que define os itens de configuração e as políticas de branches e commits
+|   └── relatorios.md     # Documento que exibe os dados coletados durante as sprints
 └── mkdocs.yml               # Arquivo de configuração global do MkDocs

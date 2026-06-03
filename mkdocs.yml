@@ -13,3 +13,5 @@ nav:
   - Documento de Visão: visao.md
   - Documento de Arquitetura: arquitetura.md
   - PEP 8: PEP8.md
+  - Itens de Configuração e Política de Branches : configuracoes.md
+  - Relatórios de Métricas : relatorios.md
