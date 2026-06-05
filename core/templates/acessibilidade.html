@@ -46,37 +46,48 @@
             Ajuste as opções abaixo e salve para aplicar as alterações.
         </p>
 
-        <form>
+        <form method="POST">
+            {% csrf_token %}
             <div class="mb-5">
                 <label class="fw-bold text-dark mb-3 d-block fs-4">Tamanho das Letras</label>
                 <div class="row g-2">
-                    <div class="col-4"><input type="radio" class="btn-check" name="tamanho_letra" id="letra_pequena"><label class="btn btn-outline-hop w-100 py-3" for="letra_pequena">Pequeno</label></div>
-                    <div class="col-4"><input type="radio" class="btn-check" name="tamanho_letra" id="letra_media"><label class="btn btn-outline-hop w-100 py-3" for="letra_media">Médio</label></div>
-                    <div class="col-4"><input type="radio" class="btn-check" name="tamanho_letra" id="letra_grande" checked><label class="btn btn-outline-hop w-100 py-3" for="letra_grande">Grande</label></div>
+                    <div class="col-4"><input type="radio" class="btn-check" name="tamanho_letra" id="letra_pequena" value="pequeno" {% if tamanho_texto == 'pequeno' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3" for="letra_pequena">Pequeno</label></div>
+                    <div class="col-4"><input type="radio" class="btn-check" name="tamanho_letra" id="letra_media" value="medio" {% if tamanho_texto == 'medio' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3" for="letra_media">Médio</label></div>
+                    <div class="col-4"><input type="radio" class="btn-check" name="tamanho_letra" id="letra_grande" value="grande" {% if tamanho_texto == 'grande' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3" for="letra_grande">Grande</label></div>
                 </div>
             </div>
 
             <div class="mb-5">
                 <label class="fw-bold text-dark mb-3 d-block fs-4">Tamanho dos Botões</label>
                 <div class="row g-2">
-                    <div class="col-6"><input type="radio" class="btn-check" name="tamanho_botao" id="botao_normal"><label class="btn btn-outline-hop w-100 py-3" for="botao_normal">Normal</label></div>
-                    <div class="col-6"><input type="radio" class="btn-check" name="tamanho_botao" id="botao_grande" checked><label class="btn btn-outline-hop w-100 py-3" for="botao_grande">Botões Grandes</label></div>
+                    <div class="col-6"><input type="radio" class="btn-check" name="tamanho_botao" id="botao_normal" value="normal" {% if tamanho_botao == 'normal' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3" for="botao_normal">Normal</label></div>
+                    <div class="col-6"><input type="radio" class="btn-check" name="tamanho_botao" id="botao_grande" value="largo" {% if tamanho_botao == 'largo' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3" for="botao_grande">Botões Grandes</label></div>
                 </div>
             </div>
 
             <div class="p-4 mb-5 border rounded bg-light">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <h4 class="fw-bold text-dark mb-1">Assistência para Tremores</h4>
-                        <p class="text-escuro mb-0">Proteção contra cliques repetidos.</p>
+                        <h4 class="fw-bold text-dark mb-1">Assistência Motora (Tremores e Toque)</h4>
+                        <p class="text-escuro mb-0">Proteção contra cliques rápidos (500ms) e seleção automática ao manter pressionado/pairar por 2 segundos (Dwell Click).</p>
                     </div>
                     <div class="form-check form-switch fs-1">
-                        <input class="form-check-input" type="checkbox" role="switch" id="switchTremores">
+                        <input class="form-check-input" type="checkbox" role="switch" id="assistencia_motora" name="assistencia_motora_ativa" {% if assistencia_motora %}checked{% endif %}>
                     </div>
                 </div>
             </div>
 
-            <button type="button" class="btn btn-principal w-100 fw-bold py-3 fs-4" style="background-color: #3A5A50;">
+            <!-- Demonstração de visualização das mudanças -->
+            <div class="p-4 mb-5 border rounded bg-light">
+                <h4 class="fw-bold text-dark mb-2">Exemplo Visual das Letras e Botões</h4>
+                <p class="text-muted small">Os tamanhos mudam em tempo real abaixo e em todo o site conforme você altera as opções acima!</p>
+                <div class="p-3 border rounded bg-white mt-3 text-center">
+                    <p class="mb-3 fw-bold text-dark">Texto de Exemplo</p>
+                    <button type="button" class="btn btn-outline-hop w-100 py-2">Botão de Exemplo</button>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-principal w-100 fw-bold py-3 fs-4" style="background-color: #3A5A50; color: white;">
                 Salvar Configurações
             </button>
         </form>
@@ -85,19 +96,31 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const switchTremores = document.getElementById('switchTremores');
-        const alertaAzul = document.getElementById('alertaAzul');
-        const alertaCinza = document.getElementById('alertaCinza');
+        const radiosLetra = document.querySelectorAll('input[name="tamanho_letra"]');
+        const radiosBotao = document.querySelectorAll('input[name="tamanho_botao"]');
+        const checkMotora = document.getElementById('assistencia_motora');
 
-        switchTremores.addEventListener('change', function() {
-            if(this.checked) {
-                alertaAzul.classList.remove('d-none');
-                alertaCinza.classList.add('d-none');
-            } else {
-                alertaAzul.classList.add('d-none');
-                alertaCinza.classList.remove('d-none');
+        function updateLiveSettings() {
+            const selectedLetra = document.querySelector('input[name="tamanho_letra"]:checked').value;
+            const selectedBotao = document.querySelector('input[name="tamanho_botao"]:checked').value;
+            const isMotora = checkMotora.checked;
+
+            // Remove old classes
+            document.body.classList.remove('texto-pequeno', 'texto-medio', 'texto-grande');
+            document.body.classList.remove('botao-normal', 'botao-largo');
+            document.body.classList.remove('assistencia-motora');
+
+            // Add new classes
+            document.body.classList.add('texto-' + selectedLetra);
+            document.body.classList.add('botao-' + selectedBotao);
+            if (isMotora) {
+                document.body.classList.add('assistencia-motora');
             }
-        });
+        }
+
+        radiosLetra.forEach(r => r.addEventListener('change', updateLiveSettings));
+        radiosBotao.forEach(r => r.addEventListener('change', updateLiveSettings));
+        checkMotora.addEventListener('change', updateLiveSettings);
     });
 </script>
 {% endblock %}
