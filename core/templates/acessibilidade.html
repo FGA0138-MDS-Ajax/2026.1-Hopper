@@ -1,0 +1,217 @@
+{% extends 'base.html' %} 
+
+{% block conteudo %}
+<style>
+    /* Esconde a navbar nativa da base APENAS nesta página para usarmos a versão esticada */
+    body > nav.navbar { display: none !important; }
+    body { overflow-x: hidden; }
+
+    :root {
+        --hoplife-orange: #E67E22; 
+        --hoplife-bg-card: #FFFFFF;
+    }
+
+    /* Permite que a barra quebre o container da base de forma segura em qualquer tela */
+    .navbar-fullwidth {
+        width: 100vw !important;
+        margin-left: calc(-50vw + 50%);
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .bg-warm { background-color: var(--hoplife-orange) !important; }
+    .text-warm { color: #D35400 !important; }
+    .fw-bold { font-weight: 700 !important; }
+
+    /* BOTÕES BASE PADRONIZADOS E CENTRALIZADOS */
+    .btn-outline-warm {
+        color: var(--hoplife-orange) !important;
+        background-color: var(--hoplife-bg-card) !important;
+        border: 1px solid var(--hoplife-orange) !important; 
+        border-radius: 6px !important;
+        margin: 0 !important;
+        transition: all 0.2s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        font-weight: 700;
+    }
+
+    .btn-check:not(:checked) + .btn-outline-warm:hover { background-color: #FCE1CC !important; }
+    .btn-check:checked + .btn-outline-warm {
+        background-color: var(--hoplife-orange) !important;
+        color: white !important;
+    }
+
+    /* CLASSES DE PADRONIZAÇÃO DE TAMANHOS (Desktop) */
+    .caixa-letra { height: 60px; }
+    .letra-p { font-size: 1.1rem; }
+    .letra-m { font-size: 1.35rem; }
+    .letra-g { font-size: 1.6rem; }
+
+    /* Caixas de botão com a MESMA ALTURA, apenas com fontes diferentes */
+    .caixa-botao-normal { height: 70px; font-size: 1.25rem; }
+    .caixa-botao-grande { height: 70px; font-size: 1.5rem; }
+
+    /* Card principal com sombra */
+    .card-acessibilidade {
+        border: 1px solid var(--hoplife-orange);
+        border-radius: 12px;
+        background-color: var(--hoplife-bg-card);
+        max-width: 650px; 
+        width: 100%;
+        box-shadow: 0 15px 45px rgba(230, 126, 34, 0.12) !important;
+    }
+
+    .caixa-assistencia {
+        border: 1px solid var(--hoplife-orange);
+        border-radius: 8px;
+        background-color: #ffffff;
+    }
+
+    .btn-salvar {
+        background-color: var(--hoplife-orange);
+        color: white !important;
+        border: 1px solid var(--hoplife-orange) !important;
+        border-radius: 6px !important;
+    }
+
+    .btn-salvar:hover {
+        background-color: #D35400 !important;
+        border-color: #D35400 !important;
+    }
+
+    /* Alertas com fontes legíveis */
+    .alerta-azul, .alerta-cinza {
+        border-radius: 8px; max-width: 650px; margin: 0 auto 20px auto;
+        padding: 1.2rem 3.5rem 1.2rem 1.5rem; position: relative; font-weight: 600; font-size: 1.25rem;
+    }
+    .alerta-azul { background-color: #DDF5F9; border: none; color: #04414A; }
+    .alerta-cinza { background-color: #E9ECEF; border: none; color: #212529; }
+    
+    .texto-alto-contraste { color: #212529 !important; font-weight: 600; }
+
+    /* REGRAS DE RESPONSIVIDADE PARA CELULARES E TABLETS */
+    @media (max-width: 768px) {
+        .letra-p { font-size: 1rem; }
+        .letra-m { font-size: 1.2rem; }
+        .letra-g { font-size: 1.4rem; }
+        
+        /* Caixas de botão com a MESMA ALTURA no celular */
+        .caixa-botao-normal { height: 60px; font-size: 1.1rem; }
+        .caixa-botao-grande { height: 60px; font-size: 1.3rem; }
+        
+        .titulo-card { font-size: 1.8rem !important; }
+        .texto-descritivo { font-size: 1.1rem !important; }
+        .alerta-azul, .alerta-cinza { font-size: 1rem; padding: 1rem 3rem 1rem 1rem; }
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-warm shadow-sm navbar-fullwidth">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-2" href="/">HopLife</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center gap-4 fs-4">
+                <li class="nav-item"><a class="nav-link text-white" href="#">Minhas Metas</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#">Conquistas</a></li>
+                <li class="nav-item"><a class="nav-link text-white fw-bold active" href="#">Acessibilidade</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold" href="#" style="color: #FFD13B !important;">Sair (Simulado)</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="pb-5">
+    
+    <div id="alertaAzul" class="alert alerta-azul alert-dismissible fade show" role="alert">
+        <strong class="fw-bold">Assistência Ativada!</strong> O filtro de tremores e o clique por permanência de 2s estão ativos.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="top: 20px; right: 15px;"></button>
+    </div>
+
+    <div id="alertaCinza" class="alert alerta-cinza alert-dismissible fade show d-none" role="alert">
+        <strong class="fw-bold text-dark">Assistência Desativada!</strong> Os recursos de auxílio motor foram desativados.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="top: 20px; right: 15px;"></button>
+    </div>
+
+    <div class="card-acessibilidade p-3 p-md-5 mx-auto">
+        
+        <h1 class="text-warm fw-bold mb-4 titulo-card" style="font-size: 2.2rem;">Minhas Configurações</h1>
+        <p class="texto-alto-contraste mb-4 mb-md-5 texto-descritivo" style="font-size: 1.25rem; line-height: 1.6;">
+            Mude as opções abaixo e clique no botão laranja para ver as alterações acontecerem em tempo real!
+        </p>
+
+        <form>
+            <div class="mb-4 mb-md-5">
+                <label class="fw-bold text-dark mb-3 d-block fs-4">Tamanho das Letras</label>
+                <div class="row g-2 align-items-stretch">
+                    <div class="col-12 col-md-4">
+                        <input type="radio" class="btn-check" name="tamanho_letra" id="letra_pequena" autocomplete="off">
+                        <label class="btn btn-outline-warm caixa-letra letra-p" for="letra_pequena">Pequeno</label>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <input type="radio" class="btn-check" name="tamanho_letra" id="letra_media" autocomplete="off">
+                        <label class="btn btn-outline-warm caixa-letra letra-m" for="letra_media">Médio</label>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <input type="radio" class="btn-check" name="tamanho_letra" id="letra_grande" autocomplete="off" checked>
+                        <label class="btn btn-outline-warm caixa-letra letra-g" for="letra_grande">Grande</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4 mb-md-5">
+                <label class="fw-bold text-dark mb-3 d-block fs-4">Tamanho dos Botões</label>
+                <div class="row g-2 align-items-stretch">
+                    <div class="col-12 col-md-6">
+                        <input type="radio" class="btn-check" name="tamanho_botao" id="botao_normal" autocomplete="off">
+                        <label class="btn btn-outline-warm caixa-botao-normal" for="botao_normal">Normal</label>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input type="radio" class="btn-check" name="tamanho_botao" id="botao_grande" autocomplete="off" checked>
+                        <label class="btn btn-outline-warm caixa-botao-grande" for="botao_grande">Botões Grandes</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="caixa-assistencia p-3 p-md-4 mb-4 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                <div class="pe-md-4">
+                    <h4 class="fw-bold text-dark mb-2">Assistência para Tremores</h4>
+                    <p class="texto-alto-contraste mb-0" style="line-height: 1.6; font-size: 1.1rem;">
+                        Ativa proteção contra cliques repetidos e permite clicar apenas posicionando o cursor sobre o botão por 2 segundos.
+                    </p>
+                </div>
+                <div class="form-check form-switch fs-1 mb-0 align-self-start align-self-md-auto">
+                    <input class="form-check-input" type="checkbox" role="switch" id="switchTremores" checked>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-salvar w-100 fw-bold py-3 mt-3 mt-md-4 fs-4">
+                Salvar Configurações
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const switchTremores = document.getElementById('switchTremores');
+        const alertaAzul = document.getElementById('alertaAzul');
+        const alertaCinza = document.getElementById('alertaCinza');
+
+        switchTremores.addEventListener('change', function() {
+            if(this.checked) {
+                alertaAzul.classList.remove('d-none');
+                alertaCinza.classList.add('d-none');
+            } else {
+                alertaAzul.classList.add('d-none');
+                alertaCinza.classList.remove('d-none');
+            }
+        });
+    });
+</script>
+{% endblock %}
