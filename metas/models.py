@@ -10,6 +10,8 @@ class Categoria(models.Model):
     Atende à US6: Categorizar metas em áreas da vida (Saúde, Lazer, etc.)
     """
 
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
     nome = models.CharField(max_length=50)
     # Podemos guardar uma cor em hexadecimal para pintar a interface do idoso depois
     cor_identificacao = models.CharField(max_length=7, default="#007bff")

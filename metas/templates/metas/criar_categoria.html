@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm rounded-4 border-0 mt-4">
+            <div class="card-body p-5">
+                <h2 class="text-warm fw-bold mb-4 text-center">Criar Nova Categoria</h2>
+                <p class="text-center text-muted mb-4">Ex: Saúde, Alimentação, Fisioterapia...</p>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                        {% if field.name == 'cor_identificacao' %}
+                            <div style="display: none;">
+                                {{ field }}
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label fs-5 text-secondary d-block text-center mb-3">Escolha uma Cor</label>
+                                <div id="paleta-cores" class="d-flex flex-wrap gap-3 justify-content-center">
+                                    </div>
+                            </div>
+                        {% else %}
+                            <div class="mb-4">
+                                <label for="{{ field.id_for_label }}" class="form-label fs-5 text-secondary">{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    <div class="d-grid gap-2 mt-5 border-top pt-4">
+                        <button type="submit" class="btn btn-warm btn-lg py-3 rounded-pill fs-4 shadow-sm">Salvar Categoria</button>
+                        <a href="{% url 'metas:criar' %}" class="btn btn-light btn-lg rounded-pill mt-2">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Estilo para deixar o campo de texto grande e bonito */
+    input[type="text"] {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ced4da;
+        border-radius: 10px;
+        font-size: 1.2rem;
+    }
+    input[type="text"]:focus {
+        border-color: #E67E22;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba(230, 126, 34, 0.25);
+    }
+
+    /* O estilo das nossas bolinhas de cor */
+    .bolinha-cor {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        cursor: pointer;
+        transition: transform 0.1s, border 0.1s;
+    }
+    .bolinha-cor:hover {
+        transform: scale(1.1); /* Dá uma "crescida" quando passa o mouse */
+    }
+    .bolinha-cor.selecionada {
+        border: 4px solid #333 !important; /* Borda escura para mostrar qual está selecionada */
+        transform: scale(1.15);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // 20 Cores vibrantes, alegres e sem tons escuros/acinzentados
+    const cores = [
+        '#FF3B30', '#FF9500', '#FFCC00', '#4CD964', '#5AC8FA', 
+        '#007AFF', '#5856D6', '#FF2D55', '#F44336', '#E91E63', 
+        '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#03A9F4', 
+        '#00BCD4', '#009688', '#4CAF50', '#8BC34A', '#FF9800'
+    ];
+
+    const paletaDiv = document.getElementById('paleta-cores');
+    const inputEscondido = document.getElementById('id_cor_identificacao'); // ID automático que o Django cria
+
+    // Desenha as 20 bolinhas na tela
+    cores.forEach(cor => {
+        let btnCor = document.createElement('div');
+        btnCor.className = 'bolinha-cor shadow-sm';
+        btnCor.style.backgroundColor = cor;
+        
+        // Se for a cor padrão (Laranja), já começa selecionada
+        if(cor === '#FF9500') {
+            btnCor.classList.add('selecionada');
+        }
+
+        // O que acontece quando o idoso clica numa bolinha
+        btnCor.onclick = function() {
+            // 1. Tira a seleção de todas as bolinhas
+            document.querySelectorAll('.bolinha-cor').forEach(b => b.classList.remove('selecionada'));
+            // 2. Coloca a seleção na bolinha clicada
+            this.classList.add('selecionada');
+            // 3. Avisa o Django qual foi a cor escolhida
+            inputEscondido.value = cor;
+        };
+
+        paletaDiv.appendChild(btnCor);
+    });
+</script>
+{% endblock %}

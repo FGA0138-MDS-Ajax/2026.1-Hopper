@@ -17,4 +17,14 @@ urlpatterns = [
         views.atualizar_status_diario,
         name="atualizar_registro",
     ),
+    # Criar Categorias
+    path("categoria/nova/", views.CriarCategoriaView.as_view(), name="criar_categoria"),
+    # Listar Categorias
+    path("categorias/", views.ListarCategoriasView.as_view(), name="listar_categorias"),
+    # Apagar Categoria
+    path(
+        "categoria/<int:pk>/deletar/",
+        views.DeletarCategoriaView.as_view(),
+        name="deletar_categoria",
+    ),
 ]
