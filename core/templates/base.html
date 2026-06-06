@@ -1,37 +1,119 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HopLife</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>HopLife Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .bg-warm { background-color: #E67E22 !important; } 
-        .text-warm { color: #D35400 !important; }
-        .btn-warm { background-color: #E67E22; color: white; border: none; }
-        .btn-warm:hover { background-color: #D35400; color: white; }
-        .navbar-dark .navbar-nav .nav-link, .navbar-dark .navbar-brand { color: rgba(255, 255, 255, 0.95); }
+        /* --- Cores da Paleta HopLife (Alto Contraste) --- */
+        .bg-hop-green { background-color: #3A5A50 !important; } 
+        .text-hop-green { color: #3A5A50 !important; }
+        .bg-warm { background-color: #E64500 !important; } 
+        .text-warm { color: #E64500 !important; }
+        
+        .text-escuro { color: #374151 !important; } 
+
+        /* --- Estilo para botões quentes (laranja) --- */
+        .btn-warm {
+            background-color: #E64500 !important;
+            color: #FFFFFF !important;
+            border: none;
+        }
+        .btn-warm:hover {
+            background-color: #CC3D00 !important;
+            color: #FFFFFF !important;
+        }
+        
+        /* --- Menu Interativo (Botões Triplicados/Gigantes) --- */
+        .navbar-dark .navbar-nav .menu-link {
+            color: rgba(255, 255, 255, 0.95) !important;
+            font-weight: 700;
+            font-size: 1.5rem !important; /* Letra muito maior */
+            padding: 1rem 2rem !important; /* Preenchimento gigante para área de toque */
+            margin: 0 0.5rem;
+            border-radius: 50px; /* Mantém o formato arredondado no tamanho grande */
+            transition: all 0.2s ease;
+        }
+        .navbar-dark .navbar-nav .menu-link:hover {
+            background-color: rgba(255, 255, 255, 0.25); 
+            color: #FFFFFF !important;
+            transform: translateY(-3px);
+        }
+
+        /* --- Botão Sair (Gigante e NÃO redondo) --- */
+        .nav-link-sair {
+            background-color: #E64500 !important;
+            color: #FFFFFF !important;
+            border-radius: 8px !important; /* Sobrescreve o 50px para deixá-lo retangular com bordas suaves */
+            padding: 1rem 2.5rem !important; 
+        }
+        .nav-link-sair:hover {
+            background-color: #CC3D00 !important;
+        }
+
+        /* --- Efeito Botão Principal (+ Nova Meta) --- */
+        .btn-principal {
+            background-color: #3A5A50;
+            color: #FFFFFF !important;
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-principal:hover {
+            background-color: #2D473F; 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 15px rgba(58, 90, 80, 0.4) !important;
+        }
+
+        /* --- Efeito Hover nos Cards de Metas --- */
+        .goal-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .goal-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1) !important;
+        }
+
+        /* --- Efeito Botão Concluir --- */
+        .btn-concluir {
+            transition: transform 0.2s;
+        }
+        .btn-concluir:hover {
+            transform: scale(1.05); 
+        }
+
+        /* --- Efeito Abas de Tempo --- */
+        .time-pill {
+            color: #374151; 
+            font-weight: 700;
+            border-radius: 20px;
+            transition: background-color 0.2s;
+        }
+        .time-pill:hover {
+            background-color: #D1CFC4;
+            color: #E64500 !important;
+        }
     </style>
 </head>
-<body class="bg-light d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100" style="background-color: #E0DED7; color: #000000;">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-warm mb-4 shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-hop-green shadow-sm py-2">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/">HopLife</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-brand" href="/">
+                <img src="{% static 'img/logo-hoplife.png' %}" alt="Logo HopLife" height="70" style="filter: drop-shadow(3px 3px 0px #FFFFFF) drop-shadow(6px 6px 0px rgba(255, 255, 255, 0.5));">
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="box-shadow: none;">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-center mt-3 mt-lg-0 pb-3 pb-lg-0">
+                    
                     {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'metas:listar' %}">Minhas Metas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'metas:listar_categorias' %}">Categorias</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Conquistas</a></li>
-                        <li class="nav-item"><a class="nav-link text-warning fw-bold" href="/usuarios/logout/">Sair</a></li>
-                    {% else %}
-                        <li class="nav-item"><a class="nav-link" href="#">Sobre o HopLife</a></li>
-                        <li class="nav-item"><a class="nav-link text-white fw-bold" href="/usuarios/login/">Entrar</a></li>
+                        <li class="nav-item mb-2 mb-lg-0"><a class="nav-link menu-link" href="{% url 'metas:listar' %}">Minhas Metas</a></li>
+                        <li class="nav-item mb-2 mb-lg-0"><a class="nav-link menu-link" href="#">Conquistas</a></li>
+                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a class="nav-link menu-link nav-link-sair" href="/usuarios/logout/">Sair</a></li>
                     {% endif %}
+                    
                 </ul>
             </div>
         </div>
@@ -41,9 +123,9 @@
         {% block conteudo %}{% endblock %}
     </main>
 
-    <footer class="bg-white border-top text-center py-3 mt-4 text-muted">
+    <footer class="text-center py-3 mt-4" style="background-color: #E0DED7; color: #6B7280; border-top: 2px solid #FFFFFF;">
         <div class="container">
-            <small>&copy; 2026 HopLife - Projeto MDS</small>
+            <span class="fw-bold fs-6 text-escuro">&copy; 2026 HopLife - Projeto MDS</span>
         </div>
     </footer>
 

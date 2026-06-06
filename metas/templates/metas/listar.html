@@ -3,9 +3,22 @@
 {% block conteudo %}
 <div class="container max-w-md pb-5">
     
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="text-warm fw-bold m-0">Minhas Metas</h1>
-        <a href="{% url 'metas:criar' %}?categoria={{ categoria_ativa }}" class="btn btn-warm btn-lg rounded-pill shadow-sm">➕ Nova Meta</a>
+   <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="m-0 fw-bolder text-escuro" style="letter-spacing: -0.5px;">
+            Minhas Metas
+        </h1>
+        
+        <div class="d-flex gap-3">
+            
+            <a href="{% url 'metas:listar_categorias' %}" class="btn bg-white text-dark btn-lg rounded-pill shadow-sm border fw-bold">
+                Gerenciar Categorias
+            </a>
+            
+            <a href="{% url 'metas:criar' %}?categoria={{ categoria_ativa }}" class="btn btn-warm btn-lg rounded-pill shadow-sm fw-bold">
+                ➕ Nova Meta
+            </a>
+            
+        </div>
     </div>
 
     <div class="d-flex overflow-auto mb-4" style="border-bottom: 2px solid #e0e0e0; white-space: nowrap;">
