@@ -107,10 +107,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center mt-3 mt-lg-0 pb-3 pb-lg-0">
-                    <li class="nav-item mb-2 mb-lg-0"><a class="nav-link menu-link" href="#">Minhas Metas</a></li>
-                    <li class="nav-item mb-2 mb-lg-0"><a class="nav-link menu-link" href="#">Conquistas</a></li>
                     
                     {% if user.is_authenticated %}
+                        <li class="nav-item mb-2 mb-lg-0"><a class="nav-link menu-link" href="{% url 'metas:listar' %}">Minhas Metas</a></li>
+                        <li class="nav-item mb-2 mb-lg-0"><a class="nav-link menu-link" href="#">Conquistas</a></li>
                         <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a class="nav-link menu-link nav-link-sair" href="/usuarios/logout/">Sair</a></li>
                     {% endif %}
                     
@@ -120,8 +120,7 @@
     </nav>
 
     <main class="container flex-grow-1">
-        {% block conteudo %}
-        {% endblock %}
+        {% block conteudo %}{% endblock %}
     </main>
 
     <footer class="text-center py-3 mt-4" style="background-color: #E0DED7; color: #6B7280; border-top: 2px solid #FFFFFF;">
@@ -131,5 +130,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    {% block scripts %}{% endblock %}
 </body>
 </html>

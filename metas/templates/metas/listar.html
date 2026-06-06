@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div class="container max-w-md pb-5">
+    
+   <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="m-0 fw-bolder text-escuro" style="letter-spacing: -0.5px;">
+            Minhas Metas
+        </h1>
+        
+        <div class="d-flex gap-3">
+            
+            <a href="{% url 'metas:listar_categorias' %}" class="btn bg-white text-dark btn-lg rounded-pill shadow-sm border fw-bold">
+                Gerenciar Categorias
+            </a>
+            
+            <a href="{% url 'metas:criar' %}?categoria={{ categoria_ativa }}" class="btn btn-warm btn-lg rounded-pill shadow-sm fw-bold">
+                ➕ Nova Meta
+            </a>
+            
+        </div>
+    </div>
+
+    <div class="d-flex overflow-auto mb-4" style="border-bottom: 2px solid #e0e0e0; white-space: nowrap;">
+        
+        <a href="{% url 'metas:listar' %}?categoria=todas" 
+           class="text-decoration-none px-3 py-2 {% if categoria_ativa == 'todas' %}text-dark fw-bold{% else %}text-muted{% endif %}"
+           style="{% if categoria_ativa == 'todas' %}border-bottom: 3px solid #E67E22;{% else %}border-bottom: 3px solid transparent;{% endif %} transition: 0.2s; font-size: 1.1rem;">
+           Todas
+        </a>
+
+        {% for cat in categorias %}
+            <a href="{% url 'metas:listar' %}?categoria={{ cat.id }}" 
+               class="text-decoration-none px-3 py-2 d-flex align-items-center gap-2 {% if categoria_ativa == cat.id|stringformat:'s' %}text-dark fw-bold{% else %}text-muted{% endif %}"
+               style="{% if categoria_ativa == cat.id|stringformat:'s' %}border-bottom: 3px solid {{ cat.cor_identificacao }};{% else %}border-bottom: 3px solid transparent;{% endif %} transition: 0.2s; font-size: 1.1rem;">
+                <span style="width: 10px; height: 10px; border-radius: 50%; background-color: {{ cat.cor_identificacao }};"></span>
+                {{ cat.nome }}
+            </a>
+        {% endfor %}
+
+        <a href="{% url 'metas:listar' %}?categoria=sem_categoria" 
+           class="text-decoration-none px-3 py-2 {% if categoria_ativa == 'sem_categoria' %}text-dark fw-bold{% else %}text-muted{% endif %}"
+           style="{% if categoria_ativa == 'sem_categoria' %}border-bottom: 3px solid #6c757d;{% else %}border-bottom: 3px solid transparent;{% endif %} transition: 0.2s; font-size: 1.1rem;">
+           Sem Categoria
+        </a>
+    </div>
+
+    {% for meta in metas %}
+    <div class="card mb-4 shadow-sm rounded-4 border-0">
+        
+        <div class="card-header bg-white py-3" style="cursor: pointer;" 
+             data-bs-toggle="collapse" data-bs-target="#gaveta-{{ meta.id }}">
+            
+            <h3 class="m-0 d-flex justify-content-between align-items-center fw-bold"
+                style="color: {% if meta.categoria %}{{ meta.categoria.cor_identificacao }}{% else %}#495057{% endif %};">
+                {{ meta.titulo }} 
+                <small class="text-muted" style="font-size: 1rem;">▼</small>
+            </h3>
+        </div>
+
+        <div id="gaveta-{{ meta.id }}" class="collapse">
+            <div class="card-body bg-white rounded-bottom-4">
+                
+                <div class="text-center mb-4 pb-3 border-bottom">
+                    <h5 class="text-warm mb-3">Como foi o seu hábito hoje?</h5>
+                    {% for registro in meta.dias_do_mes_atual %}
+                        {% if registro.hoje %}
+                            <button class="btn btn-outline-warning p-3 rounded-4 shadow-sm w-50" 
+                                    style="border-color: #E67E22; color: #D35400;"
+                                    onclick="abrirSelecao('{{ registro.id }}')">
+                                <span class="d-block fw-bold mb-2 fs-5">Hoje ({{ registro.data|date:"d/M" }})</span>
+                                <span id="icone-registro-{{ registro.id }}" style="font-size: 3rem;">
+                                    {% if registro.status_conclusao == 'check' %}✅
+                                    {% elif registro.status_conclusao == 'falha' %}❌
+                                    {% else %}⬜
+                                    {% endif %}
+                                </span>
+                            </button>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <p class="text-muted text-center small mb-3">Histórico do mês:</p>
+                <div class="d-flex flex-wrap gap-2 justify-content-center">
+                    {% for registro in meta.dias_do_mes_atual %}
+                        {% if not registro.hoje %}
+                            <div class="text-center">
+                                <span class="d-block text-muted mb-1" style="font-size: 0.85rem;">{{ registro.data|date:"d" }}</span>
+                                <button class="btn btn-light border p-0 shadow-sm" style="border-radius: 10px; width: 45px; height: 45px;"
+                                        onclick="abrirSelecao('{{ registro.id }}')">
+                                    <span id="icone-registro-{{ registro.id }}" style="font-size: 1.3rem;">
+                                        {% if registro.status_conclusao == 'check' %}✅
+                                        {% elif registro.status_conclusao == 'falha' %}❌
+                                        {% else %}⬜
+                                        {% endif %}
+                                    </span>
+                                </button>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                
+                <div class="mt-4 text-end border-top pt-3">
+                    <a href="{% url 'metas:deletar' meta.id %}" class="btn btn-sm btn-outline-danger px-4">Apagar Meta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <div class="alert alert-warning text-center rounded-4 py-5 shadow-sm border-0" style="background-color: #fdf2e9; color: #D35400;">
+            <h4 class="mb-3">Nenhuma meta encontrada</h4>
+            <p class="mb-0">Não existem metas para esta seleção. Crie uma nova para começar!</p>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="modal fade" id="modalStatus" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0 shadow-lg">
+            <div class="modal-body p-4 d-flex flex-column gap-3">
+                <h3 class="text-center mb-4 text-warm fw-bold">Como foi este hábito?</h3>
+                <input type="hidden" id="registroAtualId">
+                
+                <button class="btn btn-success p-4 rounded-4 fs-3 shadow-sm text-start" onclick="salvarStatus('check')">✅ Consegui cumprir!</button>
+                <button class="btn btn-danger p-4 rounded-4 fs-3 shadow-sm text-start" onclick="salvarStatus('falha')">❌ Não cumpri</button>
+                <button class="btn btn-secondary p-4 rounded-4 fs-4 shadow-sm text-start" onclick="salvarStatus('branco')">⬜ Limpar dia</button>
+                
+                <button class="btn btn-light mt-3 fs-5" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    function abrirSelecao(registroId) {
+        document.getElementById('registroAtualId').value = registroId;
+        var modal = new bootstrap.Modal(document.getElementById('modalStatus'));
+        modal.show();
+    }
+
+    function salvarStatus(novoStatus) {
+        let registroId = document.getElementById('registroAtualId').value;
+        let url = `/metas/registro/${registroId}/atualizar/`;
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: `status=${novoStatus}`
+        }).then(() => {
+            let icone = document.getElementById('icone-registro-' + registroId);
+            if (novoStatus === 'check') icone.innerText = '✅';
+            if (novoStatus === 'falha') icone.innerText = '❌';
+            if (novoStatus === 'branco') icone.innerText = '⬜';
+            
+            var modalElement = document.getElementById('modalStatus');
+            var modalInstance = bootstrap.Modal.getInstance(modalElement);
+            modalInstance.hide();
+        });
+    }
+</script>
+{% endblock %}
