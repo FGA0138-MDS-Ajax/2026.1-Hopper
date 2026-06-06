@@ -14,6 +14,17 @@
         .text-warm { color: #E64500 !important; }
         
         .text-escuro { color: #374151 !important; } 
+
+        /* --- Estilo para botões quentes (laranja) --- */
+        .btn-warm {
+            background-color: #E64500 !important;
+            color: #FFFFFF !important;
+            border: none;
+        }
+        .btn-warm:hover {
+            background-color: #CC3D00 !important;
+            color: #FFFFFF !important;
+        }
         
         /* --- Menu Interativo (Botões Triplicados/Gigantes) --- */
         .navbar-dark .navbar-nav .menu-link {
@@ -31,12 +42,12 @@
             transform: translateY(-3px);
         }
 
-        /* --- Botão Sair (Gigante) --- */
+        /* --- Botão Sair (Gigante e NÃO redondo) --- */
         .nav-link-sair {
             background-color: #E64500 !important;
             color: #FFFFFF !important;
-            border-radius: 50px !important;
-            padding: 1rem 2.5rem !important; /* Um pouco mais largo que os outros */
+            border-radius: 8px !important; /* Sobrescreve o 50px para deixá-lo retangular com bordas suaves */
+            padding: 1rem 2.5rem !important; 
         }
         .nav-link-sair:hover {
             background-color: #CC3D00 !important;
@@ -86,7 +97,6 @@
 </head>
 <body class="d-flex flex-column min-vh-100" style="background-color: #E0DED7; color: #000000;">
 
-    <!-- Cabeçalho (Navbar) -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-hop-green shadow-sm py-2">
         <div class="container">
             <a class="navbar-brand" href="/">
@@ -99,19 +109,21 @@
                 <ul class="navbar-nav ms-auto align-items-center mt-3 mt-lg-0 pb-3 pb-lg-0">
                     <li class="nav-item mb-2 mb-lg-0"><a class="nav-link menu-link" href="#">Minhas Metas</a></li>
                     <li class="nav-item mb-2 mb-lg-0"><a class="nav-link menu-link" href="#">Conquistas</a></li>
-                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a class="nav-link menu-link nav-link-sair" href="/usuarios/logout/">Sair</a></li>
+                    
+                    {% if user.is_authenticated %}
+                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a class="nav-link menu-link nav-link-sair" href="/usuarios/logout/">Sair</a></li>
+                    {% endif %}
+                    
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Área de Conteúdo Principal -->
     <main class="container flex-grow-1">
         {% block conteudo %}
         {% endblock %}
     </main>
 
-    <!-- Rodapé -->
     <footer class="text-center py-3 mt-4" style="background-color: #E0DED7; color: #6B7280; border-top: 2px solid #FFFFFF;">
         <div class="container">
             <span class="fw-bold fs-6 text-escuro">&copy; 2026 HopLife - Projeto MDS</span>
