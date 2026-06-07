@@ -1,58 +1,68 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card shadow-sm rounded-4 border-0 mt-4">
-            <div class="card-body p-5">
-                <h2 class="text-warm fw-bold mb-4 text-center">Criar Nova Categoria</h2>
-                <p class="text-center text-muted mb-4">Ex: Saúde, Alimentação, Fisioterapia...</p>
-                
-                <form method="POST">
-                    {% csrf_token %}
-                    
-                    {% for field in form %}
-                        {% if field.name == 'cor_identificacao' %}
-                            <div style="display: none;">
-                                {{ field }}
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label class="form-label fs-5 text-secondary d-block text-center mb-3">Escolha uma Cor</label>
-                                <div id="paleta-cores" class="d-flex flex-wrap gap-3 justify-content-center">
-                                    </div>
-                            </div>
-                        {% else %}
-                            <div class="mb-4">
-                                <label for="{{ field.id_for_label }}" class="form-label fs-5 text-secondary">{{ field.label }}</label>
-                                {{ field }}
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                    
-                    <div class="d-grid gap-2 mt-5 border-top pt-4">
-                        <button type="submit" class="btn btn-warm btn-lg py-3 rounded-pill fs-4 shadow-sm">Salvar Categoria</button>
-                        <a href="{% url 'metas:criar' %}" class="btn btn-light btn-lg rounded-pill mt-2">Cancelar</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 <style>
-    /* Estilo para deixar o campo de texto grande e bonito */
+    /* --- Botão Principal Quente (Salvar) --- */
+    .btn-acao-quente {
+        background-color: #E64500 !important;
+        color: #FFFFFF !important;
+        border-radius: 12px !important;
+        padding: 1rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        box-shadow: 0 6px 0 #B33600, 0 8px 15px rgba(230, 69, 0, 0.4) !important;
+        border: none !important;
+        transition: all 0.15s ease-in-out !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        font-size: 1.2rem;
+    }
+    .btn-acao-quente:hover {
+        background-color: #FF5A1A !important;
+        transform: translateY(4px) !important; /* Efeito de afundar */
+        box-shadow: 0 2px 0 #B33600, 0 4px 8px rgba(230, 69, 0, 0.4) !important;
+        color: #FFFFFF !important;
+    }
+
+    /* --- Botão Secundário 3D (Cancelar) --- */
+    .btn-secundario-3d {
+        background-color: #FFFFFF !important;
+        color: #374151 !important;
+        border-radius: 12px !important;
+        padding: 1rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        border: 2px solid #E0DED7 !important;
+        box-shadow: 0 6px 0 #D1CFC4, 0 8px 15px rgba(0, 0, 0, 0.05) !important;
+        transition: all 0.15s ease-in-out !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        font-size: 1.1rem;
+        margin-top: 1rem;
+    }
+    .btn-secundario-3d:hover {
+        background-color: #F9F9F8 !important;
+        transform: translateY(4px) !important; /* Efeito de afundar */
+        box-shadow: 0 2px 0 #D1CFC4, 0 4px 8px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    /* --- Estilo do Form e Cores --- */
     input[type="text"] {
         width: 100%;
         padding: 12px 15px;
-        border: 1px solid #ced4da;
+        border: 2px solid #E0DED7;
         border-radius: 10px;
         font-size: 1.2rem;
+        transition: border-color 0.2s ease;
     }
     input[type="text"]:focus {
-        border-color: #E67E22;
+        border-color: #E64500;
         outline: 0;
-        box-shadow: 0 0 0 0.25rem rgba(230, 126, 34, 0.25);
+        box-shadow: 0 0 0 0.25rem rgba(230, 69, 0, 0.15);
     }
 
     /* O estilo das nossas bolinhas de cor */
@@ -68,11 +78,52 @@
         transform: scale(1.1); /* Dá uma "crescida" quando passa o mouse */
     }
     .bolinha-cor.selecionada {
-        border: 4px solid #333 !important; /* Borda escura para mostrar qual está selecionada */
+        border: 4px solid #374151 !important; /* Borda escura para mostrar qual está selecionada */
         transform: scale(1.15);
         box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 </style>
+
+<div class="row justify-content-center pb-5">
+    <div class="col-md-6">
+        <div class="card shadow-sm rounded-4 border-0 mt-5" style="background-color: #FFFFFF;">
+            <div class="card-body p-5">
+                
+                <h2 class="text-escuro fw-bolder mb-3 text-center" style="letter-spacing: -0.5px;">Criar Nova Categoria</h2>
+                <p class="text-center text-muted mb-4 fs-5">Ex: Saúde, Alimentação, Fisioterapia...</p>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                        {% if field.name == 'cor_identificacao' %}
+                            <div style="display: none;">
+                                {{ field }}
+                            </div>
+                            
+                            <div class="mb-4 mt-5">
+                                <label class="form-label fs-5 text-escuro fw-bold d-block text-center mb-3">Escolha uma Cor</label>
+                                <div id="paleta-cores" class="d-flex flex-wrap gap-3 justify-content-center">
+                                    </div>
+                            </div>
+                        {% else %}
+                            <div class="mb-4">
+                                <label for="{{ field.id_for_label }}" class="form-label fs-5 text-escuro fw-bold">{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    <div class="d-flex flex-column mt-5 border-top pt-4">
+                        <button type="submit" class="btn-acao-quente">Salvar Categoria</button>
+                        <a href="{% url 'metas:criar' %}" class="btn-secundario-3d">Cancelar</a>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
@@ -97,9 +148,11 @@
         // Se for a cor padrão (Laranja), já começa selecionada
         if(cor === '#FF9500') {
             btnCor.classList.add('selecionada');
+            // Garante que o input escondido comece com a cor padrão caso o usuário não clique em nada
+            if (inputEscondido) inputEscondido.value = cor;
         }
 
-        // O que acontece quando o idoso clica numa bolinha
+        // O que acontece quando o usuário clica numa bolinha
         btnCor.onclick = function() {
             // 1. Tira a seleção de todas as bolinhas
             document.querySelectorAll('.bolinha-cor').forEach(b => b.classList.remove('selecionada'));

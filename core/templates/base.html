@@ -26,31 +26,41 @@
             color: #FFFFFF !important;
         }
         
-        /* --- Menu Interativo (Botões Triplicados/Gigantes) --- */
+        /* --- Menu Interativo (Tamanho Gigante, mas com visual App/Premium) --- */
         .navbar-dark .navbar-nav .menu-link {
-            color: rgba(255, 255, 255, 0.95) !important;
+            color: #FFFFFF !important;
             font-weight: 700;
-            font-size: 1.5rem !important; /* Letra muito maior */
-            padding: 1rem 2rem !important; /* Preenchimento gigante para área de toque */
-            margin: 0 0.5rem;
-            border-radius: 50px; /* Mantém o formato arredondado no tamanho grande */
-            transition: all 0.2s ease;
+            font-size: 1.5rem !important; /* Mantido o seu tamanho original */
+            padding: 0.8rem 1.8rem !important; /* Área de toque bem generosa */
+            border-radius: 50px; /* Formato de pílula arredondada */
+            background-color: rgba(255, 255, 255, 0.08); /* Fundo translúcido permanente (efeito vidro) */
+            border: 2px solid transparent; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Sombrinha leve */
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .navbar-dark .navbar-nav .menu-link:hover {
-            background-color: rgba(255, 255, 255, 0.25); 
-            color: #FFFFFF !important;
-            transform: translateY(-3px);
+            background-color: rgba(255, 255, 255, 0.15); 
+            border: 2px solid rgba(255, 255, 255, 0.3); /* Borda aparece no hover dando elegância */
+            transform: translateY(-4px); /* Pulo para cima */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
 
-        /* --- Botão Sair (Gigante e NÃO redondo) --- */
+        /* --- Botão Sair (Gigante, Destacado e com Efeito 3D Físico) --- */
         .nav-link-sair {
             background-color: #E64500 !important;
             color: #FFFFFF !important;
-            border-radius: 8px !important; /* Sobrescreve o 50px para deixá-lo retangular com bordas suaves */
-            padding: 1rem 2.5rem !important; 
+            border-radius: 12px !important; /* Formato que você escolheu */
+            padding: 0.8rem 2.2rem !important; 
+            /* Efeito de profundidade (3D) no botão */
+            box-shadow: 0 6px 0 #B33600, 0 8px 15px rgba(230, 69, 0, 0.4) !important; 
+            border: none !important;
+            transition: all 0.15s ease-in-out !important;
         }
         .nav-link-sair:hover {
-            background-color: #CC3D00 !important;
+            background-color: #FF5A1A !important;
+            /* Simula o botão sendo apertado fisicamente para baixo */
+            transform: translateY(4px) !important; 
+            box-shadow: 0 2px 0 #B33600, 0 4px 8px rgba(230, 69, 0, 0.4) !important; 
         }
 
         /* --- Efeito Botão Principal (+ Nova Meta) --- */
@@ -97,8 +107,7 @@
 </head>
 <body class="d-flex flex-column min-vh-100" style="background-color: #E0DED7; color: #000000;">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-hop-green shadow-sm py-2">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-hop-green shadow-sm py-3"> <div class="container">
             <a class="navbar-brand" href="/">
                 <img src="{% static 'img/logo-hoplife.png' %}" alt="Logo HopLife" height="70" style="filter: drop-shadow(3px 3px 0px #FFFFFF) drop-shadow(6px 6px 0px rgba(255, 255, 255, 0.5));">
             </a>
@@ -106,12 +115,12 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center mt-3 mt-lg-0 pb-3 pb-lg-0">
+                <ul class="navbar-nav ms-auto align-items-center gap-3 gap-lg-4 mt-4 mt-lg-0 pb-3 pb-lg-0">
                     
                     {% if user.is_authenticated %}
-                        <li class="nav-item mb-2 mb-lg-0"><a class="nav-link menu-link" href="{% url 'metas:listar' %}">Minhas Metas</a></li>
-                        <li class="nav-item mb-2 mb-lg-0"><a class="nav-link menu-link" href="#">Conquistas</a></li>
-                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a class="nav-link menu-link nav-link-sair" href="/usuarios/logout/">Sair</a></li>
+                        <li class="nav-item"><a class="nav-link menu-link" href="{% url 'metas:listar' %}">Minhas Metas</a></li>
+                        <li class="nav-item"><a class="nav-link menu-link" href="#">Conquistas</a></li>
+                        <li class="nav-item"><a class="nav-link menu-link nav-link-sair" href="/usuarios/logout/">Sair</a></li>
                     {% endif %}
                     
                 </ul>
@@ -119,7 +128,7 @@
         </div>
     </nav>
 
-    <main class="container flex-grow-1">
+    <main class="container flex-grow-1 mt-4">
         {% block conteudo %}{% endblock %}
     </main>
 

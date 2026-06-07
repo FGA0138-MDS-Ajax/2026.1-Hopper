@@ -1,75 +1,163 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
+<style>
+    /* --- Botão Principal Quente (Nova Meta = Sair) --- */
+    .btn-acao-quente {
+        background-color: #E64500 !important;
+        color: #FFFFFF !important;
+        border-radius: 12px !important;
+        padding: 0.8rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important; /* Sem underline */
+        box-shadow: 0 6px 0 #B33600, 0 8px 15px rgba(230, 69, 0, 0.4) !important;
+        border: none !important;
+        transition: all 0.15s ease-in-out !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-acao-quente:hover {
+        background-color: #FF5A1A !important;
+        transform: translateY(4px) !important; /* Efeito de ser pressionado */
+        box-shadow: 0 2px 0 #B33600, 0 4px 8px rgba(230, 69, 0, 0.4) !important;
+        color: #FFFFFF !important;
+    }
+
+    /* --- Botão Secundário (Gerenciar Categorias) --- */
+    .btn-secundario-3d {
+        background-color: #FFFFFF !important;
+        color: #374151 !important;
+        border-radius: 12px !important;
+        padding: 0.8rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important; /* Sem underline */
+        border: 2px solid #E0DED7 !important;
+        box-shadow: 0 6px 0 #D1CFC4, 0 8px 15px rgba(0, 0, 0, 0.05) !important;
+        transition: all 0.15s ease-in-out !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-secundario-3d:hover {
+        background-color: #F9F9F8 !important;
+        transform: translateY(4px) !important; /* Apenas afunda igual aos outros */
+        box-shadow: 0 2px 0 #D1CFC4, 0 4px 8px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    /* --- Botão de 'Hoje' (Destaque dentro do Card) --- */
+    .btn-hoje-3d {
+        background-color: #FFF3E0 !important;
+        color: #D35400 !important;
+        border-radius: 16px !important;
+        border: 2px solid #E67E22 !important;
+        box-shadow: 0 6px 0 #E67E22 !important;
+        transition: all 0.1s ease-in-out !important;
+    }
+    .btn-hoje-3d:hover {
+        transform: translateY(4px);
+        box-shadow: 0 2px 0 #E67E22 !important;
+        background-color: #FFE0B2 !important;
+    }
+
+    /* --- Botões do Modal --- */
+    .btn-modal-3d {
+        border-radius: 12px !important;
+        border: none !important;
+        transition: all 0.15s ease-in-out !important;
+        font-weight: bold;
+    }
+    .btn-modal-success {
+        background-color: #28a745 !important; color: white;
+        box-shadow: 0 6px 0 #1e7e34, 0 8px 15px rgba(40, 167, 69, 0.3) !important;
+    }
+    .btn-modal-success:hover { transform: translateY(4px); box-shadow: 0 2px 0 #1e7e34 !important; }
+    
+    .btn-modal-danger {
+        background-color: #dc3545 !important; color: white;
+        box-shadow: 0 6px 0 #bd2130, 0 8px 15px rgba(220, 53, 69, 0.3) !important;
+    }
+    .btn-modal-danger:hover { transform: translateY(4px); box-shadow: 0 2px 0 #bd2130 !important; }
+    
+    .btn-modal-secondary {
+        background-color: #6c757d !important; color: white;
+        box-shadow: 0 6px 0 #545b62, 0 8px 15px rgba(108, 117, 125, 0.3) !important;
+    }
+    .btn-modal-secondary:hover { transform: translateY(4px); box-shadow: 0 2px 0 #545b62 !important; }
+
+    /* Efeito sutil ao passar o mouse no cabeçalho do card */
+    .card-header-hover:hover {
+        background-color: #F9F9F8 !important;
+        transition: background-color 0.2s ease;
+    }
+</style>
+
 <div class="container max-w-md pb-5">
     
-   <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 mt-3">
         <h1 class="m-0 fw-bolder text-escuro" style="letter-spacing: -0.5px;">
             Minhas Metas
         </h1>
         
         <div class="d-flex gap-3">
-            
-            <a href="{% url 'metas:listar_categorias' %}" class="btn bg-white text-dark btn-lg rounded-pill shadow-sm border fw-bold">
+            <a href="{% url 'metas:listar_categorias' %}" class="btn-secundario-3d">
                 Gerenciar Categorias
             </a>
             
-            <a href="{% url 'metas:criar' %}?categoria={{ categoria_ativa }}" class="btn btn-warm btn-lg rounded-pill shadow-sm fw-bold">
-                ➕ Nova Meta
+            <a href="{% url 'metas:criar' %}?categoria={{ categoria_ativa }}" class="btn-acao-quente">
+                Nova Meta
             </a>
-            
         </div>
     </div>
 
-    <div class="d-flex overflow-auto mb-4" style="border-bottom: 2px solid #e0e0e0; white-space: nowrap;">
+    <div class="d-flex overflow-auto mb-4 pb-2" style="border-bottom: 2px solid #D1CFC4; white-space: nowrap;">
         
         <a href="{% url 'metas:listar' %}?categoria=todas" 
            class="text-decoration-none px-3 py-2 {% if categoria_ativa == 'todas' %}text-dark fw-bold{% else %}text-muted{% endif %}"
-           style="{% if categoria_ativa == 'todas' %}border-bottom: 3px solid #E67E22;{% else %}border-bottom: 3px solid transparent;{% endif %} transition: 0.2s; font-size: 1.1rem;">
+           style="{% if categoria_ativa == 'todas' %}border-bottom: 3px solid #E64500;{% else %}border-bottom: 3px solid transparent;{% endif %} transition: 0.2s; font-size: 1.1rem; margin-bottom: -2px;">
            Todas
         </a>
 
         {% for cat in categorias %}
             <a href="{% url 'metas:listar' %}?categoria={{ cat.id }}" 
                class="text-decoration-none px-3 py-2 d-flex align-items-center gap-2 {% if categoria_ativa == cat.id|stringformat:'s' %}text-dark fw-bold{% else %}text-muted{% endif %}"
-               style="{% if categoria_ativa == cat.id|stringformat:'s' %}border-bottom: 3px solid {{ cat.cor_identificacao }};{% else %}border-bottom: 3px solid transparent;{% endif %} transition: 0.2s; font-size: 1.1rem;">
-                <span style="width: 10px; height: 10px; border-radius: 50%; background-color: {{ cat.cor_identificacao }};"></span>
+               style="{% if categoria_ativa == cat.id|stringformat:'s' %}border-bottom: 3px solid {{ cat.cor_identificacao }};{% else %}border-bottom: 3px solid transparent;{% endif %} transition: 0.2s; font-size: 1.1rem; margin-bottom: -2px;">
+                <span style="width: 12px; height: 12px; border-radius: 50%; background-color: {{ cat.cor_identificacao }}; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></span>
                 {{ cat.nome }}
             </a>
         {% endfor %}
 
         <a href="{% url 'metas:listar' %}?categoria=sem_categoria" 
            class="text-decoration-none px-3 py-2 {% if categoria_ativa == 'sem_categoria' %}text-dark fw-bold{% else %}text-muted{% endif %}"
-           style="{% if categoria_ativa == 'sem_categoria' %}border-bottom: 3px solid #6c757d;{% else %}border-bottom: 3px solid transparent;{% endif %} transition: 0.2s; font-size: 1.1rem;">
+           style="{% if categoria_ativa == 'sem_categoria' %}border-bottom: 3px solid #6c757d;{% else %}border-bottom: 3px solid transparent;{% endif %} transition: 0.2s; font-size: 1.1rem; margin-bottom: -2px;">
            Sem Categoria
         </a>
     </div>
 
     {% for meta in metas %}
-    <div class="card mb-4 shadow-sm rounded-4 border-0">
+    <div class="card mb-4 shadow-sm rounded-4 border-0" style="background-color: #FFFFFF;">
         
-        <div class="card-header bg-white py-3" style="cursor: pointer;" 
+        <div class="card-header bg-white py-3 border-0 rounded-top-4 card-header-hover" style="cursor: pointer;" 
              data-bs-toggle="collapse" data-bs-target="#gaveta-{{ meta.id }}">
             
             <h3 class="m-0 d-flex justify-content-between align-items-center fw-bold"
-                style="color: {% if meta.categoria %}{{ meta.categoria.cor_identificacao }}{% else %}#495057{% endif %};">
+                style="color: {% if meta.categoria %}{{ meta.categoria.cor_identificacao }}{% else %}#374151{% endif %};">
                 {{ meta.titulo }} 
-                <small class="text-muted" style="font-size: 1rem;">▼</small>
+                <small class="text-muted" style="font-size: 0.9rem; background-color: #F3F4F6; padding: 4px 10px; border-radius: 20px;">▼ Abrir</small>
             </h3>
         </div>
 
         <div id="gaveta-{{ meta.id }}" class="collapse">
-            <div class="card-body bg-white rounded-bottom-4">
+            <div class="card-body bg-white rounded-bottom-4 pt-1">
                 
-                <div class="text-center mb-4 pb-3 border-bottom">
-                    <h5 class="text-warm mb-3">Como foi o seu hábito hoje?</h5>
+                <div class="text-center mb-4 pb-4 border-bottom">
+                    <h5 class="text-escuro fw-bold mb-3">Como foi o seu hábito hoje?</h5>
                     {% for registro in meta.dias_do_mes_atual %}
                         {% if registro.hoje %}
-                            <button class="btn btn-outline-warning p-3 rounded-4 shadow-sm w-50" 
-                                    style="border-color: #E67E22; color: #D35400;"
+                            <button class="btn btn-hoje-3d p-3 w-50" 
                                     onclick="abrirSelecao('{{ registro.id }}')">
                                 <span class="d-block fw-bold mb-2 fs-5">Hoje ({{ registro.data|date:"d/M" }})</span>
-                                <span id="icone-registro-{{ registro.id }}" style="font-size: 3rem;">
+                                <span id="icone-registro-{{ registro.id }}" style="font-size: 3rem; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));">
                                     {% if registro.status_conclusao == 'check' %}✅
                                     {% elif registro.status_conclusao == 'falha' %}❌
                                     {% else %}⬜
@@ -80,15 +168,18 @@
                     {% endfor %}
                 </div>
 
-                <p class="text-muted text-center small mb-3">Histórico do mês:</p>
+                <p class="text-muted text-center fw-bold small mb-3">HISTÓRICO DO MÊS</p>
                 <div class="d-flex flex-wrap gap-2 justify-content-center">
                     {% for registro in meta.dias_do_mes_atual %}
                         {% if not registro.hoje %}
                             <div class="text-center">
-                                <span class="d-block text-muted mb-1" style="font-size: 0.85rem;">{{ registro.data|date:"d" }}</span>
-                                <button class="btn btn-light border p-0 shadow-sm" style="border-radius: 10px; width: 45px; height: 45px;"
-                                        onclick="abrirSelecao('{{ registro.id }}')">
-                                    <span id="icone-registro-{{ registro.id }}" style="font-size: 1.3rem;">
+                                <span class="d-block text-muted mb-1" style="font-size: 0.75rem; font-weight: 600;">{{ registro.data|date:"d" }}</span>
+                                <button class="btn btn-light border shadow-sm p-0 d-flex align-items-center justify-content-center" 
+                                        style="border-radius: 10px; width: 42px; height: 42px; transition: transform 0.1s; background-color: #F9F9F8;"
+                                        onclick="abrirSelecao('{{ registro.id }}')"
+                                        onmouseover="this.style.transform='scale(1.05)'" 
+                                        onmouseout="this.style.transform='scale(1)'">
+                                    <span id="icone-registro-{{ registro.id }}" style="font-size: 1.2rem;">
                                         {% if registro.status_conclusao == 'check' %}✅
                                         {% elif registro.status_conclusao == 'falha' %}❌
                                         {% else %}⬜
@@ -101,15 +192,15 @@
                 </div>
                 
                 <div class="mt-4 text-end border-top pt-3">
-                    <a href="{% url 'metas:deletar' meta.id %}" class="btn btn-sm btn-outline-danger px-4">Apagar Meta</a>
+                    <a href="{% url 'metas:deletar' meta.id %}" class="btn btn-sm btn-outline-danger px-4 rounded-pill fw-bold">Apagar Meta</a>
                 </div>
             </div>
         </div>
     </div>
     {% empty %}
-        <div class="alert alert-warning text-center rounded-4 py-5 shadow-sm border-0" style="background-color: #fdf2e9; color: #D35400;">
-            <h4 class="mb-3">Nenhuma meta encontrada</h4>
-            <p class="mb-0">Não existem metas para esta seleção. Crie uma nova para começar!</p>
+        <div class="alert text-center rounded-4 py-5 shadow-sm border-0 mt-4" style="background-color: #FFF3E0; color: #D35400;">
+            <h4 class="mb-3 fw-bold">Nenhuma meta encontrada</h4>
+            <p class="mb-0 fs-5">Não existem metas para esta seleção. Crie uma nova para começar!</p>
         </div>
     {% endfor %}
 </div>
@@ -118,14 +209,20 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4 border-0 shadow-lg">
             <div class="modal-body p-4 d-flex flex-column gap-3">
-                <h3 class="text-center mb-4 text-warm fw-bold">Como foi este hábito?</h3>
+                <h3 class="text-center mb-4 fw-bold" style="color: #374151;">Como foi este hábito?</h3>
                 <input type="hidden" id="registroAtualId">
                 
-                <button class="btn btn-success p-4 rounded-4 fs-3 shadow-sm text-start" onclick="salvarStatus('check')">✅ Consegui cumprir!</button>
-                <button class="btn btn-danger p-4 rounded-4 fs-3 shadow-sm text-start" onclick="salvarStatus('falha')">❌ Não cumpri</button>
-                <button class="btn btn-secondary p-4 rounded-4 fs-4 shadow-sm text-start" onclick="salvarStatus('branco')">⬜ Limpar dia</button>
+                <button class="btn btn-modal-3d btn-modal-success p-4 fs-4 text-start" onclick="salvarStatus('check')">
+                    <span class="me-2">✅</span> Consegui cumprir!
+                </button>
+                <button class="btn btn-modal-3d btn-modal-danger p-4 fs-4 text-start" onclick="salvarStatus('falha')">
+                    <span class="me-2">❌</span> Não cumpri
+                </button>
+                <button class="btn btn-modal-3d btn-modal-secondary p-4 fs-4 text-start" onclick="salvarStatus('branco')">
+                    <span class="me-2">⬜</span> Limpar dia
+                </button>
                 
-                <button class="btn btn-light mt-3 fs-5" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn btn-light mt-3 fs-5 fw-bold rounded-pill" data-bs-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>
