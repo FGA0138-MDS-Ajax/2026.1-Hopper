@@ -5,7 +5,7 @@
 <style>
     /* Card centralizado e estilizado com as cores da Dash principal */
     .card-acessibilidade {
-        border: 2px solid #3A5A50; /* Verde HopLife */
+        border: 2px solid #3A5A50;
         border-radius: 12px;
         background-color: #FFFFFF;
         max-width: 650px; 
@@ -27,10 +27,30 @@
         background-color: #3A5A50 !important;
         color: white !important;
     }
+
+    /* --- Botão Salvar 3D Laranja --- */
+    .btn-acao-quente {
+        background-color: #E64500 !important;
+        color: #FFFFFF !important;
+        border-radius: 12px !important;
+        padding: 1rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        box-shadow: 0 6px 0 #B33600 !important;
+        border: none !important;
+        transition: all 0.15s ease-in-out !important;
+        width: 100%;
+        font-size: 1.5rem;
+    }
+    .btn-acao-quente:hover {
+        background-color: #FF5A1A !important;
+        transform: translateY(4px) !important;
+        box-shadow: 0 2px 0 #B33600 !important;
+        color: #FFFFFF !important;
+    }
 </style>
 
 <div class="container py-4">
-    
     <div id="alertaAzul" class="alert alert-success d-none" role="alert">
         <strong>Assistência Ativada!</strong> Filtros e cliques de permanência ativos.
     </div>
@@ -40,7 +60,6 @@
     </div>
 
     <div class="card-acessibilidade p-4 p-md-5 mx-auto">
-        
         <h1 class="text-hop-green fw-bolder mb-4">Minhas Configurações</h1>
         <p class="text-escuro mb-5 fs-5">
             Ajuste as opções abaixo e salve para aplicar as alterações.
@@ -77,7 +96,6 @@
                 </div>
             </div>
 
-            <!-- Demonstração de visualização das mudanças -->
             <div class="p-4 mb-5 border rounded bg-light">
                 <h4 class="fw-bold text-dark mb-2">Exemplo Visual das Letras e Botões</h4>
                 <p class="text-muted small">Os tamanhos mudam em tempo real abaixo e em todo o site conforme você altera as opções acima!</p>
@@ -87,7 +105,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-principal w-100 fw-bold py-3 fs-4" style="background-color: #3A5A50; color: white;">
+            <button type="submit" class="btn-acao-quente">
                 Salvar Configurações
             </button>
         </form>
@@ -105,12 +123,10 @@
             const selectedBotao = document.querySelector('input[name="tamanho_botao"]:checked').value;
             const isMotora = checkMotora.checked;
 
-            // Remove old classes
             document.body.classList.remove('texto-pequeno', 'texto-medio', 'texto-grande');
             document.body.classList.remove('botao-normal', 'botao-largo');
             document.body.classList.remove('assistencia-motora');
 
-            // Add new classes
             document.body.classList.add('texto-' + selectedLetra);
             document.body.classList.add('botao-' + selectedBotao);
             if (isMotora) {

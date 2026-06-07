@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<style>
+    /* --- Botão Principal Quente (Salvar) --- */
+    .btn-acao-quente {
+        background-color: #E64500 !important;
+        color: #FFFFFF !important;
+        border-radius: 12px !important;
+        padding: 1rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        box-shadow: 0 6px 0 #B33600, 0 8px 15px rgba(230, 69, 0, 0.4) !important;
+        border: none !important;
+        transition: all 0.15s ease-in-out !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        font-size: 1.2rem;
+    }
+    .btn-acao-quente:hover {
+        background-color: #FF5A1A !important;
+        transform: translateY(4px) !important; /* Efeito de afundar */
+        box-shadow: 0 2px 0 #B33600, 0 4px 8px rgba(230, 69, 0, 0.4) !important;
+        color: #FFFFFF !important;
+    }
+
+    /* --- Botão Secundário 3D (Cancelar) --- */
+    .btn-secundario-3d {
+        background-color: #FFFFFF !important;
+        color: #374151 !important;
+        border-radius: 12px !important;
+        padding: 1rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        border: 2px solid #E0DED7 !important;
+        box-shadow: 0 6px 0 #D1CFC4, 0 8px 15px rgba(0, 0, 0, 0.05) !important;
+        transition: all 0.15s ease-in-out !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        font-size: 1.1rem;
+        margin-top: 1rem;
+    }
+    .btn-secundario-3d:hover {
+        background-color: #F9F9F8 !important;
+        transform: translateY(4px) !important; /* Efeito de afundar */
+        box-shadow: 0 2px 0 #D1CFC4, 0 4px 8px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    /* --- Estilo de Textos (Inputs e Textarea) --- */
+    input, textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #E0DED7;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        transition: all 0.2s ease;
+        background-color: #FFFFFF;
+        color: #374151;
+    }
+    input:focus, textarea:focus {
+        border-color: #E64500;
+        outline: 0;
+        box-shadow: 0 0 0 4px rgba(230, 69, 0, 0.15); /* Foco laranjinha e suave */
+    }
+
+    /* --- Estilo Exclusivo do Menu de Categorias (Select) --- */
+    select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #E0DED7;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        transition: all 0.2s ease;
+        background-color: #FFFFFF;
+        color: #374151;
+        cursor: pointer;
+        font-weight: 500;
+        
+        /* Mágica para remover a seta cinza feia do navegador */
+        appearance: none; 
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        
+        /* Colocando uma setinha customizada com a nossa cor laranja */
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E64500' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        background-size: 18px;
+        padding-right: 45px; /* Evita que o texto passe por cima da setinha */
+    }
+    select:hover {
+        border-color: #E64500;
+        background-color: #FFFAEA; /* Um fundo bem clarinho ao passar o mouse */
+    }
+    select:focus {
+        border-color: #E64500;
+        outline: 0;
+        box-shadow: 0 0 0 4px rgba(230, 69, 0, 0.15);
+    }
+    
+    /* --- Link para criar categoria --- */
+    .link-categoria {
+        color: #E64500;
+        transition: color 0.2s;
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 6px;
+    }
+    .link-categoria:hover {
+        color: #B33600;
+        background-color: #FFFAEA;
+        text-decoration: none !important;
+    }
+</style>
+
+<div class="row justify-content-center pb-5">
+    <div class="col-md-6">
+        <div class="card shadow-sm rounded-4 border-0 mt-5" style="background-color: #FFFFFF;">
+            <div class="card-body p-5">
+                
+                <h2 class="text-escuro fw-bolder mb-4 text-center" style="letter-spacing: -0.5px;">Criar Nova Meta</h2>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                        <div class="mb-4">
+                            <label for="{{ field.id_for_label }}" class="form-label fs-5 text-escuro fw-bold">{{ field.label }}</label>
+                            
+                            {{ field }}
+                            
+                            {% if field.name == 'categoria' %}
+                                <div class="text-end mt-2">
+                                    <a href="{% url 'metas:criar_categoria' %}" class="link-categoria fw-bold text-decoration-none">
+                                        + Criar nova categoria
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    
+                    <div class="d-flex flex-column mt-5 border-top pt-4">
+                        <button type="submit" class="btn-acao-quente">Salvar Meta</button>
+                        <a href="{% url 'metas:listar' %}" class="btn-secundario-3d">Cancelar</a>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

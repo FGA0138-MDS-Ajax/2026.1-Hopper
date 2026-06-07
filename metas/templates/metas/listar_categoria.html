@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<style>
+    /* --- Botão Principal Quente (Nova) --- */
+    .btn-acao-quente {
+        background-color: #E64500 !important;
+        color: #FFFFFF !important;
+        border-radius: 12px !important;
+        padding: 0.8rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important; /* Sem underline */
+        box-shadow: 0 6px 0 #B33600, 0 8px 15px rgba(230, 69, 0, 0.4) !important;
+        border: none !important;
+        transition: all 0.15s ease-in-out !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-acao-quente:hover {
+        background-color: #FF5A1A !important;
+        transform: translateY(4px) !important; /* Efeito de afundar/pressionar */
+        box-shadow: 0 2px 0 #B33600, 0 4px 8px rgba(230, 69, 0, 0.4) !important;
+        color: #FFFFFF !important;
+    }
+
+    /* --- Botão Secundário 3D (Voltar para Metas) --- */
+    .btn-secundario-3d {
+        background-color: #FFFFFF !important;
+        color: #374151 !important;
+        border-radius: 12px !important;
+        padding: 0.8rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important; /* Sem underline */
+        border: 2px solid #E0DED7 !important;
+        box-shadow: 0 6px 0 #D1CFC4, 0 8px 15px rgba(0, 0, 0, 0.05) !important;
+        transition: all 0.15s ease-in-out !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-secundario-3d:hover {
+        background-color: #F9F9F8 !important;
+        transform: translateY(4px) !important; /* Efeito de afundar */
+        box-shadow: 0 2px 0 #D1CFC4, 0 4px 8px rgba(0, 0, 0, 0.05) !important;
+    }
+</style>
+
+<div class="row justify-content-center pb-5">
+    <div class="col-md-8">
+        
+        <div class="d-flex justify-content-between align-items-center mb-4 mt-3">
+            <h1 class="m-0 fw-bolder text-escuro" style="letter-spacing: -0.5px;">
+                Minhas Categorias
+            </h1>
+            <a href="{% url 'metas:criar_categoria' %}" class="btn-acao-quente">
+                Nova
+            </a>
+        </div>
+
+        <div class="card shadow-sm rounded-4 border-0" style="background-color: #FFFFFF;">
+            <div class="card-body p-4">
+                {% for categoria in categorias %}
+                    <div class="d-flex justify-content-between align-items-center border-bottom py-3">
+                        <div class="d-flex align-items-center gap-3">
+                            <div style="width: 25px; height: 25px; background-color: {{ categoria.cor_identificacao }}; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></div>
+                            <span class="fs-5 fw-bold text-dark">{{ categoria.nome }}</span>
+                        </div>
+                        <a href="{% url 'metas:deletar_categoria' categoria.id %}" class="btn btn-sm btn-outline-danger px-4 rounded-pill fw-bold">Apagar</a>
+                    </div>
+                {% empty %}
+                    <div class="text-center py-5">
+                        <p class="text-muted m-0 fs-5">Você ainda não tem categorias personalizadas.</p>
+                    </div>
+                {% endfor %}
+                
+                <div class="mt-5 text-center">
+                    <a href="{% url 'metas:listar' %}" class="btn-secundario-3d">
+                        Voltar para Metas
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

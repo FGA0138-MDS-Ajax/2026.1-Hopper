@@ -8,7 +8,7 @@
             <p class="col-md-8 mx-auto fs-4 text-muted mt-3">
                 Que bom ter você por aqui. Vamos conferir suas metas e cuidar da saúde hoje?
             </p>
-            <a href="#" class="btn btn-warm btn-lg mt-4 px-5">Ver Minhas Metas</a>
+            <a href="{% url 'metas:listar' %}" class="btn btn-warm btn-lg mt-4 px-5">Ver Minhas Metas</a>
         {% else %}
             <h1 class="display-5 fw-bold text-warm">Bem-vindo ao HopLife!</h1>
             <p class="col-md-8 mx-auto fs-4 text-muted mt-3">
