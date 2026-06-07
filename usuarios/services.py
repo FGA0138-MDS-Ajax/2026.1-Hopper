@@ -3,7 +3,7 @@ from keycloak import KeycloakOpenID
 KEYCLOAK_URL = "http://keycloak:8080/"
 REALM_NAME = "hoplife-realm"
 CLIENT_ID = "hoplife-backend"
-CLIENT_SECRET = "QzOpj4mcPPjis3CHzUrartpRKQ6inVQK"
+CLIENT_SECRET = "H0JI2SyAeItlsf80R5YUyWULWbTXRdIL"
 REDIRECT_URI = "http://localhost:8000/usuarios/callback/"
 
 keycloak_openid = KeycloakOpenID(

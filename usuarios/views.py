@@ -2,8 +2,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.shortcuts import redirect, render
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 
 from .models import PerfilUsuario
 from .services import REDIRECT_URI, keycloak_openid
@@ -74,24 +73,3 @@ def logout_view(request):
     )
 
     return redirect(keycloak_logout_url)
-
-
-@login_required
-def acessibilidade_view(request):
-    """Exibe e salva as preferências de acessibilidade no perfil do usuário."""
-    # Garante a existência do perfil de usuário
-    perfil, _ = PerfilUsuario.objects.get_or_create(usuario=request.user)
-
-    if request.method == "POST":
-        perfil.tamanho_texto = request.POST.get("tamanho_letra", "medio")
-        perfil.tamanho_botao = request.POST.get("tamanho_botao", "normal")
-        perfil.assistencia_motora_ativa = request.POST.get("assistencia_motora_ativa") == "on"
-        perfil.save()
-        return redirect('usuarios:acessibilidade') # Redireciona com namespace correto
-
-    return render(request, "acessibilidade.html", {
-        "tamanho_texto": perfil.tamanho_texto,
-        "tamanho_botao": perfil.tamanho_botao,
-        "assistencia_motora": perfil.assistencia_motora_ativa
-    })
-
