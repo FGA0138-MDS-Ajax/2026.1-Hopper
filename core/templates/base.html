@@ -37,9 +37,55 @@
             box-shadow: 0 4px 0 #B33600 !important;
             border: none !important;
         }
+        /* --- Botão Sair (Efeito 3D) --- */
+        .nav-link-sair {
+            background-color: #E64500 !important;
+            border-radius: 12px !important;
+            padding: 0.6rem 1.5rem !important; 
+            box-shadow: 0 4px 0 #B33600 !important;
+            border: none !important;
+        }
         .nav-link-sair:hover {
             transform: translateY(2px) !important; 
             box-shadow: 0 2px 0 #B33600 !important;
+        }
+
+        /* --- Botões 3D Reutilizáveis (Paleta HopLife) --- */
+        .btn-warm {
+            background-color: #E64500 !important;
+            color: #FFFFFF !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 0 #B33600 !important;
+            border: none !important;
+            transition: all 0.15s ease-in-out !important;
+        }
+        .btn-warm:hover {
+            transform: translateY(2px) !important;
+            box-shadow: 0 2px 0 #B33600 !important;
+            color: #FFFFFF !important;
+        }
+        .btn-warm:active {
+            transform: translateY(4px) !important;
+            box-shadow: none !important;
+        }
+
+        .btn-hop-green {
+            background-color: #3A5A50 !important;
+            color: #FFFFFF !important;
+            border-radius: 12px !important;
+            border: none !important;
+            box-shadow: 0 4px 0 #273d36 !important;
+            transition: all 0.15s ease-in-out !important;
+        }
+        .btn-hop-green:hover {
+            transform: translateY(2px) !important;
+            box-shadow: 0 2px 0 #273d36 !important;
+            color: #FFFFFF !important;
+            background-color: #476e62 !important;
+        }
+        .btn-hop-green:active {
+            transform: translateY(4px) !important;
+            box-shadow: none !important;
         }
     </style>
 </head>
@@ -87,6 +133,173 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    {% if user.is_authenticated %}
+        <!-- Botão de Ajuda Flutuante (?) - Acessível, alto contraste e z-index 1060 -->
+        <a href="#" id="btn-tutorial-help" 
+           class="btn btn-light border border-4 border-dark rounded-circle shadow-lg d-flex align-items-center justify-content-center fw-bold" 
+           aria-label="Abrir tutorial de ajuda passo a passo" 
+           style="position: fixed; bottom: 25px; right: 25px; width: 75px; height: 75px; z-index: 1060; font-size: 2.6rem; color: #3A5A50; border-color: #3A5A50 !important;">?</a>
+
+        <!-- Modal do Tutorial Inicial (Alto contraste, tamanho grande, acessível) -->
+        <div class="modal fade" id="tutorialModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tutorialModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content border border-4 border-dark shadow-lg rounded-4 bg-light">
+                    
+                    <!-- Cabeçalho do Modal -->
+                    <div class="modal-header p-4 bg-hop-green text-white border-bottom border-dark border-3">
+                        <h2 class="modal-title fw-bold fs-2" id="tutorialModalLabel">💡 Bem-vindo ao HopLife!</h2>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar tutorial"></button>
+                    </div>
+                    
+                    <!-- Corpo com Slideshow -->
+                    <div class="modal-body p-4 text-center">
+                        <div id="tutorialCarousel" class="carousel slide" data-bs-interval="false" data-bs-wrap="false">
+                            
+                            <div class="carousel-inner">
+                                <!-- Slide 1: Boas-vindas -->
+                                <div class="carousel-item active py-4" style="min-height: 280px;">
+                                    <div class="display-1 mb-4" aria-hidden="true">👋</div>
+                                    <h3 class="fw-bolder text-hop-green mb-3 fs-2">Olá! Que bom ter você aqui!</h3>
+                                    <p class="fs-3 text-dark lh-base">
+                                        O <strong>HopLife</strong> foi feito com muito carinho para ajudar você a cuidar da sua saúde no dia a dia.
+                                    </p>
+                                    <p class="fs-4 text-muted mt-3">
+                                        Não se preocupe com a tecnologia: nosso sistema é muito simples e fácil de usar. Vamos dar uma olhadinha juntos?
+                                    </p>
+                                </div>
+                                
+                                <!-- Slide 2: Minhas Metas -->
+                                <div class="carousel-item py-4" style="min-height: 280px;">
+                                    <div class="display-1 mb-4" aria-hidden="true">🎯</div>
+                                    <h3 class="fw-bolder text-hop-green mb-3 fs-2">Minhas Metas</h3>
+                                    <p class="fs-3 text-dark lh-base">
+                                        No menu <strong>Minhas Metas</strong>, você verá as tarefas do dia, como tomar um remédio ou beber água.
+                                    </p>
+                                    <p class="fs-4 text-muted mt-3">
+                                        Quando concluir uma tarefa, basta clicar em "Concluir" para marcar como feita. Simples assim!
+                                    </p>
+                                </div>
+                                
+                                <!-- Slide 3: Configurações -->
+                                <div class="carousel-item py-4" style="min-height: 280px;">
+                                    <div class="display-1 mb-4" aria-hidden="true">⚙️</div>
+                                    <h3 class="fw-bolder text-hop-green mb-3 fs-2">Configurações de Acessibilidade</h3>
+                                    <p class="fs-3 text-dark lh-base">
+                                        Se as letras estiverem pequenas ou os botões difíceis de clicar, vá em <strong>Configurações</strong>.
+                                    </p>
+                                    <p class="fs-4 text-muted mt-3">
+                                        Lá você pode aumentar o tamanho de tudo ou ativar a assistência se as mãos tremerem.
+                                    </p>
+                                </div>
+                                
+                                <!-- Slide 4: Conclusão -->
+                                <div class="carousel-item py-4" style="min-height: 280px;">
+                                    <div class="display-1 mb-4" aria-hidden="true">🏆</div>
+                                    <h3 class="fw-bolder text-hop-green mb-3 fs-2">Celebre suas Conquistas</h3>
+                                    <p class="fs-3 text-dark lh-base mb-4">
+                                        Cada pequena tarefa concluída ajuda você a acumular pontos e ganhar medalhas!
+                                    </p>
+                                    <button type="button" class="btn btn-warm btn-lg px-5 py-3 shadow-sm fw-bold fs-3" id="btn-tutorial-finish" data-bs-dismiss="modal" aria-label="Iniciar e fechar tutorial">
+                                        Vamos Começar! 🚀
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Rodapé com Botões Simples de Navegação -->
+                    <div class="modal-footer border-top border-dark border-2 bg-light p-3 d-flex justify-content-between">
+                        <button type="button" id="btn-tutorial-prev" class="btn btn-lg btn-outline-secondary px-4 py-2 border-2 fw-bold fs-4" aria-label="Slide anterior">
+                            ⬅️ Voltar
+                        </button>
+                        <button type="button" id="btn-tutorial-next" class="btn btn-lg btn-hop-green px-4 py-2 fw-bold fs-4" aria-label="Próximo slide">
+                            Avançar ➡️
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const modalEl = document.getElementById('tutorialModal');
+                const carouselEl = document.getElementById('tutorialCarousel');
+                const btnFinish = document.getElementById('btn-tutorial-finish');
+                const btnHelp = document.getElementById('btn-tutorial-help');
+                const btnPrev = document.getElementById('btn-tutorial-prev');
+                const btnNext = document.getElementById('btn-tutorial-next');
+
+                if (!modalEl || !carouselEl) return;
+
+                // Inicializa o Carousel nativo do Bootstrap
+                const carousel = new bootstrap.Carousel(carouselEl, {
+                    interval: false,
+                    wrap: false
+                });
+
+                // Inicializa o Modal nativo do Bootstrap
+                const tutorialModal = new bootstrap.Modal(modalEl);
+
+                // Controle dos botões de voltar/avançar no rodapé do modal
+                if (btnPrev) {
+                    btnPrev.addEventListener('click', function() {
+                        carousel.prev();
+                    });
+                }
+
+                if (btnNext) {
+                    btnNext.addEventListener('click', function() {
+                        carousel.next();
+                    });
+                }
+
+                // Ajusta a visibilidade/estado dos botões com base no slide ativo
+                function updateButtons(slideIndex) {
+                    if (btnPrev) {
+                        btnPrev.style.visibility = (slideIndex === 0) ? 'hidden' : 'visible';
+                    }
+                    if (btnNext) {
+                        btnNext.style.visibility = (slideIndex === 3) ? 'hidden' : 'visible';
+                    }
+                }
+
+                carouselEl.addEventListener('slide.bs.carousel', function(e) {
+                    updateButtons(e.to);
+                });
+
+                // Inicializa o estado dos botões ao carregar
+                updateButtons(0);
+
+                // Disparo automático no primeiro acesso (apenas se não houver a chave no localStorage)
+                if (!localStorage.getItem('tutorialVisualizado')) {
+                    tutorialModal.show();
+                }
+
+                // Grava conclusão ao clicar em "Vamos Começar!"
+                if (btnFinish) {
+                    btnFinish.addEventListener('click', function() {
+                        localStorage.setItem('tutorialVisualizado', 'true');
+                    });
+                }
+
+                // Também grava conclusão ao fechar o modal pelo "X" do cabeçalho
+                modalEl.addEventListener('hide.bs.modal', function() {
+                    localStorage.setItem('tutorialVisualizado', 'true');
+                });
+
+                // Reabertura pelo botão de ajuda "?"
+                if (btnHelp) {
+                    btnHelp.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        carousel.to(0);
+                        updateButtons(0);
+                        tutorialModal.show();
+                    });
+                }
+            });
+        </script>
+    {% endif %}
     
     {% block scripts %}{% endblock %}
 </body>
