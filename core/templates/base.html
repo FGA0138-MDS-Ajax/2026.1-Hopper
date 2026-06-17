@@ -41,9 +41,55 @@
             transform: translateY(2px) !important; 
             box-shadow: 0 2px 0 #B33600 !important;
         }
+
+        /* --- Classes Globais de Acessibilidade --- */
+        
+        /* 1. Tamanho da Fonte (Com proteção para não esmagar os Emojis!) */
+        body.texto-pequeno, 
+        body.texto-pequeno p, 
+        body.texto-pequeno span:not([id^="icone-registro"]), 
+        body.texto-pequeno a:not(.menu-link) { 
+            font-size: 0.9rem !important; 
+        }
+        
+        body.texto-grande, 
+        body.texto-grande p, 
+        body.texto-grande span:not([id^="icone-registro"]), 
+        body.texto-grande a:not(.menu-link) { 
+            font-size: 1.35rem !important; 
+        }
+        
+        body.texto-grande h1 { font-size: 2.8rem !important; }
+        body.texto-grande h2 { font-size: 2.4rem !important; }
+        body.texto-grande h3 { font-size: 2rem !important; }
+
+        /* 2. Tamanho dos Botões */
+        body.botao-largo button,
+        body.botao-largo .btn, 
+        body.botao-largo [class*="btn-"], 
+        body.botao-largo input[type="submit"],
+        body.botao-largo .menu-link,
+        body.botao-largo .nav-link-sair {
+            padding: 1.2rem 2.5rem !important;
+            font-size: 1.3rem !important;
+            border-width: 3px !important;
+        }
+        
+        /* Exceção: Protege o botão Hoje e os quadradinhos do calendário */
+        body.botao-largo .btn-hoje-3d {
+            padding: 1rem 2rem !important; 
+            width: 80% !important; 
+            height: auto !important;
+        }
+        
+        body.botao-largo button[onclick^="abrirSelecao"]:not(.btn-hoje-3d) {
+            width: 55px !important;
+            height: 55px !important;
+            padding: 0 !important; 
+        }
     </style>
 </head>
-<body class="d-flex flex-column min-vh-100" style="background-color: #E0DED7; color: #000000;">
+<body class="d-flex flex-column min-vh-100 texto-{{ global_tamanho_texto|default:'medio' }} botao-{{ global_tamanho_botao|default:'normal' }}" style="background-color: #E0DED7; color: #000000;">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-hop-green shadow-sm py-3">
         <div class="container">
