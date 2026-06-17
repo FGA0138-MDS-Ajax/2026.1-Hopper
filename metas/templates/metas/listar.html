@@ -2,88 +2,174 @@
 
 {% block conteudo %}
 <style>
-    /* --- Botão Principal Quente (Nova Meta = Sair) --- */
-    .btn-acao-quente {
+    /* --- Padronização HopLife --- */
+    
+    /* Botão Principal Quente (Nova Meta) */
+    .btn-warm {
         background-color: #E64500 !important;
         color: #FFFFFF !important;
         border-radius: 12px !important;
         padding: 0.8rem 2.2rem !important;
         font-weight: 700;
-        text-decoration: none !important; /* Sem underline */
-        box-shadow: 0 6px 0 #B33600, 0 8px 15px rgba(230, 69, 0, 0.4) !important;
+        text-decoration: none !important;
+        box-shadow: 0 4px 0 #B33600 !important;
         border: none !important;
         transition: all 0.15s ease-in-out !important;
         display: inline-flex;
         align-items: center;
         justify-content: center;
     }
-    .btn-acao-quente:hover {
+    .btn-warm:hover {
         background-color: #FF5A1A !important;
-        transform: translateY(4px) !important; /* Efeito de ser pressionado */
-        box-shadow: 0 2px 0 #B33600, 0 4px 8px rgba(230, 69, 0, 0.4) !important;
+        transform: translateY(2px) !important;
+        box-shadow: 0 2px 0 #B33600 !important;
+        color: #FFFFFF !important;
+    }
+    .btn-warm:active {
+        transform: translateY(4px) !important;
+        box-shadow: 0 0 0 transparent !important;
         color: #FFFFFF !important;
     }
 
-    /* --- Botão Secundário (Gerenciar Categorias) --- */
-    .btn-secundario-3d {
+    /* Botão Secundário (Gerenciar Categorias / Cancelar) */
+    .btn-cancelar {
         background-color: #FFFFFF !important;
         color: #374151 !important;
         border-radius: 12px !important;
         padding: 0.8rem 2.2rem !important;
         font-weight: 700;
-        text-decoration: none !important; /* Sem underline */
+        text-decoration: none !important;
         border: 2px solid #E0DED7 !important;
-        box-shadow: 0 6px 0 #D1CFC4, 0 8px 15px rgba(0, 0, 0, 0.05) !important;
+        box-shadow: 0 4px 0 #D1CFC4 !important;
         transition: all 0.15s ease-in-out !important;
         display: inline-flex;
         align-items: center;
         justify-content: center;
     }
-    .btn-secundario-3d:hover {
+    .btn-cancelar:hover {
         background-color: #F9F9F8 !important;
-        transform: translateY(4px) !important; /* Apenas afunda igual aos outros */
-        box-shadow: 0 2px 0 #D1CFC4, 0 4px 8px rgba(0, 0, 0, 0.05) !important;
+        transform: translateY(2px) !important;
+        box-shadow: 0 2px 0 #D1CFC4 !important;
+        color: #343a40 !important;
+    }
+    .btn-cancelar:active {
+        transform: translateY(4px) !important;
+        box-shadow: 0 0 0 transparent !important;
+        color: #343a40 !important;
+    }
+
+    /* Botão de Perigo Pequeno (Apagar Meta) */
+    .btn-perigo-sm {
+        background-color: #FFFFFF !important;
+        color: #DC3545 !important;
+        border-radius: 10px !important;
+        padding: 0.4rem 1.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        border: 2px solid #DC3545 !important;
+        box-shadow: 0 3px 0 #A71D2A !important;
+        transition: all 0.15s ease-in-out !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-perigo-sm:hover {
+        background-color: #DC3545 !important;
+        color: #FFFFFF !important;
+        transform: translateY(1px) !important;
+        box-shadow: 0 2px 0 #A71D2A !important;
+    }
+    .btn-perigo-sm:active {
+        transform: translateY(3px) !important;
+        box-shadow: 0 0 0 transparent !important;
+        color: #FFFFFF !important;
     }
 
     /* --- Botão de 'Hoje' (Destaque dentro do Card) --- */
-    .btn-hoje-3d {
+    .btn-hoje {
         background-color: #FFF3E0 !important;
         color: #D35400 !important;
         border-radius: 16px !important;
         border: 2px solid #E67E22 !important;
-        box-shadow: 0 6px 0 #E67E22 !important;
-        transition: all 0.1s ease-in-out !important;
+        box-shadow: 0 4px 0 #E67E22 !important;
+        transition: all 0.15s ease-in-out !important;
+        border-bottom-width: 2px !important;
     }
-    .btn-hoje-3d:hover {
-        transform: translateY(4px);
+    .btn-hoje:hover {
+        transform: translateY(2px) !important;
         box-shadow: 0 2px 0 #E67E22 !important;
         background-color: #FFE0B2 !important;
+        color: #D35400 !important;
+    }
+    .btn-hoje:active {
+        transform: translateY(4px) !important;
+        box-shadow: 0 0 0 transparent !important;
+        color: #D35400 !important;
     }
 
-    /* --- Botões do Modal --- */
+    /* --- Botões do Modal (Padronizados) --- */
     .btn-modal-3d {
         border-radius: 12px !important;
-        border: none !important;
         transition: all 0.15s ease-in-out !important;
         font-weight: bold;
     }
+    
+    /* Verde HopLife */
     .btn-modal-success {
-        background-color: #28a745 !important; color: white;
-        box-shadow: 0 6px 0 #1e7e34, 0 8px 15px rgba(40, 167, 69, 0.3) !important;
+        background-color: #4CAF50 !important; 
+        color: #FFFFFF !important;
+        border: none !important;
+        box-shadow: 0 4px 0 #388E3C !important;
     }
-    .btn-modal-success:hover { transform: translateY(4px); box-shadow: 0 2px 0 #1e7e34 !important; }
+    .btn-modal-success:hover { 
+        background-color: #45a049 !important;
+        color: #FFFFFF !important; /* Trava o texto branco! */
+        transform: translateY(2px); 
+        box-shadow: 0 2px 0 #388E3C !important; 
+    }
+    .btn-modal-success:active { 
+        color: #FFFFFF !important;
+        transform: translateY(4px); 
+        box-shadow: 0 0 0 transparent !important; 
+    }
     
+    /* Vermelho HopLife (Igual ao de Apagar) */
     .btn-modal-danger {
-        background-color: #dc3545 !important; color: white;
-        box-shadow: 0 6px 0 #bd2130, 0 8px 15px rgba(220, 53, 69, 0.3) !important;
+        background-color: #DC3545 !important; 
+        color: #FFFFFF !important;
+        border: none !important;
+        box-shadow: 0 4px 0 #A71D2A !important;
     }
-    .btn-modal-danger:hover { transform: translateY(4px); box-shadow: 0 2px 0 #bd2130 !important; }
+    .btn-modal-danger:hover { 
+        background-color: #C82333 !important;
+        color: #FFFFFF !important; /* Trava o texto branco! */
+        transform: translateY(2px); 
+        box-shadow: 0 2px 0 #A71D2A !important; 
+    }
+    .btn-modal-danger:active { 
+        color: #FFFFFF !important;
+        transform: translateY(4px); 
+        box-shadow: 0 0 0 transparent !important; 
+    }
     
-    .btn-modal-secondary {
-        background-color: #6c757d !important; color: white;
-        box-shadow: 0 6px 0 #545b62, 0 8px 15px rgba(108, 117, 125, 0.3) !important;
+    /* Branco HopLife (Igual ao de Cancelar) */
+    .btn-modal-limpar {
+        background-color: #FFFFFF !important; 
+        color: #374151 !important;
+        border: 2px solid #E0DED7 !important;
+        box-shadow: 0 4px 0 #D1CFC4 !important;
     }
-    .btn-modal-secondary:hover { transform: translateY(4px); box-shadow: 0 2px 0 #545b62 !important; }
+    .btn-modal-limpar:hover { 
+        background-color: #F9F9F8 !important;
+        color: #343a40 !important; 
+        transform: translateY(2px); 
+        box-shadow: 0 2px 0 #D1CFC4 !important; 
+    }
+    .btn-modal-limpar:active { 
+        color: #343a40 !important;
+        transform: translateY(4px); 
+        box-shadow: 0 0 0 transparent !important; 
+    }
 
     /* Efeito sutil ao passar o mouse no cabeçalho do card */
     .card-header-hover:hover {
@@ -100,11 +186,11 @@
         </h1>
         
         <div class="d-flex gap-3">
-            <a href="{% url 'metas:listar_categorias' %}" class="btn-secundario-3d">
+            <a href="{% url 'metas:listar_categorias' %}" class="btn-cancelar">
                 Gerenciar Categorias
             </a>
             
-            <a href="{% url 'metas:criar' %}?categoria={{ categoria_ativa }}" class="btn-acao-quente">
+            <a href="{% url 'metas:criar' %}?categoria={{ categoria_ativa }}" class="btn-warm">
                 Nova Meta
             </a>
         </div>
@@ -154,7 +240,7 @@
                     <h5 class="text-escuro fw-bold mb-3">Como foi o seu hábito hoje?</h5>
                     {% for registro in meta.dias_do_mes_atual %}
                         {% if registro.hoje %}
-                            <button class="btn btn-hoje-3d p-3 w-50" 
+                            <button class="btn btn-hoje p-3 w-50" 
                                     onclick="abrirSelecao('{{ registro.id }}')">
                                 <span class="d-block fw-bold mb-2 fs-5">Hoje ({{ registro.data|date:"d/M" }})</span>
                                 <span id="icone-registro-{{ registro.id }}" style="font-size: 3rem; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));">
@@ -192,7 +278,7 @@
                 </div>
                 
                 <div class="mt-4 text-end border-top pt-3">
-                    <a href="{% url 'metas:deletar' meta.id %}" class="btn btn-sm btn-outline-danger px-4 rounded-pill fw-bold">Apagar Meta</a>
+                    <a href="{% url 'metas:deletar' meta.id %}" class="btn-perigo-sm">Apagar Meta</a>
                 </div>
             </div>
         </div>
@@ -218,11 +304,11 @@
                 <button class="btn btn-modal-3d btn-modal-danger p-4 fs-4 text-start" onclick="salvarStatus('falha')">
                     <span class="me-2">❌</span> Não cumpri
                 </button>
-                <button class="btn btn-modal-3d btn-modal-secondary p-4 fs-4 text-start" onclick="salvarStatus('branco')">
+                <button class="btn btn-modal-3d btn-modal-limpar p-4 fs-4 text-start" onclick="salvarStatus('branco')">
                     <span class="me-2">⬜</span> Limpar dia
                 </button>
                 
-                <button class="btn btn-light mt-3 fs-5 fw-bold rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn-cancelar mt-3 w-100" data-bs-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>

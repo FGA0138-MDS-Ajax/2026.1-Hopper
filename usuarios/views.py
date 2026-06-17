@@ -2,7 +2,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 from .models import PerfilUsuario
 from .services import REDIRECT_URI, keycloak_openid
@@ -73,3 +73,7 @@ def logout_view(request):
     )
 
     return redirect(keycloak_logout_url)
+
+
+def acessibilidade_view(request):
+    return render(request, "usuarios/acessibilidade.html")
