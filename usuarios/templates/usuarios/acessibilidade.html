@@ -48,6 +48,32 @@
         box-shadow: 0 2px 0 #B33600 !important;
         color: #FFFFFF !important;
     }
+
+    /* Botão Laranja HopLife (Usado no Tutorial) */
+    .btn-warm {
+        background-color: #E64500 !important;
+        color: #FFFFFF !important;
+        border-radius: 12px !important;
+        padding: 1rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        box-shadow: 0 4px 0 #B33600 !important;
+        border: none !important;
+        transition: all 0.15s ease-in-out !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-warm:hover {
+        transform: translateY(2px) !important;
+        box-shadow: 0 2px 0 #B33600 !important;
+        color: #FFFFFF !important;
+    }
+    .btn-warm:active {
+        transform: translateY(4px) !important;
+        box-shadow: 0 0 0 transparent !important;
+        color: #FFFFFF !important;
+    }
 </style>
 
 <div class="container py-4">
@@ -139,4 +165,41 @@
         checkMotora.addEventListener('change', updateLiveSettings);
     });
 </script>
+{% endblock %}
+
+{% block tutorial_slides %}
+    <div class="carousel-item active py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">⚙️</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Configurações de Acessibilidade</h3>
+        <p class="fs-3 text-dark lh-base">
+            Bem-vindo! Esta página foi feita para deixar o sistema mais confortável para você. Aqui você ajusta o site para as suas necessidades.
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">🔎</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Tamanhos</h3>
+        <p class="fs-3 text-dark lh-base">
+            Se achar melhor, você pode escolher aumentar o <strong>Tamanho das Letras</strong> para facilitar a leitura, ou deixar os <strong>Botões Grandes</strong> para ser mais fácil de clicar.
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">✋</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Assistência Motora</h3>
+        <p class="fs-3 text-dark lh-base">
+            Se a sua mão tremer ou clicar for difícil, ative a chave verde de Assistência Motora. Ela evita cliques duplos por engano e ajuda na navegação.
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">💾</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Teste e Salve!</h3>
+        <p class="fs-3 text-dark lh-base mb-4">
+            Olhe o quadro de "Exemplo Visual" para ver como vai ficar. Quando estiver do seu agrado, não se esqueça de clicar no botão laranja <strong>"Salvar Configurações"</strong> lá embaixo!
+        </p>
+        <button type="button" class="btn btn-warm btn-lg px-5 py-3 shadow-sm fw-bold fs-3" data-bs-dismiss="modal">
+            Entendi! 👍
+        </button>
+    </div>
 {% endblock %}

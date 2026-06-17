@@ -23,7 +23,7 @@
         {% if user.is_authenticated %}
             <h1 class="display-5 fw-bold text-warm">Olá, {{ user.username }}!</h1>
             <p class="col-md-8 mx-auto fs-4 text-muted mt-3">
-                Que bom ter você por aqui. Vamos conferir suas metas e cuidar da saúde hoje?
+                Que bom ter você por aqui. Vamos conferir suas metas e cuidar da saúde hoje? Se precisar de <Strong>ajuda</Strong> basta clicar no icone de interrogação no canto inferior direito da tela!
             </p>
             <a href="{% url 'metas:listar' %}" class="btn btn-warm btn-lg mt-4 px-5">Ver Minhas Metas</a>
         {% else %}

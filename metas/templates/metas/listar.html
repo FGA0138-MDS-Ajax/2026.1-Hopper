@@ -4,7 +4,7 @@
 <style>
     /* --- Padronização HopLife --- */
     
-    /* Botão Principal Quente (Nova Meta) */
+    /* Botão Principal Quente (Nova) */
     .btn-warm {
         background-color: #E64500 !important;
         color: #FFFFFF !important;
@@ -21,17 +21,16 @@
     }
     .btn-warm:hover {
         background-color: #FF5A1A !important;
-        transform: translateY(2px) !important;
+        transform: translateY(2px) !important; 
         box-shadow: 0 2px 0 #B33600 !important;
         color: #FFFFFF !important;
     }
     .btn-warm:active {
-        transform: translateY(4px) !important;
+        transform: translateY(4px) !important; /* Entra pra dentro ao clicar */
         box-shadow: 0 0 0 transparent !important;
-        color: #FFFFFF !important;
     }
 
-    /* Botão Secundário (Gerenciar Categorias / Cancelar) */
+    /* Botão Secundário (Voltar para Metas) */
     .btn-cancelar {
         background-color: #FFFFFF !important;
         color: #374151 !important;
@@ -40,7 +39,7 @@
         font-weight: 700;
         text-decoration: none !important;
         border: 2px solid #E0DED7 !important;
-        box-shadow: 0 4px 0 #D1CFC4 !important;
+        box-shadow: 0 4px 0 #D1CFC4 !important; 
         transition: all 0.15s ease-in-out !important;
         display: inline-flex;
         align-items: center;
@@ -48,17 +47,16 @@
     }
     .btn-cancelar:hover {
         background-color: #F9F9F8 !important;
-        transform: translateY(2px) !important;
+        transform: translateY(2px) !important; 
         box-shadow: 0 2px 0 #D1CFC4 !important;
         color: #343a40 !important;
     }
     .btn-cancelar:active {
-        transform: translateY(4px) !important;
+        transform: translateY(4px) !important; /* Entra pra dentro ao clicar */
         box-shadow: 0 0 0 transparent !important;
-        color: #343a40 !important;
     }
 
-    /* Botão de Perigo Pequeno (Apagar Meta) */
+    /* Botão de Perigo Pequeno (Apagar item da lista) */
     .btn-perigo-sm {
         background-color: #FFFFFF !important;
         color: #DC3545 !important;
@@ -82,7 +80,6 @@
     .btn-perigo-sm:active {
         transform: translateY(3px) !important;
         box-shadow: 0 0 0 transparent !important;
-        color: #FFFFFF !important;
     }
 
     /* --- Botão de 'Hoje' (Destaque dentro do Card) --- */
@@ -361,4 +358,41 @@
         });
     }
 </script>
+{% endblock %}
+
+{% block tutorial_slides %}
+    <div class="carousel-item active py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">📝</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Bem-vindo às Minhas Metas!</h3>
+        <p class="fs-3 text-dark lh-base">
+            Aqui ficam todas as tarefas que você precisa cumprir. Você pode visualizar os detalhes de cada uma clicando em cima do nome dela.
+        </p>
+    </div>
+    
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">✅</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Marque como Feito</h3>
+        <p class="fs-3 text-dark lh-base">
+            Ao abrir uma meta, você verá o botão destacado de <strong>Hoje</strong>. Clique nele para nos dizer se você conseguiu ou não cumprir o hábito no dia atual!
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">📅</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Acompanhe o seu Histórico</h3>
+        <p class="fs-3 text-dark lh-base">
+            Logo abaixo do botão de Hoje, você pode ver todos os dias do mês. Clique em qualquer um dos quadradinhos para corrigir ou preencher dias anteriores.
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">🏷️</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Use os Filtros</h3>
+        <p class="fs-3 text-dark lh-base mb-4">
+            No topo da tela, clique nas suas <strong>Categorias</strong> (como "Saúde" ou "Alimentação") para filtrar a lista e ver apenas as metas daquele grupo.
+        </p>
+        <button type="button" class="btn btn-warm btn-lg px-5 py-3 shadow-sm fw-bold fs-3" data-bs-dismiss="modal">
+            Entendi! 👍
+        </button>
+    </div>
 {% endblock %}
