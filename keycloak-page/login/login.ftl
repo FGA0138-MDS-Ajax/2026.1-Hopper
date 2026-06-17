@@ -13,16 +13,13 @@
             color: #000000;
         }
         
-        .text-warm { 
-            color: #E64500 !important; 
-        }
 
         /* --- Estilo do Card (Copiado da sua Home) --- */
         .card-login {
             max-width: 500px;
             width: 100%;
             background-color: #FFFFFF;
-            border-radius: 1rem !important; /* Arredondado igual ao rounded-3 */
+            border-radius: 1rem !important;
         }
 
         /* --- Botão Laranja com Efeito 3D (Copiado do seu Menu) --- */
@@ -84,6 +81,15 @@
             
         </form>
 
+        <#if realm.password && realm.registrationAllowed && !registrationDisabled??>
+            <div class="mt-4 pt-3 border-top">
+                <p class="text-muted fw-bold mb-2">Ainda não tem uma conta?</p>
+                <a href="${url.registrationUrl}" class="btn btn-light w-100 py-2" 
+                   style="border-radius: 12px; font-weight: bold; border: 2px solid #E0DED7; color: #374151;">
+                    Criar Nova Conta
+                </a>
+            </div>
+        </#if>
         <#if message?has_content && message.type == 'error'>
             <div class="alert alert-danger mt-4 fw-bold shadow-sm" style="border-radius: 10px; border: none;">
                 ❌ Usuário ou senha incorretos. Tente novamente!

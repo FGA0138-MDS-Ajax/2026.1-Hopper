@@ -2,15 +2,15 @@
 
 {% block conteudo %}
 <style>
-    /* --- Botão de Perigo 3D (Apagar) --- */
-    .btn-perigo-3d {
+    /* Botão de Perigo (Ação Destrutiva) */
+    .btn-perigo {
         background-color: #DC3545 !important;
         color: #FFFFFF !important;
         border-radius: 12px !important;
         padding: 1rem 2.2rem !important;
         font-weight: 700;
         text-decoration: none !important;
-        box-shadow: 0 6px 0 #A71D2A, 0 8px 15px rgba(220, 53, 69, 0.3) !important;
+        box-shadow: 0 4px 0 #A71D2A !important;
         border: none !important;
         transition: all 0.15s ease-in-out !important;
         display: flex;
@@ -19,15 +19,19 @@
         width: 100%;
         font-size: 1.2rem;
     }
-    .btn-perigo-3d:hover {
+    .btn-perigo:hover {
         background-color: #C82333 !important;
-        transform: translateY(4px) !important; /* Efeito de afundar */
-        box-shadow: 0 2px 0 #A71D2A, 0 4px 8px rgba(220, 53, 69, 0.3) !important;
+        transform: translateY(2px) !important;
+        box-shadow: 0 2px 0 #A71D2A !important;
         color: #FFFFFF !important;
     }
+    .btn-perigo:active {
+        transform: translateY(4px) !important;
+        box-shadow: 0 0 0 transparent !important;
+    }
 
-    /* --- Botão Secundário 3D (Cancelar) --- */
-    .btn-secundario-3d {
+    /* Botão Cancelar */
+    .btn-cancelar {
         background-color: #FFFFFF !important;
         color: #374151 !important;
         border-radius: 12px !important;
@@ -35,18 +39,52 @@
         font-weight: 700;
         text-decoration: none !important;
         border: 2px solid #E0DED7 !important;
-        box-shadow: 0 6px 0 #D1CFC4, 0 8px 15px rgba(0, 0, 0, 0.05) !important;
+        box-shadow: 0 4px 0 #D1CFC4 !important;
         transition: all 0.15s ease-in-out !important;
         display: flex;
         align-items: center;
         justify-content: center;
         width: 100%;
         font-size: 1.1rem;
+        margin-top: 1rem;
     }
-    .btn-secundario-3d:hover {
+    .btn-cancelar:hover {
         background-color: #F9F9F8 !important;
-        transform: translateY(4px) !important; /* Efeito de afundar */
-        box-shadow: 0 2px 0 #D1CFC4, 0 4px 8px rgba(0, 0, 0, 0.05) !important;
+        transform: translateY(2px) !important;
+        box-shadow: 0 2px 0 #D1CFC4 !important;
+        color: #343a40 !important;
+    }
+    .btn-cancelar:active {
+        transform: translateY(4px) !important;
+        box-shadow: 0 0 0 transparent !important;
+    }
+
+    /* Botão Laranja (Usado no Tutorial) */
+    .btn-warm {
+        background-color: #E64500 !important;
+        color: #FFFFFF !important;
+        border-radius: 12px !important;
+        padding: 1rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        box-shadow: 0 4px 0 #B33600 !important;
+        border: none !important;
+        transition: all 0.15s ease-in-out !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        font-size: 1.2rem;
+    }
+    .btn-warm:hover {
+        transform: translateY(2px) !important;
+        box-shadow: 0 2px 0 #B33600 !important;
+        color: #FFFFFF !important;
+    }
+    .btn-warm:active {
+        transform: translateY(4px) !important;
+        box-shadow: 0 0 0 transparent !important;
+        color: #FFFFFF !important;
     }
 </style>
 
@@ -57,26 +95,57 @@
                 
                 <div class="mb-4" style="font-size: 4rem;">🗑️</div>
                 
-                <h2 class="text-escuro fw-bolder mb-4" style="letter-spacing: -0.5px;">Apagar Categoria</h2>
+                <h2 class="fw-bolder mb-4" style="letter-spacing: -0.5px; color: #374151;">Apagar Categoria</h2>
                 
                 <p class="fs-5 text-muted mb-4">
                     Tem a certeza de que deseja apagar a categoria <strong style="color: {{ object.cor_identificacao }}; font-size: 1.3rem;">{{ object.nome }}</strong>?
                 </p>
 
-                <div class="p-3 mb-4 rounded-3 text-start d-inline-block" style="background-color: #F9F9F8; border: 1px solid #E0DED7;">
+                <div class="p-3 mb-4 rounded-3 text-start d-inline-block" style="background-color: #F9F9F8; border: 2px solid #E0DED7;">
                     <small class="text-muted fs-6 d-block text-center">
                         <strong>Aviso:</strong> As metas que usam esta categoria não serão apagadas, ficarão apenas como "Sem categoria".
                     </small>
                 </div>
                 
-                <form method="POST" class="d-flex flex-column gap-3 mt-2">
+                <form method="POST">
                     {% csrf_token %}
-                    <button type="submit" class="btn-perigo-3d">Sim, apagar categoria</button>
-                    <a href="{% url 'metas:listar_categorias' %}" class="btn-secundario-3d">Cancelar e Voltar</a>
+                    <div class="d-flex flex-column mt-4 border-top pt-4">
+                        <button type="submit" class="btn-perigo">Sim, apagar categoria</button>
+                        <a href="{% url 'metas:listar_categorias' %}" class="btn-cancelar">Cancelar e Voltar</a>
+                    </div>
                 </form>
                 
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block tutorial_slides %}
+    <div class="carousel-item active py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">🗑️</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Apagar Categoria</h3>
+        <p class="fs-3 text-dark lh-base">
+            Esta é a tela de confirmação. O sistema quer ter certeza de que você não clicou no botão de apagar sem querer!
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">⚠️</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">E as minhas metas?</h3>
+        <p class="fs-3 text-dark lh-base">
+            Fique tranquilo! Se você apagar esta categoria, <strong>as suas metas não serão perdidas</strong>. Elas apenas ficarão misturadas na aba "Sem categoria".
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">👆</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">O que fazer agora?</h3>
+        <p class="fs-3 text-dark lh-base mb-4">
+            Se você realmente quer excluir, clique no botão vermelho <strong>"Sim, apagar categoria"</strong>. Se mudou de ideia, clique em "Cancelar e Voltar".
+        </p>
+        <button type="button" class="btn btn-warm btn-lg px-5 py-3 shadow-sm fw-bold fs-3" data-bs-dismiss="modal">
+            Entendi! 👍
+        </button>
+    </div>
 {% endblock %}

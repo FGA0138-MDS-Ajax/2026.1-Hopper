@@ -2,15 +2,19 @@
 
 {% block conteudo %}
 <style>
-    /* --- Botão Principal Quente (Salvar) --- */
-    .btn-acao-quente {
+    /* --- Padronização HopLife --- */
+    .text-warm { 
+        color: #E64500 !important; 
+    }
+
+    .btn-warm {
         background-color: #E64500 !important;
         color: #FFFFFF !important;
         border-radius: 12px !important;
         padding: 1rem 2.2rem !important;
         font-weight: 700;
         text-decoration: none !important;
-        box-shadow: 0 6px 0 #B33600, 0 8px 15px rgba(230, 69, 0, 0.4) !important;
+        box-shadow: 0 4px 0 #B33600 !important;
         border: none !important;
         transition: all 0.15s ease-in-out !important;
         display: flex;
@@ -19,23 +23,20 @@
         width: 100%;
         font-size: 1.2rem;
     }
-    .btn-acao-quente:hover {
-        background-color: #FF5A1A !important;
-        transform: translateY(4px) !important; /* Efeito de afundar */
-        box-shadow: 0 2px 0 #B33600, 0 4px 8px rgba(230, 69, 0, 0.4) !important;
+    .btn-warm:hover {
+        transform: translateY(2px) !important;
+        box-shadow: 0 2px 0 #B33600 !important;
         color: #FFFFFF !important;
     }
 
-    /* --- Botão Secundário 3D (Cancelar) --- */
-    .btn-secundario-3d {
-        background-color: #FFFFFF !important;
-        color: #374151 !important;
+    .btn-cancelar {
+        background-color: transparent !important;
+        color: #6c757d !important;
         border-radius: 12px !important;
         padding: 1rem 2.2rem !important;
         font-weight: 700;
         text-decoration: none !important;
         border: 2px solid #E0DED7 !important;
-        box-shadow: 0 6px 0 #D1CFC4, 0 8px 15px rgba(0, 0, 0, 0.05) !important;
         transition: all 0.15s ease-in-out !important;
         display: flex;
         align-items: center;
@@ -44,13 +45,12 @@
         font-size: 1.1rem;
         margin-top: 1rem;
     }
-    .btn-secundario-3d:hover {
-        background-color: #F9F9F8 !important;
-        transform: translateY(4px) !important; /* Efeito de afundar */
-        box-shadow: 0 2px 0 #D1CFC4, 0 4px 8px rgba(0, 0, 0, 0.05) !important;
+    .btn-cancelar:hover {
+        background-color: #f8f9fa !important;
+        color: #343a40 !important;
     }
 
-    /* --- Estilo do Form e Cores --- */
+    /* --- Estilo do Form --- */
     input[type="text"] {
         width: 100%;
         padding: 12px 15px;
@@ -58,11 +58,13 @@
         border-radius: 10px;
         font-size: 1.2rem;
         transition: border-color 0.2s ease;
+        background-color: #F9F9F8;
     }
     input[type="text"]:focus {
-        border-color: #E64500;
+        border-color: #3A5A50;
         outline: 0;
-        box-shadow: 0 0 0 0.25rem rgba(230, 69, 0, 0.15);
+        box-shadow: 0 0 0 0.25rem rgba(58, 90, 80, 0.25);
+        background-color: #FFFFFF;
     }
 
     /* O estilo das nossas bolinhas de cor */
@@ -75,10 +77,10 @@
         transition: transform 0.1s, border 0.1s;
     }
     .bolinha-cor:hover {
-        transform: scale(1.1); /* Dá uma "crescida" quando passa o mouse */
+        transform: scale(1.1);
     }
     .bolinha-cor.selecionada {
-        border: 4px solid #374151 !important; /* Borda escura para mostrar qual está selecionada */
+        border: 4px solid #374151 !important;
         transform: scale(1.15);
         box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
@@ -89,7 +91,7 @@
         <div class="card shadow-sm rounded-4 border-0 mt-5" style="background-color: #FFFFFF;">
             <div class="card-body p-5">
                 
-                <h2 class="text-escuro fw-bolder mb-3 text-center" style="letter-spacing: -0.5px;">Criar Nova Categoria</h2>
+                <h2 class="text-warm fw-bolder mb-3 text-center" style="letter-spacing: -0.5px;">Criar Nova Categoria</h2>
                 <p class="text-center text-muted mb-4 fs-5">Ex: Saúde, Alimentação, Fisioterapia...</p>
                 
                 <form method="POST">
@@ -102,21 +104,21 @@
                             </div>
                             
                             <div class="mb-4 mt-5">
-                                <label class="form-label fs-5 text-escuro fw-bold d-block text-center mb-3">Escolha uma Cor</label>
+                                <label class="form-label fs-5 fw-bold d-block text-center mb-3" style="color: #374151;">Escolha uma Cor</label>
                                 <div id="paleta-cores" class="d-flex flex-wrap gap-3 justify-content-center">
-                                    </div>
+                                </div>
                             </div>
                         {% else %}
                             <div class="mb-4">
-                                <label for="{{ field.id_for_label }}" class="form-label fs-5 text-escuro fw-bold">{{ field.label }}</label>
+                                <label for="{{ field.id_for_label }}" class="form-label fs-5 fw-bold" style="color: #374151;">{{ field.label }}</label>
                                 {{ field }}
                             </div>
                         {% endif %}
                     {% endfor %}
                     
                     <div class="d-flex flex-column mt-5 border-top pt-4">
-                        <button type="submit" class="btn-acao-quente">Salvar Categoria</button>
-                        <a href="{% url 'metas:criar' %}" class="btn-secundario-3d">Cancelar</a>
+                        <button type="submit" class="btn-warm">Salvar Categoria</button>
+                        <a href="{% url 'metas:criar' %}" class="btn-cancelar">Cancelar</a>
                     </div>
                 </form>
                 
@@ -128,7 +130,6 @@
 
 {% block scripts %}
 <script>
-    // 20 Cores vibrantes, alegres e sem tons escuros/acinzentados
     const cores = [
         '#FF3B30', '#FF9500', '#FFCC00', '#4CD964', '#5AC8FA', 
         '#007AFF', '#5856D6', '#FF2D55', '#F44336', '#E91E63', 
@@ -137,32 +138,62 @@
     ];
 
     const paletaDiv = document.getElementById('paleta-cores');
-    const inputEscondido = document.getElementById('id_cor_identificacao'); // ID automático que o Django cria
+    const inputEscondido = document.getElementById('id_cor_identificacao');
 
-    // Desenha as 20 bolinhas na tela
     cores.forEach(cor => {
         let btnCor = document.createElement('div');
         btnCor.className = 'bolinha-cor shadow-sm';
         btnCor.style.backgroundColor = cor;
         
-        // Se for a cor padrão (Laranja), já começa selecionada
         if(cor === '#FF9500') {
             btnCor.classList.add('selecionada');
-            // Garante que o input escondido comece com a cor padrão caso o usuário não clique em nada
             if (inputEscondido) inputEscondido.value = cor;
         }
 
-        // O que acontece quando o usuário clica numa bolinha
         btnCor.onclick = function() {
-            // 1. Tira a seleção de todas as bolinhas
             document.querySelectorAll('.bolinha-cor').forEach(b => b.classList.remove('selecionada'));
-            // 2. Coloca a seleção na bolinha clicada
             this.classList.add('selecionada');
-            // 3. Avisa o Django qual foi a cor escolhida
             inputEscondido.value = cor;
         };
 
         paletaDiv.appendChild(btnCor);
     });
 </script>
+{% endblock %}
+
+{% block tutorial_slides %}
+    <div class="carousel-item active py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">📁</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Organize suas Metas</h3>
+        <p class="fs-3 text-dark lh-base">
+            Aqui você pode criar um grupo (chamado de <strong>Categoria</strong>) para organizar melhor as suas metas do dia a dia.
+        </p>
+    </div>
+    
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">✍️</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Nome da Categoria</h3>
+        <p class="fs-3 text-dark lh-base">
+            Na caixinha de texto, digite um nome para esse grupo. Pode ser algo como "Saúde", "Casa", "Alimentação" ou o que você preferir!
+        </p>
+    </div>
+    
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">🎨</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Escolha uma Cor</h3>
+        <p class="fs-3 text-dark lh-base">
+            Basta clicar em uma das <strong>bolinhas coloridas</strong>. Essa cor vai te ajudar a identificar as metas desse grupo mais rapidamente depois.
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">💾</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Salvar e Pronto!</h3>
+        <p class="fs-3 text-dark lh-base mb-4">
+            Quando terminar, é só clicar no botão laranja <strong>"Salvar Categoria"</strong>. Se quiser desistir, basta clicar em "Cancelar".
+        </p>
+        <button type="button" class="btn btn-warm btn-lg px-5 py-3 shadow-sm fw-bold fs-3" data-bs-dismiss="modal">
+            Entendi! 👍
+        </button>
+    </div>
 {% endblock %}
