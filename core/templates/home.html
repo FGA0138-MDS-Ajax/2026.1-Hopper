@@ -1,10 +1,27 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
+<!-- Trazendo as cores do HopLife para o Django -->
+<style>
+    .btn-warm {
+        background-color: #E64500 !important;
+        color: #FFFFFF !important;
+        border-radius: 12px !important;
+        border: none;
+        box-shadow: 0 4px 0 #B33600 !important;
+        transition: all 0.15s ease-in-out;
+    }
+    .btn-warm:hover {
+        transform: translateY(2px);
+        box-shadow: 0 2px 0 #B33600 !important;
+        color: #FFFFFF !important;
+    }
+</style>
+
 <div class="p-5 mb-4 bg-white rounded-3 shadow-sm border text-center">
     <div class="container-fluid py-5">
         {% if user.is_authenticated %}
-            <h1 class="display-5 fw-bold text-warm">Olá, {{ user.first_name }}!</h1>
+            <h1 class="display-5 fw-bold text-warm">Olá, {{ user.username }}!</h1>
             <p class="col-md-8 mx-auto fs-4 text-muted mt-3">
                 Que bom ter você por aqui. Vamos conferir suas metas e cuidar da saúde hoje?
             </p>

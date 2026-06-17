@@ -12,9 +12,6 @@
             color: #000000;
         }
         
-        .text-warm { 
-            color: #E64500 !important; 
-        }
 
         .card-login {
             max-width: 500px;
