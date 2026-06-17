@@ -154,10 +154,10 @@
                     <h5 class="text-escuro fw-bold mb-3">Como foi o seu hábito hoje?</h5>
                     {% for registro in meta.dias_do_mes_atual %}
                         {% if registro.hoje %}
-                            <button class="btn btn-hoje-3d p-3 w-50" 
+                            <button class="btn btn-hoje-3d p-3 w-75 mx-auto d-flex flex-column align-items-center justify-content-center" 
                                     onclick="abrirSelecao('{{ registro.id }}')">
                                 <span class="d-block fw-bold mb-2 fs-5">Hoje ({{ registro.data|date:"d/M" }})</span>
-                                <span id="icone-registro-{{ registro.id }}" style="font-size: 3rem; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));">
+                                <span id="icone-registro-{{ registro.id }}" style="font-size: 3rem; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1)); line-height: 1;">
                                     {% if registro.status_conclusao == 'check' %}✅
                                     {% elif registro.status_conclusao == 'falha' %}❌
                                     {% else %}⬜
