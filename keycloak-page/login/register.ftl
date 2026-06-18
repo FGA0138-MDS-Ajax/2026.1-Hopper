@@ -107,7 +107,7 @@
             Registre-se para começar a acompanhar suas metas e conquistas diárias.
         </p>
 
-        <form action="${url.registrationAction}" method="post">
+        <form action="${url.registrationAction}" method="post" id="registerForm">
             
             <div class="row text-start mb-3">
                 <div class="col-12 col-sm-6 mb-3 mb-sm-0">
@@ -127,8 +127,8 @@
 
             <div class="mb-3 text-start">
                 <label for="username" class="form-label fw-bold text-muted mb-1">Nome de usuário</label>
-                <input type="text" class="form-control form-control-lg" id="username" name="username" value="${(register.formData.username!'')}" placeholder="joao.silva" oninput="checkUser()" required>
-                <small class="text-muted d-block mt-1 fw-bold" style="font-size: 0.8rem;">Somente letras, números e pontos. Sem espaços.</small>
+                <input type="text" class="form-control form-control-lg" id="username" name="username" value="${(register.formData.username!'')}" placeholder="joao.silva" required>
+                <small class="text-muted d-block mt-1 fw-bold" style="font-size: 0.8rem;">Somente letras minúsculas, números, pontos (.), hifens (-) e underlines (_).</small>
             </div>
 
             <div class="mb-3 text-start">
@@ -171,6 +171,8 @@
                     Este e-mail já está cadastrado. Tente outro.
                 <#elseif message.summary?contains("Username") || message.summary?contains("username")>
                     Este nome de usuário já está em uso. Escolha outro.
+                <#elseif message.summary?contains("character") || message.summary?contains("Character") || message.summary?contains("invalid")>
+                    Caractere inválido no nome de usuário. Não use espaços no meio.
                 <#elseif message.summary?contains("match")>
                     As senhas digitadas não coincidem.
                 <#else>
@@ -191,24 +193,57 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Tradução das mensagens de validação nativas do navegador
         document.addEventListener("DOMContentLoaded", function() {
+            const usernameInput = document.getElementById('username');
+            
+            // 1. Quando o usuário sai do campo, o JS "limpa" os espaços no final e no início (trim)
+            usernameInput.addEventListener('blur', function() {
+                this.value = this.value.trim();
+                checkUsernameValidity(this);
+            });
+
+            // 2. Lógica central de validação do Nome de Usuário
+            function checkUsernameValidity(input) {
+                if (input.validity.valueMissing) {
+                    input.setCustomValidity('Por favor, preencha este campo.');
+                } else if (/[^a-z0-9.\-_]/.test(input.value)) {
+                    // Se tiver espaços no meio ou símbolos proibidos, ele avisa!
+                    input.setCustomValidity('Caractere inválido no nome de usuário. Não use espaços no meio.');
+                } else {
+                    input.setCustomValidity(''); // Se estiver limpo, passa!
+                }
+            }
+
+            // Tradução das mensagens de validação nativas e tratamento dos campos
             const inputs = document.querySelectorAll('input[required]');
             inputs.forEach(input => {
-                input.oninvalid = function(e) {
+                input.addEventListener('invalid', function(e) {
                     if (e.target.type === 'email') {
                         if (e.target.validity.valueMissing) {
                             e.target.setCustomValidity('Por favor, preencha este campo.');
                         } else {
                             e.target.setCustomValidity('Por favor, inclua um domínio após o "@".');
                         }
+                    } else if (e.target.id === 'username') {
+                        checkUsernameValidity(e.target);
                     } else {
                         e.target.setCustomValidity('Por favor, preencha este campo.');
                     }
-                };
-                input.oninput = function(e) {
-                    e.target.setCustomValidity('');
-                };
+                });
+
+                input.addEventListener('input', function(e) {
+                    if (e.target.id === 'username') {
+                        e.target.value = e.target.value.toLowerCase(); // Força minúsculo dinamicamente
+                        checkUsernameValidity(e.target); // Valida enquanto digita
+                    } else {
+                        e.target.setCustomValidity('');
+                    }
+                });
+            });
+
+            // Trim de segurança caso o usuário envie direto com o Enter sem sair do campo
+            document.getElementById('registerForm').addEventListener('submit', function() {
+                usernameInput.value = usernameInput.value.trim();
             });
         });
 
@@ -240,11 +275,6 @@
             for (let i = 0; i < score; i++) bars[i].style.background = colors[score - 1];
             label.textContent = labels[score - 1];
             label.style.color = colors[score - 1];
-        }
-
-        function checkUser() {
-            const inp = document.getElementById('username');
-            inp.value = inp.value.replace(/[^a-zA-Z0-9.]/g, '');
         }
     </script>
 </body>

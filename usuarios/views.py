@@ -1,11 +1,10 @@
+from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import redirect, render
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from django.contrib import messages
 
 from .models import PerfilUsuario
 from .services import REDIRECT_URI, keycloak_openid
@@ -78,31 +77,30 @@ def logout_view(request):
     return redirect(keycloak_logout_url)
 
 
-def acessibilidade_view(request):
-    return render(request, "usuarios/acessibilidade.html")
-
-@login_required # Garante que só quem tá logado acesse
+@login_required  # Garante que só quem tá logado acesse
 def acessibilidade_view(request):
     perfil = request.user.perfil
-    
-    if request.method == 'POST':
+
+    if request.method == "POST":
         # Pega os valores selecionados no formulário HTML (usando o atributo 'name')
-        novo_texto = request.POST.get('tamanho_letra')
-        novo_botao = request.POST.get('tamanho_botao')
-        
+        novo_texto = request.POST.get("tamanho_letra")
+        novo_botao = request.POST.get("tamanho_botao")
+
         # Validação básica de segurança
-        if novo_texto in ['pequeno', 'medio', 'grande']:
+        if novo_texto in ["pequeno", "medio", "grande"]:
             perfil.tamanho_texto = novo_texto
-        if novo_botao in ['normal', 'largo']:
+        if novo_botao in ["normal", "largo"]:
             perfil.tamanho_botao = novo_botao
-            
+
         perfil.save()
-        messages.success(request, 'Suas configurações de acessibilidade foram salvas!')
-        return redirect('usuarios:acessibilidade') # Recarrega a página para atualizar visualmente
-        
+        messages.success(request, "Suas configurações de acessibilidade foram salvas!")
+        return redirect(
+            "usuarios:acessibilidade"
+        )  # Recarrega a página para atualizar visualmente
+
     # Envia os dados atuais do banco para preencher o formulário
     context = {
-        'tamanho_texto': perfil.tamanho_texto,
-        'tamanho_botao': perfil.tamanho_botao,
+        "tamanho_texto": perfil.tamanho_texto,
+        "tamanho_botao": perfil.tamanho_botao,
     }
     return render(request, "usuarios/acessibilidade.html", context)
