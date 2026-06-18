@@ -1,0 +1,3232 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../arquitetura/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Documento de Visão - HopLife</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#hoplife" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="HopLife" class="md-header__button md-logo" aria-label="HopLife" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HopLife
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Documento de Visão
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="HopLife" class="md-nav__button md-logo" aria-label="HopLife" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    HopLife
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documento de Visão
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documento de Visão
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-do-produto-e-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visão do Produto e do Projeto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-integrantes-do-grupo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela - Integrantes do Grupo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-revisoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Histórico de Revisões
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sumario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sumário
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-visao-geral-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Visão Geral do Produto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Visão Geral do Produto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Problema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 Problema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#figura-1-diagrama-de-ishikawa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figura 1 – Diagrama de Ishikawa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-declaracao-de-posicao-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Declaração de Posição do Produto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 Declaração de Posição do Produto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-1-posicao-do-produto-no-mercado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 1 - Posição do produto no mercado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-objetivos-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Objetivos do Produto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-tecnologias-a-serem-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Tecnologias a Serem Utilizadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-visao-geral-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Visão Geral do Projeto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Visão Geral do Projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-ciclo-de-vida-do-projeto-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Ciclo de vida do projeto de desenvolvimento de software
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-organizacao-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Organização do Projeto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Organização do Projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-2-divisao-de-atribuicoes-e-responsabilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 2 - Divisão de atribuições e responsabilidades
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-planejamento-das-fases-eou-iteracoes-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Planejamento das Fases e/ou Iterações do Projeto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Planejamento das Fases e/ou Iterações do Projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-3-planejamento-das-fases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 3 – Planejamento das fases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#231-definicoes-dos-entregaveis-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.1 Definições dos Entregáveis (Aliases)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-matriz-de-comunicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Matriz de Comunicação
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Matriz de Comunicação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-4-matriz-de-comunicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 4 – Matriz de Comunicação
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-gerenciamento-de-riscos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Gerenciamento de Riscos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Gerenciamento de Riscos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-5-mapeamento-e-planejamento-de-riscos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 5 – Mapeamento e planejamento de riscos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-criterios-de-replanejamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Critérios de Replanejamento
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-processo-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Processo de Desenvolvimento de Software
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Processo de Desenvolvimento de Software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#figura-2-fluxograma-do-processo-de-desenvolvimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figura 2 – Fluxograma do processo de desenvolvimento
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-declaracao-de-escopo-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Declaração de Escopo do Projeto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Declaração de Escopo do Projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Backlog do produto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 Backlog do produto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-6-elicitacao-e-priorizacao-do-backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 6 - Elicitação e Priorização do Backlog do Produto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-perfis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Perfis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 Perfis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-7-perfis-de-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 7 - Perfis de acesso
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-cenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Cenários
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 Cenários">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-8-user-stories-cenarios-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 8 – User Stories (Cenários funcionais)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-tabela-de-backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Tabela de Backlog do produto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 Tabela de Backlog do produto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-9-backlog-do-produto-detalhado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 9: Backlog do produto detalhado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-metricas-e-medicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 Métricas e Medições
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Métricas e Medições">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-gqm-de-medicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 GQM de Medições
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 GQM de Medições">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-10-objetivo-de-medicao-gqm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 10 – Objetivo de Medição GQM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-11-metricas-e-suas-definicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 11 - Métricas e suas definições
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-testes-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6 Testes de Software
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Testes de Software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-estrategia-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Estratégia de Testes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 Estratégia de Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-12-estrategia-de-testes-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 12 - Estratégia de Testes de Software
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-roteiro-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Roteiro de Testes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 Roteiro de Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ct-01-login-e-registro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-01 – Login e Registro
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-02-acessibilidade-visual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-02 – Acessibilidade Visual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-03-cadastro-e-visualizacao-de-metas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-03 – Cadastro e Visualização de Metas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-04-marcacao-diaria-de-meta-cumprida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-04 – Marcação Diária de Meta Cumprida
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-05-historico-grafico-de-metas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-05 – Histórico Gráfico de Metas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-06-tutorial-no-primeiro-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-06 – Tutorial no Primeiro Acesso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-07-navegacao-em-ate-3-cliques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-07 – Navegação em até 3 Cliques
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-08-recuperacao-de-erros-undo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-08 – Recuperação de Erros (Undo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-09-sistema-de-recompensa-e-streaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-09 – Sistema de Recompensa e Streaks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-10-categorizacao-de-metas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-10 – Categorização de Metas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-11-ajuda-contextual-fixa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-11 – Ajuda contextual Fixa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-12-sistema-de-lembretes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-12 – Sistema de lembretes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-13-personalizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-13 – Personalização
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-14-acessibilidade-motora-debounce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-14 – Acessibilidade motora (Debounce)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-15-clique-de-permanencia-dwell-click" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-15 – Clique de permanência (Dwell Click)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-referencias-bibliograficas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 Referências Bibliográficas
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documento de Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PEP8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PEP 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuracoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Itens de Configuração e Política de Branches
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../relatorios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Relatórios de Métricas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-do-produto-e-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visão do Produto e do Projeto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-integrantes-do-grupo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela - Integrantes do Grupo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-revisoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Histórico de Revisões
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sumario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sumário
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-visao-geral-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Visão Geral do Produto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Visão Geral do Produto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Problema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 Problema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#figura-1-diagrama-de-ishikawa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figura 1 – Diagrama de Ishikawa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-declaracao-de-posicao-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Declaração de Posição do Produto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 Declaração de Posição do Produto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-1-posicao-do-produto-no-mercado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 1 - Posição do produto no mercado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-objetivos-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Objetivos do Produto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-tecnologias-a-serem-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Tecnologias a Serem Utilizadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-visao-geral-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Visão Geral do Projeto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Visão Geral do Projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-ciclo-de-vida-do-projeto-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Ciclo de vida do projeto de desenvolvimento de software
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-organizacao-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Organização do Projeto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Organização do Projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-2-divisao-de-atribuicoes-e-responsabilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 2 - Divisão de atribuições e responsabilidades
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-planejamento-das-fases-eou-iteracoes-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Planejamento das Fases e/ou Iterações do Projeto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Planejamento das Fases e/ou Iterações do Projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-3-planejamento-das-fases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 3 – Planejamento das fases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#231-definicoes-dos-entregaveis-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.1 Definições dos Entregáveis (Aliases)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-matriz-de-comunicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Matriz de Comunicação
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Matriz de Comunicação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-4-matriz-de-comunicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 4 – Matriz de Comunicação
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-gerenciamento-de-riscos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Gerenciamento de Riscos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Gerenciamento de Riscos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-5-mapeamento-e-planejamento-de-riscos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 5 – Mapeamento e planejamento de riscos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-criterios-de-replanejamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Critérios de Replanejamento
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-processo-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Processo de Desenvolvimento de Software
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Processo de Desenvolvimento de Software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#figura-2-fluxograma-do-processo-de-desenvolvimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figura 2 – Fluxograma do processo de desenvolvimento
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-declaracao-de-escopo-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Declaração de Escopo do Projeto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Declaração de Escopo do Projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Backlog do produto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 Backlog do produto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-6-elicitacao-e-priorizacao-do-backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 6 - Elicitação e Priorização do Backlog do Produto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-perfis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Perfis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 Perfis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-7-perfis-de-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 7 - Perfis de acesso
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-cenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Cenários
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 Cenários">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-8-user-stories-cenarios-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 8 – User Stories (Cenários funcionais)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-tabela-de-backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Tabela de Backlog do produto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 Tabela de Backlog do produto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-9-backlog-do-produto-detalhado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 9: Backlog do produto detalhado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-metricas-e-medicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 Métricas e Medições
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Métricas e Medições">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-gqm-de-medicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 GQM de Medições
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 GQM de Medições">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-10-objetivo-de-medicao-gqm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 10 – Objetivo de Medição GQM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-11-metricas-e-suas-definicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 11 - Métricas e suas definições
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-testes-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6 Testes de Software
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Testes de Software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-estrategia-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Estratégia de Testes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 Estratégia de Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-12-estrategia-de-testes-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 12 - Estratégia de Testes de Software
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-roteiro-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Roteiro de Testes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 Roteiro de Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ct-01-login-e-registro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-01 – Login e Registro
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-02-acessibilidade-visual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-02 – Acessibilidade Visual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-03-cadastro-e-visualizacao-de-metas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-03 – Cadastro e Visualização de Metas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-04-marcacao-diaria-de-meta-cumprida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-04 – Marcação Diária de Meta Cumprida
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-05-historico-grafico-de-metas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-05 – Histórico Gráfico de Metas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-06-tutorial-no-primeiro-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-06 – Tutorial no Primeiro Acesso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-07-navegacao-em-ate-3-cliques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-07 – Navegação em até 3 Cliques
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-08-recuperacao-de-erros-undo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-08 – Recuperação de Erros (Undo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-09-sistema-de-recompensa-e-streaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-09 – Sistema de Recompensa e Streaks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-10-categorizacao-de-metas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-10 – Categorização de Metas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-11-ajuda-contextual-fixa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-11 – Ajuda contextual Fixa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-12-sistema-de-lembretes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-12 – Sistema de lembretes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-13-personalizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-13 – Personalização
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-14-acessibilidade-motora-debounce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-14 – Acessibilidade motora (Debounce)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-15-clique-de-permanencia-dwell-click" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-15 – Clique de permanência (Dwell Click)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-referencias-bibliograficas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 Referências Bibliográficas
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="hoplife">HOPLIFE</h1>
+<h2 id="visao-do-produto-e-do-projeto">Visão do Produto e do Projeto</h2>
+<p><strong>Versão 1.1</strong></p>
+<hr />
+<h2 id="tabela-integrantes-do-grupo">Tabela - Integrantes do Grupo</h2>
+<table>
+<thead>
+<tr>
+<th>Matrícula</th>
+<th>Nome</th>
+<th>Função (responsabilidade)</th>
+<th>Pontos de participação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>242028628</td>
+<td>Arthur Rezende Barreto</td>
+<td>Scrum Master / Analista do Problema / Desenvolvedor Back-End</td>
+<td>30</td>
+</tr>
+<tr>
+<td>222006570</td>
+<td>Arthur Souto Santos</td>
+<td>Analista do Problema / Desenvolvedor Front-End</td>
+<td>0</td>
+</tr>
+<tr>
+<td>241012131</td>
+<td>Davi Barbosa Alves</td>
+<td>Product Owner / Desenvolvedor Front-End</td>
+<td>10</td>
+</tr>
+<tr>
+<td>242015586</td>
+<td>Daniel Almeida Torquato</td>
+<td>Analista de Qualidade / Desenvolvedor Back-End</td>
+<td>0</td>
+</tr>
+<tr>
+<td>232002717</td>
+<td>Gabriela de Paula Nascimento</td>
+<td>Product Owner / Desenvolvedora Front-End</td>
+<td>20</td>
+</tr>
+<tr>
+<td>222008824</td>
+<td>Ithalo Ribeiro Dias</td>
+<td>Analista do Problema / Desenvolvedor Front-End</td>
+<td>0</td>
+</tr>
+<tr>
+<td>241012042</td>
+<td>Levi Evangelista Santos</td>
+<td>Analista do Problema / Desenvolvedor Back-End</td>
+<td>20</td>
+</tr>
+<tr>
+<td>232014511</td>
+<td>Maria Eduarda do Nascimento Vieira</td>
+<td>Analista de Qualidade / Desenvolvedora Front-End</td>
+<td>0</td>
+</tr>
+<tr>
+<td>232021928</td>
+<td>Maria Eduarda Rodrigues Morais</td>
+<td>Product Owner / Desenvolvedora Front-End</td>
+<td>0</td>
+</tr>
+<tr>
+<td>242005051</td>
+<td>Roberto de Oliveira Brito Filho</td>
+<td>Scrum Master / Product Owner / Desenvolvedor Back-End</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Pontos de participação dos membros da equipe.<br />
+Devem fechar 100 pontos para toda a equipe.</p>
+</blockquote>
+<hr />
+<h2 id="historico-de-revisoes">Histórico de Revisões</h2>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>05/05/2026</td>
+<td>1.0</td>
+<td>Criação do Documento</td>
+<td>Equipe Hopper</td>
+</tr>
+<tr>
+<td>02/06/2026</td>
+<td>1.1</td>
+<td>Correções textuais, ajustes estruturais e revisão geral</td>
+<td>Arthur Rezende</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="sumario">Sumário</h2>
+<ul>
+<li>1 Visão Geral do Produto<ul>
+<li>1.1 Problema</li>
+<li>1.2 Declaração de Posição do Produto</li>
+<li>1.3 Objetivos do Produto</li>
+<li>1.4 Tecnologias a Serem Utilizadas</li>
+</ul>
+</li>
+<li>2 Visão Geral do Projeto<ul>
+<li>2.1 Ciclo de vida do projeto de desenvolvimento de software</li>
+<li>2.2 Organização do Projeto</li>
+<li>2.3 Planejamento das Fases e/ou Iterações do Projeto<ul>
+<li>2.3.1 Definições dos Entregáveis (Aliases)</li>
+</ul>
+</li>
+<li>2.4 Matriz de Comunicação</li>
+<li>2.5 Gerenciamento de Riscos</li>
+<li>2.6 Critérios de Replanejamento</li>
+</ul>
+</li>
+<li>3 Processo de Desenvolvimento de Software</li>
+<li>4 Declaração de Escopo do Projeto<ul>
+<li>4.1 Backlog do produto</li>
+<li>4.2 Perfis</li>
+<li>4.3 Cenários</li>
+<li>4.4 Tabela de Backlog do produto</li>
+</ul>
+</li>
+<li>5 Métricas e Medições<ul>
+<li>5.1 GQM de medições</li>
+</ul>
+</li>
+<li>6 Testes de Software<ul>
+<li>6.1 Estratégia de testes</li>
+<li>6.2 Roteiro de teste</li>
+</ul>
+</li>
+<li>7 Referências Bibliográficas  </li>
+</ul>
+<hr />
+<h2 id="1-visao-geral-do-produto">1 Visão Geral do Produto</h2>
+<h3 id="11-problema">1.1 Problema</h3>
+<p>As aplicações digitais têm se tornado cada vez mais presentes no cotidiano desde a popularização dos computadores pessoais, intensificada a partir dos anos 2000. Nesse cenário, observa-se a existência de uma grande quantidade de sistemas voltados a diferentes finalidades. No entanto, uma parcela reduzida dessas aplicações é direcionada ao desenvolvimento pessoal e ao acompanhamento de metas.</p>
+<p>Além disso, dentro desse grupo já limitado, há ainda menos soluções que consideram aspectos de acessibilidade para usuários com idade superior a 60 anos e com baixa familiaridade com tecnologia. Como consequência, muitos desses sistemas não atendem adequadamente às necessidades desse público, apresentando interfaces complexas, excesso de informações visuais e dificuldades de navegação.</p>
+<p>Dessa forma, identifica-se a necessidade de soluções que não apenas realizem o gerenciamento de metas, mas que também sejam intuitivas, acessíveis e utilizem elementos de gamificação de forma equilibrada, sem sobrecarregar o usuário.</p>
+<p>Essa necessidade é reforçada por estudos sobre inclusão digital na terceira idade, que evidenciam que fatores como vulnerabilidade, medo de uso e percepção de inaptidão atuam como barreiras significativas à adoção de tecnologias, enquanto aspectos como otimismo e percepção de necessidade favorecem essa adoção (FARIAS et al., 2015).</p>
+<p>Diante desse cenário, o problema identificado consiste na ausência de aplicações de gerenciamento de metas que sejam adequadas às necessidades de usuários idosos, especialmente aqueles com baixa familiaridade tecnológica, o que limita sua inclusão digital e dificulta o uso de ferramentas que poderiam contribuir para sua organização pessoal e qualidade de vida.</p>
+<p>Como forma de mitigar esse problema, propõe-se o desenvolvimento de um software de gerenciamento de metas voltado ao público idoso, com foco em acessibilidade e usabilidade. A solução deverá apresentar uma interface simplificada, com navegação intuitiva, redução de elementos visuais excessivos e utilização moderada de técnicas de gamificação, de modo a incentivar o engajamento sem gerar sobrecarga cognitiva. Com o objetivo de sintetizar as principais causas relacionadas ao problema identificado, foi elaborado um Diagrama de Ishikawa. A ferramenta permite visualizar, de forma estruturada, os fatores que contribuem para as dificuldades enfrentadas por usuários idosos no uso de aplicações de gerenciamento de metas.</p>
+<p>A Figura 1 apresenta o diagrama com as principais categorias de análise.</p>
+<h4 id="figura-1-diagrama-de-ishikawa">Figura 1 – Diagrama de Ishikawa</h4>
+<p><img alt="Diagrama de Ishikawa estruturando as causas das dificuldades enfrentadas por usuários idosos no uso de aplicações de gerenciamento de metas, dividido em categorias como efeito, métodos, mão de obra, ambiente e tecnologia." src="../visaoimgs/IshikawaMDS.png" /></p>
+<blockquote>
+<p>Fonte: Elaboração própria</p>
+</blockquote>
+<hr />
+<h3 id="12-declaracao-de-posicao-do-produto">1.2 Declaração de Posição do Produto</h3>
+<p>Para pessoas com idade avançada e/ou com baixa familiaridade tecnológica, que necessitam organizar suas tarefas periódicas ou metas determinadas de forma simples, este software é uma aplicação web de gerenciamento de tarefas gamificada que oferece interface acessível, intuitiva e motivadora, ao contrário de aplicativos tradicionais que são complexos e pouco acessíveis. Nosso produto prioriza simplicidade, acessibilidade e engajamento progressivo.</p>
+<p>O produto proposto busca atender a uma lacuna identificada no mercado de aplicações de gerenciamento de tarefas, especialmente no que se refere à acessibilidade para usuários idosos. Diferentemente de soluções convencionais, que frequentemente apresentam interfaces densas e pouco intuitivas, o sistema prioriza a redução da carga cognitiva e poluição visual e a clareza das interações. Além disso, a utilização de elementos de gamificação ocorre de maneira controlada e adaptada ao público-alvo, com o objetivo de incentivar o uso frequente e contínuo sem gerar confusão ou sobrecarga. Dessa forma, o produto se posiciona como uma ferramenta inclusiva, voltada não apenas à organização pessoal, mas também à promoção da autonomia digital.</p>
+<h4 id="tabela-1-posicao-do-produto-no-mercado">Tabela 1 - Posição do produto no mercado</h4>
+<table>
+<thead>
+<tr>
+<th>Cláusula</th>
+<th>Definição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Para:</strong></td>
+<td>Usuários buscando organização pessoal (em especial, pessoas idosas e/ou com dificuldades, para inclusão digital)</td>
+</tr>
+<tr>
+<td><strong>Necessidade:</strong></td>
+<td>Organização pessoal e inclusão digital</td>
+</tr>
+<tr>
+<td><strong>O (nome do produto):</strong></td>
+<td>Hoplife - Aplicação web de Gerenciamento de metas e vida pessoal</td>
+</tr>
+<tr>
+<td><strong>Que:</strong></td>
+<td>possui uma interface limpa e organizada onde as funções podem ser executadas de forma intuitiva e com poucos comandos.</td>
+</tr>
+<tr>
+<td><strong>Ao contrário:</strong></td>
+<td>de outras opções que não tem foco em acessibilidade e podem se demonstrar complexas demais e pouco engajantes.</td>
+</tr>
+<tr>
+<td><strong>Nosso produto:</strong></td>
+<td>visa ser acessível e estimulante para todos os usuários tirarem o melhor proveito desse através de gestão de metas pessoais e um sistema engajante que propõe sentimento de satisfação e recompensa, ao mesmo tempo que integra usuários não muito acostumados ao ambiente digital.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Fonte: Elaboração própria</p>
+</blockquote>
+<hr />
+<h3 id="13-objetivos-do-produto">1.3 Objetivos do Produto</h3>
+<p>O projeto visa desenvolver uma aplicação web de gerenciamento de tarefas e metas com foco em acessibilidade e usabilidade, voltada em ser intuitiva para usuários com 60 anos ou mais, promovendo organização pessoal, engajamento e inclusão digital. Objetivos específicos incluem:</p>
+<ul>
+<li>Desenvolver uma interface acessível, com alto contraste, tipografia adequada e elementos visuais de fácil identificação;</li>
+<li>Garantir uma navegação simples e intuitiva, com redução do número de etapas (ou cliques) necessárias para execução das principais ações;</li>
+<li>Implementar funcionalidades básicas de gerenciamento de tarefas, como criação, edição, visualização e conclusão de metas periódicas ou determinadas;</li>
+<li>Incorporar elementos de gamificação de forma moderada, visando incentivar o uso contínuo sem comprometer a clareza da interface;</li>
+<li>Reduzir a carga cognitiva do usuário por meio de organização visual simplificada e feedbacks claros;</li>
+<li>Validar continuamente a usabilidade do sistema ao longo do desenvolvimento, por meio de testes e revisões iterativas;</li>
+<li>Promover a inclusão digital do público idoso, facilitando o uso de tecnologias no cotidiano.</li>
+</ul>
+<hr />
+<h3 id="14-tecnologias-a-serem-utilizadas">1.4 Tecnologias a Serem Utilizadas</h3>
+<p>O projeto utilizará uma arquitetura tecnológica selecionada para garantir robustez, segurança e alta acessibilidade, fatores críticos para o público-alvo da aplicação. A adoção de tecnologias adequadas ao contexto do projeto é um fator importante para garantir qualidade, manutenibilidade e evolução do software ao longo do ciclo de desenvolvimento (PRESSMAN; MAXIM, 2020). A pilha de tecnologias (tech stack) abrange linguagens, frameworks, ferramentas de qualidade e ambientes conteinerizados, descritos a seguir:</p>
+<ul>
+<li><strong>Linguagem de Programação e Back-end:</strong> A linguagem principal adotada para a lógica de negócios e estruturação do servidor será Python, utilizando o framework Django. Esta escolha visa acelerar o desenvolvimento de uma base sólida, favorecendo a produtividade e a organização do projeto (PRESSMAN; MAXIM, 2020) e facilitando a comunicação direta e otimizada com o banco de dados;</li>
+<li><strong>Front-end e Responsividade:</strong> Para a interface com o usuário, serão utilizados HTML, CSS e JavaScript, integrados ao framework Bootstrap. O uso do Bootstrap garante que a aplicação seja responsiva (adaptável a telas de dispositivos móveis) e permite a implementação nativa de componentes de acessibilidade visual, como botões de grande proporção e esquemas de alto contraste;</li>
+<li><strong>Banco de Dados:</strong> O armazenamento e a persistência das informações serão gerenciados pelo SQLite. Por ser um banco de dados relacional leve e embutido no ambiente Python, ele elimina a necessidade de configuração de infraestruturas complexas de servidores, atendendo perfeitamente aos requisitos de concorrência e volume de dados previstos para o escopo desta entrega. O acesso e a manipulação dos dados serão abstraídos por meio de um mapeamento objeto-relacional (ORM), facilitando o desenvolvimento da equipe sem exigir a escrita de consultas SQL manuais;</li>
+<li><strong>Segurança e Autenticação (IAM):</strong> O gerenciamento de identidades e acessos será feito por meio do Keycloak. Esta ferramenta será responsável pelo gerenciamento de identidade, autenticação e autorização dos usuários, utilizando protocolos de segurança consolidados como OAuth2 e OpenID Connect. Oferecendo uma camada extra de proteção e confiabilidade contra fraudes e acessos indevidos;</li>
+<li><strong>Qualidade e Inspeção de Código:</strong> O SonarQube será integrado ao repositório para realizar a análise estática contínua do código-fonte. A ferramenta automatizará a detecção de code smells, rastreamento de débito técnico e a prevenção de vulnerabilidades de segurança. A utilização de inspeção estática de código contribui para a identificação precoce de defeitos e redução da dívida técnica (PRESSMAN; MAXIM, 2020);</li>
+<li><strong>Ambiente, Versionamento e Ferramentas:</strong> O ambiente de desenvolvimento integrado (IDE) padronizado pela equipe será o Visual Studio Code (VS Code). O controle de versão e a hospedagem do código ocorrerão via Git e GitHub. Adicionalmente, o Docker será empregado para a conteinerização dos serviços (como o Keycloak e o SonarQube), facilitando a padronização do ambiente de execução entre os membros da equipe.</li>
+</ul>
+<p>Detalhamentos posteriores e especificações técnicas de infraestrutura poderão ser necessários ao longo do tempo. Eles serão o alvo do documento de arquitetura do software, que descreverá de forma aprofundada como essas tecnologias serão aplicadas e integradas no desenvolvimento da solução.</p>
+<hr />
+<h2 id="2-visao-geral-do-projeto">2 Visão Geral do Projeto</h2>
+<h3 id="21-ciclo-de-vida-do-projeto-de-desenvolvimento-de-software">2.1 Ciclo de vida do projeto de desenvolvimento de software</h3>
+<p>A definição do ciclo de vida deste projeto busca um equilíbrio entre a organização necessária para um trabalho acadêmico e a flexibilidade para criar um aplicativo voltado ao público idoso. A seguir, detalhamos como esse modelo vai funcionar na prática:</p>
+<ul>
+<li><strong>Metodologia (abordagem filosófica):</strong> As metodologias ágeis enfatizam adaptação contínua, colaboração entre os envolvidos e entregas incrementais de software ao longo do desenvolvimento (SOMMERVILLE, 2019). Como nosso objetivo central é a acessibilidade para pessoas com baixa familiaridade tecnológica, o desenvolvimento precisa ser adaptável. O modelo ágil nos permite evoluir o software com base nos feedbacks reais dos usuários, evitando gastar tempo em funcionalidades que possam gerar sobrecarga visual ou confusão;</li>
+<li><strong>Processo (conjunto de atividades):</strong> Trabalharemos com uma abordagem híbrida, unindo Scrum e Extreme Programming (XP). O Scrum fornece uma estrutura de gerenciamento baseada em iterações curtas e inspeção contínua, enquanto o XP complementa o processo com práticas técnicas voltadas à qualidade do software (SCHWABER; SUTHERLAND, 2020; SOMMERVILLE, 2019). O Scrum será usado para organizar a gestão do projeto e nosso backlog de metas e gamificação. Já o XP entra para garantir a qualidade técnica, ajudando a equipe a produzir um código limpo, robusto e fácil de manter;</li>
+<li><strong>Procedimentos (guia o modo de fazer):</strong> Nosso trabalho será dividido em Sprints de 8 dias, acompanhadas de reuniões periódicas para monitorar o progresso e possíveis riscos. Também vamos adotar a Programação em Pares (Pair Programming) para diminuir a chance de erros lógicos e manter um padrão de qualidade no código feito por diferentes membros da equipe;</li>
+<li><strong>Métodos (técnica formal):</strong> Para definir o que o sistema precisa ter, usaremos Histórias de Usuário (User Stories), entrevistas e sessões de brainstorming. Isso é essencial para transformar as dificuldades dos idosos em soluções técnicas. Nosso esquema de priorização garante que os requisitos obrigatórios (MUST), como botões grandes e navegação simples, sejam entregues logo na primeira versão funcional (MVP);</li>
+<li><strong>Ferramentas (instrumentos de apoio):</strong> Para a gestão e o desenvolvimento, usaremos o Trello para controlar o fluxo de tarefas e o Notion para centralizar toda a documentação. Na comunicação, o WhatsApp será usado para o alinhamento rápido do dia a dia da equipe, enquanto o Microsoft Teams será o nosso canal oficial para as reuniões formais e ritos do Scrum.</li>
+</ul>
+<hr />
+<h3 id="22-organizacao-do-projeto">2.2 Organização do Projeto</h3>
+<p>A tabela a seguir apresenta a organização das responsabilidades entre os membros da equipe. O objetivo desta estruturação é direcionar o fluxo de trabalho e garantir que todas as etapas necessárias para o desenvolvimento do software tenham responsáveis claros. Ressalta-se que esta divisão não estabelece qualquer relação de hierarquia ou subordinação: todos os integrantes são igualmente importantes e corresponsáveis pelo sucesso do projeto.</p>
+<h4 id="tabela-2-divisao-de-atribuicoes-e-responsabilidades">Tabela 2 - Divisão de atribuições e responsabilidades</h4>
+<table>
+<thead>
+<tr>
+<th>Papel</th>
+<th>Atribuições</th>
+<th>Responsável</th>
+<th>Participantes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Scrum Master</strong></td>
+<td>Garantir a aplicação do framework ágil, remover impedimentos, facilitar as cerimônias e promover a comunicação fluida entre todas as frentes de trabalho.</td>
+<td>Integrantes AR e R</td>
+<td>Arthur Rezende, Roberto Filho</td>
+</tr>
+<tr>
+<td><strong>Product Owner</strong></td>
+<td>Levantar os requisitos, criar e priorizar o Backlog, além de validar as entregas junto ao cliente.</td>
+<td>Integrantes R, DB, P e MR</td>
+<td>Roberto Filho, Davi Barbosa, Gabriela de Paula, Maria Eduarda Rodrigues</td>
+</tr>
+<tr>
+<td><strong>Analista do Problema</strong></td>
+<td>Analisar o problema do usuário (público idoso)</td>
+<td>Integrantes AR, AS, L e I</td>
+<td>Arthur Rezende, Arthur Souto, Levi Evangelista e Ithalo Ribeiro</td>
+</tr>
+<tr>
+<td><strong>Analista de Qualidade</strong></td>
+<td>Executar os Casos de Teste (CTs), garantir o cumprimento do Definition of Done, configurar o Docker e realizar inspeções de código via SonarQube.</td>
+<td>Integrantes MN e DT</td>
+<td>Maria Eduarda do Nascimento, Daniel Torquato</td>
+</tr>
+<tr>
+<td><strong>Desenvolvedor Front-End</strong></td>
+<td>Codificar a interface visual (HTML/CSS/Bootstrap), garantindo a responsividade e a aplicação de todos os requisitos de acessibilidade visual.</td>
+<td>Integrantes AS, G, I, MN, MR, DB e P</td>
+<td>Arthur Souto, Ithalo Ribeiro, Maria Eduarda do Nascimento, Maria Eduarda Rodrigues, Davi Barbosa e Gabriela de Paula</td>
+</tr>
+<tr>
+<td><strong>Desenvolvedor Back-End</strong></td>
+<td>Estruturar o banco de dados, implementar a lógica de negócios em Python (Django), integrar a segurança e fornecer os dados para a interface.</td>
+<td>Integrantes AR, R, DT, L</td>
+<td>Arthur Rezende, Roberto Filho, Daniel Torquato, Levi Evangelista Santos</td>
+</tr>
+<tr>
+<td><strong>Cliente</strong></td>
+<td>Fornecer feedback contínuo sobre a usabilidade, validar as telas e garantir que o produto atende às necessidades reais do público-alvo.</td>
+<td>Stakeholders</td>
+<td>Voluntários idosos</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Fonte: Elaboração própria</p>
+</blockquote>
+<hr />
+<h3 id="23-planejamento-das-fases-eou-iteracoes-do-projeto">2.3 Planejamento das Fases e/ou Iterações do Projeto</h3>
+<p>A tabela a seguir apresenta o ciclo de vida do projeto, estruturado em iterações curtas (sprints) para garantir o desenvolvimento contínuo e a validação frequente das funcionalidades. O cronograma define os prazos, os artefatos a serem gerados e os respectivos responsáveis por cada ciclo. Em conformidade com as práticas ágeis, este planejamento é um documento vivo e será atualizado sucessivamente a partir da realização de cada sprint.</p>
+<h4 id="tabela-3-planejamento-das-fases">Tabela 3 – Planejamento das fases</h4>
+<table>
+<thead>
+<tr>
+<th>Sprint</th>
+<th>Produto (Entrega)</th>
+<th>Data Início</th>
+<th>Data Fim</th>
+<th>Entregável(eis)</th>
+<th>Responsáveis</th>
+<th>% conclusão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sprint 1</strong></td>
+<td>Definição e Infraestrutura</td>
+<td>07/05/2026</td>
+<td>14/05/2026</td>
+<td>DOC-ARQ, INFRA-BASE</td>
+<td>Scrum Master, QA, PO</td>
+<td>100%</td>
+</tr>
+<tr>
+<td><strong>Sprint 2</strong></td>
+<td>Acesso e Autenticação</td>
+<td>15/05/2026</td>
+<td>22/05/2026</td>
+<td>US2, US3</td>
+<td>Desenvolvedores</td>
+<td>100%</td>
+</tr>
+<tr>
+<td><strong>Sprint 3</strong></td>
+<td>Interface Acessível</td>
+<td>23/05/2026</td>
+<td>30/05/2026</td>
+<td>US1</td>
+<td>Desenvolvedores, QA</td>
+<td>50%</td>
+</tr>
+<tr>
+<td><strong>Sprint 4</strong></td>
+<td>Core: Cadastro de Metas</td>
+<td>31/05/2026</td>
+<td>07/06/2026</td>
+<td>US4</td>
+<td>Desenvolvedores</td>
+<td>0%</td>
+</tr>
+<tr>
+<td><strong>Sprint 5</strong></td>
+<td>Interatividade e Prevenção</td>
+<td>08/06/2026</td>
+<td>15/06/2026</td>
+<td>US5, US8</td>
+<td>Desenvolvedores, QA</td>
+<td>0%</td>
+</tr>
+<tr>
+<td><strong>Sprint 6</strong></td>
+<td>Categorias e Tutoriais</td>
+<td>16/06/2026</td>
+<td>23/06/2026</td>
+<td>US6, US11</td>
+<td>Desenvolvedores</td>
+<td>0%</td>
+</tr>
+<tr>
+<td><strong>Sprint 7</strong></td>
+<td>Gamificação e Progresso</td>
+<td>24/06/2026</td>
+<td>01/07/2026</td>
+<td>US7, US9</td>
+<td>Desenvolvedores</td>
+<td>0%</td>
+</tr>
+<tr>
+<td><strong>Sprint 8</strong></td>
+<td>Acessibilidade Avançada</td>
+<td>02/07/2026</td>
+<td>09/07/2026</td>
+<td>US10</td>
+<td>Desenvolvedores</td>
+<td>0%</td>
+</tr>
+<tr>
+<td><strong>Sprint 9</strong></td>
+<td>Homologação e Entrega</td>
+<td>10/07/2026</td>
+<td>17/07/2026</td>
+<td>TEST-FINAL, RELAT-SONAR</td>
+<td>Equipe Inteira, Cliente</td>
+<td>0%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Fonte: Elaboração própria</p>
+</blockquote>
+<h4 id="231-definicoes-dos-entregaveis-aliases">2.3.1 Definições dos Entregáveis (Aliases)</h4>
+<ul>
+<li><strong>DOC-ARQ:</strong> Documento de Arquitetura do Software finalizado e Backlog do Produto.</li>
+<li><strong>INFRA-BASE:</strong> Ambiente de desenvolvimento configurado (Repositório, Docker, Banco de Dados).</li>
+<li><strong>US1:</strong> Como usuário idoso, quero ser capaz de ler e entender facilmente os botões.</li>
+<li><strong>US2:</strong> Como usuário idoso, quero entrar e usar facilmente o site.</li>
+<li><strong>US3:</strong> Como usuário idoso, quero criar e entrar na minha conta rapidamente.</li>
+<li><strong>US4:</strong> Como usuário idoso, quero ter minhas metas diárias bem explicitas por meio de interfaces óbvias.</li>
+<li><strong>US5:</strong> Como usuário idoso, quero ser capaz de inserir novas metas, além das que eu já tinha colocado.</li>
+<li><strong>US6:</strong> Como usuário idoso, quero categorizar minhas metas em áreas da vida (saúde, estudos, hábitos, lazer etc.) para organizar melhor meus objetivos.</li>
+<li><strong>US7:</strong> Como usuário idoso, quero ser capaz de ver quais metas eu já cumpri de forma gráfica.</li>
+<li><strong>US8:</strong> Como usuário idoso, quero ter a opção de desfazer uma ação de exclusão imediatamente, para que eu não perca meus dados caso clique no botão errado sem querer.</li>
+<li><strong>US9:</strong> Como usuário idoso, quero ter um estímulo positivo ao ter cumprido minhas metas.</li>
+<li><strong>US10:</strong> Como usuário idoso, quero que o sistema ignore toques acidentais ou repetidos muito rápidos, para que eu não abra páginas ou exclua itens por erro de precisão motora.</li>
+<li><strong>US11:</strong> Como usuário idoso, quero aprender a usar o sistema.</li>
+<li><strong>TEST-FINAL:</strong> Bateria completa de testes do sistema executada com sucesso.</li>
+<li><strong>RELAT-SONAR:</strong> Relatório de inspeção de código (ausência de vulnerabilidades) gerado pela ferramenta de qualidade.</li>
+</ul>
+<hr />
+<h3 id="24-matriz-de-comunicacao">2.4 Matriz de Comunicação</h3>
+<p>Esta seção descreve a estratégia de comunicação adotada para monitoramento do progresso do projeto, garantindo o alinhamento entre os membros da equipe, a resolução rápida de impedimentos e a transparência com os stakeholders (cliente). A estratégia baseia-se nas cerimônias do Scrum adaptadas para a realidade do ambiente acadêmico e para o ciclo de sprints curtas.</p>
+<h4 id="tabela-4-matriz-de-comunicacao">Tabela 4 – Matriz de Comunicação</h4>
+<table>
+<thead>
+<tr>
+<th>Descrição</th>
+<th>Área / Envolvidos</th>
+<th>Periodicidade</th>
+<th>Produtos Gerados</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acompanhamento das atividades em andamento (Daily Scrum / Alinhamento técnico)</td>
+<td>Equipe de desenvolvimento / Scrum Master</td>
+<td>Diária (Pode ser assíncrona via grupo de mensagens)</td>
+<td>Atualização do Trello (movimentação dos cards da sprint) e relato de impedimentos.</td>
+</tr>
+<tr>
+<td>Acompanhamento dos Riscos, Compromissos, Ações Pendentes e Indicadores (Sprint Planning e Retrospective)</td>
+<td>Toda a equipe do projeto</td>
+<td>Semanal (A cada final/início de Sprint)</td>
+<td>Ata de reunião registrada no Notion, Painel de Riscos atualizado e Planilha de Métricas (GQM) preenchida.</td>
+</tr>
+<tr>
+<td>Relatório de situação do projeto e Validação (Sprint Review)</td>
+<td>Product Owner (PO), Equipe e Cliente (Voluntários Idosos)</td>
+<td>Quinzenal (A cada 2 Sprints)</td>
+<td>Relatório de situação do projeto (documentado no Notion) comunicando o andamento geral, feedbacks documentados e aceite de User Stories.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Fonte: Elaboração própria</p>
+</blockquote>
+<hr />
+<h3 id="25-gerenciamento-de-riscos">2.5 Gerenciamento de Riscos</h3>
+<p>O Gerenciamento de Riscos deste projeto consiste na identificação, monitoramento e controle contínuo de eventos que possam impactar negativamente o desenvolvimento do software e o cumprimento do cronograma. O processo envolve o registro inicial das ameaças, a execução de ações preventivas (mitigação) para riscos com alto grau de exposição e a aplicação de planos corretivos (contingência) caso o risco se confirme.</p>
+<p><strong>Integração com Métricas e Critérios de Replanejamento:</strong> A estratégia de monitoramento de riscos está diretamente vinculada ao Plano de Medição (GQM) do projeto. O acompanhamento periódico ocorre ao final de cada sprint (ciclos de 8 dias), utilizando o Trello para auditoria visual das entregas e o Notion para o registro formal das atas de revisão. As métricas definidas na Tabela de GQM atuam como "gatilhos" quantitativos para a confirmação dos riscos e acionamento dos Critérios de Replanejamento:</p>
+<ul>
+<li>Se o Desvio de Prazo ultrapassar a tolerância de 10%, o risco de atraso no cronograma é confirmado, exigindo a redução de escopo da sprint seguinte.</li>
+<li>Se o Débito Técnico (DT) superar 20%, o risco de acúmulo de dívida técnica é confirmado, pausando o desenvolvimento de novas User Stories para focar em refatoração.</li>
+<li>Se a Densidade de Defeitos (DD) for maior que 1 defeito por US, o risco de baixa qualidade do produto é confirmado, exigindo ciclos focados em correção via SonarQube.</li>
+</ul>
+<p>A tabela a seguir apresenta os riscos iniciais registrados no Painel de Controle do Projeto, organizados por seu grau de exposição e acompanhados de seus respectivos planos de ação. Esta lista será revisada e atualizada periodicamente ao longo do projeto.</p>
+<h4 id="tabela-5-mapeamento-e-planejamento-de-riscos">Tabela 5 – Mapeamento e planejamento de riscos</h4>
+<table>
+<thead>
+<tr>
+<th>Risco Identificado</th>
+<th>Grau de Exposição</th>
+<th>Plano de Mitigação (Prevenção)</th>
+<th>Plano de Contingência (Ação Corretiva)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Atraso na entrega das Sprints (Desvio de Prazo &gt; 10%)</strong></td>
+<td>Alto</td>
+<td>Realizar Daily Scrums para identificar impedimentos precocemente e manter o escopo das sprints (de 8 dias) estritamente reduzido e factível.</td>
+<td>O Product Owner (PO) e o Scrum Master (SM) deverão renegociar o escopo, movendo as User Stories não finalizadas para o backlog da próxima sprint.</td>
+</tr>
+<tr>
+<td><strong>Acúmulo de Débito Técnico (DT &gt; 20% das entregas planejadas)</strong></td>
+<td>Alto</td>
+<td>A equipe de Qualidade (QA) realizará inspeções rigorosas contínuas de código utilizando o SonarQube antes da aprovação de qualquer Pull Request.</td>
+<td>Paralisar o desenvolvimento de novas funcionalidades (US) e dedicar a sprint subsequente exclusivamente para refatoração e adequação do código.</td>
+</tr>
+<tr>
+<td><strong>Alta Densidade de Defeitos (DD &gt; 1 por US / Rejeição de Testes &gt; 10%)</strong></td>
+<td>Médio</td>
+<td>Codificar testes unitários logo após a lógica de negócios e garantir que o Definition of Done seja estritamente seguido pelos Desenvolvedores.</td>
+<td>Alocar a equipe técnica para mutirões de correção de bugs, aumentando a cobertura de testes automatizados e revisando o fluxo de integração contínua.</td>
+</tr>
+<tr>
+<td><strong>Baixa usabilidade ou rejeição pelo público-alvo (Idosos)</strong></td>
+<td>Alto</td>
+<td>Desenvolver a interface utilizando componentes acessíveis nativos do Bootstrap desde a Sprint 3 (US1) e focar na redução da carga cognitiva na tela.</td>
+<td>Realizar reuniões de validação emergenciais com os Stakeholders (Cliente/Voluntários) para redesenhar o fluxo de telas ou o tamanho dos elementos visuais.</td>
+</tr>
+<tr>
+<td><strong>Falha na Integração de Tecnologias (Django, Keycloak, Docker)</strong></td>
+<td>Médio</td>
+<td>Inicializar a infraestrutura completa na Sprint 1 antes de qualquer tela ser codificada, garantindo a estabilidade dos contêineres e banco de dados.</td>
+<td>Alocar os membros com perfil Full-Stack temporariamente para atuar junto à infraestrutura, resolvendo os bloqueios de comunicação entre os serviços.</td>
+</tr>
+<tr>
+<td><strong>Desfalque temporário ou indisponibilidade de membro da equipe</strong></td>
+<td>Médio</td>
+<td>Promover a ausência de hierarquia, garantindo que o conhecimento sobre o código seja compartilhado e não centralizado em uma única pessoa.</td>
+<td>Redistribuir as tarefas essenciais do membro ausente entre os demais integrantes, reduzindo proporcionalmente o número de entregáveis da sprint afetada.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Fonte: Elaboração própria</p>
+</blockquote>
+<hr />
+<h3 id="26-criterios-de-replanejamento">2.6 Critérios de Replanejamento</h3>
+<p>O replanejamento do projeto ocorrerá sempre que os planos de mitigação e contingência não forem suficientes para conter o impacto de um risco materializado, exigindo alterações na linha de base de escopo, prazo ou recursos do projeto.</p>
+<p>Os critérios que disparam a necessidade de um replanejamento estão diretamente alinhados aos riscos do projeto e monitorados quantitativamente através das métricas definidas no GQM (Tabela 11). São eles:</p>
+<ul>
+<li><strong>Critério 1: Estouro Contínuo de Cronograma (Risco de Atraso)</strong></li>
+<li><strong>Gatilho:</strong> A métrica de Desvio de Prazo ultrapassar a tolerância de 10% por duas sprints consecutivas, ou a Velocidade da Equipe cair drasticamente abaixo do planejado.</li>
+<li><strong>Ação de Replanejamento:</strong> O Product Owner (PO) deverá renegociar o escopo, retirando as User Stories de menor prioridade (ex: funcionalidades de gamificação avançada) do cronograma atual e repassando-as para o Product Backlog futuro. O calendário das sprints subsequentes deverá ser refeito.</li>
+<li><strong>Critério 2: Comprometimento Crítico da Qualidade (Risco Técnico)</strong></li>
+<li><strong>Gatilho:</strong> A métrica de Débito Técnico (DT) ultrapassar 20% ou a Densidade de Defeitos (DD) se manter acima de 1 defeito/US.</li>
+<li><strong>Ação de Replanejamento:</strong> O planejamento das sprints seguintes será alterado. O desenvolvimento de novas funcionalidades será paralisado e uma Sprint de Refatoração será inserida emergencialmente no cronograma para sanar a dívida técnica e adequar o código via SonarQube.</li>
+<li><strong>Critério 3: Desfalque Definitivo da Equipe (Risco de Recursos Humanos)</strong></li>
+<li><strong>Gatilho:</strong> Saída permanente ou indisponibilidade prolongada de um ou mais membros essenciais (Desenvolvedores ou QA).</li>
+<li><strong>Ação de Replanejamento:</strong> O esforço total do projeto será recalculado com base na nova capacidade produtiva da equipe. O escopo do Produto Mínimo Viável (MVP) será reduzido e o cronograma reestruturado.</li>
+</ul>
+<p><strong>Procedimento de Atualização:</strong> Os critérios de replanejamento serão acompanhados e avaliados ao final de cada ciclo, durante a cerimônia de Sprint Retrospective. Caso qualquer um dos critérios acima seja atingido e o replanejamento seja aplicado, o cronograma e o escopo serão ajustados e este documento do projeto sofrerá um novo versionamento oficial, refletindo o planejamento atualizado e documentando os motivos da mudança.</p>
+<hr />
+<h2 id="3-processo-de-desenvolvimento-de-software">3 Processo de Desenvolvimento de Software</h2>
+<p>Esta seção atua como um guia orientador para o desenvolvimento do software, que será conduzido pelas metodologias ágeis SCRUM (focado na gestão) e XP (focado nas práticas técnicas). As responsabilidades da equipe baseiam-se no SCRUM.</p>
+<p>O processo possui um fluxo lógico estruturado em Sprints de 8 dias. Cada ciclo se inicia utilizando o Product Backlog como recurso primário para o planejamento. Durante a execução, a equipe adota práticas do XP, como a Programação em Pares (Pair Programming), aliadas a alinhamentos contínuos para manter o foco na usabilidade do idoso. O fim do ciclo culmina na reunião de revisão, que gera como resultado a entrega de um incremento de software funcional e validado. A Figura 2 apresenta o diagrama que ilustra este fluxo de trabalho.</p>
+<h3 id="figura-2-fluxograma-do-processo-de-desenvolvimento">Figura 2 – Fluxograma do processo de desenvolvimento</h3>
+<p><img alt="Fluxograma do processo de desenvolvimento híbrido Scrum e XP do grupo Hopper, detalhando as etapas desde o planejamento do backlog da sprint, programação em pares, execução de testes unitários até a revisão e entrega do incremento de software funcional." src="../visaoimgs/FluxogramaDesenvolvimento.png" /></p>
+<blockquote>
+<p>Fonte: Elaboração própria</p>
+</blockquote>
+<hr />
+<h2 id="4-declaracao-de-escopo-do-projeto">4 Declaração de Escopo do Projeto</h2>
+<h3 id="41-backlog-do-produto">4.1 Backlog do produto</h3>
+<p>A Tabela 6 apresenta os requisitos identificados durante o processo de elicitação, bem como sua classificação de prioridade segundo a técnica MoSCoW, que classifica os requisitos em Must, Should, Could e Won’t, permitindo identificar os elementos essenciais para a entrega do produto. Além disso, são apresentados os tipos de requisitos e as respectivas técnicas utilizadas para sua obtenção, permitindo rastrear a origem das necessidades do sistema.   </p>
+<h4 id="tabela-6-elicitacao-e-priorizacao-do-backlog-do-produto">Tabela 6 - Elicitação e Priorização do Backlog do Produto</h4>
+<table>
+<thead>
+<tr>
+<th>Cenário</th>
+<th>Requisito</th>
+<th>Prioridade (MoSCoW)</th>
+<th>Tipo</th>
+<th>Forma de Elicitação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tela inicial do sistema</td>
+<td>Interface com letras grandes e contraste alto</td>
+<td>MUST</td>
+<td>Não funcional</td>
+<td>Entrevistas e pesquisas</td>
+</tr>
+<tr>
+<td>Tela inicial do sistema</td>
+<td>Botões grandes e objetivos</td>
+<td>MUST</td>
+<td>Não funcional</td>
+<td>Entrevistas e pesquisas</td>
+</tr>
+<tr>
+<td>Navegação</td>
+<td>Poucas abas e redirecionamento objetivo (poucos cliques)</td>
+<td>MUST</td>
+<td>Não funcional</td>
+<td>Brainstorm e entrevistas</td>
+</tr>
+<tr>
+<td>Navegação</td>
+<td>Demonstrar sempre onde o usuário está no software</td>
+<td>SHOULD</td>
+<td>Não funcional</td>
+<td>Brainstorm e entrevistas</td>
+</tr>
+<tr>
+<td>Interação</td>
+<td>Sons e mudança visual ao clicar em botões</td>
+<td>SHOULD</td>
+<td>Funcional</td>
+<td>Pesquisas</td>
+</tr>
+<tr>
+<td>Aprendizado</td>
+<td>Tutorial obrigatório ao acessar pela primeira vez, disponível para ser usado em vezes subsequentes</td>
+<td>MUST</td>
+<td>Funcional</td>
+<td>Entrevistas e pesquisa</td>
+</tr>
+<tr>
+<td>Aprendizado</td>
+<td>Ícone de interrogação fixo de fácil acesso em todas as páginas que explica em texto a função daquela página</td>
+<td>SHOULD</td>
+<td>Funcional</td>
+<td>Brainstorm e pesquisas</td>
+</tr>
+<tr>
+<td>Personalização</td>
+<td>Capacidade de alterar o tamanho e cores de letras, interface etc.</td>
+<td>COULD</td>
+<td>Funcional</td>
+<td>Entrevistas e pesquisas</td>
+</tr>
+<tr>
+<td>Registro de metas</td>
+<td>Criar, editar, excluir e marcar metas como concluídas com feedback imediato</td>
+<td>MUST</td>
+<td>Funcional</td>
+<td>Brainstorm e reuniões de equipe</td>
+</tr>
+<tr>
+<td>Registro de metas</td>
+<td>Exibir confirmação clara antes de excluir uma meta e oferecer a opção de desfazer para ações críticas</td>
+<td>MUST</td>
+<td>Funcional</td>
+<td>Brainstorm</td>
+</tr>
+<tr>
+<td>Acompanhamento</td>
+<td>Visualizar o progresso das metas de forma clara e visual</td>
+<td>MUST</td>
+<td>Funcional</td>
+<td>Pesquisas</td>
+</tr>
+<tr>
+<td>Acompanhamento</td>
+<td>Enviar notificações simples e não invasivas para lembrar o usuário de suas metas</td>
+<td>SHOULD</td>
+<td>Funcional</td>
+<td>Entrevistas e análise de outras aplicações</td>
+</tr>
+<tr>
+<td>Organização de metas</td>
+<td>Permitir categorizar metas por áreas (saúde, estudos, hábitos pessoais, lazer, etc)</td>
+<td>SHOULD</td>
+<td>Funcional</td>
+<td>Brainstorm e pesquisas</td>
+</tr>
+<tr>
+<td>Gamificação</td>
+<td>Exibir streaks e mensagens motivacionais ao concluir metas</td>
+<td>SHOULD</td>
+<td>Funcional</td>
+<td>Análise de concorrentes e brainstorming</td>
+</tr>
+<tr>
+<td>Interação e acessibilidade motora</td>
+<td>O sistema deve possuir “Dead Zone” e suavização de cliques (debounce), ignorando toques rápidos repetidos no mesmo botão</td>
+<td>SHOULD</td>
+<td>Não funcional</td>
+<td>Pesquisas em guias de acessibilidade</td>
+</tr>
+<tr>
+<td>Interação e acessibilidade motora</td>
+<td>Clique de permanência (Dwell click) que permite o usuário clicar automaticamente ao colocar o mouse em cima de um botão, por exemplo</td>
+<td>COULD</td>
+<td>Funcional</td>
+<td>Brainstorm e pesquisas</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Fonte: Elaboração própria</p>
+</blockquote>
+<p><strong>Classificação de Prioridades (Visão da Equipe):</strong></p>
+<ul>
+<li><strong>MUST (Obrigatório):</strong> Requisitos essenciais para a viabilidade e utilidade mínima do produto. Como o foco principal do software é a inclusão digital do público 60+ com baixa familiaridade tecnológica, todos os requisitos básicos de acessibilidade visual (letras grandes, alto contraste) e navegação estruturada (poucos cliques, tutorial) foram classificados como MUST. Sem eles, o público-alvo não conseguirá utilizar a aplicação.</li>
+<li><strong>SHOULD (Desejável):</strong> Requisitos que agregam valor significativo à experiência e segurança do usuário, como feedback visual/sonoro e rastreabilidade de onde ele está no sistema. São importantes para evitar frustrações, mas o sistema central de metas pode operar em uma versão inicial (MVP) sem eles.</li>
+<li><strong>COULD (Pode ter):</strong> Funcionalidades extras, como alta personalização de cores e tamanhos de fonte pelo próprio usuário. Melhoram o engajamento, mas não são vitais para o funcionamento da aplicação, podendo ser implementados em versões futuras.</li>
+</ul>
+<hr />
+<h3 id="42-perfis">4.2 Perfis</h3>
+<p>A Tabela 7 descreve os perfis considerados durante o levantamento dos requisitos do sistema. Para cada perfil são apresentadas suas características, permissões de acesso e as técnicas utilizadas para compreender suas necessidades e expectativas em relação ao produto.</p>
+<h4 id="tabela-7-perfis-de-acesso">Tabela 7 - Perfis de acesso</h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Nome do perfil</th>
+<th>Características do perfil</th>
+<th>Permissões de acesso</th>
+<th>Técnicas de elicitação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Usuário Idoso</td>
+<td>Cliente principal para a utilização do software, deve saber usá-lo de forma fácil e intuitiva</td>
+<td>Telas de usuário</td>
+<td>Entrevistas, pesquisas, brainstorm e feedback</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Equipe de desenvolvimento</td>
+<td>Própria equipe que fará a manutenção por meio de uma interface de administrador</td>
+<td>Telas de usuário, front-end, back-end</td>
+<td>Brainstorm, pesquisas</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Fonte: Elaboração própria</p>
+</blockquote>
+<p><strong>Técnicas de Elicitação:</strong></p>
+<ul>
+<li><strong>Pesquisas (Análise de Concorrência e Feedback):</strong> Utilizadas para compreender as necessidades do "Usuário Idoso". A pesquisa baseou-se na análise de comentários e avaliações de usuários em lojas de aplicativos (como Play Store e App Store) sobre aplicações gamificadas já existentes. Isso permitiu identificar frustrações reais com interfaces complexas e validar a necessidade de uma solução mais limpa e acessível.</li>
+<li><strong>Brainstorming:</strong> Utilizado pela "Equipe de desenvolvimento" como ferramenta principal para cruzar as dores encontradas nas pesquisas com soluções técnicas viáveis. O brainstorming permitiu definir as regras de negócio, como a restrição de navegação e o uso de alto contraste, de forma colaborativa.</li>
+<li><strong>Entrevistas e Feedback:</strong> Aplicadas para validar as ideias geradas no brainstorming diretamente com potenciais usuários do público-alvo, garantindo que propostas como o "tutorial obrigatório" sejam realmente eficazes para a inclusão digital do idoso.</li>
+<li><strong>Análise de Concorrentes:</strong> Foi realizada uma análise de concorrentes em aplicativos de gerenciamento de metas e hábitos disponíveis na Play Store e App Store. A pesquisa revelou que a maioria das soluções apresenta interfaces sobrecarregadas, navegação complexa e baixa acessibilidade, especialmente para usuários com pouca familiaridade com tecnologia. Essa análise reforçou a necessidade de desenvolver um sistema mais simples, intuitivo e acessível, com foco em usabilidade e gamificação leve, diferenciando-se das soluções existentes no mercado.</li>
+</ul>
+<hr />
+<h3 id="43-cenarios">4.3 Cenários</h3>
+<p>Os cenários funcionais foram descritos utilizando User Stories, uma técnica amplamente utilizada em projetos ágeis para representar necessidades do usuário de forma simples e orientada a valor (COHN, 2004). A Tabela 8 apresenta os cenários funcionais do sistema representados por meio de User Stories. Cada cenário descreve uma necessidade do usuário final e sua respectiva sprint de implementação, permitindo visualizar a distribuição das funcionalidades ao longo do cronograma do projeto.</p>
+<h4 id="tabela-8-user-stories-cenarios-funcionais">Tabela 8 – User Stories (Cenários funcionais)</h4>
+<table>
+<thead>
+<tr>
+<th>Numeração do cenário</th>
+<th>Nome do cenário</th>
+<th>Sprints</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>US1</strong></td>
+<td>Como usuário idoso, quero ser capaz de ler e entender facilmente os botões</td>
+<td>3</td>
+</tr>
+<tr>
+<td><strong>US2</strong></td>
+<td>Como usuário idoso, quero entrar e usar facilmente o site</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>US3</strong></td>
+<td>Como usuário idoso, quero criar e entrar na minha conta rapidamente</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>US4</strong></td>
+<td>Como usuário idoso, quero ter minhas metas diárias bem explicitas por meio de interfaces óbvias</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>US5</strong></td>
+<td>Como usuário idoso, quero ser capaz de inserir novas metas, além das que eu já tinha colocado</td>
+<td>5</td>
+</tr>
+<tr>
+<td><strong>US6</strong></td>
+<td>Como usuário idoso, quero categorizar minhas metas em áreas da vida (saúde, estudos, hábitos, lazer etc.) para organizar melhor meus objetivos</td>
+<td>6</td>
+</tr>
+<tr>
+<td><strong>US7</strong></td>
+<td>Como usuário idoso, quero ser capaz de ver quais metas eu já cumpri de forma gráfica</td>
+<td>7</td>
+</tr>
+<tr>
+<td><strong>US8</strong></td>
+<td>Como usuário idoso, quero ter a opção de desfazer uma ação de exclusão imediatamente, para que eu não perca meus dados caso clique no botão errado sem querer.</td>
+<td>5</td>
+</tr>
+<tr>
+<td><strong>US9</strong></td>
+<td>Como usuário idoso, quero ter um estímulo positivo ao ter cumprido minhas metas</td>
+<td>7</td>
+</tr>
+<tr>
+<td><strong>US10</strong></td>
+<td>Como usuário idoso, quero que o sistema ignore toques acidentais ou repetidos muito rápidos, para que eu não abra páginas ou exclua itens por erro de precisão motora.</td>
+<td>8</td>
+</tr>
+<tr>
+<td><strong>US11</strong></td>
+<td>Como usuário idoso, quero aprender a usar o sistema.</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Fonte: Elaboração própria</p>
+</blockquote>
+<hr />
+<h3 id="44-tabela-de-backlog-do-produto">4.4 Tabela de Backlog do produto</h3>
+<p>A Tabela 9 detalha o backlog do produto, relacionando os requisitos identificados com suas respectivas prioridades, descrições e User Stories associadas. Esse detalhamento permite compreender como os requisitos serão implementados e organizados ao longo das sprints planejadas.</p>
+<h4 id="tabela-9-backlog-do-produto-detalhado">Tabela 9: Backlog do produto detalhado</h4>
+<table>
+<thead>
+<tr>
+<th>Numeração</th>
+<th>Sprint</th>
+<th>Nome do requisito</th>
+<th>Tipo de requisito</th>
+<th>Priorização</th>
+<th>Descrição sucinta do requisito</th>
+<th>User Stories associadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>3</td>
+<td>Acessibilidade Visual e Navegação</td>
+<td>Não funcional</td>
+<td>Must</td>
+<td>Interface com letras e botões grandes, alto contraste, poucas abas e redirecionamento objetivo.</td>
+<td>US1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>Tela de login/registro</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Tela capaz de registrar as informações do usuário e guardá-las para um acesso posterior.</td>
+<td>US2, US3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>6</td>
+<td>Tutorial Inicial</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Tutorial obrigatório ao acessar pela primeira vez, disponível para ser usado depois.</td>
+<td>US11</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4 e 5</td>
+<td>Gerenciamento/registro de Metas</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Funcionalidade que permite ao usuário adicionar, remover, editar e preencher metas diárias com feedback imediato.</td>
+<td>US4, US5</td>
+</tr>
+<tr>
+<td>5</td>
+<td>5</td>
+<td>Feedback Sensorial</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>Sons e mudança visual imediata ao clicar em botões para confirmar a interação.</td>
+<td>US1, US4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>7</td>
+<td>Histórico e Progresso</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Demonstração com gráficos e dados em relação ao cumprimento de metas do usuário com metas concluídas por dia e resumos semanais.</td>
+<td>US7</td>
+</tr>
+<tr>
+<td>7</td>
+<td>7</td>
+<td>Sistema de Recompensa (Gamificação)</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>Sistema de parabenização e estímulo positivo ao usuário ao cumprir metas executado por meio de feedback positivo, mensagens motivacionais, streaks e conquistas simples.</td>
+<td>US9</td>
+</tr>
+<tr>
+<td>8</td>
+<td>8</td>
+<td>Personalização de Interface</td>
+<td>Funcional</td>
+<td>Could</td>
+<td>Capacidade de o próprio usuário alterar o tamanho e cores de letras e da interface.</td>
+<td>US1</td>
+</tr>
+<tr>
+<td>9</td>
+<td>7</td>
+<td>Acompanhamento e visualização de progresso</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Visualizar o progresso das metas de forma clara e visual (pendentes e concluídas).</td>
+<td>US7</td>
+</tr>
+<tr>
+<td>10</td>
+<td>6</td>
+<td>Categorização de metas</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>Categorizar metas em áreas da vida (saúde, estudos, hábitos, lazer e etc).</td>
+<td>US6</td>
+</tr>
+<tr>
+<td>11</td>
+<td>5</td>
+<td>Recuperação de erros (undo)</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Confirmação antes de excluir e opção de "Desfazer" para evitar perda de dados por cliques acidentais.</td>
+<td>US8</td>
+</tr>
+<tr>
+<td>12</td>
+<td>6</td>
+<td>Ajuda contextual fixa</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>Ícone de interrogação fixo em todas as páginas com explicações simples sobre as funções da tela.</td>
+<td>US11</td>
+</tr>
+<tr>
+<td>13</td>
+<td>6</td>
+<td>Sistema de lembretes</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>Notificações ou alertas visuais para lembrar o usuário de atualizar suas metas diárias.</td>
+<td>US4</td>
+</tr>
+<tr>
+<td>14</td>
+<td>8</td>
+<td>Acessibilidade motora</td>
+<td>Não funcional</td>
+<td>Should</td>
+<td>Implementação de Deadzone e Debounce para ignorar toques acidentais ou tremores.</td>
+<td>US10</td>
+</tr>
+<tr>
+<td>15</td>
+<td>8</td>
+<td>Clique de permanência</td>
+<td>Funcional</td>
+<td>Could</td>
+<td>Recurso de Dwell Click que aciona o botão apenas mantendo o cursor ou dedo sobre ele.</td>
+<td>US10</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Fonte: Elaboração própria</p>
+</blockquote>
+<hr />
+<h2 id="5-metricas-e-medicoes">5 Métricas e Medições</h2>
+<p>Esta seção apresenta o plano de medição do projeto, elaborado com base na abordagem Goal/Question/Metric (GQM), proposta para derivar métricas a partir de objetivos específicos de medição (WANGENHEIM; WANGENHEIM; LINO, 2009; MOURA et al., 2009).</p>
+<h3 id="51-gqm-de-medicoes">5.1 GQM de Medições</h3>
+<p>O objetivo de medição foi definido considerando o contexto do projeto e as necessidades de informação da equipe para monitoramento da qualidade do produto e do desempenho do processo de desenvolvimento. A Tabela 10 apresenta a estruturação desse objetivo segundo o paradigma GQM, detalhando seus componentes e o contexto de aplicação no projeto.</p>
+<h4 id="tabela-10-objetivo-de-medicao-gqm">Tabela 10 – Objetivo de Medição GQM</h4>
+<table>
+<thead>
+<tr>
+<th>Dimensão GQM</th>
+<th>Definição do Objetivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Analisar:</strong></td>
+<td>O processo de desenvolvimento e o produto de software</td>
+</tr>
+<tr>
+<td><strong>Com o propósito de:</strong></td>
+<td>Monitorar, controlar e melhorar</td>
+</tr>
+<tr>
+<td><strong>Em relação a:</strong></td>
+<td>A qualidade do produto e desempenho do processo (cumprimento de sprints e ausência de defeitos)</td>
+</tr>
+<tr>
+<td><strong>Do ponto de vista de:</strong></td>
+<td>Gerente de projeto (Dono do Produto) e equipe de desenvolvimento</td>
+</tr>
+<tr>
+<td><strong>No contexto de:</strong></td>
+<td>Projeto acadêmico de desenvolvimento ágil (SCRUM + XP), de um aplicativo web de gerenciamento de metas gamificado para usuários 60+</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Fonte: elaborado pelos autores, com base em Wangenheim, Wangenheim e Lino (2009).</p>
+</blockquote>
+<p>A partir do objetivo de medição definido na Tabela 10 foram elaboradas três questões que operacionalizam o objetivo, desdobrando-o em aspectos mensuráveis. A Tabela 11 apresenta as métricas associadas a cada questão, incluindo suas fórmulas de cálculo, valores esperados e formas de análise utilizadas para monitorar o andamento do projeto.</p>
+<h4 id="tabela-11-metricas-e-suas-definicoes">Tabela 11 - Métricas e suas definições</h4>
+<table>
+<thead>
+<tr>
+<th>Questão</th>
+<th>Métrica</th>
+<th>Forma de Cálculo</th>
+<th>Escala</th>
+<th>Valor Esperado</th>
+<th>Forma de Análise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Q1: Qual é o percentual de itens do backlog concluídos em cada sprint?</strong></td>
+<td>Débito Técnico (DT)</td>
+<td>DT = (Itens planejados − Itens concluídos) / Itens planejados × 100</td>
+<td>% (percentual)</td>
+<td>DT ≤ 20% por sprint</td>
+<td>Verificado ao fim de cada sprint; se DT &gt; 20%, acionar critério de replanejamento</td>
+</tr>
+<tr>
+<td><strong>Q1: Qual é o percentual de itens do backlog concluídos em cada sprint?</strong></td>
+<td>Velocidade da Equipe</td>
+<td>Nº de itens do backlog concluídos por sprint</td>
+<td>Itens/sprint</td>
+<td>Estável ou crescente</td>
+<td>Comparado entre sprints para tendência</td>
+</tr>
+<tr>
+<td><strong>Q2: Quantos defeitos são identificados e corrigidos antes da entrega?</strong></td>
+<td>Densidade de Defeitos (DD)</td>
+<td>DD = Nº de defeitos encontrados / Nº de user stories implementadas</td>
+<td>Defeitos/US</td>
+<td>DD ≤ 1 defeito por US entregue</td>
+<td>Coletado nos roteiros de teste; defeitos registrados no repositório</td>
+</tr>
+<tr>
+<td><strong>Q2: Quantos defeitos são identificados e corrigidos antes da entrega?</strong></td>
+<td>Taxa de Rejeição de Testes</td>
+<td>Nº de casos de teste reprovados / Total de casos executados × 100</td>
+<td>%</td>
+<td>≤ 10% de reprovação por ciclo de testes</td>
+<td>Acompanhado no roteiro de testes (seção 6)</td>
+</tr>
+<tr>
+<td><strong>Q3: O cronograma planejado está sendo cumprido?</strong></td>
+<td>Desvio de Prazo</td>
+<td>((Data real de entrega − Data planejada) / Duração da sprint) × 100</td>
+<td>% de atraso</td>
+<td>0% (sem atraso); tolerância de até 10%</td>
+<td>Verificado ao final de cada sprint</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Fonte: elaborado pelos autores, com base em Wangenheim, Wangenheim e Lino (2009) e Moura et al. (2009).</p>
+</blockquote>
+<p>As métricas selecionadas abrangem dois eixos principais: (i) o acompanhamento do processo de desenvolvimento, por meio do débito técnico, velocidade da equipe e desvio de prazo; e (ii) a qualidade do produto, verificada pela densidade de defeitos e taxa de rejeição de testes. Essa combinação permite à equipe identificar desvios com antecedência e fundamentar decisões de replanejamento nos critérios definidos na seção 2.6.</p>
+<p>Os dados serão coletados ao final de cada sprint, registrados no repositório do projeto e consolidados em planilha eletrônica. Valores fora dos limites estabelecidos deverão ser discutidos na reunião de revisão de sprint.</p>
+<hr />
+<h2 id="6-testes-de-software">6 Testes de Software</h2>
+<p>Os testes de software têm como objetivo verificar e validar se o sistema atende aos requisitos especificados e apresenta comportamento adequado durante sua utilização (PRESSMAN; MAXIM, 2020).</p>
+<h3 id="61-estrategia-de-testes">6.1 Estratégia de Testes</h3>
+<p>A estratégia adotada contempla testes unitários, de integração e de sistema, níveis amplamente empregados para assegurar a qualidade do software ao longo do desenvolvimento (SOMMERVILLE, 2019). A Tabela 12 apresenta a estratégia de testes adotada no projeto, especificando os níveis e tipos de testes, os ambientes utilizados, a política de versionamento e a forma de análise dos resultados. Essas definições têm como objetivo garantir a qualidade do produto e apoiar o acompanhamento das métricas apresentadas na seção anterior.</p>
+<h4 id="tabela-12-estrategia-de-testes-de-software">Tabela 12 - Estratégia de Testes de Software</h4>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Definição da Estratégia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Níveis de Teste</strong></td>
+<td>Unitário, Integração e Sistema</td>
+</tr>
+<tr>
+<td><strong>Tipos de Teste</strong></td>
+<td>Funcional e Não Funcional (Usabilidade, Acessibilidade)</td>
+</tr>
+<tr>
+<td><strong>Ambientes de Teste</strong></td>
+<td>Local e Homologação</td>
+</tr>
+<tr>
+<td><strong>Política de Branches</strong></td>
+<td>Local (feature/*) → Homologação (develop) → Produção (main). Commits sobem para develop somente após aprovação nos testes unitários e de integração.</td>
+</tr>
+<tr>
+<td><strong>Forma de Análise</strong></td>
+<td>Previsto x Realizado: divergência = reprovação, registro do defeito, correção e reexecução. Resultados alimentam as métricas de Densidade de Defeitos e Taxa de Rejeição (seção 5).</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Fonte: Elaboração própria</p>
+</blockquote>
+<hr />
+<h3 id="62-roteiro-de-testes">6.2 Roteiro de Testes</h3>
+<p>Os casos de teste a seguir estão alinhados às User Stories e requisitos do backlog (seções 4.3 e 4.4). Os campos de resultado, evidências e reparos devem ser preenchidos após cada ciclo de execução.</p>
+<h4 id="ct-01-login-e-registro">CT-01 – Login e Registro</h4>
+<p><strong>Nível:</strong> Integração<br />
+<strong>Tipo:</strong> Funcional<br />
+<strong>Precondições:</strong> Sistema em homologação; banco de dados acessível.<br />
+<strong>Aceito / Rejeitado:</strong> Login e registro concluídos em até 3 interações, sem erros. / Falha no fluxo ou erro não tratado.<br />
+<strong>Resultado Previsto:</strong> Usuário registra conta e realiza login com sucesso, sendo redirecionado à tela inicial.<br />
+<strong>Resultado Realizado:</strong> <strong>Evidências:</strong> <strong>Reparos Executados:</strong> <strong>Ciclos Executados:</strong> 1  </p>
+<hr />
+<h4 id="ct-02-acessibilidade-visual">CT-02 – Acessibilidade Visual</h4>
+<p><strong>Nível:</strong> Sistema<br />
+<strong>Tipo:</strong> Não Funcional – Acessibilidade<br />
+<strong>Precondições:</strong> Ao menos uma tela disponível.<br />
+<strong>Aceito / Rejeitado:</strong> Contraste ≥ 4,5:1; botões ≥ 44×44px. / Qualquer elemento abaixo dos parâmetros.<br />
+<strong>Resultado Previsto:</strong> Inspeção com DevTools confirma que todos os elementos atendem aos parâmetros.<br />
+<strong>Resultado Realizado:</strong> <strong>Evidências:</strong> <strong>Reparos Executados:</strong> <strong>Ciclos Executados:</strong> 1  </p>
+<hr />
+<h4 id="ct-03-cadastro-e-visualizacao-de-metas">CT-03 – Cadastro e Visualização de Metas</h4>
+<p><strong>Nível:</strong> Integração<br />
+<strong>Tipo:</strong> Funcional<br />
+<strong>Precondições:</strong> Usuário autenticado (CT-01 aprovado).<br />
+<strong>Aceito / Rejeitado:</strong> Meta exibida em até 2 segundos com dados corretos. / Meta não aparece, dados incorretos ou tempo &gt; 5 segundos.<br />
+<strong>Resultado Previsto:</strong> Meta cadastrada aparece na listagem com nome e status 'pendente'.<br />
+<strong>Resultado Realizado:</strong> <strong>Evidências:</strong> <strong>Reparos Executados:</strong> <strong>Ciclos Executados:</strong> 1  </p>
+<hr />
+<h4 id="ct-04-marcacao-diaria-de-meta-cumprida">CT-04 – Marcação Diária de Meta Cumprida</h4>
+<p><strong>Nível:</strong> Sistema<br />
+<strong>Tipo:</strong> Funcional<br />
+<strong>Precondições:</strong> Usuário autenticado; ao menos uma meta cadastrada (CT-03 aprovado).<br />
+<strong>Aceito / Rejeitado:</strong> Status muda para 'concluída' e feedback positivo é exibido. / Status não muda ou feedback ausente.<br />
+<strong>Resultado Previsto:</strong> Usuário clica em 'Concluir' e o sistema registra o cumprimento com feedback visual/sonoro.<br />
+<strong>Resultado Realizado:</strong> <strong>Evidências:</strong> <strong>Reparos Executados:</strong> <strong>Ciclos Executados:</strong> 1  </p>
+<hr />
+<h4 id="ct-05-historico-grafico-de-metas">CT-05 – Histórico Gráfico de Metas</h4>
+<p><strong>Nível:</strong> Sistema<br />
+<strong>Tipo:</strong> Funcional<br />
+<strong>Precondições:</strong> Usuário autenticado; ao menos 3 registros de cumprimento salvos.<br />
+<strong>Aceito / Rejeitado:</strong> Gráfico exibido com dados corretos e legível na resolução padrão. / Gráfico ausente, dados incorretos ou ilegível.<br />
+<strong>Resultado Previsto:</strong> Tela de histórico exibe gráfico com os dias de cumprimento de cada meta.<br />
+<strong>Resultado Realizado:</strong> <strong>Evidências:</strong> <strong>Reparos Executados:</strong> <strong>Ciclos Executados:</strong> 1  </p>
+<hr />
+<h4 id="ct-06-tutorial-no-primeiro-acesso">CT-06 – Tutorial no Primeiro Acesso</h4>
+<p><strong>Nível:</strong> Sistema<br />
+<strong>Tipo:</strong> Funcional<br />
+<strong>Precondições:</strong> Usuário recém-registrado realizando o primeiro login.<br />
+<strong>Aceito / Rejeitado:</strong> Tutorial iniciado automaticamente; reacessível no menu. / Tutorial não exibido ou não reacessível.<br />
+<strong>Resultado Previsto:</strong> Tutorial exibido automaticamente no primeiro acesso e disponível em seção de ajuda.<br />
+<strong>Resultado Realizado:</strong> <strong>Evidências:</strong> <strong>Reparos Executados:</strong> <strong>Ciclos Executados:</strong> 1  </p>
+<hr />
+<h4 id="ct-07-navegacao-em-ate-3-cliques">CT-07 – Navegação em até 3 Cliques</h4>
+<p><strong>Nível:</strong> Sistema<br />
+<strong>Tipo:</strong> Não Funcional – Usabilidade<br />
+<strong>Precondições:</strong> Sistema em execução.<br />
+<strong>Aceito / Rejeitado:</strong> Fluxos principais acessíveis em ≤ 3 cliques a partir da tela inicial. / Qualquer fluxo principal exigir mais de 3 cliques.<br />
+<strong>Resultado Previsto:</strong> Avaliador percorre os três fluxos principais e todos são concluídos dentro do limite.<br />
+<strong>Resultado Realizado:</strong> <strong>Evidências:</strong> <strong>Reparos Executados:</strong> <strong>Ciclos Executados:</strong> 1  </p>
+<hr />
+<h4 id="ct-08-recuperacao-de-erros-undo">CT-08 – Recuperação de Erros (Undo)</h4>
+<p><strong>Nível:</strong> Sistema<br />
+<strong>Tipo:</strong> Funcional<br />
+<strong>Precondições:</strong> Usuário autenticado; Pelo menos uma meta cadastrada<br />
+<strong>Aceito / Rejeitado:</strong> Pop-up de confirmação exibido e opção ‘Desfazer’ funcional / Meta excluída sem aviso ou falha ao restaurar<br />
+<strong>Resultado Previsto:</strong> Usuário exclui a meta, confirma a exclusão, e aciona o botão desfazer. A meta retorna à listagem original.<br />
+<strong>Resultado Realizado:</strong> <strong>Evidências:</strong> <strong>Reparos Executados:</strong> <strong>Ciclos Executados:</strong> 1  </p>
+<hr />
+<h4 id="ct-09-sistema-de-recompensa-e-streaks">CT-09 – Sistema de Recompensa e Streaks</h4>
+<p><strong>Nível:</strong> Sistema<br />
+<strong>Tipo:</strong> Funcional<br />
+<strong>Precondições:</strong> Usuário autenticado; meta concluída no dia anterior.<br />
+<strong>Aceito / Rejeitado:</strong> Feedback motivacional e atualização do 'streak' exibidos. / Nenhuma mensagem exibida ou erro no contador.<br />
+<strong>Resultado Previsto:</strong> Ao concluir a meta em dias consecutivos, o sistema exibe mensagem motivacional parabenizando a constância e aumenta o contador de dias seguidos.<br />
+<strong>Resultado Realizado:</strong> <strong>Evidências:</strong> <strong>Reparos Executados:</strong> <strong>Ciclos Executados:</strong> 1  </p>
+<hr />
+<h4 id="ct-10-categorizacao-de-metas">CT-10 – Categorização de Metas</h4>
+<p><strong>Nível:</strong> Integração<br />
+<strong>Tipo:</strong> Funcional<br />
+<strong>Precondições:</strong> Usuário autenticado na tela de criação/edição de metas.<br />
+<strong>Aceito / Rejeitado:</strong> Meta salva e exibida com a categoria/cor correta. / Categoria não é salva ou exibida incorretamente na lista.<br />
+<strong>Resultado Previsto:</strong> Usuário seleciona uma categoria (ex: Saúde) ao criar a meta, e ela aparece na listagem principal com o identificador visual da respectiva categoria.<br />
+<strong>Resultado Realizado:</strong> <strong>Evidências:</strong> <strong>Reparos Executados:</strong> <strong>Ciclos Executados:</strong> 1  </p>
+<hr />
+<h4 id="ct-11-ajuda-contextual-fixa">CT-11 – Ajuda contextual Fixa</h4>
+<p><strong>Nível:</strong> Sistema<br />
+<strong>Tipo:</strong> Funcional<br />
+<strong>Precondições:</strong> Sistema em execução; usuário navegando pelas abas.<br />
+<strong>Aceito / Rejeitado:</strong> Ícone de interrogação (?) presente e clicável em todas as telas abrindo texto legível. / Ícone ausente ou texto ilegível.<br />
+<strong>Resultado Previsto:</strong> Ao clicar no ícone de interrogação fixo, um modal/balão explica a função da tela atual de forma simples e com fonte grande.<br />
+<strong>Resultado Realizado:</strong> <strong>Evidências:</strong> <strong>Reparos Executados:</strong> <strong>Ciclos Executados:</strong> 1  </p>
+<hr />
+<h4 id="ct-12-sistema-de-lembretes">CT-12 – Sistema de lembretes</h4>
+<p><strong>Nível:</strong> Sistema<br />
+<strong>Tipo:</strong> Funcional<br />
+<strong>Precondições:</strong> Usuário autenticado com metas pendentes no dia atual.<br />
+<strong>Aceito / Rejeitado:</strong> Notificação ou alerta visual exibido. / Nenhuma notificação ou alerta invasivo que confunda o usuário.<br />
+<strong>Resultado Previsto:</strong> O sistema emite um lembrete visual simples avisando o usuário sobre a meta pendente para ajudá-lo na rotina.<br />
+<strong>Resultado Realizado:</strong> <strong>Evidências:</strong> <strong>Reparos Executados:</strong> <strong>Ciclos Executados:</strong> 1  </p>
+<hr />
+<h4 id="ct-13-personalizacao">CT-13 – Personalização</h4>
+<p><strong>Nível:</strong> Sistema<br />
+<strong>Tipo:</strong> Funcional<br />
+<strong>Precondições:</strong> Usuário autenticado acessando a tela de configurações.<br />
+<strong>Aceito / Rejeitado:</strong> Tamanho da fonte e cores alterados e mantidos na navegação e ajustes opcionais de acessibilidade motora. / Alterações não aplicadas ou resetadas ao mudar de tela.<br />
+<strong>Resultado Previsto:</strong> O usuário altera o tamanho da letra nas configurações, pode ativar as opções de acessibilidade motora a mudança é aplicada e salva em todo o sistema.<br />
+<strong>Resultado Realizado:</strong> <strong>Evidências:</strong> <strong>Reparos Executados:</strong> <strong>Ciclos Executados:</strong> 1  </p>
+<hr />
+<h4 id="ct-14-acessibilidade-motora-debounce">CT-14 – Acessibilidade motora (Debounce)</h4>
+<p><strong>Nível:</strong> Integração<br />
+<strong>Tipo:</strong> Não Funcional<br />
+<strong>Precondições:</strong> Sistema em execução; página com botão de ação (ex: concluir meta) aberta.<br />
+<strong>Aceito / Rejeitado:</strong> O sistema ignora o segundo clique se ocorrer em menos de 500ms do primeiro. / O sistema registra duas execuções da mesma ação.<br />
+<strong>Resultado Previsto:</strong> O testador simula um "tremor" clicando 3 vezes rapidamente no botão; o sistema processa apenas 1 clique e ignora os demais sem gerar erro.<br />
+<strong>Resultado Realizado:</strong> <strong>Evidências:</strong> <strong>Reparos Executados:</strong> <strong>Ciclos Executados:</strong> 1  </p>
+<hr />
+<h4 id="ct-15-clique-de-permanencia-dwell-click">CT-15 – Clique de permanência (Dwell Click)</h4>
+<p><strong>Nível:</strong> Sistema<br />
+<strong>Tipo:</strong> Funcional<br />
+<strong>Precondições:</strong> Recurso de "Dwell Click" ativado nas configurações; usuário navegando pelo sistema.<br />
+<strong>Aceito / Rejeitado:</strong> O botão é acionado automaticamente ao manter o cursor/dedo parado sobre ele por 2 segundos. / O botão não é acionado, exigindo clique físico.<br />
+<strong>Resultado Previsto:</strong> O usuário posiciona o ponteiro (ou mantém o dedo) sobre o botão "Salvar". Uma pequena animação de carregamento ocorre e a ação é confirmada sem necessidade de pressionar.<br />
+<strong>Resultado Realizado:</strong> <strong>Evidências:</strong> <strong>Reparos Executados:</strong> <strong>Ciclos Executados:</strong> 1  </p>
+<hr />
+<h2 id="7-referencias-bibliograficas">7 Referências Bibliográficas</h2>
+<ul>
+<li>MOURA, Déborah Carvalho de; NERY, Paulo; SILVA, Carlos Vinícius Pereira da; CAMPOS, Danylo de Castro. <strong>GQM: Goal – Question – Metric</strong>. 2009.</li>
+<li>WANGENHEIM, Christiane Gresse von; WANGENHEIM, Aldo von; LINO, Juliana Izabel. <strong>Medição de Software: Guia Prático</strong>. Florianópolis: Bookess, 2009.</li>
+<li>FARIAS, Josivania Silva; VITOR, Thayane da Luz; LINS, Paula Valente; PEDROZA FILHO, Luiz Eduardo Azevedo. <strong>Inclusão digital na terceira idade: um estudo sobre a propensão de idosos à adoção de tecnologias da informação e comunicação (TICs)</strong>. Revista Gestão &amp; Tecnologia, Pedro Leopoldo, v. 15, n. 3, p. 164–188, set./dez. 2015. Disponível em: <a href="https://www.repositorio.unb.br/handle/10482/21740">https://www.repositorio.unb.br/handle/10482/21740</a>. Acesso em: 29 abr. 2026.</li>
+<li>COHN, Mike. User Stories Applied: For Agile Software Development. Boston: Addison-Wesley, 2004.</li>
+<li>PRESSMAN, Roger S.; MAXIM, Bruce R. Engenharia de Software: Uma Abordagem Profissional. 9. ed. Porto Alegre: AMGH, 2020.</li>
+<li>SOMMERVILLE, Ian. Engenharia de Software. 10. ed. São Paulo: Pearson, 2019.</li>
+<li>SCHWABER, Ken; SUTHERLAND, Jeff. The Scrum Guide: The Definitive Guide to Scrum: The Rules of the Game. 2020. Disponível em: <a href="https://scrumguides.org">https://scrumguides.org</a>. Acesso em: 02 jun. 2026.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

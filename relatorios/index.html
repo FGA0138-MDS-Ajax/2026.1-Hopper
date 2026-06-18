@@ -1,0 +1,2847 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../configuracoes/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Relatórios de Métricas - HopLife</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#hoplife-registro-de-coleta-de-metricas-gqm" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="HopLife" class="md-header__button md-logo" aria-label="HopLife" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HopLife
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Relatórios de Métricas
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="HopLife" class="md-nav__button md-logo" aria-label="HopLife" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    HopLife
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documento de Visão
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documento de Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PEP8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PEP 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuracoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Itens de Configuração e Política de Branches
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Relatórios de Métricas
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Relatórios de Métricas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo-rapido-de-coleta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumo Rápido de Coleta
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resumo Rápido de Coleta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metrica-1-debito-tecnico-dt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 1 – Débito Técnico (DT)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Métrica 1 – Débito Técnico (DT)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-medir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que medir?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-coletar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como coletar?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valor-esperado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valor esperado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrica-2-velocidade-da-equipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 2 – Velocidade da Equipe
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Métrica 2 – Velocidade da Equipe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-medir_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que medir?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-coletar_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como coletar?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valor-esperado_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valor esperado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemplo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrica-3-densidade-de-defeitos-dd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 3 – Densidade de Defeitos (DD)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Métrica 3 – Densidade de Defeitos (DD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-medir_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que medir?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-coletar_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como coletar?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valor-esperado_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valor esperado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemplo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrica-4-taxa-de-rejeicao-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 4 – Taxa de Rejeição de Testes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Métrica 4 – Taxa de Rejeição de Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-medir_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que medir?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-coletar_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como coletar?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valor-esperado_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valor esperado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemplo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrica-5-desvio-de-prazo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 5 – Desvio de Prazo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Métrica 5 – Desvio de Prazo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-medir_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que medir?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-coletar_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como coletar?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valor-esperado_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valor esperado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tolerancia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tolerância
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemplo_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registro-das-coletas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registro das Coletas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registro das Coletas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sprint-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 6
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 7
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 8
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 9
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-consolidado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Histórico Consolidado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registro-de-testes-nao-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registro de Testes Não Funcionais
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registro de Testes Não Funcionais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ct-02-validacao-de-contraste-e-tamanho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-02 — Validação de Contraste e Tamanho
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CT-02 — Validação de Contraste e Tamanho">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquivostelas-analisadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquivos/Telas analisadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacoes-realizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificações realizadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultado-obtido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultado Obtido
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relatorio-ct-02-branch-featureviewth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relatório CT-02 — Branch feature/viewth
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relatório CT-02 — Branch feature/viewth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#telas-analisadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Telas analisadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacoes-realizadas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificações realizadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problemas-encontrados-observacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problemas encontrados / Observações
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relatorio-ct-02-branch-featurelogin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relatório CT-02 — Branch feature/login
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relatório CT-02 — Branch feature/login">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#telas-analisadas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Telas analisadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacoes-realizadas_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificações realizadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problemas-encontrados-observacoes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problemas encontrados / Observações
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relatorio-ct-02-branch-featureestilizando-base-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relatório CT-02 — Branch feature/estilizando-base-html
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relatório CT-02 — Branch feature/estilizando-base-html">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#telas-analisadas_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Telas analisadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacoes-realizadas_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificações realizadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problemas-encontrados-observacoes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problemas encontrados / Observações
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrevistas-de-validacao-com-usuarios-para-o-ponto-de-controle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entrevistas de Validação com Usuários para o Ponto de Controle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entrevistas de Validação com Usuários para o Ponto de Controle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usuario-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usuário 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usuario-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usuário 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo-rapido-de-coleta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumo Rápido de Coleta
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resumo Rápido de Coleta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metrica-1-debito-tecnico-dt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 1 – Débito Técnico (DT)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Métrica 1 – Débito Técnico (DT)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-medir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que medir?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-coletar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como coletar?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valor-esperado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valor esperado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrica-2-velocidade-da-equipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 2 – Velocidade da Equipe
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Métrica 2 – Velocidade da Equipe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-medir_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que medir?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-coletar_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como coletar?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valor-esperado_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valor esperado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemplo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrica-3-densidade-de-defeitos-dd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 3 – Densidade de Defeitos (DD)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Métrica 3 – Densidade de Defeitos (DD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-medir_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que medir?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-coletar_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como coletar?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valor-esperado_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valor esperado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemplo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrica-4-taxa-de-rejeicao-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 4 – Taxa de Rejeição de Testes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Métrica 4 – Taxa de Rejeição de Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-medir_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que medir?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-coletar_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como coletar?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valor-esperado_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valor esperado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemplo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrica-5-desvio-de-prazo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 5 – Desvio de Prazo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Métrica 5 – Desvio de Prazo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-medir_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que medir?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-coletar_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como coletar?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valor-esperado_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valor esperado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tolerancia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tolerância
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemplo_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registro-das-coletas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registro das Coletas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registro das Coletas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sprint-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 6
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 7
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 8
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint 9
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-consolidado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Histórico Consolidado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registro-de-testes-nao-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registro de Testes Não Funcionais
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registro de Testes Não Funcionais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ct-02-validacao-de-contraste-e-tamanho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CT-02 — Validação de Contraste e Tamanho
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CT-02 — Validação de Contraste e Tamanho">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquivostelas-analisadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquivos/Telas analisadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacoes-realizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificações realizadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultado-obtido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultado Obtido
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relatorio-ct-02-branch-featureviewth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relatório CT-02 — Branch feature/viewth
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relatório CT-02 — Branch feature/viewth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#telas-analisadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Telas analisadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacoes-realizadas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificações realizadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problemas-encontrados-observacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problemas encontrados / Observações
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relatorio-ct-02-branch-featurelogin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relatório CT-02 — Branch feature/login
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relatório CT-02 — Branch feature/login">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#telas-analisadas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Telas analisadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacoes-realizadas_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificações realizadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problemas-encontrados-observacoes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problemas encontrados / Observações
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relatorio-ct-02-branch-featureestilizando-base-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relatório CT-02 — Branch feature/estilizando-base-html
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relatório CT-02 — Branch feature/estilizando-base-html">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#telas-analisadas_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Telas analisadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacoes-realizadas_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificações realizadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problemas-encontrados-observacoes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problemas encontrados / Observações
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrevistas-de-validacao-com-usuarios-para-o-ponto-de-controle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entrevistas de Validação com Usuários para o Ponto de Controle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entrevistas de Validação com Usuários para o Ponto de Controle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usuario-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usuário 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usuario-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usuário 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="hoplife-registro-de-coleta-de-metricas-gqm">HopLife – Registro de Coleta de Métricas (GQM)</h1>
+<h2 id="objetivo">Objetivo</h2>
+<p>Este documento tem como finalidade registrar os valores coletados das métricas definidas no Plano GQM do projeto HopLife.</p>
+<p>A coleta deve ser realizada ao final de cada Sprint durante a Sprint Review ou Retrospective.</p>
+<p>Os dados registrados servirão como evidência para análise da evolução do projeto e para apoiar decisões de replanejamento quando necessário.</p>
+<hr />
+<h2 id="resumo-rapido-de-coleta">Resumo Rápido de Coleta</h2>
+<h3 id="metrica-1-debito-tecnico-dt">Métrica 1 – Débito Técnico (DT)</h3>
+<h4 id="o-que-medir">O que medir?</h4>
+<p>Quantidade de itens planejados que não foram concluídos na Sprint.</p>
+<h4 id="como-coletar">Como coletar?</h4>
+<ol>
+<li>Contar quantos itens foram planejados na Sprint.</li>
+<li>Contar quantos itens foram concluídos.</li>
+<li>Aplicar a fórmula:</li>
+</ol>
+<p>DT = ((Planejados - Concluídos) / Planejados) × 100</p>
+<h4 id="valor-esperado">Valor esperado</h4>
+<p>≤ 20%</p>
+<h4 id="exemplo">Exemplo</h4>
+<p>Planejados: 10</p>
+<p>Concluídos: 8</p>
+<p>DT = ((10 - 8) / 10) × 100</p>
+<p>DT = 20%</p>
+<hr />
+<h3 id="metrica-2-velocidade-da-equipe">Métrica 2 – Velocidade da Equipe</h3>
+<h4 id="o-que-medir_1">O que medir?</h4>
+<p>Quantidade de itens concluídos na Sprint.</p>
+<h4 id="como-coletar_1">Como coletar?</h4>
+<p>Contar quantas User Stories ou itens do backlog foram concluídos.</p>
+<h4 id="valor-esperado_1">Valor esperado</h4>
+<p>Estável ou crescente entre as Sprints.</p>
+<h4 id="exemplo_1">Exemplo</h4>
+<p>Sprint 1 → 4 itens</p>
+<p>Sprint 2 → 5 itens</p>
+<p>Sprint 3 → 6 itens</p>
+<hr />
+<h3 id="metrica-3-densidade-de-defeitos-dd">Métrica 3 – Densidade de Defeitos (DD)</h3>
+<h4 id="o-que-medir_2">O que medir?</h4>
+<p>Quantidade de defeitos encontrados para cada User Story implementada.</p>
+<h4 id="como-coletar_2">Como coletar?</h4>
+<ol>
+<li>Contar os defeitos encontrados nos testes.</li>
+<li>Contar as User Stories implementadas.</li>
+<li>Aplicar a fórmula:</li>
+</ol>
+<p>DD = Defeitos Encontrados / User Stories Implementadas</p>
+<h4 id="valor-esperado_2">Valor esperado</h4>
+<p>≤ 1 defeito por US</p>
+<h4 id="exemplo_2">Exemplo</h4>
+<p>4 defeitos encontrados</p>
+<p>5 User Stories implementadas</p>
+<p>DD = 4 / 5</p>
+<p>DD = 0,8</p>
+<hr />
+<h3 id="metrica-4-taxa-de-rejeicao-de-testes">Métrica 4 – Taxa de Rejeição de Testes</h3>
+<h4 id="o-que-medir_3">O que medir?</h4>
+<p>Percentual de casos de teste reprovados.</p>
+<h4 id="como-coletar_3">Como coletar?</h4>
+<ol>
+<li>Contar os casos de teste executados.</li>
+<li>Contar os casos reprovados.</li>
+<li>Aplicar a fórmula:</li>
+</ol>
+<p>TR = (Casos Reprovados / Casos Executados) × 100</p>
+<h4 id="valor-esperado_3">Valor esperado</h4>
+<p>≤ 10%</p>
+<h4 id="exemplo_3">Exemplo</h4>
+<p>20 testes executados</p>
+<p>2 testes reprovados</p>
+<p>TR = (2 / 20) × 100</p>
+<p>TR = 10%</p>
+<hr />
+<h3 id="metrica-5-desvio-de-prazo">Métrica 5 – Desvio de Prazo</h3>
+<h4 id="o-que-medir_4">O que medir?</h4>
+<p>Percentual de atraso da Sprint.</p>
+<h4 id="como-coletar_4">Como coletar?</h4>
+<ol>
+<li>Registrar a data planejada.</li>
+<li>Registrar a data real.</li>
+<li>Calcular a diferença em dias.</li>
+<li>Aplicar a fórmula:</li>
+</ol>
+<p>DP = ((Data Real - Data Planejada) / Duração da Sprint) × 100</p>
+<h4 id="valor-esperado_4">Valor esperado</h4>
+<p>0%</p>
+<h4 id="tolerancia">Tolerância</h4>
+<p>Até 10%</p>
+<h4 id="exemplo_4">Exemplo</h4>
+<p>Sprint prevista para 8 dias</p>
+<p>Entrega ocorreu 1 dia depois</p>
+<p>DP = (1 / 8) × 100</p>
+<p>DP = 12,5%</p>
+<hr />
+<h2 id="registro-das-coletas">Registro das Coletas</h2>
+<h3 id="sprint-1">Sprint 1</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Métrica</th>
+<th style="text-align: left;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Taxa de conclusão da Sprint (%)</td>
+<td style="text-align: left;">100%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Itens Planejados</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Itens Concluídos</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Débito Técnico (%)</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Velocidade da Equipe</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Defeitos Encontrados</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">User Stories Implementadas</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Densidade de Defeitos</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Casos de Teste Executados</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Casos de Teste Reprovados</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Taxa de Rejeição (%)</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Desvio de Prazo (%)</td>
+<td style="text-align: left;">0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sprint-2">Sprint 2</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Métrica</th>
+<th style="text-align: left;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Taxa de conclusão da Sprint (%)</td>
+<td style="text-align: left;">100%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Itens Planejados</td>
+<td style="text-align: left;">5</td>
+</tr>
+<tr>
+<td style="text-align: left;">Itens Concluídos</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">Débito Técnico (%)</td>
+<td style="text-align: left;">20%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Velocidade da Equipe</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">Defeitos Encontrados</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">User Stories Implementadas</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Densidade de Defeitos</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Casos de Teste Executados</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Casos de Teste Reprovados</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Taxa de Rejeição (%)</td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Desvio de Prazo (%)</td>
+<td style="text-align: left;">25%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="sprint-3">Sprint 3</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Métrica</th>
+<th style="text-align: left;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Taxa de conclusão da Sprint (%)</td>
+<td style="text-align: left;">100%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Itens Planejados</td>
+<td style="text-align: left;">5</td>
+</tr>
+<tr>
+<td style="text-align: left;">Itens Concluídos</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">Débito Técnico (%)</td>
+<td style="text-align: left;">20%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Velocidade da Equipe</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">Defeitos Encontrados</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">User Stories Implementadas</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Densidade de Defeitos</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Casos de Teste Executados</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Casos de Teste Reprovados</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Taxa de Rejeição (%)</td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Desvio de Prazo (%)</td>
+<td style="text-align: left;">25%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="sprint-4">Sprint 4</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Métrica</th>
+<th style="text-align: left;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Taxa de conclusão da Sprint (%)</td>
+<td style="text-align: left;">100%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Itens Planejados</td>
+<td style="text-align: left;">5</td>
+</tr>
+<tr>
+<td style="text-align: left;">Itens Concluídos</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Débito Técnico (%)</td>
+<td style="text-align: left;">40%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Velocidade da Equipe</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Defeitos Encontrados</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">User Stories Implementadas</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Densidade de Defeitos</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Casos de Teste Executados</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Casos de Teste Reprovados</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Taxa de Rejeição (%)</td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Desvio de Prazo (%)</td>
+<td style="text-align: left;">37.5%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="sprint-5">Sprint 5</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Métrica</th>
+<th style="text-align: left;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Taxa de conclusão da Sprint (%)</td>
+<td style="text-align: left;">74.4%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Itens Planejados</td>
+<td style="text-align: left;">5</td>
+</tr>
+<tr>
+<td style="text-align: left;">Itens Concluídos</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">Débito Técnico (%)</td>
+<td style="text-align: left;">20%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Velocidade da Equipe</td>
+<td style="text-align: left;">5</td>
+</tr>
+<tr>
+<td style="text-align: left;">Defeitos Encontrados</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">User Stories Implementadas</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Casos de Teste Executados</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Casos de Teste Reprovados</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Taxa de Rejeição (%)</td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Desvio de Prazo (%)</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="sprint-6">Sprint 6</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Métrica</th>
+<th style="text-align: left;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Taxa de conclusão da Sprint (%)</td>
+<td style="text-align: left;">80%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Itens Planejados</td>
+<td style="text-align: left;">6</td>
+</tr>
+<tr>
+<td style="text-align: left;">Itens Concluídos</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Débito Técnico (%)</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Velocidade da Equipe</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Defeitos Encontrados</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">User Stories Implementadas</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Densidade de Defeitos</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Casos de Teste Executados</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Casos de Teste Reprovados</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Taxa de Rejeição (%)</td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Desvio de Prazo (%)</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="sprint-7">Sprint 7</h3>
+<p><em>(Replicar estrutura)</em></p>
+<hr />
+<h3 id="sprint-8">Sprint 8</h3>
+<p><em>(Replicar estrutura)</em></p>
+<hr />
+<h3 id="sprint-9">Sprint 9</h3>
+<p><em>(Replicar estrutura)</em></p>
+<hr />
+<h2 id="historico-consolidado">Histórico Consolidado</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Sprint</th>
+<th style="text-align: left;">DT (%)</th>
+<th style="text-align: left;">Velocidade</th>
+<th style="text-align: left;">DD</th>
+<th style="text-align: left;">Rejeição (%)</th>
+<th style="text-align: left;">Desvio Prazo (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Sprint 1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sprint 2</td>
+<td style="text-align: left;">25%</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0%</td>
+<td style="text-align: left;">25%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sprint 3</td>
+<td style="text-align: left;">25%</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0%</td>
+<td style="text-align: left;">25%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sprint 4</td>
+<td style="text-align: left;">40%</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0%</td>
+<td style="text-align: left;">37.5%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sprint 5</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0%</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Sprint 6</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Sprint 7</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Sprint 8</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Sprint 9</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="registro-de-testes-nao-funcionais">Registro de Testes Não Funcionais</h2>
+<h3 id="ct-02-validacao-de-contraste-e-tamanho">CT-02 — Validação de Contraste e Tamanho</h3>
+<h4 id="objetivo_1">Objetivo</h4>
+<p>Verificar se os elementos visuais do sistema possuem contraste adequado e tamanho de fonte legível para os usuários.</p>
+<h4 id="branch">Branch</h4>
+<p>Developer </p>
+<h4 id="arquivostelas-analisadas">Arquivos/Telas analisadas</h4>
+<ul>
+<li><code>base.html</code></li>
+<li><code>home.html</code></li>
+</ul>
+<h4 id="verificacoes-realizadas">Verificações realizadas</h4>
+<ul>
+<li>Contraste entre texto e fundo da navbar;</li>
+<li>Contraste dos botões principais;</li>
+<li>Legibilidade dos textos principais;</li>
+<li>Tamanho das fontes;</li>
+<li>Responsividade da interface;</li>
+<li>Navegação em telas disponíveis.</li>
+</ul>
+<h4 id="resultado-obtido">Resultado Obtido</h4>
+<p>A interface apresentou boa legibilidade geral. Os elementos textuais possuem contraste adequado com o fundo, especialmente na navbar e nos botões principais. O uso de classes do Bootstrap contribuiu para boa responsividade e organização visual.
+As fontes utilizadas apresentaram tamanho adequado para leitura confortável em desktop e dispositivos móveis.
+Algumas rotas ainda utilizam placeholders (“#”), impossibilitando a validação completa de determinadas páginas em desenvolvimento.</p>
+<h4 id="status">Status</h4>
+<p>Aprovado parcialmente.</p>
+<hr />
+<h3 id="relatorio-ct-02-branch-featureviewth">Relatório CT-02 — Branch feature/viewth</h3>
+<h4 id="telas-analisadas">Telas analisadas</h4>
+<ul>
+<li><code>login.html</code></li>
+<li><code>callback.html</code></li>
+<li><code>logout.html</code></li>
+</ul>
+<h4 id="objetivo_2">Objetivo</h4>
+<p>Validar contraste visual, tamanho dos elementos textuais e organização da interface.</p>
+<h4 id="verificacoes-realizadas_1">Verificações realizadas</h4>
+<ul>
+<li><strong>Contraste:</strong> Os elementos textuais apresentaram contraste adequado com o fundo da interface. Os botões principais utilizaram cores destacadas e legíveis, facilitando a identificação das ações pelo usuário.</li>
+<li><strong>Tamanho das fontes:</strong> Os títulos, textos e botões apresentaram tamanho adequado para leitura confortável. O uso de classes do Bootstrap como “display-5”, “fs-5” e “btn-lg” contribuiu positivamente para acessibilidade e usabilidade.</li>
+<li><strong>Organização visual:</strong> A interface apresentou boa hierarquia visual, centralização adequada dos elementos e espaçamento consistente entre componentes.</li>
+<li><strong>Responsividade:</strong> As páginas utilizam componentes responsivos do Bootstrap, apresentando boa adaptação visual para diferentes tamanhos de tela.</li>
+</ul>
+<h4 id="problemas-encontrados-observacoes">Problemas encontrados / Observações</h4>
+<ul>
+<li>Alguns textos utilizam a classe “text-muted”, que pode reduzir levemente a legibilidade em determinados dispositivos ou para usuários com baixa visão.</li>
+<li>Recomenda-se futura adição de atributos de acessibilidade, como “aria-label”, para melhorar compatibilidade com leitores de tela.</li>
+</ul>
+<h4 id="status_1">Status</h4>
+<p>CT-02 aprovado para as telas analisadas na branch feature/viewth.</p>
+<hr />
+<h3 id="relatorio-ct-02-branch-featurelogin">Relatório CT-02 — Branch feature/login</h3>
+<h4 id="telas-analisadas_1">Telas analisadas</h4>
+<ul>
+<li><code>base.html</code></li>
+<li><code>home.html</code></li>
+<li><code>login.html</code></li>
+</ul>
+<h4 id="objetivo_3">Objetivo</h4>
+<p>Validar contraste visual, tamanho de fontes, responsividade e acessibilidade das telas de login e navegação do sistema HopLife.</p>
+<h4 id="verificacoes-realizadas_2">Verificações realizadas</h4>
+<ul>
+<li><strong>Contraste:</strong> As telas apresentaram bom contraste entre elements textuais e fundos da interface. Os botões principais utilizaram cores fortes e legíveis, facilitando a identificação das ações disponíveis ao usuário. A navbar apresentou boa legibilidade, utilizando fundo laranja com textos claros e destacados.</li>
+<li><strong>Tamanho das fontes:</strong> Os títulos, textos e botões apresentaram tamanhos adequados para leitura confortável. O sistema utilizou classes responsivas do Bootstrap e definições de altura mínima adequadas para interação em dispositivos móveis. Os campos de entrada apresentaram boa área de clique e preenchimento visual confortável.</li>
+<li><strong>Responsividade:</strong> A interface demonstrou boa adaptação para diferentes tamanhos de tela, utilizando grid responsivo do Bootstrap e containers adaptáveis.</li>
+<li><strong>Acessibilidade:</strong> Foram identificadas boas práticas de acessibilidade: uso de labels explícitas; utilização de “aria-required” nos campos obrigatórios; botões com tamanho adequado; organização visual clara e consistente.</li>
+</ul>
+<h4 id="problemas-encontrados-observacoes_1">Problemas encontrados / Observações</h4>
+<ul>
+<li>O uso de “overflow: hidden” pode limitar a navegação em telas pequenas ou em casos de zoom elevado.</li>
+<li>Alguns textos utilizam a classe “text-muted”, podendo reduzir levemente a legibilidade em determinados dispositivos.</li>
+<li>Algumas rotas ainda utilizam placeholders (“#”), impossibilitando a validação completa de determinadas funcionalidades.</li>
+</ul>
+<h4 id="status_2">Status</h4>
+<p>CT-02 aprovado para as telas analisadas na branch feature/login.</p>
+<hr />
+<h3 id="relatorio-ct-02-branch-featureestilizando-base-html">Relatório CT-02 — Branch feature/estilizando-base-html</h3>
+<h4 id="telas-analisadas_2">Telas analisadas</h4>
+<ul>
+<li><code>base.html</code></li>
+<li><code>home.html</code></li>
+</ul>
+<h4 id="objetivo_4">Objetivo</h4>
+<p>Validar contraste visual, tamanho dos elementos textuais, responsividade e consistência visual da interface.</p>
+<h4 id="verificacoes-realizadas_3">Verificações realizadas</h4>
+<ul>
+<li><strong>Contraste:</strong> A navbar e o rodapé utilizam fundo escuro com texto claro, apresentando bom contraste e boa legibilidade. O link “Sair” utiliza destaque em amarelo, facilitando sua identificação.</li>
+<li><strong>Tamanho das fontes:</strong> A branch apresenta boa preocupação com legibilidade. A navbar utiliza textos com tamanho ampliado, como “fs-5”, e a marca “HopLife” aparece com destaque visual. O rodapé também utiliza texto em tamanho confortável.</li>
+<li><strong>Responsividade:</strong> A estrutura utiliza Bootstrap e contém botão de navegação responsiva com atributos de acessibilidade, como “aria-label”, “aria-controls” e “aria-expanded”. Isso contribui positivamente para navegação em telas menores.</li>
+</ul>
+<h4 id="problemas-encontrados-observacoes_2">Problemas encontrados / Observações</h4>
+<ul>
+<li>O arquivo <code>home.html</code> utiliza as classes “text-warm” e “btn-warm”, mas essas classes não foram definidas no <code>base.html</code> analisado. Isso pode causar perda de estilo nos títulos e botões da página inicial.</li>
+<li>Existem links com placeholder “#”, como “Minhas Metas”, “Conquistas” e “Sobre o HopLife”, indicando rotas ainda não implementadas ou não conectadas.</li>
+<li>A branch apresenta boa legibilidade geral, mas precisa corrigir a consistência entre os estilos usados no <code>home.html</code> e os estilos definidos no <code>base.html</code>.</li>
+</ul>
+<h4 id="status_3">Status</h4>
+<p>CT-02 aprovado parcialmente para a branch feature/estilizando-base-html, com necessidade de ajuste nas classes de estilo utilizadas pela página inicial.</p>
+<hr />
+<h2 id="entrevistas-de-validacao-com-usuarios-para-o-ponto-de-controle">Entrevistas de Validação com Usuários para o Ponto de Controle</h2>
+<p>Foram realizadas sessões de entrevista com dois usuários para avaliar a usabilidade, o layout e a clareza geral da interface do sistema. Durante os testes, buscou-se responder às seguintes questões centrais:</p>
+<ol>
+<li>O que achou do visual e da interface do site?</li>
+<li>Achou o site difícil de entender?</li>
+<li>O botão de ajuda é útil?</li>
+<li>Conseguiu entender bem como as metas funcionam?</li>
+</ol>
+<p>Abaixo estão registrados os feedbacks e observações consolidados de cada sessão.</p>
+<h3 id="usuario-1">Usuário 1</h3>
+<ul>
+<li><strong>Duração da Sessão:</strong> 18:47 minutos</li>
+</ul>
+<p><strong>Feedback Coletado:</strong></p>
+<ul>
+<li><strong>Visual e Interface:</strong> A interface foi avaliada de forma positiva, sendo considerada agradável e com um bom apelo visual.</li>
+<li><strong>Compreensão do Sistema:</strong> O sistema foi considerado fácil de entender. A navegação ocorreu de forma fluida.</li>
+<li><strong>Botão de Ajuda:</strong> O botão foi classificado como muito útil para orientar a navegação.</li>
+<li><strong>Metas e Categorias:</strong> O usuário conseguiu compreender perfeitamente a lógica de funcionamento das metas e a estruturação das categorias propostas pelo aplicativo.</li>
+</ul>
+<p><strong>Sugestões de Melhoria (U1):</strong></p>
+<ul>
+<li>Padronizar a nomenclatura: substituir menções à palavra "Hábitos" pela palavra "Metas" nas descrições do sistema, a fim de manter a consistência.</li>
+<li>Adicionar funcionalidades de agendamento flexível, permitindo que as metas sejam configuradas com frequência semanal, mensal ou para dias específicos da semana.</li>
+<li>Melhorar o texto do modal de ajuda informando que o campo de "Nome da Meta" é de formato livre (explicitar que é permitido inserir quantidades, dias ou informações textuais diversas na descrição).</li>
+</ul>
+<h3 id="usuario-2">Usuário 2</h3>
+<ul>
+<li><strong>Duração da Sessão:</strong> 14:28 minutos</li>
+</ul>
+<p><strong>Feedback Coletado:</strong></p>
+<ul>
+<li><strong>Visual e Interface:</strong> O design foi elogiado por ser visualmente limpo e bem estruturado.</li>
+<li><strong>Compreensão do Sistema:</strong> Considerou o fluxo fácil de entender e validou positivamente o objetivo geral do aplicativo. O usuário apontou que a funcionalidade de histórico é um recurso muito útil e uma excelente adição. No entanto, observou que as explicações de alguns elementos e botões clicáveis precisam ser mais claras.</li>
+<li><strong>Botão de Ajuda:</strong> Considerou o botão de ajuda útil.</li>
+<li><strong>Metas e Categorias:</strong> O funcionamento das metas e o propósito principal foram bem compreendidos.</li>
+</ul>
+<p><strong>Sugestões de Melhoria (U2):</strong></p>
+<ul>
+<li><strong>Tutoriais e Ajuda:</strong></li>
+<li>Incluir capturas de tela (imagens reais) da interface do site dentro dos slides do tutorial para melhorar o direcionamento visual do usuário.</li>
+<li>Considerar mover o botão de ajuda para a parte superior da tela.</li>
+<li>Ajustar a redação nos tutoriais, adicionando negrito na palavra "Hoje" (no tutorial de Minhas Metas) e incluir instruções diretas como "clicar no botão Hoje".</li>
+<li>Utilizar aspas para destacar termos e seções específicas nos tutoriais (ex: referenciar abas como "Minhas Metas" na home).</li>
+<li>Corrigir a concordância no modal de ajuda, alterando para "Basta clicar NO botão de interrogação".</li>
+<li><strong>Design e Navegação:</strong></li>
+<li>Alterar a cor da borda do botão de interrogação <code>(?)</code> para a cor laranja da paleta principal, substituindo a borda verde atual para criar maior destaque.</li>
+<li><strong>Funcionalidades de Metas:</strong></li>
+<li>Alterar a nomenclatura do campo de "Título" para "Objetivo" ou "Descrição".</li>
+<li>Adicionar a possibilidade de inserir um "comentário do dia" junto ao registro diário da meta.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

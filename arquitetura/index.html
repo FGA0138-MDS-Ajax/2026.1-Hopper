@@ -1,0 +1,2044 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../visao/">
+      
+      
+        <link rel="next" href="../PEP8/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Documento de Arquitetura - HopLife</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#hoplife" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="HopLife" class="md-header__button md-logo" aria-label="HopLife" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HopLife
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Documento de Arquitetura
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="HopLife" class="md-nav__button md-logo" aria-label="HopLife" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    HopLife
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documento de Visão
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documento de Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documento de Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#documento-de-arquitetura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documento de Arquitetura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-integrantes-do-grupo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela - Integrantes do Grupo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-revisoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Histórico de Revisões
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sumario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sumário
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Introdução
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Introdução">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-proposito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Propósito
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-escopo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Escopo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-representacao-arquitetural" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Representação Arquitetural
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Representação Arquitetural">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-definicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Definições
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-justifique-sua-escolha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Justifique sua escolha
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-detalhamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Detalhamento
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Detalhamento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#figura-1-arquitetura-do-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figura 1: Arquitetura do Sistema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Figura 1: Arquitetura do Sistema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url-dispatcher-urlspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        URL Dispatcher (urls.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-viewspy-logica-de-negocios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View (views.py - Lógica de Negócios)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template-interface-e-acessibilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template (Interface e Acessibilidade)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-modelspy-mapeamento-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model (models.py - Mapeamento de Dados)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banco-de-dados-sqlite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Banco de Dados (SQLite)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keycloak-gestao-de-identidade-iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keycloak (Gestão de Identidade - IAM)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sonarqube-analise-de-qualidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SonarQube (Análise de Qualidade)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-metas-e-restricoes-arquiteturais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Metas e restrições arquiteturais
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Metas e restrições arquiteturais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#padrao-de-codificacao-e-qualidade-continua-restricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Padrão de Codificação e Qualidade Contínua (Restrição)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tempo-de-resposta-e-usabilidade-meta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tempo de Resposta e Usabilidade (Meta)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#padronizacao-do-ambiente-de-execucao-restricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Padronização do Ambiente de Execução (Restrição)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delegacao-de-seguranca-e-autenticacao-restricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delegação de Segurança e Autenticação (Restrição)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estruturacao-da-logica-de-gamificacao-restricao-de-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estruturação da Lógica de Gamificação (Restrição de Design)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controle-de-eventos-e-requisicoes-restricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controle de Eventos e Requisições (Restrição)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#padronizacao-de-front-end-via-bootstrap-restricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Padronização de Front-end via Bootstrap (Restrição)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-visoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Visões
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Visões">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#251-visao-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5.1 Visão de uso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#figura-2-diagrama-de-caso-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figura 2: Diagrama de Caso de Uso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#252-visao-de-organizacao-logica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5.2 Visão de organização lógica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5.2 Visão de organização lógica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pacote-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pacote Core
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pacote-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pacote Usuários
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pacote-metas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pacote Metas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pacote-gamificacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pacote Gamificação
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#figura-3-diagrama-de-pacotes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figura 3: Diagrama de Pacotes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#253-visao-estrutural" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5.3 Visão estrutural
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5.3 Visão estrutural">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gestao-de-identidade-e-acessibilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gestão de Identidade e Acessibilidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-de-metas-e-historico-diario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrutura de Metas e Histórico Diário
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logica-de-controle-e-servicos-gamificacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lógica de Controle e Serviços (Gamificação)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#figura-4-diagrama-de-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figura 4: Diagrama de Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#figura-5-diagrama-de-componentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figura 5: Diagrama de Componentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#254-visao-de-implantacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5.4 Visão de Implantação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#figura-6-diagrama-de-implantacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figura 6: Diagrama de Implantação
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-restricoes-adicionais-e-atributos-de-qualidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Restrições Adicionais e Atributos de Qualidade
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6 Restrições Adicionais e Atributos de Qualidade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#261-restricoes-negociais-e-de-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6.1 Restrições Negociais e de Acesso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#262-atributos-de-qualidade-do-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6.2 Atributos de Qualidade do Software
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#263-seguranca-e-perfis-de-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6.3 Segurança e Perfis de Acesso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-1-permissoes-e-justificativas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 1: Permissões e Justificativas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bibliografia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Bibliografia
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PEP8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PEP 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuracoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Itens de Configuração e Política de Branches
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../relatorios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Relatórios de Métricas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#documento-de-arquitetura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documento de Arquitetura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-integrantes-do-grupo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela - Integrantes do Grupo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-revisoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Histórico de Revisões
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sumario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sumário
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Introdução
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Introdução">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-proposito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Propósito
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-escopo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Escopo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-representacao-arquitetural" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Representação Arquitetural
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Representação Arquitetural">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-definicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Definições
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-justifique-sua-escolha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Justifique sua escolha
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-detalhamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Detalhamento
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Detalhamento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#figura-1-arquitetura-do-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figura 1: Arquitetura do Sistema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Figura 1: Arquitetura do Sistema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url-dispatcher-urlspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        URL Dispatcher (urls.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-viewspy-logica-de-negocios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View (views.py - Lógica de Negócios)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template-interface-e-acessibilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template (Interface e Acessibilidade)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-modelspy-mapeamento-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model (models.py - Mapeamento de Dados)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banco-de-dados-sqlite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Banco de Dados (SQLite)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keycloak-gestao-de-identidade-iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keycloak (Gestão de Identidade - IAM)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sonarqube-analise-de-qualidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SonarQube (Análise de Qualidade)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-metas-e-restricoes-arquiteturais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Metas e restrições arquiteturais
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Metas e restrições arquiteturais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#padrao-de-codificacao-e-qualidade-continua-restricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Padrão de Codificação e Qualidade Contínua (Restrição)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tempo-de-resposta-e-usabilidade-meta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tempo de Resposta e Usabilidade (Meta)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#padronizacao-do-ambiente-de-execucao-restricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Padronização do Ambiente de Execução (Restrição)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delegacao-de-seguranca-e-autenticacao-restricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delegação de Segurança e Autenticação (Restrição)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estruturacao-da-logica-de-gamificacao-restricao-de-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estruturação da Lógica de Gamificação (Restrição de Design)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controle-de-eventos-e-requisicoes-restricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controle de Eventos e Requisições (Restrição)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#padronizacao-de-front-end-via-bootstrap-restricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Padronização de Front-end via Bootstrap (Restrição)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-visoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Visões
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Visões">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#251-visao-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5.1 Visão de uso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#figura-2-diagrama-de-caso-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figura 2: Diagrama de Caso de Uso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#252-visao-de-organizacao-logica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5.2 Visão de organização lógica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5.2 Visão de organização lógica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pacote-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pacote Core
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pacote-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pacote Usuários
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pacote-metas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pacote Metas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pacote-gamificacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pacote Gamificação
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#figura-3-diagrama-de-pacotes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figura 3: Diagrama de Pacotes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#253-visao-estrutural" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5.3 Visão estrutural
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5.3 Visão estrutural">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gestao-de-identidade-e-acessibilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gestão de Identidade e Acessibilidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-de-metas-e-historico-diario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrutura de Metas e Histórico Diário
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logica-de-controle-e-servicos-gamificacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lógica de Controle e Serviços (Gamificação)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#figura-4-diagrama-de-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figura 4: Diagrama de Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#figura-5-diagrama-de-componentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figura 5: Diagrama de Componentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#254-visao-de-implantacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5.4 Visão de Implantação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#figura-6-diagrama-de-implantacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figura 6: Diagrama de Implantação
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-restricoes-adicionais-e-atributos-de-qualidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Restrições Adicionais e Atributos de Qualidade
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6 Restrições Adicionais e Atributos de Qualidade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#261-restricoes-negociais-e-de-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6.1 Restrições Negociais e de Acesso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#262-atributos-de-qualidade-do-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6.2 Atributos de Qualidade do Software
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#263-seguranca-e-perfis-de-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6.3 Segurança e Perfis de Acesso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-1-permissoes-e-justificativas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 1: Permissões e Justificativas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bibliografia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Bibliografia
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="hoplife">HOPLIFE</h1>
+<h2 id="documento-de-arquitetura">Documento de Arquitetura</h2>
+<p><strong>Versão 1.1</strong></p>
+<hr />
+<h2 id="tabela-integrantes-do-grupo">Tabela - Integrantes do Grupo</h2>
+<table>
+<thead>
+<tr>
+<th>Matrícula</th>
+<th>Nome</th>
+<th>Função (responsabilidade)</th>
+<th>Pontos de participação na elaboração</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>242028628</td>
+<td>Arthur Rezende Barreto</td>
+<td></td>
+<td>10</td>
+</tr>
+<tr>
+<td>222006570</td>
+<td>Arthur Souto Santos</td>
+<td></td>
+<td>10</td>
+</tr>
+<tr>
+<td>241012131</td>
+<td>Davi Barbosa Alves</td>
+<td></td>
+<td>10</td>
+</tr>
+<tr>
+<td>242015586</td>
+<td>Daniel Almeida Torquato</td>
+<td></td>
+<td>10</td>
+</tr>
+<tr>
+<td>232002717</td>
+<td>Gabriela de Paula Nascimento</td>
+<td></td>
+<td>10</td>
+</tr>
+<tr>
+<td>222008824</td>
+<td>Ithalo Ribeiro Dias</td>
+<td></td>
+<td>10</td>
+</tr>
+<tr>
+<td>241012042</td>
+<td>Levi Evangelista Santos</td>
+<td></td>
+<td>10</td>
+</tr>
+<tr>
+<td>232014511</td>
+<td>Maria Eduarda do Nascimento Vieira</td>
+<td></td>
+<td>10</td>
+</tr>
+<tr>
+<td>232021928</td>
+<td>Maria Eduarda Rodrigues Morais</td>
+<td></td>
+<td>10</td>
+</tr>
+<tr>
+<td>242005051</td>
+<td>Roberto de Oliveira Brito Filho</td>
+<td></td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Pontos de participação dos membros da equipe.<br />
+Devem fechar 100 pontos para toda a equipe.</p>
+</blockquote>
+<hr />
+<h2 id="historico-de-revisoes">Histórico de Revisões</h2>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>14/05/2026</td>
+<td>1.0</td>
+<td>Criação do Documento</td>
+<td>Equipe Hopper</td>
+</tr>
+<tr>
+<td>02/06/2026</td>
+<td>1.1</td>
+<td>Correções textuais, ajustes estruturais e revisão geral</td>
+<td>Arthur Rezede</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="sumario">Sumário</h2>
+<ul>
+<li>1 Introdução</li>
+<li>1.1 Propósito</li>
+<li>1.2 Escopo</li>
+<li>2 Representação Arquitetural</li>
+<li>2.1 Definições</li>
+<li>2.2 Justifique sua escolha.</li>
+<li>2.3 Detalhamento</li>
+<li>2.4 Metas e restrições arquiteturais</li>
+<li>2.5 Visões<ul>
+<li>2.5.1 Visão de uso</li>
+<li>2.5.2 Visão de organização lógica</li>
+<li>2.5.3 Visão estrutural</li>
+<li>2.5.4 Visão de Implantação</li>
+</ul>
+</li>
+<li>2.6 Restrições Adicionais e Atributos de Qualidade<ul>
+<li>2.6.1 Restrições Negociais e de Acesso</li>
+<li>2.6.2 Atributos de Qualidade do Software</li>
+<li>2.6.3 Segurança e Perfis de Acesso</li>
+</ul>
+</li>
+<li>3 Bibliografia</li>
+</ul>
+<hr />
+<h2 id="1-introducao">1 Introdução</h2>
+<h3 id="11-proposito">1.1 Propósito</h3>
+<p>O presente documento tem como objetivo descrever a arquitetura do sistema Hoplife, desenvolvido pelo Grupo Hopper na disciplina de Métodos de Desenvolvimento de Software (MDS), referente ao primeiro semestre de 2026. O documento busca fornecer uma visão técnica abrangente da estrutura do software, apresentando os principais componentes arquiteturais, tecnologias adotadas, padrões de desenvolvimento, mecanismos de integração e a estratégia de gamificação baseada no framework Octalysis (CHOU, 2019), fundamental para as decisões técnicas relacionadas à construção da aplicação.</p>
+<p>Além disso, este documento serve como referência para desenvolvedores, analistas de qualidade, testadores e demais stakeholders envolvidos no projeto, auxiliando na padronização do desenvolvimento, manutenção, evolução e validação do sistema ao longo das sprints.</p>
+<p>A arquitetura proposta foi definida considerando os requisitos funcionais e não funcionais identificados no documento de visão do produto, com foco principal em acessibilidade, usabilidade, segurança, organização modular e facilidade de manutenção. Dessa forma, o documento descreve como tecnologias como Django, Bootstrap, SQLite, Docker, Keycloak e SonarQube serão utilizadas e integradas para garantir o funcionamento adequado da aplicação web, oferecendo suporte técnico para a implementação dos impulsos de engajamento (Core Drives) do Octalysis previstos para o público idoso.</p>
+<hr />
+<h3 id="12-escopo">1.2 Escopo</h3>
+<p>O detalhamento completo do escopo encontra-se descrito no arquivo "Grupo Hopper - Documento Visão". Em linhas gerais, o escopo do sistema Hoplife compreende o desenvolvimento de uma aplicação web voltada ao gerenciamento de metas pessoais e organização cotidiana, com foco em acessibilidade e inclusão digital para usuários idosos ou com baixa familiaridade tecnológica (FARIAS et al., 2015).</p>
+<p>O sistema permitirá que os usuários realizem cadastro e autenticação, criem, editem, organizem e acompanhem metas pessoais de maneira simples e intuitiva. Além disso, a aplicação contará com recursos de acessibilidade visual e motora, como botões ampliados, alto contraste, navegação simplificada e mecanismos de prevenção de cliques acidentais (FARIAS et al., 2015).</p>
+<p>O produto também incluirá funcionalidades de categorização de metas, acompanhamento visual de progressos, lembretes, sistema de gamificação leve com feedback positivo e mecanismos de ajuda contextual, visando aumentar o engajamento sem comprometer a clareza da interface.</p>
+<hr />
+<h2 id="2-representacao-arquitetural">2 Representação Arquitetural</h2>
+<h3 id="21-definicoes">2.1 Definições</h3>
+<p>O sistema será construído sob o estilo arquitetural monolítico, funcionando como uma aplicação web do tipo cliente-servidor e baseada no padrão estrutural Model-View-Template (MVT), nativo do framework Django (DJANGO SOFTWARE FOUNDATION, 2026). A solução organiza-se de forma lógica: a interface com o usuário (Template) focará em acessibilidade utilizando Bootstrap e em estratégias de engajamento baseadas no framework Octalysis (CHOU, 2019); enquanto a lógica de negócios (View) e a persistência de dados (Model) serão centralizadas no Django, comunicando-se com o banco de dados SQLite.</p>
+<p>Além disso, a arquitetura expande o modelo monolítico tradicional ao integrar serviços externos em contêineres Docker. Essa abordagem garante a modularidade da infraestrutura, delegando a gestão de identidade e autenticação para o Keycloak (KEYCLOAK, 2026), enquanto a qualidade e a padronização do código-fonte são monitoradas continuamente através do SonarQube.</p>
+<hr />
+<h3 id="22-justifique-sua-escolha">2.2 Justifique sua escolha</h3>
+<p>As decisões arquiteturais e tecnológicas detalhadas neste documento foram orientadas diretamente pelas restrições e objetivos estabelecidos no "Grupo Hopper - Documento Visão" e na declaração de escopo do projeto. Considerando que o Hoplife é focado na acessibilidade para o público idoso e deve ser desenvolvido sob o prazo estrito do calendário acadêmico, optou-se pela arquitetura monolítica modular. Essa abordagem garante maior agilidade de implementação, curva de aprendizado menor para a equipe e facilidade de manutenção em comparação a soluções distribuídas. </p>
+<p>O Django (padrão MVT) foi selecionado como framework principal devido à sua rapidez de desenvolvimento, segurança nativa e forte integração com a linguagem Python (DJANGO SOFTWARE FOUNDATION, 2026). Essa escolha permite que a equipe foque na implementação do escopo descrito no documento, como a gamificação estruturada pelo framework Octalysis e a gestão de metas, em vez de despender esforço excessivo em configurações estruturais. Em alinhamento com a necessidade de simplicidade e eficiência para a fase atual do projeto, o banco de dados SQLite foi escolhido por dispensar configurações complexas de servidor. </p>
+<p>Para atender aos requisitos não funcionais de segurança e proteção de dados ressaltados no Documento Visão, o Keycloak será utilizado para gerenciar a autenticação e o controle de acesso de forma externa e robusta (KEYCLOAK, 2026). Por fim, para assegurar a consistência do trabalho da equipe ao longo das sprints, o Docker foi adotado visando padronizar o ambiente de desenvolvimento entre todos os integrantes (DOCKER INC., 2026), enquanto o SonarQube atuará na análise contínua da qualidade do código entregue.</p>
+<hr />
+<h3 id="23-detalhamento">2.3 Detalhamento</h3>
+<h4 id="figura-1-arquitetura-do-sistema">Figura 1: Arquitetura do Sistema</h4>
+<p><img alt="Diagrama da arquitetura monolítica modular do HopLife mostrando o fluxo de requisição do navegador web, passando pelo roteador, camadas MVT do Django conectadas ao banco de dados SQLite local, e os serviços externos Keycloak e SonarQube integrados via contêineres Docker." src="../arquiteturaimgs/DiagramaDeArquitetura.jpeg" /></p>
+<blockquote>
+<p>Fonte: Elaboração própria</p>
+</blockquote>
+<p>A figura 1 ilustra a arquitetura do sistema Hoplife, fundamentada no estilo Monolítico Modular com integração de serviços externos. Para atender às necessidades do projeto, os elementos genéricos desta arquitetura foram instanciados com as seguintes tecnologias: a Camada Cliente é instanciada pelos navegadores web padrão utilizados pelos usuários; a Camada de Aplicação (padrão MVT) é instanciada pelo framework Django (compondo o roteamento com urls.py, a lógica de gamificação nas funções Views, o mapeamento dos dados no Model, e as interfaces web nos Templates em Bootstrap); a Camada de Persistência é instanciada pelo banco de dados em arquivo único SQLite; e a Infraestrutura Externa é composta por contêineres Docker executando o Keycloak (para gestão de identidade) e o SonarQube (para garantia de qualidade). </p>
+<p>Para garantir o funcionamento coeso da aplicação e a correta aplicação das regras de negócio, cada elemento do estilo arquitetural possui responsabilidades e interfaces estritamente definidas: </p>
+<h5 id="url-dispatcher-urlspy">URL Dispatcher (urls.py)</h5>
+<p><strong>Responsabilidade:</strong> Atuar como o roteador inicial do módulo. Ele lê o endereço acessado e encaminha a requisição para o processamento correspondente no back-end. </p>
+<p><strong>Interface (Regras de uso):</strong> Recebe como entrada requisições HTTP do navegador e mapeia padrões de URL acionando a respectiva função na View. </p>
+<h5 id="view-viewspy-logica-de-negocios">View (views.py - Lógica de Negócios)</h5>
+<p><strong>Responsabilidade:</strong> É o "cérebro" da aplicação. Orquestra a segurança, aplica a lógica do sistema de metas e processa as estratégias de gamificação propostas. </p>
+<p><strong>Interface (Regras de uso):</strong> Espera receber dados de formulários e tokens de sessão. Produz como saída comandos para o Model e injeta os dados processados (contexto) no Template. </p>
+<h5 id="template-interface-e-acessibilidade">Template (Interface e Acessibilidade)</h5>
+<p><strong>Responsabilidade:</strong> Desenhar a interface visual final. É o componente responsável por garantir a acessibilidade visual para o público idoso utilizando Bootstrap (BOOTSTRAP TEAM, 2026), além de tangibilizar os impulsos do framework Octalysis (como gráficos de progresso). </p>
+<p><strong>Interface (Regras de uso):</strong> Recebe variáveis embutidas pela View e produz o código HTML/CSS renderizado retornado ao navegador. </p>
+<h5 id="model-modelspy-mapeamento-de-dados">Model (models.py - Mapeamento de Dados)</h5>
+<p><strong>Responsabilidade:</strong> Abstrair a complexidade de consultas SQL através da herança nativa do Django (DJANGO SOFTWARE FOUNDATION, 2026). Converte as regras de negócio em tabelas relacionais de forma automática. </p>
+<p><strong>Interface (Regras de uso):</strong> Recebe chamadas de métodos Python da View e as traduz em comandos de leitura/escrita no banco de dados. </p>
+<h5 id="banco-de-dados-sqlite">Banco de Dados (SQLite)</h5>
+<p><strong>Responsabilidade:</strong> Garantir o armazenamento local, leve e seguro de todo o conteúdo gerado dentro do sistema. </p>
+<p><strong>Interface (Regras de uso):</strong> Opera isolado da rede externa, recebendo entradas exclusivamente do componente Model do Django. </p>
+<h5 id="keycloak-gestao-de-identidade-iam">Keycloak (Gestão de Identidade - IAM)</h5>
+<p><strong>Responsabilidade:</strong> Centralizar o cadastro e a autenticação, eximindo o monólito principal de lidar com o armazenamento direto de senhas. </p>
+<p><strong>Interface (Regras de uso):</strong> Comunica-se com o sistema via protocolo OpenID Connect (OIDC). Recebe requisições de login redirecionadas pela View e devolve Tokens que confirmam a autorização (KEYCLOAK, 2026). </p>
+<h5 id="sonarqube-analise-de-qualidade">SonarQube (Análise de Qualidade)</h5>
+<p><strong>Responsabilidade:</strong> Atuar como o inspetor contínuo do código-fonte. Embora não opere diretamente durante o acesso do usuário final, é responsável por garantir que o código escrito nas camadas View, Model e Urls esteja livre de vulnerabilidades e siga o padrão PEP 8.</p>
+<p><strong>Interface (Regras de uso):</strong> Recebe o código-fonte da aplicação como entrada e produz como saída relatórios de métricas e alertas de code smells para a equipe de desenvolvimento. </p>
+<hr />
+<h3 id="24-metas-e-restricoes-arquiteturais">2.4 Metas e restrições arquiteturais</h3>
+<p>Para garantir que o sistema Hoplife atenda aos seus requisitos funcionais e não funcionais, bem como aos padrões de qualidade exigidos para o projeto, foram estabelecidas as seguintes metas e restrições arquiteturais: </p>
+<h5 id="padrao-de-codificacao-e-qualidade-continua-restricao">Padrão de Codificação e Qualidade Contínua (Restrição)</h5>
+<p><strong>Descrição:</strong> Todo o código-fonte desenvolvido em Python para o Back-End (Django) deve seguir rigorosamente as diretrizes da PEP 8 (VAN ROSSUM; WARSAW; COGHLAN, 2026). Além disso, o código deve passar pela esteira de análise estática do SonarQube. </p>
+<p><strong>Justificativa:</strong> A adoção da PEP 8 garante a legibilidade e a padronização do código entre todos os membros da equipe, facilitando a manutenção e a revisão por pares (Code Review). O uso do SonarQube atua como um portão de qualidade (Quality Gate), bloqueando a integração de códigos com vulnerabilidades, code smells ou baixa cobertura de testes. </p>
+<h5 id="tempo-de-resposta-e-usabilidade-meta">Tempo de Resposta e Usabilidade (Meta)</h5>
+<p><strong>Descrição:</strong> O sistema deve ser capaz de processar e renderizar as páginas principais (como o dashboard de metas e gráficos de progresso) em um tempo máximo de 2 segundos para 95% das requisições em condições normais de rede. </p>
+<p><strong>Justificativa:</strong> Como o público-alvo é composto por idosos, a fluidez da navegação é um fator crítico para a acessibilidade e retenção (FARIAS et al., 2015). Tempos de carregamento elevados podem gerar frustração, confusão ("será que cliquei certo?") e abandono da plataforma. </p>
+<h5 id="padronizacao-do-ambiente-de-execucao-restricao">Padronização do Ambiente de Execução (Restrição)</h5>
+<p><strong>Descrição:</strong> O servidor de aplicação Django e os serviços de suporte, como o Keycloak, devem ser executados através de contêineres Docker (DOCKER INC., 2026). O banco de dados SQLite será armazenado internamente ao contêiner da aplicação. </p>
+<p><strong>Justificativa:</strong> Esta restrição elimina o risco de inconsistências entre os ambientes de desenvolvimento dos integrantes da equipe (o clássico problema do "funciona na minha máquina"). Garante também que a implantação (deploy) nos ambientes de homologação e produção ocorra de forma idêntica e isolada. </p>
+<h5 id="delegacao-de-seguranca-e-autenticacao-restricao">Delegação de Segurança e Autenticação (Restrição)</h5>
+<p><strong>Descrição:</strong> É expressamente restrito o desenvolvimento de lógicas próprias de criptografia e armazenamento direto de senhas no banco de dados da aplicação. Toda a gestão de identidade e controle de acesso (IAM) deve ser delegada ao Keycloak. </p>
+<p><strong>Justificativa:</strong> A segurança da informação é um domínio complexo. Utilizar uma ferramenta consolidada no mercado como o Keycloak via protocolo OIDC (KEYCLOAK, 2026) garante a proteção dos dados sensíveis dos usuários contra vazamentos, além de fornecer mecanismos robustos de recuperação de conta e bloqueio de tentativas de invasão sem onerar o desenvolvimento da lógica de negócios. </p>
+<h5 id="estruturacao-da-logica-de-gamificacao-restricao-de-design">Estruturação da Lógica de Gamificação (Restrição de Design)</h5>
+<p><strong>Descrição:</strong> As funcionalidades de engajamento implementadas nas Views e Models do Django devem se restringir a instanciar impulsos White Hat do framework Octalysis (especificamente os Drives 1, 2 e 8) (CHOU, 2019), com foco em reforço positivo. </p>
+<p><strong>Justificativa:</strong> Restringir o escopo da gamificação evita a criação de dinâmicas agressivas ou punitivas (como contadores de tempo e escassez) que poderiam gerar ansiedade em usuários idosos. A arquitetura deve suportar apenas o processamento de dados que gerem mensagens motivacionais, gráficos de evolução e sequências (streaks) saudáveis </p>
+<h5 id="controle-de-eventos-e-requisicoes-restricao">Controle de Eventos e Requisições (Restrição)</h5>
+<p><strong>Descrição:</strong> Caso a opção de acessibilidade motora seja ativada o Front-end deve utilizar técnicas de interceptação (como debounce e dead zones) na comunicação com o Django.  </p>
+<p><strong>Justificativa:</strong> Essa medida impede que toques acidentais ou repetidos, muito comuns em usuários com dificuldades motoras, gerem múltiplas requisições HTTP simultâneas. Isso evita o travamento do sistema e o registro duplicado de informações no banco de dados SQLite. </p>
+<h5 id="padronizacao-de-front-end-via-bootstrap-restricao">Padronização de Front-end via Bootstrap (Restrição)</h5>
+<p><strong>Descrição:</strong> A construção da interface visual (Camada Template) está restrita ao uso do framework Bootstrap.  </p>
+<p><strong>Justificativa:</strong> Essa restrição estrutural elimina a necessidade de estilização manual extensiva e garante que o sistema atenda nativamente aos requisitos não funcionais de opções de acessibilidade visual do público idoso (como contraste mínimo de 4,5:1 e botões com área mínima de toque de 44x44 pixels). </p>
+<hr />
+<h3 id="25-visoes">2.5 Visões</h3>
+<p>Nesta seção, a arquitetura do sistema HopLife é detalhada através de diferentes perspectivas, abrangendo desde o escopo funcional até a organização lógica e física dos componentes. </p>
+<h4 id="251-visao-de-uso">2.5.1 Visão de uso</h4>
+<p>A visão de uso estabelece o escopo funcional do HopLife, focando na interação entre o usuário final e as capacidades do sistema para promover a organização pessoal e o engajamento através da gamificação. </p>
+<p><strong>Resumo do Escopo:</strong> O HopLife é uma plataforma de gerenciamento de metas pessoais voltada especificamente para o público idoso (60+). O sistema se diferencia por oferecer uma interface adaptável, onde o usuário pode configurar os parâmetros de acessibilidade visual e motora, além de receber incentivos comportamentais baseados nos drivers 1, 2 e 8 do framework Octalysis (CHOU, 2019). </p>
+<p>A Figura 2 apresenta o diagrama de caso de uso do sistema, identificando o idoso como ator principal e o Keycloak como ator secundário.</p>
+<h4 id="figura-2-diagrama-de-caso-de-uso">Figura 2: Diagrama de Caso de Uso</h4>
+<p><img alt="Diagrama de Casos de Uso detalhando as interações do usuário idoso e do administrador com o sistema HopLife, incluindo o fluxo de login autenticado pelo Keycloak, gerenciamento de metas diárias, visualização do progresso de gamificação e ajuste das configurações de acessibilidade." src="../arquiteturaimgs/DiagramaDeCasoDeUso.jpeg" /></p>
+<blockquote>
+<p>Fonte: Elaboração Própria </p>
+</blockquote>
+<p>Conforme ilustrado na Figura 2, o usuário idoso é o principal ator do sistema, podendo logar no sistema, gerenciar metas pessoais, acompanhar seu progresso e configurar recursos de acessibilidade. O Keycloak participa do processo de autenticação, garantindo que o acesso às funcionalidades ocorra de forma segura e centralizada. Os casos de uso representados demonstram as funcionalidades essenciais previstas para atender às necessidades de organização pessoal e engajamento dos usuários.</p>
+<hr />
+<h4 id="252-visao-de-organizacao-logica">2.5.2 Visão de organização lógica</h4>
+<p>A organização lógica do Hoplife foi projetada utilizando a modularização nativa do framework Django (Apps), agrupando a arquitetura MVT (Models, Views e Templates) em pacotes focados no domínio do negócio. O software é subdividido nos seguintes pacotes principais: </p>
+<h5 id="pacote-core">Pacote Core</h5>
+<p><strong>Razão Lógica:</strong> É o alicerce estrutural do sistema. Contém as Views da Página Inicial (HomeView) e lógica do tutorial de primeiro acesso (TutorialView).</p>
+<p><strong>Interfaces de Comunicação:</strong> Fornece os Templates Base (Bootstrap) e os Scripts Estáticos (Acessibilidade). É o pacote central do sistema: não depende de nenhum outro, mas recebe setas de dependência de todos os demais (Usuários, Metas e Gamificação), que herdam sua estrutura visual. </p>
+<h5 id="pacote-usuarios">Pacote Usuários</h5>
+<p><strong>Razão Lógica:</strong> Responsável pelo gerenciamento de identidade. Contém o Model de Idoso (para salvar preferências) e as Views responsáveis pelo Perfil e pelo Login OIDC (integração com Keycloak). </p>
+<p><strong>Interfaces de Comunicação:</strong> Aponta para o Core para herdar a estrutura visual. Funciona como base de dados para os pacotes de Metas e Gamificação, que precisam saber quem é o usuário logado para funcionar. </p>
+<h5 id="pacote-metas">Pacote Metas</h5>
+<p><strong>Razão Lógica:</strong> Gerencia as atividades diárias. Possui os Models de Meta e Categoria (US4, US5 e US6). Também abriga as Views focadas no CRUD de Metas (CriarMetaView, ListarMetasView, ConcluirMetaView e DeletarMetaView). Suas respostas são enviadas para os Templates de Telas HTML. </p>
+<p><strong>Interfaces de Comunicação:</strong> Possui setas de dependência apontando para o Usuários (para atrelar a tarefa ao perfil) e para o Core. Além disso, envia eventos de conclusão de tarefas que são interceptados pelo pacote de Gamificação. </p>
+<h5 id="pacote-gamificacao">Pacote Gamificação</h5>
+<p><strong>Razão Lógica:</strong> É o motor de retenção do idoso. Estrutura-se com os Models de Progresso e Recompensa (US9). Suas lógicas de negócio funcionam como uma Calculadora Octalysis (CalcularOfensivaView e GerarGraficoView - US7), renderizando os resultados nos Templates Gráficos HTML. </p>
+<p><strong>Interfaces de Comunicação:</strong> É o pacote com mais dependências. Aponta para Metas (para saber quais tarefas foram concluídas), para Usuários (para atualizar a pontuação do idoso) e para o Core (para renderizar os gráficos na interface base). </p>
+<p>A Figura 3 apresenta a organização lógica dos pacotes do sistema.</p>
+<h4 id="figura-3-diagrama-de-pacotes">Figura 3: Diagrama de Pacotes</h4>
+<p><img alt="Diagrama de pacotes organizacionais do Django mostrando a separação lógica do HopLife em quatro módulos: pacote core para páginas e scripts de acessibilidade, pacote usuários para perfis e login OIDC, pacote metas para o CRUD e categorias, e o pacote gamificação para controle de streaks e recompensas." src="../arquiteturaimgs/DiagramaDePacotes.jpeg" /></p>
+<blockquote>
+<p>Fonte: Elaboração Própria </p>
+</blockquote>
+<p>Conforme apresentado na Figura 3, a separação em pacotes favorece a modularidade do sistema, reduzindo o acoplamento entre funcionalidades e facilitando a manutenção e evolução da aplicação.</p>
+<hr />
+<h4 id="253-visao-estrutural">2.5.3 Visão estrutural</h4>
+<p>A Figura 4 apresenta o diagrama de classes do HopLife, ilustrando a estrutura de dados e as regras de negócio do sistema, seguindo os princípios de separação de responsabilidades (MVT). A arquitetura foi desenhada para garantir a persistência das configurações de acessibilidade e viabilizar o acompanhamento diário de hábitos. </p>
+<p>As classes estão organizadas em três frentes principais de responsabilidade: </p>
+<h5 id="gestao-de-identidade-e-acessibilidade">Gestão de Identidade e Acessibilidade</h5>
+<p><strong>Usuario:</strong> Classe central que representa o idoso no sistema. Ela armazena os dados básicos e o keycloak_id, garantindo que a autenticação seja delegada de forma segura ao serviço Keycloak. </p>
+<p><strong>ConfiguracaoAcessibilidade:</strong> Diretamente associada ao usuário (relação 1 para 1), esta classe garante que as preferências visuais (tamanho do texto e dos botões) e motoras sejam salvas no banco de dados. Isso permite que o idoso tenha a mesma experiência adaptada, independentemente do dispositivo (celular, tablet ou computador) que utilize para acessar o HopLife. </p>
+<h5 id="estrutura-de-metas-e-historico-diario">Estrutura de Metas e Histórico Diário</h5>
+<p>O sistema adota um modelo de rastreamento de hábitos contínuo, separando a definição do hábito do seu cumprimento diário: </p>
+<p><strong>Meta:</strong> Representa o objetivo criado pelo usuário (ex: "Tomar remédio"). É a entidade "pai" que gerencia o propósito da tarefa. </p>
+<p><strong>RegistroDiario:</strong> Através de uma relação de composição forte, cada Meta possui múltiplos registros diários. O atributo status_conclusao (Enum) é o grande diferencial, permitindo registrar precisamente se o idoso cumpriu o hábito (Check), falhou (X) ou se o dia foi neutro (Branco). Essa granularidade é fundamental para gerar gráficos precisos. </p>
+<h5 id="logica-de-controle-e-servicos-gamificacao">Lógica de Controle e Serviços (Gamificação)</h5>
+<p>Para evitar a sobrecarga de responsabilidades nos modelos de dados, a inteligência do sistema foi abstraída em controladores e serviços: </p>
+<p><strong>MetaController:</strong> Atua como a interface de controle (View do Django). É o maestro que recebe as requisições do Front-end (como criar uma meta ou atualizar o dia) e manipula o RegistroDiario correspondente. Ele também é o ponto onde são tratadas as lógicas de proteção motora, como ignorar múltiplos cliques acidentais. </p>
+<p><strong>GamificacaoService:</strong> Concentra toda a lógica de retenção de usuários. Em vez de operar com sistemas complexos de pontuação, este serviço atua analisando o RegistroDiario para calcular os dias seguidos (calcular_streak_atual). Com base nesse streak, ele seleciona mensagens de reforço positivo (sortear_mensagem_diaria) e processa os dados em formato JSON para alimentar os gráficos visuais (processar_dados_grafico), focando na satisfação e no encorajamento do idoso. </p>
+<h4 id="figura-4-diagrama-de-classes">Figura 4: Diagrama de Classes</h4>
+<p><img alt="Diagrama de Classes contendo a modelagem de dados do sistema, destacando as entidades Usuario, ConfiguracaoAcessibilidade, Meta e RegistroDiario, bem como as classes de controle MetaController e o serviço auxiliar GamificacaoService com seus respectivos atributos e métodos." src="../arquiteturaimgs/DiagramaDeClasses.jpeg" /></p>
+<blockquote>
+<p>Fonte: Elaboração Própria </p>
+</blockquote>
+<p>Conforme apresentado na Figura 4, o modelo estrutural organiza as entidades centrais do sistema em torno do usuário e de suas metas. As associações entre Usuario, ConfiguracaoAcessibilidade, Meta e RegistroDiario permitem a persistência das preferências de acessibilidade e do histórico de cumprimento das atividades. Além disso, as classes MetaController e GamificacaoService concentram a lógica de negócio e de engajamento, mantendo a separação de responsabilidades proposta pela arquitetura MVT.</p>
+<p>A Figura 5 apresenta o diagrama de componentes da aplicação.</p>
+<h4 id="figura-5-diagrama-de-componentes">Figura 5: Diagrama de Componentes</h4>
+<p><img alt="Diagrama de Componentes da aplicação ilustrando as conexões e dependências de software entre a Interface Web do Navegador baseada em Bootstrap, o Backend do Django executando as regras de negócio do HopLife, o servidor do Keycloak responsável pela autenticação OIDC e o Banco de Dados SQLite." src="../arquiteturaimgs/DiagramaDeComponentes.jpeg" /></p>
+<blockquote>
+<p>Fonte: Elaboração Própria </p>
+</blockquote>
+<p>A figura acima, correspondente ao diagrama de componentes, ilustra a arquitetura de execução do HopLife, definindo os módulos físicos do sistema e os protocolos que intermediam a comunicação entre eles: </p>
+<p><strong>Interface Web (Navegador):</strong> Componente de front-end responsável por renderizar a interface para o idoso (HTML/CSS/JS via Bootstrap). Comunica-se com o servidor exclusivamente via requisições &lt;<HTTP/HTTPS>&gt;. </p>
+<p><strong>Backend Django (HopLife):</strong> É o componente central da aplicação. Ele processa a lógica de negócios, o motor de gamificação e as regras de acessibilidade, servindo como o intermediário entre a interface, o banco de dados e o serviço de autenticação. </p>
+<p><strong>Servidor Keycloak:</strong> Componente externo dedicado ao Gerenciamento de Identidade e Acesso (IAM). A comunicação com o backend ocorre via protocolo &lt;<OIDC>&gt; (OpenID Connect), garantindo que a validação de usuários ocorra de forma segura e isolada da lógica principal do sistema. </p>
+<p><strong>Banco de Dados SQLite:</strong> Componente de persistência de dados local. A interação do backend com este componente é abstraída pela camada &lt;<ORM / SQL>&gt; nativa do framework Django, assegurando a integridade e proteção contra injeções de SQL durante o registro diário das metas </p>
+<hr />
+<h4 id="254-visao-de-implantacao">2.5.4 Visão de Implantação</h4>
+<p>A visão de implantação descreve a execução física do sistema HopLife, apresentando a distribuição dos artefatos de software nos ambientes de hardware e rede. Essa visão complementa a arquitetura lógica, oferecendo uma perspectiva focada na infraestrutura. </p>
+<p>O software será implantado em um ambiente de execução local (localhost), utilizando a infraestrutura de hardware dos computadores da equipe de desenvolvimento. Considerando as restrições de calendário da disciplina acadêmica e a ausência de necessidade de disponibilidade pública contínua nesta fase, o sistema será validado localmente. Essa escolha justifica-se por garantir agilidade nos ciclos de teste, dispensar custos com hospedagem e permitir que a equipe foque seus esforços na implementação da lógica de gamificação e nos requisitos de acessibilidade. </p>
+<p>O ambiente de execução operará segundo as tecnologias de conteinerização Docker, que envelopará o servidor de aplicação (Django) e os serviços de suporte (Keycloak). A implantação via Docker é justificada por isolar e encapsular todas as dependências do software, padronizando o ambiente de execução e eliminando o risco de inconsistências entre as máquinas dos integrantes do grupo. No lado do cliente, a interface será executada diretamente em navegadores web de dispositivos físicos (desktops, notebooks ou tablets), utilizando as diretrizes responsivas do framework Bootstrap. </p>
+<p>Assim como o restante da aplicação, o banco de dados SQLite será implantado internamente ao contêiner principal do sistema. Sua utilização justifica-se por ser uma solução baseada em arquivo único, o que reduz drasticamente a latência de rede interna, facilita a portabilidade do projeto entre os membros da equipe e atende perfeitamente ao volume de dados previsto, dispensando a complexidade de gerenciamento de um servidor de banco de dados externo. </p>
+<p>A Figura 6 apresenta o diagrama de implantação do sistema HopLife.</p>
+<h4 id="figura-6-diagrama-de-implantacao">Figura 6: Diagrama de Implantação</h4>
+<p><img alt="Diagrama de Implantação física do sistema demonstrando a execução do ambiente em ambiente local localhost através de um nó de execução do Docker que encapsula e orquestra os contêineres isolados do Django, do servidor do Keycloak e do arquivo de banco de dados SQLite." src="../arquiteturaimgs/DiagramaDeImplantacao.jpeg" /></p>
+<blockquote>
+<p>Fonte: Elaboração Própria </p>
+</blockquote>
+<p>Conforme ilustrado na Figura 6, a infraestrutura é composta por um ambiente Docker responsável por hospedar os componentes da aplicação. O contêiner principal executa o Django juntamente com o banco SQLite, enquanto o Keycloak é executado em um contêiner separado, permitindo isolamento dos serviços e maior organização da infraestrutura.</p>
+<hr />
+<h3 id="26-restricoes-adicionais-e-atributos-de-qualidade">2.6 Restrições Adicionais e Atributos de Qualidade</h3>
+<p>Esta seção descreve as restrições operacionais e os padrões de qualidade que orientam o desenvolvimento do HopLife, garantindo que a solução seja tecnicamente viável e adequada às necessidades do público idoso. </p>
+<h4 id="261-restricoes-negociais-e-de-acesso">2.6.1 Restrições Negociais e de Acesso</h4>
+<p>O software será operado em um ambiente de execução local (localhost), utilizando a infraestrutura de contêineres Docker. Esta escolha garante a paridade de ambiente entre todos os membros da equipe de desenvolvimento. </p>
+<p><strong>Identificação e Login:</strong> Embora o software não seja hospedado publicamente na Internet nesta fase, o acesso às funcionalidades personalizadas exige autenticação obrigatória via Keycloak. Esta restrição garante que cada idoso acesse apenas suas próprias metas e histórico, preservando a integridade da experiência de gamificação. </p>
+<p><strong>Capacidade de Operação:</strong> O sistema é dimensionado para priorizar a Qualidade de Uso e a consistência dos dados em detrimento da escala massiva de acessos. O foco está em garantir que as transações de dados (como o registro de conclusão de metas) ocorram sem falhas no banco de dados SQLite, assegurando uma experiência fluida para os usuários em ambiente de teste. </p>
+<h4 id="262-atributos-de-qualidade-do-software">2.6.2 Atributos de Qualidade do Software</h4>
+<p>Considerando o perfil do público-alvo (60+), os seguintes atributos de qualidade foram definidos como prioritários: </p>
+<p><strong>Usabilidade e Acessibilidade (Crítico):</strong> O sistema deve seguir diretrizes rígidas de acessibilidade visual (alto contraste e fontes legíveis) e motora. Uma restrição de usabilidade imposta é que as funcionalidades principais devem ser acessíveis em, no máximo, 3 cliques, minimizando a carga cognitiva.</p>
+<p><strong>Confiabilidade:</strong> Dada a natureza gamificada do software (baseada no framework Octalysis), o sistema deve garantir a persistência exata dos streaks (sequências) e pontuações. Qualquer falha na gravação desses dados compromete a motivação do usuário, tornando a integridade dos dados um requisito de alta prioridade. </p>
+<p><strong>Portabilidade:</strong> Através do uso de Docker, o software deve ser capaz de ser executado de forma idêntica em diferentes sistemas operacionais (Windows, Linux e macOS) sem necessidade de reconfiguração manual, facilitando a colaboração da equipe. </p>
+<h4 id="263-seguranca-e-perfis-de-acesso">2.6.3 Segurança e Perfis de Acesso</h4>
+<p>A segurança do sistema é baseada na segregação de funções, garantindo que perfis diferentes tenham permissões proporcionais às suas necessidades. A Tabela 1 apresenta os perfis de acesso do sistema e suas respectivas permissões.</p>
+<h4 id="tabela-1-permissoes-e-justificativas">Tabela 1: Permissões e Justificativas</h4>
+<table>
+<thead>
+<tr>
+<th>Perfil</th>
+<th>Descrição das Permissões e Justificativa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Usuário (Idoso)</strong></td>
+<td>Possui acesso exclusivo à "porta da frente" da aplicação. Pode gerenciar suas próprias metas, visualizar seu progresso e personalizar as configurações de sua interface. <strong>Justificativa:</strong> Proteção da privacidade e foco na experiência de uso simplificada.</td>
+</tr>
+<tr>
+<td><strong>Equipe (Administrador)</strong></td>
+<td>Utiliza a interface administrativa nativa do framework Django. Possui permissões para gerenciar tabelas do sistema, dar suporte a usuários e auditar logs de erro. <strong>Justificativa:</strong> Garantir a manutenibilidade e a recuperação do sistema em caso de falhas técnicas.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Fonte: Elaboração Própria </p>
+</blockquote>
+<p>A Tabela 1 demonstra a separação de responsabilidades entre os perfis existentes no sistema. Essa divisão contribui para a segurança da informação, garantindo que usuários comuns tenham acesso apenas aos seus próprios dados, enquanto a equipe administrativa possui permissões adicionais para manutenção e suporte da aplicação.</p>
+<hr />
+<h2 id="3-bibliografia">3 Bibliografia</h2>
+<ul>
+<li>OOTSTRAP TEAM. Bootstrap Documentation. 2026. Disponível em: <a href="https://getbootstrap.com/docs/">https://getbootstrap.com/docs/</a>. Acesso em: 14 mai. 2026. </li>
+<li>DJANGO SOFTWARE FOUNDATION. Django Documentation. Versão 5.x. Disponível em: <a href="https://docs.djangoproject.com/">https://docs.djangoproject.com/</a>. Acesso em: 14 mai. 2026. </li>
+<li>DOCKER INC. Docker Documentation. Disponível em: <a href="https://docs.docker.com/">https://docs.docker.com/</a>. Acesso em: 14 mai. 2026. </li>
+<li>KEYCLOAK. Keycloak Documentation - Open Source Identity and Access Management. Disponível em: <a href="https://www.keycloak.org/documentation">https://www.keycloak.org/documentation</a>. Acesso em: 14 mai. 2026. </li>
+<li>FARIAS, Josivania Silva et al. Inclusão digital na terceira idade: um estudo sobre a propensão de idosos à adoção de tecnologias da informação e comunicação (TICs). Revista Gestão &amp; Tecnologia, Pedro Leopoldo, v. 15, n. 3, p. 164–188, set./dez. 2015. </li>
+<li>VAN ROSSUM, Guido; WARSAW, Barry; COGHLAN, Nick. PEP 8 – Style Guide for Python Code. Disponível em: https://peps.python.org/pep-0008/. Acesso em: 14 mai. 2026.</li>
+<li>CHOU, Yu-kai. Actionable Gamification: Beyond Points, Badges and Leaderboards. Fremont: Octalysis Media, 2019.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
