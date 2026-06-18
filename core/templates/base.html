@@ -7,122 +7,130 @@
     <title>HopLife Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* --- Cores da Paleta HopLife (Alto Contraste) --- */
+        /* --- Cores da Paleta HopLife --- */
         .bg-hop-green { background-color: #3A5A50 !important; } 
         .text-hop-green { color: #3A5A50 !important; }
-        .bg-warm { background-color: #E64500 !important; } 
-        .text-warm { color: #E64500 !important; }
-        
         .text-escuro { color: #374151 !important; } 
 
-        /* --- Estilo para botões quentes (laranja) --- */
-        .btn-warm {
-            background-color: #E64500 !important;
-            color: #FFFFFF !important;
-            border: none;
-        }
-        .btn-warm:hover {
-            background-color: #CC3D00 !important;
-            color: #FFFFFF !important;
-        }
-        
-        /* --- Menu Interativo (Tamanho Gigante, mas com visual App/Premium) --- */
+        /* --- Menu Interativo --- */
         .navbar-dark .navbar-nav .menu-link {
             color: #FFFFFF !important;
             font-weight: 700;
-            font-size: 1.5rem !important; /* Mantido o seu tamanho original */
-            padding: 0.8rem 1.8rem !important; /* Área de toque bem generosa */
-            border-radius: 50px; /* Formato de pílula arredondada */
-            background-color: rgba(255, 255, 255, 0.08); /* Fundo translúcido permanente (efeito vidro) */
+            font-size: 1.2rem !important; 
+            padding: 0.6rem 1.2rem !important;
+            border-radius: 50px;
+            background-color: rgba(255, 255, 255, 0.08);
             border: 2px solid transparent; 
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Sombrinha leve */
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.3s ease;
         }
         .navbar-dark .navbar-nav .menu-link:hover {
             background-color: rgba(255, 255, 255, 0.15); 
-            border: 2px solid rgba(255, 255, 255, 0.3); /* Borda aparece no hover dando elegância */
-            transform: translateY(-4px); /* Pulo para cima */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
 
-        /* --- Botão Sair (Gigante, Destacado e com Efeito 3D Físico) --- */
+        /* --- Botão Sair (Efeito 3D) --- */
         .nav-link-sair {
             background-color: #E64500 !important;
-            color: #FFFFFF !important;
-            border-radius: 12px !important; /* Formato que você escolheu */
-            padding: 0.8rem 2.2rem !important; 
-            /* Efeito de profundidade (3D) no botão */
-            box-shadow: 0 6px 0 #B33600, 0 8px 15px rgba(230, 69, 0, 0.4) !important; 
+            border-radius: 12px !important;
+            padding: 0.6rem 1.5rem !important; 
+            box-shadow: 0 4px 0 #B33600 !important;
             border: none !important;
-            transition: all 0.15s ease-in-out !important;
         }
         .nav-link-sair:hover {
-            background-color: #FF5A1A !important;
-            /* Simula o botão sendo apertado fisicamente para baixo */
-            transform: translateY(4px) !important; 
-            box-shadow: 0 2px 0 #B33600, 0 4px 8px rgba(230, 69, 0, 0.4) !important; 
+            transform: translateY(2px) !important; 
+            box-shadow: 0 2px 0 #B33600 !important;
         }
 
-        /* --- Efeito Botão Principal (+ Nova Meta) --- */
-        .btn-principal {
-            background-color: #3A5A50;
-            color: #FFFFFF !important;
-            transition: all 0.2s ease-in-out;
+        /* --- Classes Globais de Acessibilidade --- */
+        
+        /* 1. Tamanho da Fonte (Com proteção para não esmagar Emojis e o Tutorial) */
+        body.texto-pequeno, 
+        body.texto-pequeno p, 
+        body.texto-pequeno span:not([id^="icone-registro"]), 
+        body.texto-pequeno a:not(.menu-link):not(#btn-tutorial-help) { 
+            font-size: 0.9rem !important; 
         }
-        .btn-principal:hover {
-            background-color: #2D473F; 
-            transform: translateY(-3px); 
-            box-shadow: 0 8px 15px rgba(58, 90, 80, 0.4) !important;
+        
+        body.texto-grande, 
+        body.texto-grande p, 
+        body.texto-grande span:not([id^="icone-registro"]), 
+        body.texto-grande a:not(.menu-link):not(#btn-tutorial-help) { 
+            font-size: 1.35rem !important; 
+        }
+        
+        body.texto-grande h1 { font-size: 2.8rem !important; }
+        body.texto-grande h2 { font-size: 2.4rem !important; }
+        body.texto-grande h3 { font-size: 2rem !important; }
+
+        /* 2. Tamanho dos Botões (Com proteção para não pegar o botão de ajuda) */
+        body.botao-largo button:not(#btn-tutorial-help),
+        body.botao-largo .btn:not(#btn-tutorial-help), 
+        body.botao-largo [class*="btn-"]:not(#btn-tutorial-help), 
+        body.botao-largo input[type="submit"],
+        body.botao-largo .menu-link,
+        body.botao-largo .nav-link-sair {
+            padding: 1.2rem 2.5rem !important;
+            font-size: 1.3rem !important;
+            border-width: 3px !important;
+        }
+        
+        /* Exceção: Protege o botão Hoje e os quadradinhos do calendário */
+        body.botao-largo .btn-hoje-3d {
+            padding: 1rem 2rem !important; 
+            width: 80% !important; 
+            height: auto !important;
+        }
+        
+        body.botao-largo button[onclick^="abrirSelecao"]:not(.btn-hoje-3d) {
+            width: 55px !important;
+            height: 55px !important;
+            padding: 0 !important; 
         }
 
-        /* --- Efeito Hover nos Cards de Metas --- */
-        .goal-card {
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        /* 3. Controle Inteligente do Botão Flutuante de Ajuda (?) */
+        #btn-tutorial-help {
+            width: 75px !important;
+            height: 75px !important;
+            font-size: 2.6rem !important;
+            padding: 0 !important; 
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: all 0.3s ease;
         }
-        .goal-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1) !important;
-        }
-
-        /* --- Efeito Botão Concluir --- */
-        .btn-concluir {
-            transition: transform 0.2s;
-        }
-        .btn-concluir:hover {
-            transform: scale(1.05); 
-        }
-
-        /* --- Efeito Abas de Tempo --- */
-        .time-pill {
-            color: #374151; 
-            font-weight: 700;
-            border-radius: 20px;
-            transition: background-color 0.2s;
-        }
-        .time-pill:hover {
-            background-color: #D1CFC4;
-            color: #E64500 !important;
-        }
+        
+        body.texto-pequeno #btn-tutorial-help { font-size: 1.8rem !important; }
+        body.texto-grande #btn-tutorial-help { font-size: 3.4rem !important; }
+        body.botao-largo #btn-tutorial-help { width: 95px !important; height: 95px !important; }
     </style>
 </head>
-<body class="d-flex flex-column min-vh-100" style="background-color: #E0DED7; color: #000000;">
+<body class="d-flex flex-column min-vh-100 texto-{{ global_tamanho_texto|default:'medio' }} botao-{{ global_tamanho_botao|default:'normal' }}" style="background-color: #E0DED7; color: #000000;">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-hop-green shadow-sm py-3"> <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-hop-green shadow-sm py-3">
+        <div class="container">
             <a class="navbar-brand" href="/">
-                <img src="{% static 'img/logo-hoplife.png' %}" alt="Logo HopLife" height="70" style="filter: drop-shadow(3px 3px 0px #FFFFFF) drop-shadow(6px 6px 0px rgba(255, 255, 255, 0.5));">
+                <img src="{% static 'img/logo-hoplife.png' %}" alt="Logo HopLife" height="70">
             </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="box-shadow: none;">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center gap-3 gap-lg-4 mt-4 mt-lg-0 pb-3 pb-lg-0">
-                    
+                <ul class="navbar-nav ms-auto align-items-center gap-2 mt-3 mt-lg-0">
                     {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link menu-link" href="{% url 'metas:listar' %}">Minhas Metas</a></li>
-                        <li class="nav-item"><a class="nav-link menu-link" href="#">Conquistas</a></li>
-                        <li class="nav-item"><a class="nav-link menu-link nav-link-sair" href="/usuarios/logout/">Sair</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="{% url 'metas:listar' %}">Minhas Metas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="{% url 'usuarios:acessibilidade' %}">Configurações</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#">Conquistas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link nav-link-sair" href="/usuarios/logout/">Sair</a>
+                        </li>
                     {% endif %}
-                    
                 </ul>
             </div>
         </div>
@@ -134,11 +142,157 @@
 
     <footer class="text-center py-3 mt-4" style="background-color: #E0DED7; color: #6B7280; border-top: 2px solid #FFFFFF;">
         <div class="container">
-            <span class="fw-bold fs-6 text-escuro">&copy; 2026 HopLife - Projeto MDS</span>
+            <span class="fw-bold fs-6">&copy; 2026 HopLife - Projeto MDS</span>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    {% if user.is_authenticated %}
+        <a href="#" id="btn-tutorial-help" 
+           class="btn btn-light border border-4 border-dark rounded-circle shadow-lg fw-bold" 
+           aria-label="Abrir tutorial de ajuda passo a passo" 
+           style="position: fixed; bottom: 25px; right: 25px; z-index: 1060; color: #3A5A50; border-color: #3A5A50 !important;">?</a>
+
+        <div class="modal fade" id="tutorialModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tutorialModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content border border-4 border-dark shadow-lg rounded-4 bg-light">
+                    
+                    <div class="modal-header p-4 bg-hop-green text-white border-bottom border-dark border-3">
+                        <h2 class="modal-title fw-bold fs-2" id="tutorialModalLabel">💡 Ajuda HopLife</h2>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar tutorial"></button>
+                    </div>
+                    
+                    <div class="modal-body p-4 text-center">
+                        <div id="tutorialCarousel" class="carousel slide" data-bs-interval="false" data-bs-wrap="false">
+                            <div class="carousel-inner">
+                                {% block tutorial_slides %}
+                                    <div class="carousel-item active py-4" style="min-height: 280px;">
+                                        <div class="display-1 mb-4" aria-hidden="true">👋</div>
+                                        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Olá! Que bom ter você aqui!</h3>
+                                        <p class="fs-3 text-dark lh-base">
+                                            O <strong>HopLife</strong> foi feito com muito carinho para ajudar você a cuidar da sua saúde no dia a dia.
+                                        </p>
+                                        <p class="fs-4 text-muted mt-3">
+                                            Não se preocupe com a tecnologia: nosso sistema é muito simples e fácil de usar. Vamos dar uma olhadinha juntos?
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="carousel-item py-4" style="min-height: 280px;">
+                                        <div class="display-1 mb-4" aria-hidden="true">🎯</div>
+                                        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Minhas Metas</h3>
+                                        <p class="fs-3 text-dark lh-base">
+                                            No menu <strong>Minhas Metas</strong>, você verá as tarefas do dia, como tomar um remédio ou beber água.
+                                        </p>
+                                        <p class="fs-4 text-muted mt-3">
+                                            Quando concluir uma tarefa, basta clicar em "Concluir" para marcar como feita. Simples assim!
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="carousel-item py-4" style="min-height: 280px;">
+                                        <div class="display-1 mb-4" aria-hidden="true">❓</div>
+                                        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Dúvidas em alguma página?</h3>
+                                        <p class="fs-3 text-dark lh-base">
+                                            Sempre que você não souber o que fazer, basta clicar neste botão de <strong>interrogação (?)</strong> no canto da tela.
+                                        </p>
+                                        <p class="fs-4 text-muted mt-3">
+                                            Ele é inteligente! Vai te explicar <strong>exatamente</strong> como usar a página em que você estiver no momento.
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="carousel-item py-4" style="min-height: 280px;">
+                                        <div class="display-1 mb-4" aria-hidden="true">🏆</div>
+                                        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Celebre suas Conquistas</h3>
+                                        <p class="fs-3 text-dark lh-base mb-4">
+                                            Cada pequena tarefa concluída é registrada para você conseguir acompanhar seu progresso de forma gráfica!
+                                        </p>
+                                        <button type="button" class="btn btn-warm btn-lg px-5 py-3 shadow-sm fw-bold fs-3" id="btn-tutorial-finish" data-bs-dismiss="modal" aria-label="Iniciar e fechar tutorial">
+                                            Vamos Começar! 🚀
+                                        </button>
+                                    </div>
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer border-top border-dark border-2 bg-light p-3 d-flex justify-content-between">
+                        <button type="button" id="btn-tutorial-prev" class="btn btn-lg btn-outline-secondary px-4 py-2 border-2 fw-bold fs-4" aria-label="Slide anterior">
+                            ⬅️ Voltar
+                        </button>
+                        <button type="button" id="btn-tutorial-next" class="btn btn-lg btn-hop-green px-4 py-2 fw-bold fs-4" aria-label="Próximo slide">
+                            Avançar ➡️
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const modalEl = document.getElementById('tutorialModal');
+                const carouselEl = document.getElementById('tutorialCarousel');
+                const btnFinish = document.getElementById('btn-tutorial-finish');
+                const btnHelp = document.getElementById('btn-tutorial-help');
+                const btnPrev = document.getElementById('btn-tutorial-prev');
+                const btnNext = document.getElementById('btn-tutorial-next');
+
+                if (!modalEl || !carouselEl) return;
+
+                // CONTAGEM DINÂMICA DE SLIDES
+                const totalSlides = carouselEl.querySelectorAll('.carousel-item').length;
+
+                const carousel = new bootstrap.Carousel(carouselEl, {
+                    interval: false,
+                    wrap: false
+                });
+
+                const tutorialModal = new bootstrap.Modal(modalEl);
+
+                if (btnPrev) {
+                    btnPrev.addEventListener('click', function() { carousel.prev(); });
+                }
+
+                if (btnNext) {
+                    btnNext.addEventListener('click', function() { carousel.next(); });
+                }
+
+                // Esconde botão "Avançar" no ÚLTIMO slide baseado na quantidade dinâmica
+                function updateButtons(slideIndex) {
+                    if (btnPrev) btnPrev.style.visibility = (slideIndex === 0) ? 'hidden' : 'visible';
+                    if (btnNext) btnNext.style.visibility = (slideIndex === totalSlides - 1) ? 'hidden' : 'visible';
+                }
+
+                carouselEl.addEventListener('slide.bs.carousel', function(e) {
+                    updateButtons(e.to);
+                });
+
+                updateButtons(0);
+
+                if (!localStorage.getItem('tutorialVisualizado')) {
+                    tutorialModal.show();
+                }
+
+                if (btnFinish) {
+                    btnFinish.addEventListener('click', function() {
+                        localStorage.setItem('tutorialVisualizado', 'true');
+                    });
+                }
+
+                modalEl.addEventListener('hide.bs.modal', function() {
+                    localStorage.setItem('tutorialVisualizado', 'true');
+                });
+
+                if (btnHelp) {
+                    btnHelp.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        carousel.to(0);
+                        updateButtons(0);
+                        tutorialModal.show();
+                    });
+                }
+            });
+        </script>
+    {% endif %}
     
     {% block scripts %}{% endblock %}
 </body>

@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<style>
+    /* --- Padronização HopLife --- */
+    .text-warm { color: #E64500 !important; }
+    .bg-warm { background-color: #E64500 !important; }
+    
+    /* Filtros de Período */
+    .nav-filtro {
+        border-bottom: 2px solid #E0DED7;
+        display: flex;
+        gap: 1rem;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 2px;
+    }
+    .filtro-item {
+        color: #6c757d;
+        text-decoration: none;
+        font-weight: 700;
+        padding: 0.5rem 1rem;
+        border-bottom: 3px solid transparent;
+        transition: all 0.2s;
+        margin-bottom: -2px;
+    }
+    .filtro-item:hover {
+        color: #374151;
+    }
+    .filtro-item.ativo {
+        color: #E64500;
+        border-bottom-color: #E64500;
+    }
+
+    /* Cards de Conquista (3D) */
+    .card-conquista {
+        background-color: #FFFFFF;
+        border-radius: 16px;
+        border: 2px solid #E0DED7;
+        box-shadow: 0 6px 0 #D1CFC4;
+        transition: transform 0.2s, box-shadow 0.2s;
+        text-align: center;
+        padding: 2rem 1rem;
+        height: 100%;
+    }
+    .card-conquista:hover {
+        transform: translateY(2px);
+        box-shadow: 0 4px 0 #D1CFC4;
+    }
+    
+    /* Destaque para a Ofensiva (Fogo) */
+    .card-fogo {
+        border-color: #FFB74D;
+        box-shadow: 0 6px 0 #FFA726;
+        background: linear-gradient(145deg, #FFF8E1 0%, #FFFFFF 100%);
+    }
+    .card-fogo:hover {
+        box-shadow: 0 4px 0 #FFA726;
+    }
+    
+    .icone-gigante {
+        font-size: 3.5rem;
+        line-height: 1;
+        margin-bottom: 1rem;
+        filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1));
+    }
+
+    /* Container do Gráfico */
+    .chart-container {
+        position: relative;
+        height: 300px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Botão Laranja Padrão (Usado no Tutorial) */
+    .btn-warm {
+        background-color: #E64500 !important;
+        color: #FFFFFF !important;
+        border-radius: 12px !important;
+        padding: 1rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        box-shadow: 0 4px 0 #B33600 !important;
+        border: none !important;
+        transition: all 0.15s ease-in-out !important;
+    }
+    .btn-warm:hover {
+        transform: translateY(2px) !important;
+        box-shadow: 0 2px 0 #B33600 !important;
+        color: #FFFFFF !important;
+    }
+    .btn-warm:active {
+        transform: translateY(4px) !important;
+        box-shadow: 0 0 0 transparent !important;
+    }
+</style>
+
+<div class="container pb-5 max-w-lg">
+    
+    <div class="d-flex align-items-center mb-4 mt-4 gap-3">
+        <div class="display-4">🏆</div>
+        <h1 class="m-0 fw-bolder text-dark" style="letter-spacing: -0.5px;">Minhas Conquistas</h1>
+    </div>
+
+    <div class="nav-filtro mb-5">
+        <a href="?periodo=geral" class="filtro-item {% if periodo == 'geral' %}ativo{% endif %}">Sempre</a>
+        <a href="?periodo=semana" class="filtro-item {% if periodo == 'semana' %}ativo{% endif %}">Últimos 7 dias</a>
+        <a href="?periodo=mes" class="filtro-item {% if periodo == 'mes' %}ativo{% endif %}">Este Mês</a>
+        <a href="?periodo=ano" class="filtro-item {% if periodo == 'ano' %}ativo{% endif %}">Este Ano</a>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <div class="col-6">
+            <div class="card-conquista card-fogo">
+                <div class="icone-gigante">🔥</div>
+                <h2 class="fw-bolder mb-0 text-dark" style="font-size: 2.5rem;">{{ ofensiva }}</h2>
+                <p class="text-muted fw-bold mb-0">Dias Seguidos</p>
+            </div>
+        </div>
+        
+        <div class="col-6">
+            <div class="card-conquista">
+                <div class="icone-gigante">👑</div>
+                <h2 class="fw-bolder mb-0 text-dark" style="font-size: 2.5rem;">{{ recorde }}</h2>
+                <p class="text-muted fw-bold mb-0">Recorde Pessoal</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm rounded-4 border-0 p-4 p-md-5 bg-white">
+        <h3 class="fw-bolder text-dark mb-4 text-center">Desempenho de Hábitos</h3>
+        
+        {% if total_registros > 0 %}
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <div class="chart-container">
+                        <canvas id="graficoDesempenho"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex justify-content-between align-items-center p-3 rounded-3" style="background-color: #E8F5E9;">
+                            <span class="fw-bold fs-5 text-dark">✅ Cumpridos</span>
+                            <span class="badge bg-success fs-5 rounded-pill">{{ total_check }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center p-3 rounded-3" style="background-color: #FFEBEE;">
+                            <span class="fw-bold fs-5 text-dark">❌ Falhas</span>
+                            <span class="badge bg-danger fs-5 rounded-pill">{{ total_falha }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center p-3 rounded-3" style="background-color: #F3F4F6;">
+                            <span class="fw-bold fs-5 text-dark">⬜ Em Branco</span>
+                            <span class="badge bg-secondary fs-5 rounded-pill">{{ total_branco }}</span>
+                        </div>
+                        <div class="text-center mt-3 border-top pt-3">
+                            <p class="text-muted fw-bold m-0">Total de registros: {{ total_registros }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="text-center py-5">
+                <div class="display-1 mb-3 opacity-50">📊</div>
+                <h4 class="fw-bold text-muted">Ainda não temos dados aqui</h4>
+                <p class="text-muted fs-5">Comece a marcar os seus hábitos diários para ver o seu progresso gráfico!</p>
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Verifica se existe o canvas na tela (ou seja, se total_registros > 0)
+        var ctxElement = document.getElementById('graficoDesempenho');
+        
+        if (ctxElement) {
+            var ctx = ctxElement.getContext('2d');
+            
+            // Pegando os dados vindos do Django (views.py)
+            var dadosCheck = {{ total_check|default:0 }};
+            var dadosFalha = {{ total_falha|default:0 }};
+            var dadosBranco = {{ total_branco|default:0 }};
+            
+            var myChart = new Chart(ctx, {
+                type: 'doughnut', // Gráfico de rosca
+                data: {
+                    labels: ['Cumpridos', 'Falhas', 'Em Branco'],
+                    datasets: [{
+                        data: [dadosCheck, dadosFalha, dadosBranco],
+                        backgroundColor: [
+                            '#4CAF50', // Verde para Check
+                            '#F44336', // Vermelho para Falhas
+                            '#9E9E9E'  // Cinza para Branco
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false // Escondemos a legenda padrão pois criamos as caixinhas coloridas ao lado
+                        },
+                        tooltip: {
+                            bodyFont: { size: 16 },
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    cutout: '70%' // Deixa a rosca mais fina e moderna
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}
+
+{% block tutorial_slides %}
+    <div class="carousel-item active py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">🏆</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Celebre suas Conquistas</h3>
+        <p class="fs-3 text-dark lh-base">
+            Tudo o que você conclui fica registrado! Assim, você pode ver a sua evolução ganhando vida em nossos gráficos e painéis.
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">🔥</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">O que é a Ofensiva?</h3>
+        <p class="fs-3 text-dark lh-base">
+            O "foguinho" mostra quantos dias seguidos você cumpriu os seus hábitos sem falhar. Tente manter esse número subindo para bater o seu <strong>Recorde Pessoal</strong>!
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">📅</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Explore os Filtros</h3>
+        <p class="fs-3 text-dark lh-base">
+            No topo da tela, clique nas opções como "Este Mês" ou "Últimos 7 dias" para ver como foi o seu desempenho apenas naquele período de tempo.
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">📊</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Entendendo o Gráfico</h3>
+        <p class="fs-3 text-dark lh-base mb-4">
+            A rosca colorida mostra a proporção do seu sucesso. A parte verde é o seu sucesso, e as demais mostram onde você pode melhorar. Vamos lá!
+        </p>
+        <button type="button" class="btn btn-warm btn-lg px-5 py-3 shadow-sm fw-bold fs-3" data-bs-dismiss="modal">
+            Entendi! 👍
+        </button>
+    </div>
+{% endblock %}
