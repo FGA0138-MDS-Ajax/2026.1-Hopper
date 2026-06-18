@@ -1,0 +1,80 @@
+/* Tamanho de Texto */
+body.texto-pequeno {
+    font-size: 0.85rem !important;
+}
+body.texto-pequeno h1, body.texto-pequeno .h1 { font-size: 1.8rem !important; }
+body.texto-pequeno h2, body.texto-pequeno .h2 { font-size: 1.5rem !important; }
+body.texto-pequeno h3, body.texto-pequeno .h3 { font-size: 1.3rem !important; }
+body.texto-pequeno h4, body.texto-pequeno .h4 { font-size: 1.1rem !important; }
+body.texto-pequeno p, body.texto-pequeno span, body.texto-pequeno a, body.texto-pequeno label, body.texto-pequeno input, body.texto-pequeno button {
+    font-size: 0.85rem !important;
+}
+
+body.texto-medio {
+    /* default styles */
+}
+
+body.texto-grande {
+    font-size: 1.25rem !important;
+}
+body.texto-grande h1, body.texto-grande .h1 { font-size: 2.8rem !important; }
+body.texto-grande h2, body.texto-grande .h2 { font-size: 2.3rem !important; }
+body.texto-grande h3, body.texto-grande .h3 { font-size: 2.0rem !important; }
+body.texto-grande h4, body.texto-grande .h4 { font-size: 1.8rem !important; }
+body.texto-grande p, body.texto-grande span, body.texto-grande a, body.texto-grande label, body.texto-grande input, body.texto-grande button {
+    font-size: 1.25rem !important;
+}
+
+/* Tamanho de Botões */
+body.botao-largo .btn {
+    padding: 1.25rem 2.5rem !important;
+    font-size: 1.25rem !important;
+}
+
+/* Regra proporcional para texto grande + botão largo */
+body.texto-grande.botao-largo .btn {
+    min-height: 68px !important;
+    font-size: 1.4rem !important;
+}
+
+/* Custom Checkbox Button Styles (.btn-outline-warm) */
+.btn-outline-warm {
+    color: #E64500 !important;
+    border: 2px solid #E64500 !important;
+    background-color: white !important;
+    font-weight: 700;
+    transition: all 0.2s;
+}
+.btn-check:checked + .btn-outline-warm {
+    background-color: #E64500 !important;
+    color: white !important;
+}
+
+/* Dwell Click progress indicator overlay */
+.dwell-loading {
+    position: relative !important;
+    overflow: hidden !important;
+}
+.dwell-loading::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100% !important;
+    width: 0 !important;
+    background-color: rgba(255, 255, 255, 0.3) !important; /* light overlay for dark buttons */
+    transition: width 2s linear !important;
+    z-index: 9999 !important;
+    pointer-events: none !important;
+}
+/* For light background buttons, use a darker overlay */
+.dwell-loading.btn-outline-hop::after,
+.dwell-loading.btn-outline-warm::after,
+.dwell-loading.btn-light::after,
+.dwell-loading.btn-outline-secondary::after {
+    background-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+.dwell-loading.dwell-active::after {
+    width: 100% !important;
+}

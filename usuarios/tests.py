@@ -1,8 +1,10 @@
 from unittest.mock import patch
 
-from django.contrib.auth.models import User
-from django.test import TestCase
+from django.contrib.auth.models import AnonymousUser, User
+from django.test import RequestFactory, TestCase
+from django.urls import reverse
 
+from .context_processors import configuracoes_acessibilidade
 from .models import PerfilUsuario
 
 
@@ -36,3 +38,109 @@ class AutenticacaoIntegracaoTest(TestCase):
         ).first()
         self.assertIsNotNone(perfil_criado, "O PerfilUsuario não foi criado.")
         self.assertEqual(perfil_criado.usuario, usuario_criado)
+
+
+class AcessibilidadeViewTest(TestCase):
+    def setUp(self):
+        """Prepara o terreno: cria um usuário e um perfil padrão para ele."""
+        self.user = User.objects.create_user(
+            username="idoso.teste", password="senha123"
+        )
+        self.perfil = PerfilUsuario.objects.create(
+            usuario=self.user, tamanho_texto="medio", tamanho_botao="normal"
+        )
+        self.url = reverse("usuarios:acessibilidade")
+
+    def test_acesso_bloqueado_para_usuario_anonimo(self):
+        """Garante que a view redireciona para login se o usuário não estiver autenticado."""
+        response = self.client.get(self.url)
+        # O Django redireciona (302) usuários não logados que tentam acessar rotas com @login_required
+        self.assertEqual(response.status_code, 302)
+
+    def test_carregamento_da_pagina_para_usuario_logado(self):
+        """Garante que a página carrega perfeitamente (HTTP 200) com o contexto atual do banco."""
+        self.client.login(username="idoso.teste", password="senha123")
+
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "usuarios/acessibilidade.html")
+        # Verifica se o contexto enviado para o HTML corresponde ao perfil
+        self.assertEqual(response.context["tamanho_texto"], "medio")
+        self.assertEqual(response.context["tamanho_botao"], "normal")
+
+    def test_atualizar_preferencias_com_sucesso(self):
+        """Testa o envio do formulário (POST) e se os dados são salvos no banco de dados."""
+        self.client.login(username="idoso.teste", password="senha123")
+
+        # O seu HTML/View espera 'tamanho_letra' e 'tamanho_botao'
+        dados_formulario = {"tamanho_letra": "grande", "tamanho_botao": "largo"}
+
+        response = self.client.post(self.url, dados_formulario)
+
+        # Verifica se recarregou a página após salvar (redirect)
+        self.assertRedirects(response, self.url)
+
+        # Puxa os dados atualizados do banco para conferir
+        self.perfil.refresh_from_db()
+        self.assertEqual(self.perfil.tamanho_texto, "grande")
+        self.assertEqual(self.perfil.tamanho_botao, "largo")
+
+    def test_ignorar_dados_invalidos_no_formulario(self):
+        """Testa a sua validação básica de segurança contra injeção de valores incorretos."""
+        self.client.login(username="idoso.teste", password="senha123")
+
+        # Enviando dados que não existem nas suas listas de choices
+        dados_hack = {"tamanho_letra": "gigante", "tamanho_botao": "minusculo"}
+
+        self.client.post(self.url, dados_hack)
+
+        self.perfil.refresh_from_db()
+        # Os valores devem permanecer intactos como foram criados no setUp
+        self.assertEqual(self.perfil.tamanho_texto, "medio")
+        self.assertEqual(self.perfil.tamanho_botao, "normal")
+
+
+class ContextProcessorTest(TestCase):
+    def setUp(self):
+        # O RequestFactory cria requisições web simuladas sem precisar carregar views
+        self.factory = RequestFactory()
+
+        self.user = User.objects.create_user(
+            username="idoso.teste", password="senha123"
+        )
+        self.perfil = PerfilUsuario.objects.create(
+            usuario=self.user, tamanho_texto="grande", tamanho_botao="largo"
+        )
+
+    def test_contexto_usuario_anonimo(self):
+        """Garante que visitantes sem login recebem os tamanhos padrão."""
+        request = self.factory.get("/")
+        request.user = AnonymousUser()  # Simula alguém que não está logado
+
+        contexto = configuracoes_acessibilidade(request)
+
+        self.assertEqual(contexto["global_tamanho_texto"], "medio")
+        self.assertEqual(contexto["global_tamanho_botao"], "normal")
+
+    def test_contexto_usuario_autenticado_com_perfil(self):
+        """Garante que usuários logados recebem as configurações salvas no banco."""
+        request = self.factory.get("/")
+        request.user = self.user  # Associa o nosso usuário de teste à requisição
+
+        contexto = configuracoes_acessibilidade(request)
+
+        self.assertEqual(contexto["global_tamanho_texto"], "grande")
+        self.assertEqual(contexto["global_tamanho_botao"], "largo")
+
+    def test_contexto_usuario_sem_perfil(self):
+        """Garante o fallback (valores padrão) se ocorrer um erro e o usuário não tiver perfil."""
+        user_sem_perfil = User.objects.create_user(username="bugado", password="123")
+
+        request = self.factory.get("/")
+        request.user = user_sem_perfil
+
+        contexto = configuracoes_acessibilidade(request)
+
+        self.assertEqual(contexto["global_tamanho_texto"], "medio")
+        self.assertEqual(contexto["global_tamanho_botao"], "normal")
