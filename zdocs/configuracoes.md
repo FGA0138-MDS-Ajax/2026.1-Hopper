@@ -28,6 +28,7 @@ Seguimos o padrão **Conventional Commits**. As mensagens devem seguir o formato
 * `docs`: Alterações exclusivas na documentação (Markdown).
 * `style`: Mudanças de formatação (PEP8) que não alteram a lógica do código.
 * `refactor`: Refatoração de código sem alteração de comportamento.
+* `test`: Criação de testes.
 
 **Exemplos:**
 
