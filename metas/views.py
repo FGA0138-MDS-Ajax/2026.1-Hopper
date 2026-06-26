@@ -86,10 +86,13 @@ def atualizar_status_diario(request, registro_id):
     )
 
     novo_status = request.POST.get("status")
+    nova_nota = request.POST.get("nota", "")
 
     if novo_status in ["check", "falha", "branco"]:
         registro.status_conclusao = novo_status
-        registro.save()
+
+    registro.nota = nova_nota
+    registro.save()
 
     return redirect("metas:listar")
 
