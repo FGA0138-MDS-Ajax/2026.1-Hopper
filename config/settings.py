@@ -128,3 +128,6 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Redireciona usuários deslogados para a nossa rota do Keycloak
+LOGIN_URL = 'usuarios:login'
