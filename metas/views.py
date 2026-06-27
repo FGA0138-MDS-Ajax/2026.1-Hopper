@@ -75,7 +75,6 @@ class DeletarMetaView(LoginRequiredMixin, DeleteView):
     def get_queryset(self):
         return Meta.objects.filter(usuario=self.request.user)
 
-
 @login_required
 def atualizar_status_diario(request, registro_id):
 
@@ -85,13 +84,18 @@ def atualizar_status_diario(request, registro_id):
         meta__usuario=request.user,
     )
 
-    novo_status = request.POST.get("status")
+    if request.method == "POST":
+        novo_status = request.POST.get("status")
+        nota = request.POST.get("nota")
 
-    if novo_status in ["check", "falha", "branco"]:
-        registro.status_conclusao = novo_status
+        if novo_status in ["check", "falha", "branco"]:
+            registro.status_conclusao = novo_status
+
+        registro.nota = nota
         registro.save()
 
     return redirect("metas:listar")
+
 
 
 class CriarCategoriaView(LoginRequiredMixin, CreateView):

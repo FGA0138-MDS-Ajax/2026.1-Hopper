@@ -17,6 +17,7 @@ urlpatterns = [
         views.atualizar_status_diario,
         name="atualizar_registro",
     ),
+    
     # Criar Categorias
     path("categoria/nova/", views.CriarCategoriaView.as_view(), name="criar_categoria"),
     # Listar Categorias

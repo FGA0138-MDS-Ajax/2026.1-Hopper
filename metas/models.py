@@ -87,6 +87,12 @@ class RegistroDiario(models.Model):
         max_length=10, choices=STATUS_CHOICES, default="branco"
     )
 
+    nota = models.TextField(
+    blank=True,
+    null=True,
+    verbose_name="Nota do dia"
+)
+
     def __str__(self):
         return (
             f"{self.meta.titulo} - {self.data} - {self.get_status_conclusao_display()}"

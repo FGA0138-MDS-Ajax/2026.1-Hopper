@@ -241,7 +241,7 @@
                     {% for registro in meta.dias_do_mes_atual %}
                         {% if registro.hoje %}
                             <button class="btn btn-hoje-3d p-3 w-75 mx-auto d-flex flex-column align-items-center justify-content-center" 
-                                    onclick="abrirSelecao('{{ registro.id }}')">
+                                   onclick="abrirSelecao('{{ registro.id }}', `{{ registro.nota|default_if_none:''|escapejs }}`)">
                                 <span class="d-block fw-bold mb-2 fs-5">Hoje ({{ registro.data|date:"d/M" }})</span>
                                 <span id="icone-registro-{{ registro.id }}" style="font-size: 3rem; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1)); line-height: 1;">
                                     {% if registro.status_conclusao == 'check' %}✅
@@ -262,7 +262,7 @@
                                 <span class="d-block text-muted mb-1" style="font-size: 0.75rem; font-weight: 600;">{{ registro.data|date:"d" }}</span>
                                 <button class="btn btn-light border shadow-sm p-0 d-flex align-items-center justify-content-center" 
                                         style="border-radius: 10px; width: 42px; height: 42px; transition: transform 0.1s; background-color: #F9F9F8;"
-                                        onclick="abrirSelecao('{{ registro.id }}')"
+                                        onclick="abrirSelecao('{{ registro.id }}', `{{ registro.nota|default_if_none:''|escapejs }}`)"
                                         onmouseover="this.style.transform='scale(1.05)'" 
                                         onmouseout="this.style.transform='scale(1)'">
                                     <span id="icone-registro-{{ registro.id }}" style="font-size: 1.2rem;">
@@ -291,25 +291,46 @@
     {% endfor %}
 </div>
 
-<div class="modal fade" id="modalStatus" tabindex="-1">
+<div class="modal fade" id="modalStatus" tabindex="-1" aria-labelledby="modalStatusLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4 border-0 shadow-lg">
-            <div class="modal-body p-4 d-flex flex-column gap-3">
-                <h3 class="text-center mb-4 fw-bold" style="color: #374151;">Como foi este hábito?</h3>
+            
+            <div class="modal-body p-4 text-center">
+                <h3 class="fw-bold mb-4 text-escuro" id="modalStatusLabel">Como foi este hábito?</h3>
+
                 <input type="hidden" id="registroAtualId">
-                
-                <button class="btn btn-modal-3d btn-modal-success p-4 fs-4 text-start" onclick="salvarStatus('check')">
-                    <span class="me-2">✅</span> Consegui cumprir!
+
+                <div class="mb-4 text-start">
+                    <label for="notaRegistro" class="form-label fw-bold fs-4 text-escuro mb-2">
+                        Nota sobre o dia <span class="text-muted fs-6 fw-normal">(Opcional)</span>
+                    </label>
+                    <textarea
+                        id="notaRegistro"
+                        class="form-control fs-5 text-dark"
+                        rows="3"
+                        style="border-radius: 12px; padding: 15px; background-color: #F8F9FA; border: 2px solid #DEE2E6;"
+                        placeholder="Ex: Hoje eu me senti bem e fiz..."></textarea>
+                </div>
+
+                <div class="d-grid gap-3 mb-4">
+                    <button class="btn btn-success p-3 fs-4 rounded-3 fw-bold d-flex align-items-center justify-content-center gap-3 shadow-sm" onclick="salvarStatus('check')">
+                        <span style="font-size: 1.8rem;">✅</span> Consegui cumprir!
+                    </button>
+                    
+                    <button class="btn btn-danger p-3 fs-4 rounded-3 fw-bold d-flex align-items-center justify-content-center gap-3 shadow-sm" onclick="salvarStatus('falha')">
+                        <span style="font-size: 1.8rem;">❌</span> Não cumpri
+                    </button>
+                    
+                    <button class="btn btn-light border p-3 fs-4 rounded-3 fw-bold d-flex align-items-center justify-content-center gap-3 shadow-sm" style="background-color: #f8f9fa;" onclick="salvarStatus('branco')">
+                        <span style="font-size: 1.8rem;">⬜</span> Limpar dia
+                    </button>
+                </div>
+
+                <button type="button" class="btn btn-outline-secondary w-100 p-3 fs-5 fw-bold rounded-3 mt-2" data-bs-dismiss="modal">
+                    Cancelar e voltar
                 </button>
-                <button class="btn btn-modal-3d btn-modal-danger p-4 fs-4 text-start" onclick="salvarStatus('falha')">
-                    <span class="me-2">❌</span> Não cumpri
-                </button>
-                <button class="btn btn-modal-3d btn-modal-limpar p-4 fs-4 text-start" onclick="salvarStatus('branco')">
-                    <span class="me-2">⬜</span> Limpar dia
-                </button>
-                
-                <button class="btn-cancelar mt-3 w-100" data-bs-dismiss="modal">Cancelar</button>
             </div>
+
         </div>
     </div>
 </div>
@@ -332,33 +353,50 @@
         return cookieValue;
     }
 
-    function abrirSelecao(registroId) {
-        document.getElementById('registroAtualId').value = registroId;
-        var modal = new bootstrap.Modal(document.getElementById('modalStatus'));
-        modal.show();
+    function abrirSelecao(registroId, nota) {
+
+    document.getElementById('registroAtualId').value = registroId;
+
+    document.getElementById('notaRegistro').value = nota || "";
+
+    var modal = new bootstrap.Modal(document.getElementById('modalStatus'));
+    modal.show();
+}
+
+   function salvarStatus(novoStatus) {
+    let registroId = document.getElementById('registroAtualId').value;
+    let nota = document.getElementById('notaRegistro').value;
+
+    if (novoStatus === 'branco') {
+        nota = '';
     }
 
-    function salvarStatus(novoStatus) {
-        let registroId = document.getElementById('registroAtualId').value;
-        let url = `/metas/registro/${registroId}/atualizar/`;
+    let url = `/metas/registro/${registroId}/atualizar/`;
 
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-CSRFToken': getCookie('csrftoken')
-            },
-            body: `status=${novoStatus}`
-        }).then(() => {
-            let icone = document.getElementById('icone-registro-' + registroId);
-            if (novoStatus === 'check') icone.innerText = '✅';
-            if (novoStatus === 'falha') icone.innerText = '❌';
-            if (novoStatus === 'branco') icone.innerText = '⬜';
-            
-            var modalElement = document.getElementById('modalStatus');
-            var modalInstance = bootstrap.Modal.getInstance(modalElement);
-            modalInstance.hide();
-        });
-    }
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': getCookie('csrftoken') // Mantive a sua função de cookie
+        },
+        body: `status=${encodeURIComponent(novoStatus)}&nota=${encodeURIComponent(nota)}`
+    }).then(() => {
+        let icone = document.getElementById('icone-registro-' + registroId);
+
+        if (novoStatus === 'check') icone.innerText = '✅';
+        if (novoStatus === 'falha') icone.innerText = '❌';
+        if (novoStatus === 'branco') icone.innerText = '⬜';
+
+        let botao = icone.closest('button');
+        botao.onclick = function() {
+            abrirSelecao(registroId, nota);
+        };
+
+        document.getElementById('notaRegistro').value = "";
+        var modalElement = document.getElementById('modalStatus');
+        var modalInstance = bootstrap.Modal.getInstance(modalElement);
+        modalInstance.hide();
+    });
+}
 </script>
 {% endblock %}
