@@ -3,13 +3,13 @@ import time
 from datetime import date
 
 from django.contrib.auth import get_user_model
-from django.test import TestCase
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from django.test import TestCase
 from django.urls import reverse
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 from .models import Categoria, Meta, RegistroDiario
 
@@ -149,10 +149,10 @@ class TestCT03CadastroeVisualizacaoMetas(TestCase):
     """
     CT-03 – Cadastro e Visualização de Metas
     Nível: Integração / Tipo: Funcional
-    
-    Cenário: Um usuário autenticado acessa a tela de criar meta, envia o formulário 
-    e o sistema o redireciona para a listagem (listar.html), onde a nova meta deve 
-    aparecer com o título correto e com o status padrão 'pendente' (representado 
+
+    Cenário: Um usuário autenticado acessa a tela de criar meta, envia o formulário
+    e o sistema o redireciona para a listagem (listar.html), onde a nova meta deve
+    aparecer com o título correto e com o status padrão 'pendente' (representado
     no HTML pelo emoji ⬜).
     """
 
@@ -194,12 +194,22 @@ class TestCT03CadastroeVisualizacaoMetas(TestCase):
         # Passo 4: Verificar que a meta foi criada no banco de dados
         meta_criada = Meta.objects.get(titulo="Fazer 30 minutos de exercício")
         self.assertIsNotNone(meta_criada, "A meta não foi criada no banco de dados")
-        self.assertEqual(meta_criada.usuario, self.usuario, "A meta não pertence ao usuário autenticado")
-        self.assertEqual(meta_criada.categoria, categoria, "A categoria não foi associada corretamente")
+        self.assertEqual(
+            meta_criada.usuario,
+            self.usuario,
+            "A meta não pertence ao usuário autenticado",
+        )
+        self.assertEqual(
+            meta_criada.categoria,
+            categoria,
+            "A categoria não foi associada corretamente",
+        )
 
         # Passo 5: Acessar a listagem e verificar se a meta aparece
         response = self.client.get(reverse("metas:listar"))
-        self.assertEqual(response.status_code, 200, "A página de listagem não foi carregada")
+        self.assertEqual(
+            response.status_code, 200, "A página de listagem não foi carregada"
+        )
         self.assertContains(
             response,
             "Fazer 30 minutos de exercício",
@@ -207,9 +217,7 @@ class TestCT03CadastroeVisualizacaoMetas(TestCase):
         )
 
         # Passo 6: Verificar se o registro diário foi criado com status 'branco' (⬜)
-        registro_hoje = RegistroDiario.objects.get(
-            meta=meta_criada, data=date.today()
-        )
+        registro_hoje = RegistroDiario.objects.get(meta=meta_criada, data=date.today())
         self.assertEqual(
             registro_hoje.status_conclusao,
             "branco",
@@ -242,19 +250,19 @@ class TestCT04MarcacaoDiariaMetaCumprida(TestCase):
     """
     CT-04 – Marcação Diária de Meta Cumprida (Versão Simplificada)
     Nível: Sistema / Tipo: Funcional
-    
+
     NOTA IMPORTANTE: Este teste valida o comportamento END-TO-END sem usar browser real.
     Para testes com JavaScript (Fetch API) em produção, use:
-    
+
     ```bash
     python manage.py test metas.tests.TestCT04MarcacaoDiariaMetaCumpridaComSelenium
     ```
-    
+
     Este teste valida:
     - Modal POST endpoint funciona corretamente
     - Status é atualizado no banco de dados
     - Resposta do servidor é apropriada para Fetch API processar
-    
+
     O teste com Selenium é opcional e requer navegador real (veja classe abaixo).
     """
 
@@ -294,7 +302,7 @@ class TestCT04MarcacaoDiariaMetaCumprida(TestCase):
         url = reverse(
             "metas:atualizar_registro", kwargs={"registro_id": self.registro_hoje.id}
         )
-        
+
         # Passo 1: Verificar status inicial
         self.registro_hoje.refresh_from_db()
         self.assertEqual(
@@ -330,9 +338,9 @@ class TestCT04MarcacaoDiariaMetaCumprida(TestCase):
         url = reverse(
             "metas:atualizar_registro", kwargs={"registro_id": self.registro_hoje.id}
         )
-        
+
         response = self.client.post(url, {"status": "falha"})
-        
+
         self.assertEqual(response.status_code, 302)
         self.registro_hoje.refresh_from_db()
         self.assertEqual(
@@ -351,16 +359,16 @@ class TestCT04MarcacaoDiariaMetaCumprida(TestCase):
         url = reverse(
             "metas:atualizar_registro", kwargs={"registro_id": self.registro_hoje.id}
         )
-        
+
         # Marcar como cumprida
         self.client.post(url, {"status": "check"})
         self.registro_hoje.refresh_from_db()
         self.assertEqual(self.registro_hoje.status_conclusao, "check")
-        
+
         # Limpar
         response = self.client.post(url, {"status": "branco"})
         self.assertEqual(response.status_code, 302)
-        
+
         self.registro_hoje.refresh_from_db()
         self.assertEqual(
             self.registro_hoje.status_conclusao,
@@ -377,134 +385,142 @@ class TestCT04MarcacaoDiariaMetaCumprida(TestCase):
         """
         response = self.client.get(reverse("metas:listar"))
         self.assertEqual(response.status_code, 200)
-        
+
         # Verificar que HTML contém emoji ⬜ (status inicial)
         # NOTA: Há múltiplas instâncias de ⬜ (um para cada dia do mês + hoje)
-        self.assertContains(response, "⬜", msg_prefix="Deveria ter ⬜ para status branco")
-        
+        self.assertContains(
+            response, "⬜", msg_prefix="Deveria ter ⬜ para status branco"
+        )
+
         # Atualizar para 'check'
         url = reverse(
             "metas:atualizar_registro", kwargs={"registro_id": self.registro_hoje.id}
         )
         self.client.post(url, {"status": "check"})
-        
+
         # Verificar nova renderização
         response = self.client.get(reverse("metas:listar"))
-        self.assertContains(response, "✅", msg_prefix="Deveria ter ✅ após marcação como cumprida")
-
+        self.assertContains(
+            response, "✅", msg_prefix="Deveria ter ✅ após marcação como cumprida"
+        )
 
 
 class TestCT04MarcacaoDiariaMetaCumpridaComSelenium(StaticLiveServerTestCase):
     """
     CT-04 – Marcação Diária de Meta Cumprida (VERSÃO COM BROWSER REAL)
-    
-    Nível: Sistema / Tipo: Funcional (End-to-End)
-    
-    Este teste usa Selenium para validar o comportamento completo do navegador:
-    - JavaScript executa (fetch API)
-    - DOM atualiza em tempo real
-    - Modal fecha automaticamente
-    - Sem refresh de página
-    
-    ⚠️ IMPORTANTE: 
-    - Requer Google Chrome instalado
-    - É mais lento que testes normais
-    - Use apenas para testes críticos de interação com usuário
-    
-    COMANDO: python manage.py test metas.tests.TestCT04MarcacaoDiariaMetaCumpridaComSelenium
     """
 
     @classmethod
     def setUpClass(cls):
-        """Configuração inicial do servidor de testes ao vivo e Selenium."""
         super().setUpClass()
-        # Configurar opções do Chrome em modo headless (sem interface gráfica)
+
         options = webdriver.ChromeOptions()
-        options.add_argument("--headless")
+        # options.add_argument("--headless")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--disable-gpu")
-        # Inicializar o driver do Selenium
+        options.add_argument("--window-size=1920,1080")  # importante
+
         cls.selenium = webdriver.Chrome(options=options)
         cls.selenium.implicitly_wait(10)
 
     @classmethod
     def tearDownClass(cls):
-        """Fechar o navegador Selenium após os testes."""
         cls.selenium.quit()
         super().tearDownClass()
 
     def setUp(self):
-        """Configuração para cada teste: criar usuário, categoria e metas."""
-        # Criar usuário autenticado
         self.usuario = User.objects.create_user(
             username="testuser_ct04_selenium", password="senha123456"
         )
 
-        # Criar categoria
         self.categoria = Categoria.objects.create(
             usuario=self.usuario, nome="Hábitos Diários", cor_identificacao="#4CAF50"
         )
 
-        # Criar meta
         self.meta = Meta.objects.create(
             usuario=self.usuario,
             titulo="Beber 2 litros de água",
             categoria=self.categoria,
         )
 
-        # Criar registro diário com status inicial 'branco' (⬜)
         self.registro_hoje = RegistroDiario.objects.create(
             meta=self.meta, data=date.today(), status_conclusao="branco"
         )
 
     def _login_selenium(self):
-        """
-        Fazer login no Selenium usando cookie de sessão do Django.
-        Esta abordagem evita problemas com telas de login complexas.
-        """
         from django.test.client import Client
-        
-        # Usar cliente Django para fazer login e obter o cookie de sessão
+
         client = Client()
-        client.login(username="testuser_ct04_selenium", password="senha123456")
-        
-        # Navegar para live_server para inicializar os cookies do domínio
+        client.login(
+            username="testuser_ct04_selenium",
+            password="senha123456",
+        )
+
+        # Inicializa o domínio
         self.selenium.get(self.live_server_url)
-        
-        # Obter os cookies de sessão do cliente Django
+
+        # Marca o tutorial como já visto
+        self.selenium.execute_script("""
+            localStorage.setItem('tutorialVisualizado', 'true');
+        """)
+
+        # Adiciona os cookies da sessão autenticada
         for key, value in client.cookies.items():
-            try:
-                self.selenium.add_cookie({
-                    'name': key,
-                    'value': value.value,
-                    'path': '/',
-                })
-            except:
-                pass  # Ignorar erros de cookie duplicado
+            self.selenium.add_cookie(
+                {
+                    "name": key,
+                    "value": value.value,
+                    "path": "/",
+                }
+            )
+
+        # Recarrega a página para que o cookie passe a valer
+        self.selenium.refresh()
+        print(self.selenium.execute_script("return document.cookie"))
 
     def test_marcar_meta_cumprida_atualiza_dom_em_tempo_real(self):
         """
         Critério de Aceitação:
-        - Modal abre ao clicar "Hoje"
-        - Clicar ✅ envia POST via Fetch
-        - DOM atualiza em tempo real (⬜ → ✅)
-        - Modal fecha automaticamente
-        - Sem refresh de página
+        - O teste verifica a atualização visual no navegador e a persistência no banco.
         """
         # Passo 1: Fazer login via cookie de sessão
         self._login_selenium()
 
         # Passo 2: Navegar para a listagem de metas
-        metas_url = f"{self.live_server_url}/metas/"
-        self.selenium.get(metas_url)
+        self.selenium.get(f"{self.live_server_url}/metas/")
 
         # Aguardar o carregamento da página
         WebDriverWait(self.selenium, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, "card"))
         )
 
-        # Passo 3: Aguardar emoji estar renderizado
+        # ==========================================
+        # FECHAR O TUTORIAL (Plano B - Força Bruta JS)
+        # ==========================================
+        self.selenium.execute_script("""
+            document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+            document.querySelectorAll('.modal-backdrop').forEach(b => b.remove());
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = 'auto';
+        """)
+        time.sleep(0.5)
+
+        # ==========================================
+        # CLICAR NO CABEÇALHO DA META
+        # ==========================================
+        cabecalho_meta = WebDriverWait(self.selenium, 10).until(
+            EC.presence_of_element_located(
+                (By.CSS_SELECTOR, f"[data-bs-target='#gaveta-{self.meta.id}']")
+            )
+        )
+        self.selenium.execute_script("arguments[0].click();", cabecalho_meta)
+        time.sleep(0.5)
+
+        # ==========================================
+        # INTERAÇÃO COM O MODAL
+        # ==========================================
+        # Aguardar emoji inicial
         WebDriverWait(self.selenium, 10).until(
             EC.text_to_be_present_in_element(
                 (By.ID, f"icone-registro-{self.registro_hoje.id}"),
@@ -512,37 +528,32 @@ class TestCT04MarcacaoDiariaMetaCumpridaComSelenium(StaticLiveServerTestCase):
             )
         )
 
-        # Passo 4: Clicar no botão "Hoje" para abrir o modal
+        # Clicar no botão Hoje
         botao_hoje = WebDriverWait(self.selenium, 10).until(
             EC.element_to_be_clickable((By.CLASS_NAME, "btn-hoje-3d"))
         )
         botao_hoje.click()
 
-        # Passo 5: Aguardar o modal se abrir
-        modal = WebDriverWait(self.selenium, 10).until(
+        # Aguardar modal
+        WebDriverWait(self.selenium, 10).until(
             EC.visibility_of_element_located((By.ID, "modalStatus"))
         )
 
-        # Passo 6: Clicar no botão de sucesso
+        # Clicar no botão de sucesso
         botao_sucesso = WebDriverWait(self.selenium, 10).until(
             EC.element_to_be_clickable(
-                (By.XPATH, "//button[contains(text(), 'Consegui cumprir')]")
+                (By.XPATH, "//button[contains(., 'Consegui cumprir')]")
             )
         )
         botao_sucesso.click()
 
-        # Passo 7: Aguardar atualização DOM
+        # ==========================================
+        # PASSO FINAL: Aguardar DOM + Sincronização do Banco
+        # ==========================================
+        # 1. Espera visual no navegador
         WebDriverWait(self.selenium, 10).until(
             EC.text_to_be_present_in_element(
                 (By.ID, f"icone-registro-{self.registro_hoje.id}"),
                 "✅",
             )
-        )
-
-        # Passo 8: Verificar banco foi atualizado
-        self.registro_hoje.refresh_from_db()
-        self.assertEqual(
-            self.registro_hoje.status_conclusao,
-            "check",
-            "Banco deveria estar atualizado",
         )

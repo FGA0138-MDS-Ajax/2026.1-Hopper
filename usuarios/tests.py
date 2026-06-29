@@ -1,11 +1,18 @@
+import time
 from unittest.mock import patch
 
 from django.contrib.auth.models import AnonymousUser, User
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test import RequestFactory, TestCase
 from django.urls import reverse
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
+from usuarios.models import PerfilUsuario
 
 from .context_processors import configuracoes_acessibilidade
-from .models import PerfilUsuario
 
 
 class AutenticacaoIntegracaoTest(TestCase):
@@ -144,3 +151,139 @@ class ContextProcessorTest(TestCase):
 
         self.assertEqual(contexto["global_tamanho_texto"], "medio")
         self.assertEqual(contexto["global_tamanho_botao"], "normal")
+
+
+class TestCTAcessibilidadeSistema(StaticLiveServerTestCase):
+    """
+    CT - Alteração das configurações de acessibilidade.
+    O teste verifica o fluxo completo pelo navegador.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+
+        options = webdriver.ChromeOptions()
+        # options.add_argument("--headless")
+        options.add_argument("--window-size=1920,1080")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+
+        cls.selenium = webdriver.Chrome(options=options)
+        cls.selenium.implicitly_wait(10)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.selenium.quit()
+        super().tearDownClass()
+
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="idoso",
+            password="senha123",
+        )
+
+        self.perfil = PerfilUsuario.objects.create(
+            usuario=self.user,
+            tamanho_texto="medio",
+            tamanho_botao="normal",
+        )
+
+    def _login(self):
+        from django.test.client import Client
+
+        client = Client()
+        client.login(
+            username="idoso",
+            password="senha123",
+        )
+
+        # Inicializa domínio
+        self.selenium.get(self.live_server_url)
+
+        # Não mostrar tutorial
+        self.selenium.execute_script("""
+            localStorage.setItem('tutorialVisualizado', 'true');
+        """)
+
+        # Copia cookies da sessão
+        for key, value in client.cookies.items():
+            self.selenium.add_cookie(
+                {
+                    "name": key,
+                    "value": value.value,
+                    "path": "/",
+                }
+            )
+
+        self.selenium.refresh()
+
+    def test_alterar_configuracoes_acessibilidade(self):
+
+        # Login
+        self._login()
+
+        # Abre a página
+        self.selenium.get(f"{self.live_server_url}/usuarios/acessibilidade/")
+
+        WebDriverWait(self.selenium, 10).until(
+            EC.presence_of_element_located((By.ID, "letra_grande"))
+        )
+
+        # Fecha qualquer modal do tutorial
+        self.selenium.execute_script("""
+            document.querySelectorAll('.modal').forEach(m => m.style.display='none');
+            document.querySelectorAll('.modal-backdrop').forEach(b => b.remove());
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow='auto';
+        """)
+
+        # Seleciona "Grande"
+        self.selenium.find_element(By.CSS_SELECTOR, "label[for='letra_grande']").click()
+
+        # Seleciona "Botões Grandes"
+        self.selenium.find_element(By.CSS_SELECTOR, "label[for='botao_grande']").click()
+
+        # Salva
+        botao_salvar = self.selenium.find_element(
+            By.CSS_SELECTOR, "button[type='submit']"
+        )
+
+        # Garante que o botão está visível
+        self.selenium.execute_script(
+            "arguments[0].scrollIntoView({block: 'center'});",
+            botao_salvar,
+        )
+
+        time.sleep(0.5)
+
+        # Clica via JavaScript
+        self.selenium.execute_script(
+            "arguments[0].click();",
+            botao_salvar,
+        )
+
+        # Espera voltar para a própria página
+        WebDriverWait(self.selenium, 10).until(
+            EC.url_contains("/usuarios/acessibilidade/")
+        )
+
+        # Confere o banco
+        self.perfil.refresh_from_db()
+
+        self.assertEqual(self.perfil.tamanho_texto, "grande")
+
+        self.assertEqual(self.perfil.tamanho_botao, "largo")
+
+        # Reabre a página
+        self.selenium.get(f"{self.live_server_url}/usuarios/acessibilidade/")
+
+        WebDriverWait(self.selenium, 10).until(
+            EC.presence_of_element_located((By.ID, "letra_grande"))
+        )
+
+        # Confere que continuam marcados
+        self.assertTrue(self.selenium.find_element(By.ID, "letra_grande").is_selected())
+
+        self.assertTrue(self.selenium.find_element(By.ID, "botao_grande").is_selected())
