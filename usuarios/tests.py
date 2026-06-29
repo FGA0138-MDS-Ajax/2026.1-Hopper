@@ -287,3 +287,92 @@ class TestCTAcessibilidadeSistema(StaticLiveServerTestCase):
         self.assertTrue(self.selenium.find_element(By.ID, "letra_grande").is_selected())
 
         self.assertTrue(self.selenium.find_element(By.ID, "botao_grande").is_selected())
+
+
+class TestCTLoginSistema(StaticLiveServerTestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+
+        options = webdriver.ChromeOptions()
+        # options.add_argument("--headless")
+        options.add_argument("--window-size=1920,1080")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+
+        cls.selenium = webdriver.Chrome(options=options)
+        cls.selenium.implicitly_wait(10)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.selenium.quit()
+        super().tearDownClass()
+
+    def setUp(self):
+        User.objects.create_user(
+            username="idoso",
+            password="senha123",
+            email="idoso@email.com",
+            first_name="Idoso",
+        )
+
+    def _mock_keycloak(self):
+
+        self.patcher_auth = patch(
+            "usuarios.views.keycloak_openid.auth_url",
+            return_value=f"{self.live_server_url}/usuarios/callback/?code=123",
+        )
+
+        self.patcher_token = patch(
+            "usuarios.views.keycloak_openid.token",
+            return_value={"access_token": "fake-token"},
+        )
+
+        self.patcher_userinfo = patch(
+            "usuarios.views.keycloak_openid.userinfo",
+            return_value={
+                "preferred_username": "idoso",
+                "email": "idoso@email.com",
+                "given_name": "Idoso",
+                "sub": "keycloak-123",
+            },
+        )
+
+        self.patcher_auth.start()
+        self.patcher_token.start()
+        self.patcher_userinfo.start()
+
+    def _stop_mock(self):
+        self.patcher_auth.stop()
+        self.patcher_token.stop()
+        self.patcher_userinfo.stop()
+
+    def test_login_fluxo_sistema(self):
+
+        self._mock_keycloak()
+
+        try:
+            self.selenium.get(f"{self.live_server_url}/usuarios/login/")
+
+            # espera sair da tela de login
+            WebDriverWait(self.selenium, 10).until(
+                lambda d: "/usuarios/login" not in d.current_url
+            )
+
+            current_url = self.selenium.current_url
+
+            print("\nURL FINAL:", current_url)
+
+            self.assertNotIn("/usuarios/login", current_url)
+
+            self.assertTrue(
+                "HopLife" in self.selenium.page_source
+                or "Olá" in self.selenium.page_source
+            )
+
+            cookies = self.selenium.get_cookies()
+            self.assertTrue(any(c["name"] == "sessionid" for c in cookies))
+
+        finally:
+            self._stop_mock()
