@@ -1,0 +1,285 @@
+{% extends 'base.html' %} 
+{% load static %}
+
+{% block conteudo %}
+<style>
+    /* Card centralizado e estilizado com as cores da Dash principal */
+    .card-acessibilidade {
+        border: 2px solid #3A5A50;
+        border-radius: 12px;
+        background-color: #FFFFFF;
+        max-width: 650px; 
+        width: 100%;
+        box-shadow: 0 15px 45px rgba(58, 90, 80, 0.12) !important;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Estilo dos botões seguindo a paleta HopLife */
+    .btn-outline-hop {
+        color: #3A5A50 !important;
+        border: 2px solid #3A5A50 !important;
+        background-color: white !important;
+        font-weight: 700;
+        transition: all 0.2s;
+    }
+    .btn-check:checked + .btn-outline-hop {
+        background-color: #3A5A50 !important;
+        color: white !important;
+    }
+
+    /* --- Botão Salvar 3D Laranja --- */
+    .btn-acao-quente {
+        background-color: #E64500 !important;
+        color: #FFFFFF !important;
+        border-radius: 12px !important;
+        padding: 1rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        box-shadow: 0 6px 0 #B33600 !important;
+        border: none !important;
+        transition: all 0.15s ease-in-out !important;
+        width: 100%;
+        font-size: 1.5rem;
+    }
+    .btn-acao-quente:hover {
+        background-color: #FF5A1A !important;
+        transform: translateY(4px) !important;
+        box-shadow: 0 2px 0 #B33600 !important;
+        color: #FFFFFF !important;
+    }
+
+    /* Botão Laranja HopLife (Usado no Tutorial) */
+    .btn-warm {
+        background-color: #E64500 !important;
+        color: #FFFFFF !important;
+        border-radius: 12px !important;
+        padding: 1rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        box-shadow: 0 4px 0 #B33600 !important;
+        border: none !important;
+        transition: all 0.15s ease-in-out !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-warm:hover {
+        transform: translateY(2px) !important;
+        box-shadow: 0 2px 0 #B33600 !important;
+        color: #FFFFFF !important;
+    }
+    .btn-warm:active {
+        transform: translateY(4px) !important;
+        box-shadow: 0 0 0 transparent !important;
+        color: #FFFFFF !important;
+    }
+</style>
+
+<div class="container py-4">
+    <div id="alertaAzul" class="alert alert-success d-none" role="alert">
+        <strong>Assistência Ativada!</strong> Filtros e cliques de permanência ativos.
+    </div>
+
+    <div class="card-acessibilidade p-4 p-md-5 mx-auto">
+        <h1 class="text-hop-green fw-bolder mb-4 {{ global_tamanho_texto }}">Minhas Configurações</h1>
+        <p class="text-escuro mb-5 fs-5 {{ global_tamanho_texto }}">
+            Ajuste as opções abaixo e salve para aplicar as alterações.
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-5">
+                <label class="fw-bold text-dark mb-3 d-block fs-4 {{ global_tamanho_texto }}">Tamanho das Letras</label>
+                <div class="row g-2">
+                    <div class="col-4"><input type="radio" class="btn-check" name="tamanho_letra" id="letra_pequena" value="pequeno" {% if tamanho_texto == 'pequeno' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3 {{ global_tamanho_botao }}" for="letra_pequena">Pequeno</label></div>
+                    <div class="col-4"><input type="radio" class="btn-check" name="tamanho_letra" id="letra_media" value="medio" {% if tamanho_texto == 'medio' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3 {{ global_tamanho_botao }}" for="letra_media">Médio</label></div>
+                    <div class="col-4"><input type="radio" class="btn-check" name="tamanho_letra" id="letra_grande" value="grande" {% if tamanho_texto == 'grande' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3 {{ global_tamanho_botao }}" for="letra_grande">Grande</label></div>
+                </div>
+            </div>
+
+            <div class="mb-5">
+                <label class="fw-bold text-dark mb-3 d-block fs-4 {{ global_tamanho_texto }}">Tamanho dos Botões</label>
+                <div class="row g-2">
+                    <div class="col-6"><input type="radio" class="btn-check" name="tamanho_botao" id="botao_normal" value="normal" {% if tamanho_botao == 'normal' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3 {{ global_tamanho_botao }}" for="botao_normal">Normal</label></div>
+                    <div class="col-6"><input type="radio" class="btn-check" name="tamanho_botao" id="botao_grande" value="largo" {% if tamanho_botao == 'largo' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3 {{ global_tamanho_botao }}" for="botao_grande">Botões Grandes</label></div>
+                </div>
+            </div>
+
+            <div class="p-4 mb-5 border rounded bg-light">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="fw-bold text-dark mb-1 {{ global_tamanho_texto }}">Assistência Motora (Tremores e Toque)</h4>
+                        <p class="text-escuro mb-0 {{ global_tamanho_texto }}">Proteção contra cliques rápidos (500ms) e seleção automática ao manter pressionado/pairar por 2 segundos (Dwell Click).</p>
+                    </div>
+                    <div class="form-check form-switch fs-1">
+                        <input class="form-check-input" type="checkbox" role="switch" id="assistencia_motora" name="assistencia_motora_ativa" {% if assistencia_motora %}checked{% endif %}>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 mb-5 border rounded bg-light">
+                <h4 class="fw-bold text-dark mb-2 {{ global_tamanho_texto }}">Exemplo Visual das Letras e Botões</h4>
+                <p class="text-muted small {{ global_tamanho_texto }}">Os tamanhos mudam em tempo real abaixo e em todo o site conforme você altera as opções acima!</p>
+                <div class="p-3 border rounded bg-white mt-3 text-center">
+                    <p class="mb-3 fw-bold text-dark {{ global_tamanho_texto }}">Texto de Exemplo</p>
+                    <button type="button" class="btn btn-outline-hop w-100 py-2 {{ global_tamanho_botao }}">Botão de Exemplo</button>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-acao-quente {{ global_tamanho_botao }}">
+                Salvar Configurações
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const radiosLetra = document.querySelectorAll('input[name="tamanho_letra"]');
+        const radiosBotao = document.querySelectorAll('input[name="tamanho_botao"]');
+        const checkMotora = document.getElementById('assistencia_motora');
+        const alertaAzul = document.getElementById('alertaAzul');
+
+        let tempoUltimoClique = 0;
+        const ATRASO_TREMOR = 500; 
+        let dwellTimer = null;
+        const TEMPO_PERMANENCIA = 2000; 
+
+        // CORREÇÃO BUG 1: Debounce inteligente intercepta apenas cliques reais, deixando a relação Label->Input passar livremente
+        document.addEventListener('click', function(e) {
+            if (document.body.classList.contains('assistencia-motora')) {
+                if (e.target.tagName === 'INPUT' && (e.target.type === 'radio' || e.target.type === 'checkbox')) {
+                    return; 
+                }
+                const agora = new Date().getTime();
+                if (agora - tempoUltimoClique < ATRASO_TREMOR) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                tempoUltimoClique = agora;
+            }
+        }, true); 
+
+        // CORREÇÃO BUG 2: O efeito visual mudou para um contorno externo (outline) limpo, impedindo deformações visuais
+        function iniciarDwellClick(e) {
+            if (!document.body.classList.contains('assistencia-motora')) return;
+            const elemento = e.currentTarget;
+
+            elemento.style.transition = 'outline 2s ease-in-out, outline-offset 2s ease-in-out';
+            elemento.style.outline = '3px solid #E64500';
+            elemento.style.outlineOffset = '2px';
+
+            dwellTimer = setTimeout(() => {
+                elemento.style.outline = '';
+                elemento.style.outlineOffset = '';
+                
+                // Dispara o clique no elemento real correto
+                if (elemento.tagName === 'LABEL' && elemento.htmlFor) {
+                    const inputAssociado = document.getElementById(elemento.htmlFor);
+                    if (inputAssociado) {
+                        inputAssociado.click();
+                        inputAssociado.dispatchEvent(new Event('change'));
+                    }
+                } else {
+                    elemento.click();
+                }
+                
+                const corOriginal = elemento.style.backgroundColor;
+                elemento.style.backgroundColor = '#4CAF50';
+                setTimeout(() => { elemento.style.backgroundColor = corOriginal; }, 300);
+            }, TEMPO_PERMANENCIA);
+        }
+
+        function cancelarDwellClick(e) {
+            if (dwellTimer) {
+                clearTimeout(dwellTimer);
+                dwellTimer = null;
+            }
+            const elemento = e.currentTarget;
+            elemento.style.transition = 'none';
+            elemento.style.outline = '';
+            elemento.style.outlineOffset = '';
+        }
+
+        function aplicarEventosDwell() {
+            const clicaveis = document.querySelectorAll('button, a, input[type="submit"], .btn-check + label');
+            clicaveis.forEach(el => {
+                el.removeEventListener('mouseenter', iniciarDwellClick);
+                el.removeEventListener('mouseleave', cancelarDwellClick);
+                
+                el.addEventListener('mouseenter', iniciarDwellClick);
+                el.addEventListener('mouseleave', cancelarDwellClick);
+            });
+        }
+
+        function updateLiveSettings() {
+            const selectedLetra = document.querySelector('input[name="tamanho_letra"]:checked').value;
+            const selectedBotao = document.querySelector('input[name="tamanho_botao"]:checked').value;
+            const isMotora = checkMotora.checked;
+
+            document.body.classList.remove('texto-pequeno', 'texto-medio', 'texto-grande');
+            document.body.classList.remove('botao-normal', 'botao-largo');
+            
+            document.body.classList.add('texto-' + selectedLetra);
+            document.body.classList.add('botao-' + selectedBotao);
+
+            if (isMotora) {
+                document.body.classList.add('assistencia-motora');
+                aplicarEventosDwell();
+                alertaAzul.classList.remove('d-none');
+            } else {
+                document.body.classList.remove('assistencia-motora');
+                alertaAzul.classList.add('d-none');
+            }
+        }
+
+        radiosLetra.forEach(r => r.addEventListener('change', updateLiveSettings));
+        radiosBotao.forEach(r => r.addEventListener('change', updateLiveSettings));
+        checkMotora.addEventListener('change', updateLiveSettings);
+
+        if(checkMotora.checked) {
+            document.body.classList.add('assistencia-motora');
+            aplicarEventosDwell();
+        }
+    });
+</script>
+{% endblock %}
+
+{% block tutorial_slides %}
+    <div class="carousel-item active py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">⚙️</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Configurações de Acessibilidade</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Bem-vindo! Esta página foi feita para deixar o HopLife mais confortável para você. Aqui você ajusta o site exatamente do jeito que preferir.
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">🔎</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Ajuste os Tamanhos</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Se precisar de mais conforto, <strong>escolha o tamanho das letras</strong> ou marque a opção para deixar os <strong>botões maiores</strong>, facilitando o clique.
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">✋</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Assistência Motora</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Se tiver dificuldades com cliques, <strong>ative a chave da assistência motora</strong>. Com ela, basta <strong>manter o mouse parado</strong> sobre um botão por 2 segundos para ele ser clicado automaticamente!
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">💾</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Salve suas escolhas</h3>
+        <p class="fs-3 text-dark lh-base mb-4 {{ global_tamanho_texto }}">
+            Confira como o sistema mudou no quadro de exemplo. Quando estiver tudo pronto, <strong>clique no botão laranja "Salvar Configurações"</strong> para aplicar tudo.
+        </p>
+        <button type="button" class="btn btn-warm shadow-sm fw-bold {{ global_tamanho_botao|default:'btn-lg px-5 py-3 fs-3' }}" data-bs-dismiss="modal">
+            Entendi! 👍
+        </button>
+    </div>
+{% endblock %}

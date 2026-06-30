@@ -1,0 +1,15 @@
+# Ignora o ambiente virtual do Windows
+venv/
+
+# Ignora os arquivos compilados e temporários do Python
+__pycache__/
+*.pyc
+
+# Ignora o banco de dados local para evitar conflitos
+db.sqlite3
+
+# Ignora as configurações do seu editor de texto
+.vscode/
+
+# Ignora o histórico de commits do GitHub
+.git/

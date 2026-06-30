@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<style>
+    /* --- Padronização HopLife --- */
+    
+    /* Botão Principal Quente (Nova) */
+    .btn-warm {
+        background-color: #E64500 !important;
+        color: #FFFFFF !important;
+        border-radius: 12px !important;
+        padding: 0.8rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        box-shadow: 0 4px 0 #B33600 !important;
+        border: none !important;
+        transition: all 0.15s ease-in-out !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-warm:hover {
+        background-color: #FF5A1A !important;
+        transform: translateY(2px) !important; 
+        box-shadow: 0 2px 0 #B33600 !important;
+        color: #FFFFFF !important;
+    }
+    .btn-warm:active {
+        transform: translateY(4px) !important; /* Entra pra dentro ao clicar */
+        box-shadow: 0 0 0 transparent !important;
+    }
+
+    /* Botão Secundário (Voltar para Metas) */
+    .btn-cancelar {
+        background-color: #FFFFFF !important;
+        color: #374151 !important;
+        border-radius: 12px !important;
+        padding: 0.8rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        border: 2px solid #E0DED7 !important;
+        box-shadow: 0 4px 0 #D1CFC4 !important; 
+        transition: all 0.15s ease-in-out !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-cancelar:hover {
+        background-color: #F9F9F8 !important;
+        transform: translateY(2px) !important; 
+        box-shadow: 0 2px 0 #D1CFC4 !important;
+        color: #343a40 !important;
+    }
+    .btn-cancelar:active {
+        transform: translateY(4px) !important; /* Entra pra dentro ao clicar */
+        box-shadow: 0 0 0 transparent !important;
+    }
+
+    /* Botão de Perigo Pequeno (Apagar item da lista) */
+    .btn-perigo-sm {
+        background-color: #FFFFFF !important;
+        color: #DC3545 !important;
+        border-radius: 10px !important;
+        padding: 0.4rem 1.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        border: 2px solid #DC3545 !important;
+        box-shadow: 0 3px 0 #A71D2A !important;
+        transition: all 0.15s ease-in-out !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-perigo-sm:hover {
+        background-color: #DC3545 !important;
+        color: #FFFFFF !important;
+        transform: translateY(1px) !important;
+        box-shadow: 0 2px 0 #A71D2A !important;
+    }
+    .btn-perigo-sm:active {
+        transform: translateY(3px) !important;
+        box-shadow: 0 0 0 transparent !important;
+    }
+</style>
+
+<div class="row justify-content-center pb-5">
+    <div class="col-md-8">
+        
+        <div class="d-flex justify-content-between align-items-center mb-4 mt-3">
+            <h1 class="m-0 fw-bolder" style="letter-spacing: -0.5px; color: #374151;">
+                Minhas Categorias
+            </h1>
+            <a href="{% url 'metas:criar_categoria' %}" class="btn-warm">
+                Nova
+            </a>
+        </div>
+
+        <div class="card shadow-sm rounded-4 border-0" style="background-color: #FFFFFF;">
+            <div class="card-body p-4">
+                {% for categoria in categorias %}
+                    <div class="d-flex justify-content-between align-items-center border-bottom py-3">
+
+                        <div class="d-flex align-items-center gap-3">
+                            <div style="width: 25px; height: 25px; background-color: {{ categoria.cor_identificacao }}; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></div>
+                            <span class="fs-5 fw-bold text-dark">{{ categoria.nome }}</span>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <a href="{% url 'metas:editar_categoria' categoria.id %}" class="btn-cancelar">
+                                Editar
+                            </a>
+
+                            <a href="{% url 'metas:deletar_categoria' categoria.id %}" class="btn-perigo-sm">
+                                Apagar
+                            </a>
+                        </div>
+
+                    </div>
+
+                {% empty %}
+                    <div class="text-center py-5">
+                        <p class="text-muted m-0 fs-5">
+                            Você ainda não tem categorias personalizadas.
+                        </p>
+                    </div>
+                {% endfor %}
+                
+                <div class="mt-5 text-center">
+                    <a href="{% url 'metas:listar' %}" class="btn-cancelar">
+                        Voltar para Metas
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}
+
+{% block tutorial_slides %}
+    <div class="carousel-item active py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">🗂️</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Suas Categorias</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Esta é a tela onde você <strong>gerencia todos os grupos que criou</strong> para organizar as suas metas.
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">➕</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Criando um novo grupo</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Precisa de uma categoria nova? É só <strong>clicar no botão laranja "Nova"</strong> que aparece no topo da tela.
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">🗑️</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Apagar um grupo</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Se você não usa mais ou quer editar uma categoria, clique no botão <strong>"Editar"</strong> ou clique no botão vermelho <strong>"Apagar"</strong> ao lado. Não se preocupe: isso não apaga as suas metas, elas apenas ficarão <strong>"Sem categoria"</strong>.
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">🔙</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Voltar para as metas</h3>
+        <p class="fs-3 text-dark lh-base mb-4 {{ global_tamanho_texto }}">
+            Quando terminar de organizar, <strong>clique no botão "Voltar para Metas"</strong> que está no final da lista.
+        </p>
+        <button type="button" class="btn btn-warm shadow-sm fw-bold {{ global_tamanho_botao|default:'btn-lg px-5 py-3 fs-3' }}" data-bs-dismiss="modal">
+            Entendi! 👍
+        </button>
+    </div>
+{% endblock %}

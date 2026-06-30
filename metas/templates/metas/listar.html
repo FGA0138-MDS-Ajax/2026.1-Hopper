@@ -1,0 +1,449 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<style>
+    /* --- Padronização HopLife --- */
+    
+    /* Botão Principal Quente (Nova) */
+    .btn-warm {
+        background-color: #E64500 !important;
+        color: #FFFFFF !important;
+        border-radius: 12px !important;
+        padding: 0.8rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        box-shadow: 0 4px 0 #B33600 !important;
+        border: none !important;
+        transition: all 0.15s ease-in-out !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-warm:hover {
+        background-color: #FF5A1A !important;
+        transform: translateY(2px) !important; 
+        box-shadow: 0 2px 0 #B33600 !important;
+        color: #FFFFFF !important;
+    }
+    .btn-warm:active {
+        transform: translateY(4px) !important;
+        box-shadow: 0 0 0 transparent !important;
+    }
+
+    /* Botão Secundário (Voltar para Metas) */
+    .btn-cancelar {
+        background-color: #FFFFFF !important;
+        color: #374151 !important;
+        border-radius: 12px !important;
+        padding: 0.8rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        border: 2px solid #E0DED7 !important;
+        box-shadow: 0 4px 0 #D1CFC4 !important; 
+        transition: all 0.15s ease-in-out !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-cancelar:hover {
+        background-color: #F9F9F8 !important;
+        transform: translateY(2px) !important; 
+        box-shadow: 0 2px 0 #D1CFC4 !important;
+        color: #343a40 !important;
+    }
+    .btn-cancelar:active {
+        transform: translateY(4px) !important;
+        box-shadow: 0 0 0 transparent !important;
+    }
+
+    /* Botão de Perigo Pequeno (Apagar item da lista) */
+    .btn-perigo-sm {
+        background-color: #FFFFFF !important;
+        color: #DC3545 !important;
+        border-radius: 10px !important;
+        padding: 0.4rem 1.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        border: 2px solid #DC3545 !important;
+        box-shadow: 0 3px 0 #A71D2A !important;
+        transition: all 0.15s ease-in-out !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-perigo-sm:hover {
+        background-color: #DC3545 !important;
+        color: #FFFFFF !important;
+        transform: translateY(1px) !important;
+        box-shadow: 0 2px 0 #A71D2A !important;
+    }
+    .btn-perigo-sm:active {
+        transform: translateY(3px) !important;
+        box-shadow: 0 0 0 transparent !important;
+    }
+
+    /* --- Botão de 'Hoje' (Destaque dentro do Card) --- */
+    .btn-hoje-3d {
+        background-color: #FFF3E0 !important;
+        color: #D35400 !important;
+        border-radius: 16px !important;
+        border: 2px solid #E67E22 !important;
+        box-shadow: 0 4px 0 #E67E22 !important;
+        transition: all 0.15s ease-in-out !important;
+        border-bottom-width: 2px !important;
+    }
+    .btn-hoje-3d:hover {
+        transform: translateY(2px) !important;
+        box-shadow: 0 2px 0 #E67E22 !important;
+        background-color: #FFE0B2 !important;
+        color: #D35400 !important;
+    }
+    .btn-hoje-3d:active {
+        transform: translateY(4px) !important;
+        box-shadow: 0 0 0 transparent !important;
+        color: #D35400 !important;
+    }
+
+    /* --- Botões do Modal (Padronizados) --- */
+    .btn-modal-3d {
+        border-radius: 12px !important;
+        transition: all 0.15s ease-in-out !important;
+        font-weight: bold;
+    }
+    
+    /* Verde HopLife */
+    .btn-modal-success {
+        background-color: #4CAF50 !important; 
+        color: #FFFFFF !important;
+        border: none !important;
+        box-shadow: 0 4px 0 #388E3C !important;
+    }
+    .btn-modal-success:hover { 
+        background-color: #45a049 !important;
+        color: #FFFFFF !important; 
+        transform: translateY(2px); 
+        box-shadow: 0 2px 0 #388E3C !important; 
+    }
+    .btn-modal-success:active { 
+        color: #FFFFFF !important;
+        transform: translateY(4px); 
+        box-shadow: 0 0 0 transparent !important; 
+    }
+    
+    /* Vermelho HopLife */
+    .btn-modal-danger {
+        background-color: #DC3545 !important; 
+        color: #FFFFFF !important;
+        border: none !important;
+        box-shadow: 0 4px 0 #A71D2A !important;
+    }
+    .btn-modal-danger:hover { 
+        background-color: #C82333 !important;
+        color: #FFFFFF !important; 
+        transform: translateY(2px); 
+        box-shadow: 0 2px 0 #A71D2A !important; 
+    }
+    .btn-modal-danger:active { 
+        color: #FFFFFF !important;
+        transform: translateY(4px); 
+        box-shadow: 0 0 0 transparent !important; 
+    }
+    
+    /* Branco HopLife */
+    .btn-modal-limpar {
+        background-color: #FFFFFF !important; 
+        color: #374151 !important;
+        border: 2px solid #E0DED7 !important;
+        box-shadow: 0 4px 0 #D1CFC4 !important;
+    }
+    .btn-modal-limpar:hover { 
+        background-color: #F9F9F8 !important;
+        color: #343a40 !important; 
+        transform: translateY(2px); 
+        box-shadow: 0 2px 0 #D1CFC4 !important; 
+    }
+    .btn-modal-limpar:active { 
+        color: #343a40 !important;
+        transform: translateY(4px); 
+        box-shadow: 0 0 0 transparent !important; 
+    }
+
+    /* Input da Nota no Modal */
+    textarea.form-control {
+        border-radius: 10px;
+        border: 2px solid #E0DED7;
+        background-color: #F9F9F8;
+        resize: none;
+    }
+    textarea.form-control:focus {
+        border-color: #3A5A50;
+        box-shadow: 0 0 0 0.25rem rgba(58, 90, 80, 0.25);
+        background-color: #FFFFFF;
+    }
+
+    /* Efeito sutil ao passar o mouse no cabeçalho do card */
+    .card-header-hover:hover {
+        background-color: #F9F9F8 !important;
+        transition: background-color 0.2s ease;
+    }
+</style>
+
+<div class="container max-w-md pb-5">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4 mt-3">
+        <h1 class="m-0 fw-bolder text-escuro {{ global_tamanho_texto }}" style="letter-spacing: -0.5px;">
+            Minhas Metas
+        </h1>
+        
+        <div class="d-flex gap-3">
+            <a href="{% url 'metas:listar_categorias' %}" class="btn-cancelar {{ global_tamanho_botao }}">
+                Gerenciar Categorias
+            </a>
+            
+            <a href="{% url 'metas:criar' %}?categoria={{ categoria_ativa }}" class="btn-warm {{ global_tamanho_botao }}">
+                Nova Meta
+            </a>
+        </div>
+    </div>
+
+    <div class="d-flex overflow-auto mb-4 pb-2" style="border-bottom: 2px solid #D1CFC4; white-space: nowrap;">
+        
+        <a href="{% url 'metas:listar' %}?categoria=todas" 
+           class="text-decoration-none px-3 py-2 {{ global_tamanho_texto }} {% if categoria_ativa == 'todas' %}text-dark fw-bold{% else %}text-muted{% endif %}"
+           style="{% if categoria_ativa == 'todas' %}border-bottom: 3px solid #E64500;{% else %}border-bottom: 3px solid transparent;{% endif %} transition: 0.2s; font-size: 1.1rem; margin-bottom: -2px;">
+            Todas
+        </a>
+
+        {% for cat in categorias %}
+            <a href="{% url 'metas:listar' %}?categoria={{ cat.id }}" 
+               class="text-decoration-none px-3 py-2 d-flex align-items-center gap-2 {{ global_tamanho_texto }} {% if categoria_ativa == cat.id|stringformat:'s' %}text-dark fw-bold{% else %}text-muted{% endif %}"
+               style="{% if categoria_ativa == cat.id|stringformat:'s' %}border-bottom: 3px solid {{ cat.cor_identificacao }};{% else %}border-bottom: 3px solid transparent;{% endif %} transition: 0.2s; font-size: 1.1rem; margin-bottom: -2px;">
+                <span style="width: 12px; height: 12px; border-radius: 50%; background-color: {{ cat.cor_identificacao }}; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></span>
+                {{ cat.nome }}
+            </a>
+        {% endfor %}
+
+        <a href="{% url 'metas:listar' %}?categoria=sem_categoria" 
+           class="text-decoration-none px-3 py-2 {{ global_tamanho_texto }} {% if categoria_ativa == 'sem_categoria' %}text-dark fw-bold{% else %}text-muted{% endif %}"
+           style="{% if categoria_ativa == 'sem_categoria' %}border-bottom: 3px solid #6c757d;{% else %}border-bottom: 3px solid transparent;{% endif %} transition: 0.2s; font-size: 1.1rem; margin-bottom: -2px;">
+            Sem Categoria
+        </a>
+    </div>
+
+    {% for meta in metas %}
+    <div class="card mb-4 shadow-sm rounded-4 border-0" style="background-color: #FFFFFF;">
+        
+        <div class="card-header bg-white py-3 border-0 rounded-top-4 card-header-hover" style="cursor: pointer;" 
+             data-bs-toggle="collapse" data-bs-target="#gaveta-{{ meta.id }}">
+            
+            <h3 class="m-0 d-flex justify-content-between align-items-center fw-bold {{ global_tamanho_texto }}"
+                style="color: {% if meta.categoria %}{{ meta.categoria.cor_identificacao }}{% else %}#374151{% endif %};">
+                {{ meta.titulo }} 
+                <small class="text-muted" style="font-size: 0.9rem; background-color: #F3F4F6; padding: 4px 10px; border-radius: 20px;">▼ Abrir</small>
+            </h3>
+        </div>
+
+        <div id="gaveta-{{ meta.id }}" class="collapse">
+            <div class="card-body bg-white rounded-bottom-4 pt-1">
+                
+                <div class="text-center mb-4 pb-4 border-bottom">
+                    <h5 class="text-escuro fw-bold mb-3 {{ global_tamanho_texto }}">Conseguiu cumprir seu objetivo hoje?</h5>
+                    {% for registro in meta.dias_do_mes_atual %}
+                        {% if registro.hoje %}
+                            <button id="btn-reg-{{ registro.id }}" 
+                                    class="btn btn-hoje-3d p-3 w-75 mx-auto d-flex flex-column align-items-center justify-content-center" 
+                                    data-nota="{{ registro.nota|default_if_none:'' }}"
+                                    onclick="abrirSelecao('{{ registro.id }}', this)">
+                                <span class="d-block fw-bold mb-2 fs-5 {{ global_tamanho_texto }}">Hoje ({{ registro.data|date:"d/M" }})</span>
+                                <span id="icone-registro-{{ registro.id }}" style="font-size: 3rem; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1)); line-height: 1;">
+                                    {% if registro.status_conclusao == 'check' %}✅
+                                    {% elif registro.status_conclusao == 'falha' %}❌
+                                    {% else %}⬜
+                                    {% endif %}
+                                </span>
+                            </button>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <p class="text-muted text-center fw-bold small mb-3 {{ global_tamanho_texto }}">HISTÓRICO DO MÊS</p>
+                <div class="d-flex flex-wrap gap-2 justify-content-center">
+                    {% for registro in meta.dias_do_mes_atual %}
+                        {% if not registro.hoje %}
+                            <div class="text-center">
+                                <span class="d-block text-muted mb-1" style="font-size: 0.75rem; font-weight: 600;">{{ registro.data|date:"d" }}</span>
+                                <button id="btn-reg-{{ registro.id }}" 
+                                        class="btn btn-light border shadow-sm p-0 d-flex align-items-center justify-content-center" 
+                                        style="border-radius: 10px; width: 42px; height: 42px; transition: transform 0.1s; background-color: #F9F9F8;"
+                                        data-nota="{{ registro.nota|default_if_none:'' }}"
+                                        onclick="abrirSelecao('{{ registro.id }}', this)"
+                                        onmouseover="this.style.transform='scale(1.05)'" 
+                                        onmouseout="this.style.transform='scale(1)'">
+                                    <span id="icone-registro-{{ registro.id }}" style="font-size: 1.2rem;">
+                                        {% if registro.status_conclusao == 'check' %}✅
+                                        {% elif registro.status_conclusao == 'falha' %}❌
+                                        {% else %}⬜
+                                        {% endif %}
+                                    </span>
+                                </button>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                
+                <div class="mt-4 d-flex justify-content-end gap-2 border-top pt-3">
+
+                    <a href="{% url 'metas:editar' meta.id %}"
+                    class="btn-cancelar {{ global_tamanho_botao }}">
+                        Editar Meta
+                    </a>
+
+                    <a href="{% url 'metas:deletar' meta.id %}"
+                    class="btn-perigo-sm {{ global_tamanho_botao }}">
+                        Apagar Meta
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <div class="alert text-center rounded-4 py-5 shadow-sm border-0 mt-4" style="background-color: #FFF3E0; color: #D35400;">
+            <h4 class="mb-3 fw-bold {{ global_tamanho_texto }}">Nenhuma meta encontrada</h4>
+            <p class="mb-0 fs-5 {{ global_tamanho_texto }}">Não existem metas para esta seleção. Crie uma nova para começar!</p>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="modal fade" id="modalStatus" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0 shadow-lg">
+            <div class="modal-body p-4 d-flex flex-column gap-3">
+                <h3 class="text-center mb-3 fw-bold {{ global_tamanho_texto }}" style="color: #374151;">Como foi esta meta?</h3>
+                <input type="hidden" id="registroAtualId">
+                
+                <div class="mb-3">
+                    <label for="notaDiaria" class="form-label fw-bold text-muted {{ global_tamanho_texto }}">Nota do dia (opcional)</label>
+                    <textarea id="notaDiaria" class="form-control {{ global_tamanho_texto }}" rows="3" placeholder="Escreva um comentário sobre o dia..."></textarea>
+                </div>
+                
+                <button class="btn btn-modal-3d btn-modal-success p-3 fs-4 text-start {{ global_tamanho_botao }}" onclick="salvarStatus('check')">
+                    <span class="me-2">✅</span> Consegui cumprir!
+                </button>
+                <button class="btn btn-modal-3d btn-modal-danger p-3 fs-4 text-start {{ global_tamanho_botao }}" onclick="salvarStatus('falha')">
+                    <span class="me-2">❌</span> Não cumpri
+                </button>
+                <button class="btn btn-modal-3d btn-modal-limpar p-3 fs-4 text-start {{ global_tamanho_botao }}" onclick="salvarStatus('branco')">
+                    <span class="me-2">⬜</span> Limpar dia
+                </button>
+                
+                <button class="btn-cancelar mt-2 w-100 {{ global_tamanho_botao }}" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    // Agora o Javascript recebe o botão clicado e lê a nota salva nele
+    function abrirSelecao(registroId, btnElement) {
+        document.getElementById('registroAtualId').value = registroId;
+        
+        // Puxa a nota atual e preenche o textarea
+        let notaSalva = btnElement.getAttribute('data-nota');
+        document.getElementById('notaDiaria').value = notaSalva;
+        
+        var modal = new bootstrap.Modal(document.getElementById('modalStatus'));
+        modal.show();
+    }
+
+    function salvarStatus(novoStatus) {
+        let registroId = document.getElementById('registroAtualId').value;
+        let notaValue = document.getElementById('notaDiaria').value;
+        let url = `/metas/registro/${registroId}/atualizar/`;
+
+        // Usar URLSearchParams é a forma mais segura de enviar textos com quebras de linha e espaços
+        let params = new URLSearchParams();
+        params.append('status', novoStatus);
+        params.append('nota', notaValue);
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: params.toString()
+        }).then(() => {
+            // Atualiza o ícone
+            let icone = document.getElementById('icone-registro-' + registroId);
+            if (novoStatus === 'check') icone.innerText = '✅';
+            if (novoStatus === 'falha') icone.innerText = '❌';
+            if (novoStatus === 'branco') icone.innerText = '⬜';
+            
+            // Salva a nova nota no atributo do botão (assim não precisa recarregar a página)
+            let btn = document.getElementById('btn-reg-' + registroId);
+            if(btn) {
+                btn.setAttribute('data-nota', notaValue);
+            }
+            
+            var modalElement = document.getElementById('modalStatus');
+            var modalInstance = bootstrap.Modal.getInstance(modalElement);
+            modalInstance.hide();
+        });
+    }
+</script>
+{% endblock %}
+
+{% block tutorial_slides %}
+    <div class="carousel-item active py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">📝</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Bem-vindo às "Minhas Metas"!</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Aqui ficam todas as tarefas que você precisa cumprir. Você pode visualizar os detalhes de cada uma apenas <strong>clicando no nome da meta</strong>.
+        </p>
+    </div>
+    
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">✅</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Marque como Feito</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Ao abrir uma meta, você verá o botão de Hoje. <strong>Clique no botão "Hoje"</strong> para registrar se você cumpriu a tarefa ou não!
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">📅</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Acompanhe seu Histórico</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Logo abaixo do botão de "Hoje", você verá os dias do mês. <strong>Clique em qualquer quadradinho</strong> para corrigir um dia, preencher o passado ou adicionar uma nota.
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">🏷️</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Use os Filtros</h3>
+        <p class="fs-3 text-dark lh-base mb-4 {{ global_tamanho_texto }}">
+            No topo da tela, <strong>clique nas suas "Categorias"</strong> (como "Saúde" ou "Alimentação") para filtrar a lista e ver apenas as metas daquele grupo específico.
+        </p>
+        <button type="button" class="btn btn-warm shadow-sm fw-bold {{ global_tamanho_botao|default:'btn-lg px-5 py-3 fs-3' }}" data-bs-dismiss="modal">
+            Entendi! 👍
+        </button>
+    </div>
+{% endblock %}

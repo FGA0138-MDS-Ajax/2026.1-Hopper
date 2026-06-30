@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<style>
+    /* --- Padronização HopLife --- */
+    .text-warm { 
+        color: #E64500 !important; 
+    }
+
+    .btn-warm {
+        background-color: #E64500 !important;
+        color: #FFFFFF !important;
+        border-radius: 12px !important;
+        padding: 1rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        box-shadow: 0 4px 0 #B33600 !important;
+        border: none !important;
+        transition: all 0.15s ease-in-out !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        font-size: 1.2rem;
+    }
+    .btn-warm:hover {
+        transform: translateY(2px) !important;
+        box-shadow: 0 2px 0 #B33600 !important;
+        color: #FFFFFF !important;
+    }
+
+    .btn-cancelar {
+        background-color: transparent !important;
+        color: #6c757d !important;
+        border-radius: 12px !important;
+        padding: 1rem 2.2rem !important;
+        font-weight: 700;
+        text-decoration: none !important;
+        border: 2px solid #E0DED7 !important;
+        transition: all 0.15s ease-in-out !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        font-size: 1.1rem;
+        margin-top: 1rem;
+    }
+    .btn-cancelar:hover {
+        background-color: #f8f9fa !important;
+        color: #343a40 !important;
+    }
+
+    /* --- Estilo de Textos (Inputs e Textarea) --- */
+    input, textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #E0DED7;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        transition: all 0.2s ease;
+        background-color: #F9F9F8;
+        color: #374151;
+    }
+    input:focus, textarea:focus {
+        border-color: #3A5A50;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba(58, 90, 80, 0.25);
+        background-color: #FFFFFF;
+    }
+
+    /* --- Estilo Exclusivo do Menu de Categorias (Select) --- */
+    select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #E0DED7;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        transition: all 0.2s ease;
+        background-color: #F9F9F8;
+        color: #374151;
+        cursor: pointer;
+        font-weight: 500;
+        
+        /* Mágica para remover a seta cinza feia do navegador */
+        appearance: none; 
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        
+        /* Colocando uma setinha customizada com a nossa cor laranja */
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E64500' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        background-size: 18px;
+        padding-right: 45px;
+    }
+    select:hover {
+        border-color: #E64500;
+        background-color: #FFFFFF; 
+    }
+    select:focus {
+        border-color: #3A5A50;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba(58, 90, 80, 0.25);
+        background-color: #FFFFFF;
+    }
+    
+    /* --- Link para criar categoria --- */
+    .link-categoria {
+        color: #E64500;
+        transition: color 0.2s;
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 6px;
+    }
+    .link-categoria:hover {
+        color: #B33600;
+        background-color: #f8f9fa;
+        text-decoration: none !important;
+    }
+</style>
+
+<div class="row justify-content-center pb-5">
+    <div class="col-md-6">
+        <div class="card shadow-sm rounded-4 border-0 mt-5" style="background-color: #FFFFFF;">
+            <div class="card-body p-5">
+                
+                <h2 class="text-warm fw-bolder mb-4 text-center" style="letter-spacing: -0.5px;">Criar Nova Meta</h2>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                        <div class="mb-4">
+                            <label for="{{ field.id_for_label }}" class="form-label fs-5 fw-bold" style="color: #374151;">{{ field.label }}</label>
+                            
+                            {{ field }}
+                            
+                            {% if field.name == 'categoria' %}
+                                <div class="text-end mt-2">
+                                    <a href="{% url 'metas:criar_categoria' %}" class="link-categoria fw-bold text-decoration-none">
+                                        + Criar nova categoria
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    
+                    <div class="d-flex flex-column mt-5 border-top pt-4">
+                        <button type="submit" class="btn-warm">Salvar Meta</button>
+                        <a href="{% url 'metas:listar' %}" class="btn-cancelar">Cancelar</a>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block tutorial_slides %}
+    <div class="carousel-item active py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">🎯</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Sua Nova Meta</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Aqui você adiciona uma nova tarefa para o seu dia a dia! Pode ser algo como "Tomar o remédio" ou "Fazer caminhada".
+        </p>
+    </div>
+    
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">✍️</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Como preencher?</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Basta <strong>digitar o objetivo da sua meta na caixa de texto</strong>. Seja simples e direto para ficar fácil de lembrar depois.
+        </p>
+    </div>
+    
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">📁</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Escolhendo a Categoria</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Selecione um grupo para organizar sua meta. Se não encontrar o grupo que precisa, <strong>clique no link "+ Criar nova categoria"</strong> para cadastrar um novo.
+        </p>
+    </div>
+
+    <div class="carousel-item py-4" style="min-height: 280px;">
+        <div class="display-1 mb-4" aria-hidden="true">💾</div>
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Tudo pronto!</h3>
+        <p class="fs-3 text-dark lh-base mb-4 {{ global_tamanho_texto }}">
+            Quando terminar de escrever, <strong>clique no botão laranja "Salvar Meta"</strong> para criar sua meta. Ela aparecerá na sua lista principal! Se quiser desistir basta clicar em <strong> "Cancelar"</strong>.
+        </p>
+        <button type="button" class="btn btn-warm shadow-sm fw-bold {{ global_tamanho_botao|default:'btn-lg px-5 py-3 fs-3' }}" data-bs-dismiss="modal">
+            Entendi! 👍
+        </button>
+    </div>
+{% endblock %}
