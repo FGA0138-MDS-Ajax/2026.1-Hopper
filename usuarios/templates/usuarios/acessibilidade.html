@@ -81,40 +81,36 @@
         <strong>Assistência Ativada!</strong> Filtros e cliques de permanência ativos.
     </div>
 
-    <div id="alertaCinza" class="alert alert-secondary d-none" role="alert">
-        <strong>Assistência Desativada!</strong> Recursos de auxílio motor desativados.
-    </div>
-
     <div class="card-acessibilidade p-4 p-md-5 mx-auto">
-        <h1 class="text-hop-green fw-bolder mb-4">Minhas Configurações</h1>
-        <p class="text-escuro mb-5 fs-5">
+        <h1 class="text-hop-green fw-bolder mb-4 {{ global_tamanho_texto }}">Minhas Configurações</h1>
+        <p class="text-escuro mb-5 fs-5 {{ global_tamanho_texto }}">
             Ajuste as opções abaixo e salve para aplicar as alterações.
         </p>
 
         <form method="POST">
             {% csrf_token %}
             <div class="mb-5">
-                <label class="fw-bold text-dark mb-3 d-block fs-4">Tamanho das Letras</label>
+                <label class="fw-bold text-dark mb-3 d-block fs-4 {{ global_tamanho_texto }}">Tamanho das Letras</label>
                 <div class="row g-2">
-                    <div class="col-4"><input type="radio" class="btn-check" name="tamanho_letra" id="letra_pequena" value="pequeno" {% if tamanho_texto == 'pequeno' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3" for="letra_pequena">Pequeno</label></div>
-                    <div class="col-4"><input type="radio" class="btn-check" name="tamanho_letra" id="letra_media" value="medio" {% if tamanho_texto == 'medio' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3" for="letra_media">Médio</label></div>
-                    <div class="col-4"><input type="radio" class="btn-check" name="tamanho_letra" id="letra_grande" value="grande" {% if tamanho_texto == 'grande' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3" for="letra_grande">Grande</label></div>
+                    <div class="col-4"><input type="radio" class="btn-check" name="tamanho_letra" id="letra_pequena" value="pequeno" {% if tamanho_texto == 'pequeno' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3 {{ global_tamanho_botao }}" for="letra_pequena">Pequeno</label></div>
+                    <div class="col-4"><input type="radio" class="btn-check" name="tamanho_letra" id="letra_media" value="medio" {% if tamanho_texto == 'medio' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3 {{ global_tamanho_botao }}" for="letra_media">Médio</label></div>
+                    <div class="col-4"><input type="radio" class="btn-check" name="tamanho_letra" id="letra_grande" value="grande" {% if tamanho_texto == 'grande' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3 {{ global_tamanho_botao }}" for="letra_grande">Grande</label></div>
                 </div>
             </div>
 
             <div class="mb-5">
-                <label class="fw-bold text-dark mb-3 d-block fs-4">Tamanho dos Botões</label>
+                <label class="fw-bold text-dark mb-3 d-block fs-4 {{ global_tamanho_texto }}">Tamanho dos Botões</label>
                 <div class="row g-2">
-                    <div class="col-6"><input type="radio" class="btn-check" name="tamanho_botao" id="botao_normal" value="normal" {% if tamanho_botao == 'normal' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3" for="botao_normal">Normal</label></div>
-                    <div class="col-6"><input type="radio" class="btn-check" name="tamanho_botao" id="botao_grande" value="largo" {% if tamanho_botao == 'largo' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3" for="botao_grande">Botões Grandes</label></div>
+                    <div class="col-6"><input type="radio" class="btn-check" name="tamanho_botao" id="botao_normal" value="normal" {% if tamanho_botao == 'normal' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3 {{ global_tamanho_botao }}" for="botao_normal">Normal</label></div>
+                    <div class="col-6"><input type="radio" class="btn-check" name="tamanho_botao" id="botao_grande" value="largo" {% if tamanho_botao == 'largo' %}checked{% endif %}><label class="btn btn-outline-hop w-100 py-3 {{ global_tamanho_botao }}" for="botao_grande">Botões Grandes</label></div>
                 </div>
             </div>
 
             <div class="p-4 mb-5 border rounded bg-light">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <h4 class="fw-bold text-dark mb-1">Assistência Motora (Tremores e Toque)</h4>
-                        <p class="text-escuro mb-0">Proteção contra cliques rápidos (500ms) e seleção automática ao manter pressionado/pairar por 2 segundos (Dwell Click).</p>
+                        <h4 class="fw-bold text-dark mb-1 {{ global_tamanho_texto }}">Assistência Motora (Tremores e Toque)</h4>
+                        <p class="text-escuro mb-0 {{ global_tamanho_texto }}">Proteção contra cliques rápidos (500ms) e seleção automática ao manter pressionado/pairar por 2 segundos (Dwell Click).</p>
                     </div>
                     <div class="form-check form-switch fs-1">
                         <input class="form-check-input" type="checkbox" role="switch" id="assistencia_motora" name="assistencia_motora_ativa" {% if assistencia_motora %}checked{% endif %}>
@@ -123,15 +119,15 @@
             </div>
 
             <div class="p-4 mb-5 border rounded bg-light">
-                <h4 class="fw-bold text-dark mb-2">Exemplo Visual das Letras e Botões</h4>
-                <p class="text-muted small">Os tamanhos mudam em tempo real abaixo e em todo o site conforme você altera as opções acima!</p>
+                <h4 class="fw-bold text-dark mb-2 {{ global_tamanho_texto }}">Exemplo Visual das Letras e Botões</h4>
+                <p class="text-muted small {{ global_tamanho_texto }}">Os tamanhos mudam em tempo real abaixo e em todo o site conforme você altera as opções acima!</p>
                 <div class="p-3 border rounded bg-white mt-3 text-center">
-                    <p class="mb-3 fw-bold text-dark">Texto de Exemplo</p>
-                    <button type="button" class="btn btn-outline-hop w-100 py-2">Botão de Exemplo</button>
+                    <p class="mb-3 fw-bold text-dark {{ global_tamanho_texto }}">Texto de Exemplo</p>
+                    <button type="button" class="btn btn-outline-hop w-100 py-2 {{ global_tamanho_botao }}">Botão de Exemplo</button>
                 </div>
             </div>
 
-            <button type="submit" class="btn-acao-quente">
+            <button type="submit" class="btn-acao-quente {{ global_tamanho_botao }}">
                 Salvar Configurações
             </button>
         </form>
@@ -143,6 +139,80 @@
         const radiosLetra = document.querySelectorAll('input[name="tamanho_letra"]');
         const radiosBotao = document.querySelectorAll('input[name="tamanho_botao"]');
         const checkMotora = document.getElementById('assistencia_motora');
+        const alertaAzul = document.getElementById('alertaAzul');
+
+        let tempoUltimoClique = 0;
+        const ATRASO_TREMOR = 500; 
+        let dwellTimer = null;
+        const TEMPO_PERMANENCIA = 2000; 
+
+        // CORREÇÃO BUG 1: Debounce inteligente intercepta apenas cliques reais, deixando a relação Label->Input passar livremente
+        document.addEventListener('click', function(e) {
+            if (document.body.classList.contains('assistencia-motora')) {
+                if (e.target.tagName === 'INPUT' && (e.target.type === 'radio' || e.target.type === 'checkbox')) {
+                    return; 
+                }
+                const agora = new Date().getTime();
+                if (agora - tempoUltimoClique < ATRASO_TREMOR) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                tempoUltimoClique = agora;
+            }
+        }, true); 
+
+        // CORREÇÃO BUG 2: O efeito visual mudou para um contorno externo (outline) limpo, impedindo deformações visuais
+        function iniciarDwellClick(e) {
+            if (!document.body.classList.contains('assistencia-motora')) return;
+            const elemento = e.currentTarget;
+
+            elemento.style.transition = 'outline 2s ease-in-out, outline-offset 2s ease-in-out';
+            elemento.style.outline = '3px solid #E64500';
+            elemento.style.outlineOffset = '2px';
+
+            dwellTimer = setTimeout(() => {
+                elemento.style.outline = '';
+                elemento.style.outlineOffset = '';
+                
+                // Dispara o clique no elemento real correto
+                if (elemento.tagName === 'LABEL' && elemento.htmlFor) {
+                    const inputAssociado = document.getElementById(elemento.htmlFor);
+                    if (inputAssociado) {
+                        inputAssociado.click();
+                        inputAssociado.dispatchEvent(new Event('change'));
+                    }
+                } else {
+                    elemento.click();
+                }
+                
+                const corOriginal = elemento.style.backgroundColor;
+                elemento.style.backgroundColor = '#4CAF50';
+                setTimeout(() => { elemento.style.backgroundColor = corOriginal; }, 300);
+            }, TEMPO_PERMANENCIA);
+        }
+
+        function cancelarDwellClick(e) {
+            if (dwellTimer) {
+                clearTimeout(dwellTimer);
+                dwellTimer = null;
+            }
+            const elemento = e.currentTarget;
+            elemento.style.transition = 'none';
+            elemento.style.outline = '';
+            elemento.style.outlineOffset = '';
+        }
+
+        function aplicarEventosDwell() {
+            const clicaveis = document.querySelectorAll('button, a, input[type="submit"], .btn-check + label');
+            clicaveis.forEach(el => {
+                el.removeEventListener('mouseenter', iniciarDwellClick);
+                el.removeEventListener('mouseleave', cancelarDwellClick);
+                
+                el.addEventListener('mouseenter', iniciarDwellClick);
+                el.addEventListener('mouseleave', cancelarDwellClick);
+            });
+        }
 
         function updateLiveSettings() {
             const selectedLetra = document.querySelector('input[name="tamanho_letra"]:checked').value;
@@ -151,18 +221,28 @@
 
             document.body.classList.remove('texto-pequeno', 'texto-medio', 'texto-grande');
             document.body.classList.remove('botao-normal', 'botao-largo');
-            document.body.classList.remove('assistencia-motora');
-
+            
             document.body.classList.add('texto-' + selectedLetra);
             document.body.classList.add('botao-' + selectedBotao);
+
             if (isMotora) {
                 document.body.classList.add('assistencia-motora');
+                aplicarEventosDwell();
+                alertaAzul.classList.remove('d-none');
+            } else {
+                document.body.classList.remove('assistencia-motora');
+                alertaAzul.classList.add('d-none');
             }
         }
 
         radiosLetra.forEach(r => r.addEventListener('change', updateLiveSettings));
         radiosBotao.forEach(r => r.addEventListener('change', updateLiveSettings));
         checkMotora.addEventListener('change', updateLiveSettings);
+
+        if(checkMotora.checked) {
+            document.body.classList.add('assistencia-motora');
+            aplicarEventosDwell();
+        }
     });
 </script>
 {% endblock %}
@@ -170,35 +250,35 @@
 {% block tutorial_slides %}
     <div class="carousel-item active py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">⚙️</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Configurações de Acessibilidade</h3>
-        <p class="fs-3 text-dark lh-base">
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Configurações de Acessibilidade</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
             Bem-vindo! Esta página foi feita para deixar o sistema mais confortável para você. Aqui você ajusta o site para as suas necessidades.
         </p>
     </div>
 
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">🔎</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Tamanhos</h3>
-        <p class="fs-3 text-dark lh-base">
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Tamanhos</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
             Se achar melhor, você pode escolher aumentar o <strong>Tamanho das Letras</strong> para facilitar a leitura, ou deixar os <strong>Botões Grandes</strong> para ser mais fácil de clicar.
         </p>
     </div>
 
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">✋</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Assistência Motora</h3>
-        <p class="fs-3 text-dark lh-base">
-            Se a sua mão tremer ou clicar for difícil, ative a chave verde de Assistência Motora. Ela evita cliques duplos por engano e ajuda na navegação.
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Assistência Motora</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Se a sua mão tremer ou clicar for difícil, ative a chave verde de Assistência Motora. Ela evita cliques duplos por engano e ajuda na navegação (basta manter o mouse parado sobre um botão para ativá-lo).
         </p>
     </div>
 
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">💾</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Teste e Salve!</h3>
-        <p class="fs-3 text-dark lh-base mb-4">
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Teste e Salve!</h3>
+        <p class="fs-3 text-dark lh-base mb-4 {{ global_tamanho_texto }}">
             Olhe o quadro de "Exemplo Visual" para ver como vai ficar. Quando estiver do seu agrado, não se esqueça de clicar no botão laranja <strong>"Salvar Configurações"</strong> lá embaixo!
         </p>
-        <button type="button" class="btn btn-warm btn-lg px-5 py-3 shadow-sm fw-bold fs-3" data-bs-dismiss="modal">
+        <button type="button" class="btn btn-warm shadow-sm fw-bold {{ global_tamanho_botao|default:'btn-lg px-5 py-3 fs-3' }}" data-bs-dismiss="modal">
             Entendi! 👍
         </button>
     </div>

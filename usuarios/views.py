@@ -86,11 +86,20 @@ def acessibilidade_view(request):
         novo_texto = request.POST.get("tamanho_letra")
         novo_botao = request.POST.get("tamanho_botao")
 
+        # Pega o valor do switch da Assistência Motora (se estiver ligado, envia 'on')
+        assistencia = request.POST.get("assistencia_motora_ativa")
+
         # Validação básica de segurança
         if novo_texto in ["pequeno", "medio", "grande"]:
             perfil.tamanho_texto = novo_texto
         if novo_botao in ["normal", "largo"]:
             perfil.tamanho_botao = novo_botao
+
+        # Salva o estado da assistência motora
+        if assistencia == "on":
+            perfil.assistencia_motora = True
+        else:
+            perfil.assistencia_motora = False
 
         perfil.save()
         messages.success(request, "Suas configurações de acessibilidade foram salvas!")
@@ -102,5 +111,6 @@ def acessibilidade_view(request):
     context = {
         "tamanho_texto": perfil.tamanho_texto,
         "tamanho_botao": perfil.tamanho_botao,
+        "assistencia_motora": perfil.assistencia_motora,  # Adicionado aqui!
     }
     return render(request, "usuarios/acessibilidade.html", context)
