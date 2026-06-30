@@ -557,3 +557,101 @@ class TestCT04MarcacaoDiariaMetaCumpridaComSelenium(StaticLiveServerTestCase):
                 "✅",
             )
         )
+
+
+from django.contrib.auth.models import User
+from django.test import TestCase
+
+from metas.models import Meta, RegistroDiario
+
+
+class AtualizarStatusENotaViewTest(TestCase):
+    def setUp(self):
+        # 1. Criamos o usuário dono da meta
+        self.user = User.objects.create_user(
+            username="testuser", password="testpassword"
+        )
+
+        # 2. Criamos um usuário "invasor" para testar a segurança
+        self.outro_user = User.objects.create_user(
+            username="hacker", password="hackerpassword"
+        )
+
+        # 3. Criamos a meta e o registro diário para o usuário principal
+        self.meta = Meta.objects.create(usuario=self.user, titulo="Caminhada Matinal")
+        self.registro = RegistroDiario.objects.create(
+            meta=self.meta, data=date.today(), status_conclusao="branco", nota=""
+        )
+
+        # 4. Preparamos a URL que será chamada nos testes
+        self.url = reverse(
+            "metas:atualizar_registro", kwargs={"registro_id": self.registro.id}
+        )
+
+    def test_atualizar_status_e_nota_com_sucesso(self):
+        """Testa o caminho feliz: usuário logado salva o status e a nota corretamente."""
+        self.client.login(username="testuser", password="testpassword")
+
+        response = self.client.post(
+            self.url,
+            {"status": "check", "nota": "Hoje a caminhada foi excelente, fiz 5km!"},
+        )
+
+        # Recarrega o registro do banco de dados para ver se mudou
+        self.registro.refresh_from_db()
+
+        # Verifica se a view redirecionou de volta para a lista (status 302)
+        self.assertEqual(response.status_code, 302)
+        # Verifica se o status mudou
+        self.assertEqual(self.registro.status_conclusao, "check")
+        # Verifica se a nota foi salva
+        self.assertEqual(self.registro.nota, "Hoje a caminhada foi excelente, fiz 5km!")
+
+    def test_atualizar_apenas_nota_sem_mudar_status(self):
+        """Testa se o sistema salva a nota mesmo se o status enviado for inválido."""
+        self.client.login(username="testuser", password="testpassword")
+
+        response = self.client.post(
+            self.url,
+            {
+                "status": "status_inventado_que_nao_existe",
+                "nota": "Apenas adicionando um comentário.",
+            },
+        )
+
+        self.registro.refresh_from_db()
+
+        # O status original era 'branco', deve continuar 'branco'
+        self.assertEqual(self.registro.status_conclusao, "branco")
+        # Mas a nota deve ter sido salva
+        self.assertEqual(self.registro.nota, "Apenas adicionando um comentário.")
+
+    def test_seguranca_usuario_nao_pode_editar_meta_alheia(self):
+        """Testa se um usuário logado tenta editar o registro de outra pessoa e recebe erro 404."""
+        # Logamos com o usuário "hacker"
+        self.client.login(username="hacker", password="hackerpassword")
+
+        response = self.client.post(
+            self.url, {"status": "check", "nota": "Hackeando a meta do colega"}
+        )
+
+        # O get_object_or_404 deve barrar e retornar "Não Encontrado" (404)
+        self.assertEqual(response.status_code, 404)
+
+        # Confirma que nada mudou no banco
+        self.registro.refresh_from_db()
+        self.assertEqual(self.registro.nota, "")
+
+    def test_redirecionamento_usuario_nao_autenticado(self):
+        """Testa se um usuário deslogado é barrado e mandado para a tela de login."""
+        # Não fazemos o self.client.login() aqui
+        response = self.client.post(
+            self.url, {"status": "check", "nota": "Tentando salvar sem logar"}
+        )
+
+        # O Django deve redirecionar (302) o usuário deslogado
+        self.assertEqual(response.status_code, 302)
+
+        # Confirma que nada mudou no banco
+        self.registro.refresh_from_db()
+        self.assertEqual(self.registro.nota, "")

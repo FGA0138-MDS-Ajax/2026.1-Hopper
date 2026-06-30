@@ -26,7 +26,7 @@
         color: #FFFFFF !important;
     }
     .btn-warm:active {
-        transform: translateY(4px) !important; /* Entra pra dentro ao clicar */
+        transform: translateY(4px) !important;
         box-shadow: 0 0 0 transparent !important;
     }
 
@@ -52,7 +52,7 @@
         color: #343a40 !important;
     }
     .btn-cancelar:active {
-        transform: translateY(4px) !important; /* Entra pra dentro ao clicar */
+        transform: translateY(4px) !important;
         box-shadow: 0 0 0 transparent !important;
     }
 
@@ -130,7 +130,7 @@
         box-shadow: 0 0 0 transparent !important; 
     }
     
-    /* Vermelho HopLife (Igual ao de Apagar) */
+    /* Vermelho HopLife */
     .btn-modal-danger {
         background-color: #DC3545 !important; 
         color: #FFFFFF !important;
@@ -149,7 +149,7 @@
         box-shadow: 0 0 0 transparent !important; 
     }
     
-    /* Branco HopLife (Igual ao de Cancelar) */
+    /* Branco HopLife */
     .btn-modal-limpar {
         background-color: #FFFFFF !important; 
         color: #374151 !important;
@@ -168,6 +168,19 @@
         box-shadow: 0 0 0 transparent !important; 
     }
 
+    /* Input da Nota no Modal */
+    textarea.form-control {
+        border-radius: 10px;
+        border: 2px solid #E0DED7;
+        background-color: #F9F9F8;
+        resize: none;
+    }
+    textarea.form-control:focus {
+        border-color: #3A5A50;
+        box-shadow: 0 0 0 0.25rem rgba(58, 90, 80, 0.25);
+        background-color: #FFFFFF;
+    }
+
     /* Efeito sutil ao passar o mouse no cabeçalho do card */
     .card-header-hover:hover {
         background-color: #F9F9F8 !important;
@@ -178,16 +191,16 @@
 <div class="container max-w-md pb-5">
     
     <div class="d-flex justify-content-between align-items-center mb-4 mt-3">
-        <h1 class="m-0 fw-bolder text-escuro" style="letter-spacing: -0.5px;">
+        <h1 class="m-0 fw-bolder text-escuro {{ global_tamanho_texto }}" style="letter-spacing: -0.5px;">
             Minhas Metas
         </h1>
         
         <div class="d-flex gap-3">
-            <a href="{% url 'metas:listar_categorias' %}" class="btn-cancelar">
+            <a href="{% url 'metas:listar_categorias' %}" class="btn-cancelar {{ global_tamanho_botao }}">
                 Gerenciar Categorias
             </a>
             
-            <a href="{% url 'metas:criar' %}?categoria={{ categoria_ativa }}" class="btn-warm">
+            <a href="{% url 'metas:criar' %}?categoria={{ categoria_ativa }}" class="btn-warm {{ global_tamanho_botao }}">
                 Nova Meta
             </a>
         </div>
@@ -196,14 +209,14 @@
     <div class="d-flex overflow-auto mb-4 pb-2" style="border-bottom: 2px solid #D1CFC4; white-space: nowrap;">
         
         <a href="{% url 'metas:listar' %}?categoria=todas" 
-           class="text-decoration-none px-3 py-2 {% if categoria_ativa == 'todas' %}text-dark fw-bold{% else %}text-muted{% endif %}"
+           class="text-decoration-none px-3 py-2 {{ global_tamanho_texto }} {% if categoria_ativa == 'todas' %}text-dark fw-bold{% else %}text-muted{% endif %}"
            style="{% if categoria_ativa == 'todas' %}border-bottom: 3px solid #E64500;{% else %}border-bottom: 3px solid transparent;{% endif %} transition: 0.2s; font-size: 1.1rem; margin-bottom: -2px;">
-           Todas
+            Todas
         </a>
 
         {% for cat in categorias %}
             <a href="{% url 'metas:listar' %}?categoria={{ cat.id }}" 
-               class="text-decoration-none px-3 py-2 d-flex align-items-center gap-2 {% if categoria_ativa == cat.id|stringformat:'s' %}text-dark fw-bold{% else %}text-muted{% endif %}"
+               class="text-decoration-none px-3 py-2 d-flex align-items-center gap-2 {{ global_tamanho_texto }} {% if categoria_ativa == cat.id|stringformat:'s' %}text-dark fw-bold{% else %}text-muted{% endif %}"
                style="{% if categoria_ativa == cat.id|stringformat:'s' %}border-bottom: 3px solid {{ cat.cor_identificacao }};{% else %}border-bottom: 3px solid transparent;{% endif %} transition: 0.2s; font-size: 1.1rem; margin-bottom: -2px;">
                 <span style="width: 12px; height: 12px; border-radius: 50%; background-color: {{ cat.cor_identificacao }}; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></span>
                 {{ cat.nome }}
@@ -211,9 +224,9 @@
         {% endfor %}
 
         <a href="{% url 'metas:listar' %}?categoria=sem_categoria" 
-           class="text-decoration-none px-3 py-2 {% if categoria_ativa == 'sem_categoria' %}text-dark fw-bold{% else %}text-muted{% endif %}"
+           class="text-decoration-none px-3 py-2 {{ global_tamanho_texto }} {% if categoria_ativa == 'sem_categoria' %}text-dark fw-bold{% else %}text-muted{% endif %}"
            style="{% if categoria_ativa == 'sem_categoria' %}border-bottom: 3px solid #6c757d;{% else %}border-bottom: 3px solid transparent;{% endif %} transition: 0.2s; font-size: 1.1rem; margin-bottom: -2px;">
-           Sem Categoria
+            Sem Categoria
         </a>
     </div>
 
@@ -223,7 +236,7 @@
         <div class="card-header bg-white py-3 border-0 rounded-top-4 card-header-hover" style="cursor: pointer;" 
              data-bs-toggle="collapse" data-bs-target="#gaveta-{{ meta.id }}">
             
-            <h3 class="m-0 d-flex justify-content-between align-items-center fw-bold"
+            <h3 class="m-0 d-flex justify-content-between align-items-center fw-bold {{ global_tamanho_texto }}"
                 style="color: {% if meta.categoria %}{{ meta.categoria.cor_identificacao }}{% else %}#374151{% endif %};">
                 {{ meta.titulo }} 
                 <small class="text-muted" style="font-size: 0.9rem; background-color: #F3F4F6; padding: 4px 10px; border-radius: 20px;">▼ Abrir</small>
@@ -234,12 +247,14 @@
             <div class="card-body bg-white rounded-bottom-4 pt-1">
                 
                 <div class="text-center mb-4 pb-4 border-bottom">
-                    <h5 class="text-escuro fw-bold mb-3">Como foi o seu hábito hoje?</h5>
+                    <h5 class="text-escuro fw-bold mb-3 {{ global_tamanho_texto }}">Como foi a sua meta hoje?</h5>
                     {% for registro in meta.dias_do_mes_atual %}
                         {% if registro.hoje %}
-                            <button class="btn btn-hoje-3d p-3 w-75 mx-auto d-flex flex-column align-items-center justify-content-center" 
-                                    onclick="abrirSelecao('{{ registro.id }}')">
-                                <span class="d-block fw-bold mb-2 fs-5">Hoje ({{ registro.data|date:"d/M" }})</span>
+                            <button id="btn-reg-{{ registro.id }}" 
+                                    class="btn btn-hoje-3d p-3 w-75 mx-auto d-flex flex-column align-items-center justify-content-center" 
+                                    data-nota="{{ registro.nota|default_if_none:'' }}"
+                                    onclick="abrirSelecao('{{ registro.id }}', this)">
+                                <span class="d-block fw-bold mb-2 fs-5 {{ global_tamanho_texto }}">Hoje ({{ registro.data|date:"d/M" }})</span>
                                 <span id="icone-registro-{{ registro.id }}" style="font-size: 3rem; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1)); line-height: 1;">
                                     {% if registro.status_conclusao == 'check' %}✅
                                     {% elif registro.status_conclusao == 'falha' %}❌
@@ -251,15 +266,17 @@
                     {% endfor %}
                 </div>
 
-                <p class="text-muted text-center fw-bold small mb-3">HISTÓRICO DO MÊS</p>
+                <p class="text-muted text-center fw-bold small mb-3 {{ global_tamanho_texto }}">HISTÓRICO DO MÊS</p>
                 <div class="d-flex flex-wrap gap-2 justify-content-center">
                     {% for registro in meta.dias_do_mes_atual %}
                         {% if not registro.hoje %}
                             <div class="text-center">
                                 <span class="d-block text-muted mb-1" style="font-size: 0.75rem; font-weight: 600;">{{ registro.data|date:"d" }}</span>
-                                <button class="btn btn-light border shadow-sm p-0 d-flex align-items-center justify-content-center" 
+                                <button id="btn-reg-{{ registro.id }}" 
+                                        class="btn btn-light border shadow-sm p-0 d-flex align-items-center justify-content-center" 
                                         style="border-radius: 10px; width: 42px; height: 42px; transition: transform 0.1s; background-color: #F9F9F8;"
-                                        onclick="abrirSelecao('{{ registro.id }}')"
+                                        data-nota="{{ registro.nota|default_if_none:'' }}"
+                                        onclick="abrirSelecao('{{ registro.id }}', this)"
                                         onmouseover="this.style.transform='scale(1.05)'" 
                                         onmouseout="this.style.transform='scale(1)'">
                                     <span id="icone-registro-{{ registro.id }}" style="font-size: 1.2rem;">
@@ -275,15 +292,15 @@
                 </div>
                 
                 <div class="mt-4 text-end border-top pt-3">
-                    <a href="{% url 'metas:deletar' meta.id %}" class="btn-perigo-sm">Apagar Meta</a>
+                    <a href="{% url 'metas:deletar' meta.id %}" class="btn-perigo-sm {{ global_tamanho_botao }}">Apagar Meta</a>
                 </div>
             </div>
         </div>
     </div>
     {% empty %}
         <div class="alert text-center rounded-4 py-5 shadow-sm border-0 mt-4" style="background-color: #FFF3E0; color: #D35400;">
-            <h4 class="mb-3 fw-bold">Nenhuma meta encontrada</h4>
-            <p class="mb-0 fs-5">Não existem metas para esta seleção. Crie uma nova para começar!</p>
+            <h4 class="mb-3 fw-bold {{ global_tamanho_texto }}">Nenhuma meta encontrada</h4>
+            <p class="mb-0 fs-5 {{ global_tamanho_texto }}">Não existem metas para esta seleção. Crie uma nova para começar!</p>
         </div>
     {% endfor %}
 </div>
@@ -292,20 +309,25 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4 border-0 shadow-lg">
             <div class="modal-body p-4 d-flex flex-column gap-3">
-                <h3 class="text-center mb-4 fw-bold" style="color: #374151;">Como foi este hábito?</h3>
+                <h3 class="text-center mb-3 fw-bold {{ global_tamanho_texto }}" style="color: #374151;">Como foi esta meta?</h3>
                 <input type="hidden" id="registroAtualId">
                 
-                <button class="btn btn-modal-3d btn-modal-success p-4 fs-4 text-start" onclick="salvarStatus('check')">
+                <div class="mb-3">
+                    <label for="notaDiaria" class="form-label fw-bold text-muted {{ global_tamanho_texto }}">Nota do dia (opcional)</label>
+                    <textarea id="notaDiaria" class="form-control {{ global_tamanho_texto }}" rows="3" placeholder="Escreva um comentário sobre o dia..."></textarea>
+                </div>
+                
+                <button class="btn btn-modal-3d btn-modal-success p-3 fs-4 text-start {{ global_tamanho_botao }}" onclick="salvarStatus('check')">
                     <span class="me-2">✅</span> Consegui cumprir!
                 </button>
-                <button class="btn btn-modal-3d btn-modal-danger p-4 fs-4 text-start" onclick="salvarStatus('falha')">
+                <button class="btn btn-modal-3d btn-modal-danger p-3 fs-4 text-start {{ global_tamanho_botao }}" onclick="salvarStatus('falha')">
                     <span class="me-2">❌</span> Não cumpri
                 </button>
-                <button class="btn btn-modal-3d btn-modal-limpar p-4 fs-4 text-start" onclick="salvarStatus('branco')">
+                <button class="btn btn-modal-3d btn-modal-limpar p-3 fs-4 text-start {{ global_tamanho_botao }}" onclick="salvarStatus('branco')">
                     <span class="me-2">⬜</span> Limpar dia
                 </button>
                 
-                <button class="btn-cancelar mt-3 w-100" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn-cancelar mt-2 w-100 {{ global_tamanho_botao }}" data-bs-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>
@@ -329,15 +351,27 @@
         return cookieValue;
     }
 
-    function abrirSelecao(registroId) {
+    // Agora o Javascript recebe o botão clicado e lê a nota salva nele
+    function abrirSelecao(registroId, btnElement) {
         document.getElementById('registroAtualId').value = registroId;
+        
+        // Puxa a nota atual e preenche o textarea
+        let notaSalva = btnElement.getAttribute('data-nota');
+        document.getElementById('notaDiaria').value = notaSalva;
+        
         var modal = new bootstrap.Modal(document.getElementById('modalStatus'));
         modal.show();
     }
 
     function salvarStatus(novoStatus) {
         let registroId = document.getElementById('registroAtualId').value;
+        let notaValue = document.getElementById('notaDiaria').value;
         let url = `/metas/registro/${registroId}/atualizar/`;
+
+        // Usar URLSearchParams é a forma mais segura de enviar textos com quebras de linha e espaços
+        let params = new URLSearchParams();
+        params.append('status', novoStatus);
+        params.append('nota', notaValue);
 
         fetch(url, {
             method: 'POST',
@@ -345,12 +379,19 @@
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'X-CSRFToken': getCookie('csrftoken')
             },
-            body: `status=${novoStatus}`
+            body: params.toString()
         }).then(() => {
+            // Atualiza o ícone
             let icone = document.getElementById('icone-registro-' + registroId);
             if (novoStatus === 'check') icone.innerText = '✅';
             if (novoStatus === 'falha') icone.innerText = '❌';
             if (novoStatus === 'branco') icone.innerText = '⬜';
+            
+            // Salva a nova nota no atributo do botão (assim não precisa recarregar a página)
+            let btn = document.getElementById('btn-reg-' + registroId);
+            if(btn) {
+                btn.setAttribute('data-nota', notaValue);
+            }
             
             var modalElement = document.getElementById('modalStatus');
             var modalInstance = bootstrap.Modal.getInstance(modalElement);
@@ -363,35 +404,35 @@
 {% block tutorial_slides %}
     <div class="carousel-item active py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">📝</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Bem-vindo às Minhas Metas!</h3>
-        <p class="fs-3 text-dark lh-base">
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Bem-vindo às "Minhas Metas"!</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
             Aqui ficam todas as tarefas que você precisa cumprir. Você pode visualizar os detalhes de cada uma clicando em cima do nome dela.
         </p>
     </div>
     
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">✅</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Marque como Feito</h3>
-        <p class="fs-3 text-dark lh-base">
-            Ao abrir uma meta, você verá o botão destacado de <strong>Hoje</strong>. Clique nele para nos dizer se você conseguiu ou não cumprir o hábito no dia atual!
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Marque como Feito</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Ao abrir uma meta, você verá o botão destacado de <strong>Hoje</strong>. <strong>Clique no botão Hoje</strong> para nos dizer se você conseguiu ou não cumprir a meta no dia atual!
         </p>
     </div>
 
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">📅</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Acompanhe o seu Histórico</h3>
-        <p class="fs-3 text-dark lh-base">
-            Logo abaixo do botão de Hoje, você pode ver todos os dias do mês. Clique em qualquer um dos quadradinhos para corrigir ou preencher dias anteriores.
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Acompanhe o seu Histórico</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Logo abaixo do botão de <strong>Hoje</strong>, você pode ver todos os dias do mês. Clique em qualquer um dos quadradinhos para corrigir, preencher dias anteriores ou adicionar uma nota!
         </p>
     </div>
 
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">🏷️</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Use os Filtros</h3>
-        <p class="fs-3 text-dark lh-base mb-4">
-            No topo da tela, clique nas suas <strong>Categorias</strong> (como "Saúde" ou "Alimentação") para filtrar a lista e ver apenas as metas daquele grupo.
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Use os Filtros</h3>
+        <p class="fs-3 text-dark lh-base mb-4 {{ global_tamanho_texto }}">
+            No topo da tela, clique nas suas "Categorias" (como "Saúde" ou "Alimentação") para filtrar a lista e ver apenas as metas daquele grupo.
         </p>
-        <button type="button" class="btn btn-warm btn-lg px-5 py-3 shadow-sm fw-bold fs-3" data-bs-dismiss="modal">
+        <button type="button" class="btn btn-warm shadow-sm fw-bold {{ global_tamanho_botao|default:'btn-lg px-5 py-3 fs-3' }}" data-bs-dismiss="modal">
             Entendi! 👍
         </button>
     </div>
