@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+
 class PerfilUsuario(models.Model):
     usuario = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name="perfil"
@@ -9,17 +10,21 @@ class PerfilUsuario(models.Model):
         max_length=255, unique=True, null=True, blank=True, db_index=True
     )
     data_nascimento = models.DateField(null=True, blank=True)
-    
+
     # CAMPOS PARA ACESSIBILIDADE
     tamanho_texto = models.CharField(
-        max_length=15, 
-        default='medio', 
-        choices=[('pequeno', 'Pequeno'), ('medio', 'Médio'), ('grande', 'Grande')]
+        max_length=15,
+        default="medio",
+        choices=[("pequeno", "Pequeno"), ("medio", "Médio"), ("grande", "Grande")],
     )
     tamanho_botao = models.CharField(
-        max_length=15, 
-        default='normal', 
-        choices=[('normal', 'Normal'), ('largo', 'Largo')]
+        max_length=15,
+        default="normal",
+        choices=[("normal", "Normal"), ("largo", "Largo")],
+    )
+    assistencia_motora = models.BooleanField(
+        default=False,
+        help_text="Ativa a proteção contra cliques rápidos (tremores) e o clique por permanência.",
     )
 
     criado_em = models.DateTimeField(auto_now_add=True)

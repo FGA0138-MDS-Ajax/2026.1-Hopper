@@ -105,7 +105,7 @@
         body.botao-largo #btn-tutorial-help { width: 95px !important; height: 95px !important; }
     </style>
 </head>
-<body class="d-flex flex-column min-vh-100 texto-{{ global_tamanho_texto|default:'medio' }} botao-{{ global_tamanho_botao|default:'normal' }}" style="background-color: #E0DED7; color: #000000;">
+<body class="d-flex flex-column min-vh-100 texto-{{ global_tamanho_texto|default:'medio' }} botao-{{ global_tamanho_botao|default:'normal' }} {% if assistencia_motora %}assistencia-motora{% endif %}" style="background-color: #E0DED7; color: #000000;">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-hop-green shadow-sm py-3">
         <div class="container">
@@ -150,9 +150,9 @@
     
     {% if user.is_authenticated %}
         <a href="#" id="btn-tutorial-help" 
-           class="btn btn-light border border-4 border-dark rounded-circle shadow-lg fw-bold" 
+           class="btn btn-light border border-4 rounded-circle shadow-lg fw-bold" 
            aria-label="Abrir tutorial de ajuda passo a passo" 
-           style="position: fixed; bottom: 25px; right: 25px; z-index: 1060; color: #3A5A50; border-color: #3A5A50 !important;">?</a>
+           style="position: fixed; bottom: 25px; right: 25px; z-index: 1060; color: #E64500; border-color: #E64500 !important;">?</a>
 
         <div class="modal fade" id="tutorialModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tutorialModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -238,7 +238,6 @@
 
                 if (!modalEl || !carouselEl) return;
 
-                // CONTAGEM DINÂMICA DE SLIDES
                 const totalSlides = carouselEl.querySelectorAll('.carousel-item').length;
 
                 const carousel = new bootstrap.Carousel(carouselEl, {
@@ -256,7 +255,6 @@
                     btnNext.addEventListener('click', function() { carousel.next(); });
                 }
 
-                // Esconde botão "Avançar" no ÚLTIMO slide baseado na quantidade dinâmica
                 function updateButtons(slideIndex) {
                     if (btnPrev) btnPrev.style.visibility = (slideIndex === 0) ? 'hidden' : 'visible';
                     if (btnNext) btnNext.style.visibility = (slideIndex === totalSlides - 1) ? 'hidden' : 'visible';
@@ -293,6 +291,82 @@
             });
         </script>
     {% endif %}
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let tempoUltimoClique = 0;
+            const ATRASO_TREMOR = 500; 
+            let dwellTimer = null;
+            const TEMPO_PERMANENCIA = 2000; 
+
+            document.addEventListener('click', function(e) {
+                if (document.body.classList.contains('assistencia-motora')) {
+                    if (e.target.tagName === 'INPUT' && (e.target.type === 'radio' || e.target.type === 'checkbox')) return; 
+                    
+                    const agora = new Date().getTime();
+                    if (agora - tempoUltimoClique < ATRASO_TREMOR) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
+                    }
+                    tempoUltimoClique = agora;
+                }
+            }, true); 
+
+            function iniciarDwellClick(e) {
+                if (!document.body.classList.contains('assistencia-motora')) return;
+                const elemento = e.currentTarget;
+
+                elemento.style.transition = 'outline 2s ease-in-out, outline-offset 2s ease-in-out';
+                elemento.style.outline = '3px solid #E64500';
+                elemento.style.outlineOffset = '2px';
+
+                dwellTimer = setTimeout(() => {
+                    elemento.style.outline = '';
+                    elemento.style.outlineOffset = '';
+                    
+                    if (elemento.tagName === 'LABEL' && elemento.htmlFor) {
+                        const inputAssociado = document.getElementById(elemento.htmlFor);
+                        if (inputAssociado) {
+                            inputAssociado.click();
+                            inputAssociado.dispatchEvent(new Event('change'));
+                        }
+                    } else {
+                        elemento.click();
+                    }
+                    
+                    const corOriginal = elemento.style.backgroundColor;
+                    elemento.style.backgroundColor = '#4CAF50';
+                    setTimeout(() => { elemento.style.backgroundColor = corOriginal; }, 300);
+                }, TEMPO_PERMANENCIA);
+            }
+
+            function cancelarDwellClick(e) {
+                if (dwellTimer) {
+                    clearTimeout(dwellTimer);
+                    dwellTimer = null;
+                }
+                const elemento = e.currentTarget;
+                elemento.style.transition = 'none';
+                elemento.style.outline = '';
+                elemento.style.outlineOffset = '';
+            }
+
+            function aplicarEventosDwell() {
+                const clicaveis = document.querySelectorAll('button, a, input[type="submit"], .btn-check + label, .card-header');
+                clicaveis.forEach(el => {
+                    el.removeEventListener('mouseenter', iniciarDwellClick);
+                    el.removeEventListener('mouseleave', cancelarDwellClick);
+                    el.addEventListener('mouseenter', iniciarDwellClick);
+                    el.addEventListener('mouseleave', cancelarDwellClick);
+                });
+            }
+
+            if (document.body.classList.contains('assistencia-motora')) {
+                aplicarEventosDwell();
+            }
+        });
+    </script>
     
     {% block scripts %}{% endblock %}
 </body>

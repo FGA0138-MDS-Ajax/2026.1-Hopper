@@ -376,3 +376,52 @@ class TestCTLoginSistema(StaticLiveServerTestCase):
 
         finally:
             self._stop_mock()
+
+
+class AcessibilidadeConfigTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="tester", password="password")
+
+        # CORREÇÃO: Criar o perfil explicitamente aqui, garantindo que ele exista
+        self.perfil = PerfilUsuario.objects.create(
+            usuario=self.user,
+            tamanho_texto="medio",
+            tamanho_botao="normal",
+            assistencia_motora=False,
+        )
+
+        self.client.login(username="tester", password="password")
+        self.url = reverse("usuarios:acessibilidade")
+
+    def test_salvar_configuracao_assistencia_motora(self):
+        # Envia um POST ativando a assistência
+        response = self.client.post(
+            self.url,
+            {
+                "tamanho_letra": "grande",
+                "tamanho_botao": "largo",
+                "assistencia_motora_ativa": "on",
+            },
+        )
+
+        self.perfil.refresh_from_db()
+        self.assertTrue(self.perfil.assistencia_motora)
+        self.assertEqual(self.perfil.tamanho_texto, "grande")
+
+    def test_desativar_assistencia_motora(self):
+        # Primeiro ativa
+        self.perfil.assistencia_motora = True
+        self.perfil.save()
+
+        # Envia POST sem o parâmetro (desativando)
+        self.client.post(
+            self.url,
+            {
+                "tamanho_letra": "medio",
+                "tamanho_botao": "normal",
+                # assistencia_motora_ativa não é enviado
+            },
+        )
+
+        self.perfil.refresh_from_db()
+        self.assertFalse(self.perfil.assistencia_motora)
