@@ -1,9 +1,12 @@
+from django.utils import timezone
+
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from gamificacao.models import PerfilGamificacao
 
 from .models import Categoria, Meta, RegistroDiario
 
@@ -90,6 +93,13 @@ def atualizar_status_diario(request, registro_id):
 
     if novo_status in ["check", "falha", "branco"]:
         registro.status_conclusao = novo_status
+        
+        hoje = timezone.localdate()
+        
+        # Só aciona a gamificação se for "check" E a data do quadradinho for exatamente HOJE
+        if novo_status == "check" and registro.data == hoje:
+            perfil, _ = PerfilGamificacao.objects.get_or_create(usuario=request.user)
+            perfil.registrar_check_in()
 
     registro.nota = nova_nota
     registro.save()

@@ -1,5 +1,6 @@
 import calendar
 import time
+from django.utils import timezone
 from datetime import date
 
 from django.contrib.auth import get_user_model
@@ -13,6 +14,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from .models import Categoria, Meta, RegistroDiario
+from gamificacao.models import PerfilGamificacao
 
 User = get_user_model()
 
@@ -738,3 +740,43 @@ class EditarMetaTest(TestCase):
         )
 
         self.assertEqual(response.status_code, 302)
+
+class AtualizarStatusGamificacaoTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="idoso_teste", password="123")
+        self.client.login(username="idoso_teste", password="123")
+        
+        # Cria a meta e o registro diário para hoje
+        self.meta = Meta.objects.create(titulo="Remédio", usuario=self.user)
+        self.registro = RegistroDiario.objects.create(
+            meta=self.meta, 
+            data=timezone.localdate(), 
+            status_conclusao="branco"
+        )
+        self.url = reverse("metas:atualizar_registro", args=[self.registro.id])
+
+    def test_marcar_check_cria_e_soma_gamificacao(self):
+        """Garante que ao enviar um POST com 'check', o perfil ganha ponto."""
+        response = self.client.post(self.url, {"status": "check"})
+        
+        # O sistema deve redirecionar após o POST
+        self.assertEqual(response.status_code, 302)
+        
+        # Verifica se o status mudou no banco
+        self.registro.refresh_from_db()
+        self.assertEqual(self.registro.status_conclusao, "check")
+        
+        # Verifica se o perfil foi criado e se ganhou 1 ponto
+        perfil = PerfilGamificacao.objects.get(usuario=self.user)
+        self.assertEqual(perfil.sequencia_dias_ativos, 1)
+
+    def test_marcar_falha_nao_soma_gamificacao(self):
+        """Garante que marcar 'falha' altera o status, mas NÃO dá ponto."""
+        response = self.client.post(self.url, {"status": "falha"})
+        
+        self.registro.refresh_from_db()
+        self.assertEqual(self.registro.status_conclusao, "falha")
+        
+        # Como foi falha, ele pode até ter criado o perfil, mas a ofensiva deve ser 0
+        perfil, _ = PerfilGamificacao.objects.get_or_create(usuario=self.user)
+        self.assertEqual(perfil.sequencia_dias_ativos, 0)
