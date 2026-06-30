@@ -15,7 +15,12 @@ Antes de iniciar, certifique-se de ter instalado em sua máquina:
 
 ## Como Configurar e Rodar o Projeto (Windows)
 
-Para facilitar a sua vida, foi criado um script de setup 100% automatizado que cria o `.env`, configura o ambiente virtual (venv), instala as dependências e sobe o Docker.
+Basta instalar as depedências do requirement.txt para configurar seu ambiente de desenvolvimento.
+
+Para criar seu ambiente docker apenas digite:
+
+docker build -t nome-da-imagem .
+docker-compose up
 
 ### Passo Único:
 Execute o arquivo .bat que ele vai fazer tudo o que precisa ser feito.
