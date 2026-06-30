@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -91,6 +93,13 @@ def atualizar_status_diario(request, registro_id):
 
     if novo_status in ["check", "falha", "branco"]:
         registro.status_conclusao = novo_status
+        
+        hoje = timezone.localdate()
+        
+        # Só aciona a gamificação se for "check" E a data do quadradinho for exatamente HOJE
+        if novo_status == "check" and registro.data == hoje:
+            perfil, _ = PerfilGamificacao.objects.get_or_create(usuario=request.user)
+            perfil.registrar_check_in()
 
     registro.nota = nova_nota
     registro.save()
@@ -173,32 +182,3 @@ class EditarCategoriaView(LoginRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context["editando"] = True
         return context
-
-@login_required
-def atualizar_status_diario(request, registro_id):
-
-    registro = get_object_or_404(
-        RegistroDiario,
-        id=registro_id,
-        meta__usuario=request.user,
-    )
-
-    novo_status = request.POST.get("status")
-    nova_nota = request.POST.get("nota", "")
-
-    if novo_status in ["check", "falha", "branco"]:
-        registro.status_conclusao = novo_status
-        
-        # --- LÓGICA DA OFENSIVA (STREAK) AQUI ---
-        if novo_status == "check":
-            # Pega o perfil de gamificação do usuário (ou cria se ele for novo)
-            perfil, _ = PerfilGamificacao.objects.get_or_create(usuario=request.user)
-            
-            # Aciona a função que soma o ponto. 
-            # A matemática do seu models.py já garante que ele só ganha 1 ponto por dia!
-            perfil.registrar_check_in()
-
-    registro.nota = nova_nota
-    registro.save()
-
-    return redirect("metas:listar")
