@@ -21,7 +21,3 @@ Para criar seu ambiente docker apenas digite:
 
 docker build -t nome-da-imagem .
 docker-compose up
-
-### Passo Único:
-Execute o arquivo .bat que ele vai fazer tudo o que precisa ser feito.
-Seria bom também instalar o mkdocs com 
