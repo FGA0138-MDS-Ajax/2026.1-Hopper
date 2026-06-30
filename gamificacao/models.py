@@ -62,3 +62,18 @@ class PerfilGamificacao(models.Model):
                 self.maior_sequencia_historica = self.sequencia_dias_ativos
 
             self.save()
+
+
+class FraseInspiradora(models.Model):
+    """
+    Banco de frases motivacionais para exibir na tela inicial.
+    """
+    texto = models.TextField(help_text="A frase que vai aparecer para o usuário.")
+    autor = models.CharField(max_length=100, blank=True, help_text="Nome do autor da frase.")
+
+    def __str__(self):
+        return f"{self.autor}: {self.texto[:30]}..."
+        
+    class Meta:
+        verbose_name = "Frase Inspiradora"
+        verbose_name_plural = "Frases Inspiradoras"
