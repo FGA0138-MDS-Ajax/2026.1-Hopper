@@ -164,35 +164,35 @@
 {% block tutorial_slides %}
     <div class="carousel-item active py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">📁</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Organize suas Metas</h3>
-        <p class="fs-3 text-dark lh-base">
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Organize suas Metas</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
             Aqui você pode criar um grupo (chamado de <strong>Categoria</strong>) para organizar melhor as suas metas do dia a dia.
         </p>
     </div>
     
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">✍️</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Nome da Categoria</h3>
-        <p class="fs-3 text-dark lh-base">
-            Na caixinha de texto, digite um nome para esse grupo. Pode ser algo como "Saúde", "Casa", "Alimentação" ou o que você preferir!
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Nome da Categoria</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Na <strong>caixa de texto</strong>, digite um nome para esse grupo. Pode ser algo como "Saúde", "Casa", "Alimentação" ou o que você preferir!
         </p>
     </div>
     
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">🎨</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Escolha uma Cor</h3>
-        <p class="fs-3 text-dark lh-base">
-            Basta clicar em uma das <strong>bolinhas coloridas</strong>. Essa cor vai te ajudar a identificar as metas desse grupo mais rapidamente depois.
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Escolha uma Cor</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Basta <strong>clicar em uma das bolinhas coloridas</strong>. Essa cor vai te ajudar a identificar as metas desse grupo mais rapidamente depois.
         </p>
     </div>
 
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">💾</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Salvar e Pronto!</h3>
-        <p class="fs-3 text-dark lh-base mb-4">
-            Quando terminar, é só clicar no botão laranja <strong>"Salvar Categoria"</strong>. Se quiser desistir, basta clicar em "Cancelar".
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Salvar e Pronto!</h3>
+        <p class="fs-3 text-dark lh-base mb-4 {{ global_tamanho_texto }}">
+            Quando terminar, <strong>clique no botão laranja "Salvar Categoria"</strong>. Se mudar de ideia, basta clicar no botão <strong>"Cancelar"</strong>.
         </p>
-        <button type="button" class="btn btn-warm btn-lg px-5 py-3 shadow-sm fw-bold fs-3" data-bs-dismiss="modal">
+        <button type="button" class="btn btn-warm shadow-sm fw-bold {{ global_tamanho_botao|default:'btn-lg px-5 py-3 fs-3' }}" data-bs-dismiss="modal">
             Entendi! 👍
         </button>
     </div>

@@ -160,35 +160,35 @@
 {% block tutorial_slides %}
     <div class="carousel-item active py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">🎯</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Sua Nova Meta</h3>
-        <p class="fs-3 text-dark lh-base">
-            É aqui que você adiciona uma nova tarefa para o seu dia a dia! Pode ser algo como "Tomar o remédio de pressão" ou "Fazer caminhada de 20 minutos".
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Sua Nova Meta</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Aqui você adiciona uma nova tarefa para o seu dia a dia! Pode ser algo como "Tomar o remédio" ou "Fazer caminhada".
         </p>
     </div>
     
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">✍️</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Como preencher?</h3>
-        <p class="fs-3 text-dark lh-base">
-            Basta digitar o nome da sua meta na caixinha de texto. Seja simples e direto para ficar fácil de lembrar depois.
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Como preencher?</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Basta <strong>digitar o objetivo da sua meta na caixa de texto</strong>. Seja simples e direto para ficar fácil de lembrar depois.
         </p>
     </div>
     
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">📁</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Escolhendo a Categoria</h3>
-        <p class="fs-3 text-dark lh-base">
-            Você pode colocar essa meta dentro de um grupo (como "Saúde"). Se você ainda não tem um grupo, basta clicar no link laranja <strong>"+ Criar nova categoria"</strong>.
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Escolhendo a Categoria</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Selecione um grupo para organizar sua meta. Se não encontrar o grupo que precisa, <strong>clique no link "+ Criar nova categoria"</strong> para cadastrar um novo.
         </p>
     </div>
 
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">💾</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Tudo pronto!</h3>
-        <p class="fs-3 text-dark lh-base mb-4">
-            Quando terminar de escrever, clique no botão laranja <strong>"Salvar Meta"</strong> lá embaixo. Ela já vai aparecer na sua lista principal!
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Tudo pronto!</h3>
+        <p class="fs-3 text-dark lh-base mb-4 {{ global_tamanho_texto }}">
+            Quando terminar de escrever, <strong>clique no botão laranja "Salvar Meta"</strong> para criar sua meta. Ela aparecerá na sua lista principal! Se quiser desistir basta clicar em <strong> "Cancelar"</strong>.
         </p>
-        <button type="button" class="btn btn-warm btn-lg px-5 py-3 shadow-sm fw-bold fs-3" data-bs-dismiss="modal">
+        <button type="button" class="btn btn-warm shadow-sm fw-bold {{ global_tamanho_botao|default:'btn-lg px-5 py-3 fs-3' }}" data-bs-dismiss="modal">
             Entendi! 👍
         </button>
     </div>
