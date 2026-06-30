@@ -99,15 +99,29 @@
             <div class="card-body p-4">
                 {% for categoria in categorias %}
                     <div class="d-flex justify-content-between align-items-center border-bottom py-3">
+
                         <div class="d-flex align-items-center gap-3">
                             <div style="width: 25px; height: 25px; background-color: {{ categoria.cor_identificacao }}; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></div>
                             <span class="fs-5 fw-bold text-dark">{{ categoria.nome }}</span>
                         </div>
-                        <a href="{% url 'metas:deletar_categoria' categoria.id %}" class="btn-perigo-sm">Apagar</a>
+
+                        <div class="d-flex gap-2">
+                            <a href="{% url 'metas:editar_categoria' categoria.id %}" class="btn-cancelar">
+                                Editar
+                            </a>
+
+                            <a href="{% url 'metas:deletar_categoria' categoria.id %}" class="btn-perigo-sm">
+                                Apagar
+                            </a>
+                        </div>
+
                     </div>
+
                 {% empty %}
                     <div class="text-center py-5">
-                        <p class="text-muted m-0 fs-5">Você ainda não tem categorias personalizadas.</p>
+                        <p class="text-muted m-0 fs-5">
+                            Você ainda não tem categorias personalizadas.
+                        </p>
                     </div>
                 {% endfor %}
                 

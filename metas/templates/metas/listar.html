@@ -291,8 +291,18 @@
                     {% endfor %}
                 </div>
                 
-                <div class="mt-4 text-end border-top pt-3">
-                    <a href="{% url 'metas:deletar' meta.id %}" class="btn-perigo-sm {{ global_tamanho_botao }}">Apagar Meta</a>
+                <div class="mt-4 d-flex justify-content-end gap-2 border-top pt-3">
+
+                    <a href="{% url 'metas:editar' meta.id %}"
+                    class="btn-cancelar {{ global_tamanho_botao }}">
+                        Editar Meta
+                    </a>
+
+                    <a href="{% url 'metas:deletar' meta.id %}"
+                    class="btn-perigo-sm {{ global_tamanho_botao }}">
+                        Apagar Meta
+                    </a>
+
                 </div>
             </div>
         </div>
