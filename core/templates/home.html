@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-<!-- Trazendo as cores do HopLife para o Django -->
 <style>
     .btn-warm {
         background-color: #E64500 !important;
@@ -16,8 +15,46 @@
         box-shadow: 0 2px 0 #B33600 !important;
         color: #FFFFFF !important;
     }
+    
+    /* Estilos para a caixinha da frase flutuante - NO CANTO INFERIOR ESQUERDO */
+    #caixa-frase {
+        position: fixed;
+        bottom: 25px; /* Alinhado com a altura do botão de ajuda da direita */
+        left: 25px;
+        z-index: 1050; /* Z-index menor que o do botão de ajuda para não causar conflito */
+        width: 350px; /* Mais estreito para não invadir o meio da tela */
+        max-width: 80vw;
+        background-color: #ffffff;
+        border-left: 6px solid #E64500; 
+        opacity: 1;
+        transition: all 1s ease-in-out; /* Transição para opacidade e movimento */
+        transform: translateY(0);
+    }
+    
+    /* Animação de descida suave ao sumir */
+    .sumir-suavemente {
+        opacity: 0 !important;
+        transform: translateY(20px) !important;
+        pointer-events: none; 
+    }
 </style>
 
+{% if frase_do_dia and user.is_authenticated %}
+<div id="caixa-frase" class="alert shadow-lg rounded-3 p-4 border-top border-end border-bottom border-1">
+    <div class="d-flex align-items-center mb-2">
+        <span class="fs-3 me-2" aria-hidden="true">💡</span>
+        <span class="fw-bold text-hop-green">Inspiração do Dia</span>
+    </div>
+    <div class="fst-italic text-dark mb-2 lh-sm {{ global_tamanho_texto }}">
+        "{{ frase_do_dia.texto }}"
+    </div>
+    {% if frase_do_dia.autor %}
+        <div class="text-end text-muted">
+            <small class="fw-bold">- {{ frase_do_dia.autor }}</small>
+        </div>
+    {% endif %}
+</div>
+{% endif %}
 <div class="p-5 mb-4 bg-white rounded-3 shadow-sm border text-center">
     <div class="container-fluid py-5">
         {% if user.is_authenticated %}
@@ -35,4 +72,23 @@
         {% endif %}
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const caixaFrase = document.getElementById("caixa-frase");
+        
+        if (caixaFrase) {
+            // Conta 10.000 milissegundos (10 segundos)
+            setTimeout(function() {
+                // Adiciona a classe que muda a opacidade para 0 e desce levemente
+                caixaFrase.classList.add("sumir-suavemente");
+                
+                // Remove a div do HTML após 1 segundo (o tempo que a animação leva para terminar)
+                setTimeout(function() {
+                    caixaFrase.remove();
+                }, 1000);
+            }, 10000); 
+        }
+    });
+</script>
 {% endblock %}
