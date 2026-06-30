@@ -3,6 +3,7 @@ import time
 from datetime import date
 
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test import TestCase
 from django.urls import reverse
@@ -655,3 +656,85 @@ class AtualizarStatusENotaViewTest(TestCase):
         # Confirma que nada mudou no banco
         self.registro.refresh_from_db()
         self.assertEqual(self.registro.nota, "")
+
+
+class EditarCategoriaTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="usuario1", password="123456")
+
+        self.client.login(username="usuario1", password="123456")
+
+        self.categoria = Categoria.objects.create(
+            nome="Saúde", cor_identificacao="#FF0000", usuario=self.user
+        )
+
+        self.url = reverse("metas:editar_categoria", args=[self.categoria.id])
+
+    def test_editar_categoria_altera_dados(self):
+        response = self.client.post(
+            self.url, {"nome": "Alimentação", "cor_identificacao": "#00FF00"}
+        )
+
+        self.categoria.refresh_from_db()
+
+        self.assertEqual(self.categoria.nome, "Alimentação")
+        self.assertEqual(self.categoria.cor_identificacao, "#00FF00")
+
+    def test_editar_categoria_nao_cria_nova(self):
+        total_antes = Categoria.objects.count()
+
+        self.client.post(
+            self.url, {"nome": "Nova Categoria", "cor_identificacao": "#123456"}
+        )
+
+        self.assertEqual(Categoria.objects.count(), total_antes)
+
+    def test_editar_categoria_redireciona(self):
+        response = self.client.post(
+            self.url, {"nome": "Teste", "cor_identificacao": "#123456"}
+        )
+
+        self.assertEqual(response.status_code, 302)
+
+
+class EditarMetaTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="usuario1", password="123456")
+
+        self.client.login(username="usuario1", password="123456")
+
+        self.categoria = Categoria.objects.create(
+            nome="Saúde", cor_identificacao="#FF0000", usuario=self.user
+        )
+
+        self.meta = Meta.objects.create(
+            titulo="Beber água", categoria=self.categoria, usuario=self.user
+        )
+
+        self.url = reverse("metas:editar", args=[self.meta.id])
+
+    def test_editar_meta_altera_dados(self):
+        response = self.client.post(
+            self.url, {"titulo": "Beber 2L de água", "categoria": self.categoria.id}
+        )
+
+        self.meta.refresh_from_db()
+
+        self.assertEqual(self.meta.titulo, "Beber 2L de água")
+        self.assertEqual(self.meta.categoria, self.categoria)
+
+    def test_editar_meta_nao_cria_nova(self):
+        total_antes = Meta.objects.count()
+
+        self.client.post(
+            self.url, {"titulo": "Novo título", "categoria": self.categoria.id}
+        )
+
+        self.assertEqual(Meta.objects.count(), total_antes)
+
+    def test_editar_meta_redireciona(self):
+        response = self.client.post(
+            self.url, {"titulo": "Teste redirect", "categoria": self.categoria.id}
+        )
+
+        self.assertEqual(response.status_code, 302)
