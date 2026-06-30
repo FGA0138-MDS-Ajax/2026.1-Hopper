@@ -126,27 +126,27 @@
 {% block tutorial_slides %}
     <div class="carousel-item active py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">🗑️</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Tem certeza?</h3>
-        <p class="fs-3 text-dark lh-base">
-            Esta é uma tela de segurança. Estamos perguntando se você realmente quer apagar a meta para evitar cliques por engano.
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Tem certeza?</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Esta é uma tela de segurança. Estamos confirmando se você realmente <strong>deseja apagar esta meta</strong> para evitar que seja feito algum clique por engano.
         </p>
     </div>
 
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">⚠️</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">O histórico será perdido!</h3>
-        <p class="fs-3 text-dark lh-base">
-            Se você apagar esta meta, <strong>todos os registros e check-ins que você fez no passado desaparecerão para sempre</strong>. Pense bem!
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Atenção ao histórico!</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Ao apagar esta meta, <strong>todos os registros e check-ins feitos no passado serão excluídos permanentemente</strong>. Pense bem antes de continuar!
         </p>
     </div>
 
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">👇</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">O que fazer?</h3>
-        <p class="fs-3 text-dark lh-base mb-4">
-            Se quiser apagar mesmo, clique no botão vermelho <strong>"Sim, apagar meta"</strong>. Se mudou de ideia e quer manter sua meta e o histórico, clique em "Cancelar e Voltar".
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">O que fazer agora?</h3>
+        <p class="fs-3 text-dark lh-base mb-4 {{ global_tamanho_texto }}">
+            Se você tem certeza, <strong>clique no botão vermelho "Sim, apagar meta"</strong>. Se quiser manter sua meta e seu histórico, clique em <strong>"Cancelar e Voltar"</strong>.
         </p>
-        <button type="button" class="btn btn-warm btn-lg px-5 py-3 shadow-sm fw-bold fs-3" data-bs-dismiss="modal">
+        <button type="button" class="btn btn-warm shadow-sm fw-bold {{ global_tamanho_botao|default:'btn-lg px-5 py-3 fs-3' }}" data-bs-dismiss="modal">
             Entendi! 👍
         </button>
     </div>

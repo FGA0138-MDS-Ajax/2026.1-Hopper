@@ -27,4 +27,12 @@ urlpatterns = [
         views.DeletarCategoriaView.as_view(),
         name="deletar_categoria",
     ),
+    # Editar Metas
+    path("<int:pk>/editar/", views.EditarMetaView.as_view(), name="editar"),
+    # Editar Categorias
+    path(
+        "categorias/<int:pk>/editar/",
+        views.EditarCategoriaView.as_view(),
+        name="editar_categoria",
+    ),
 ]

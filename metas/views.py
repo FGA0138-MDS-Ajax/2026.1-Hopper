@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, ListView
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from .models import Categoria, Meta, RegistroDiario
 
@@ -101,7 +101,7 @@ class CriarCategoriaView(LoginRequiredMixin, CreateView):
     model = Categoria
     fields = ["nome", "cor_identificacao"]
     template_name = "metas/criar_categoria.html"
-    success_url = reverse_lazy("metas:criar")
+    success_url = reverse_lazy("metas:listar")
 
     def form_valid(self, form):
         form.instance.usuario = self.request.user
@@ -132,3 +132,43 @@ class DeletarCategoriaView(LoginRequiredMixin, DeleteView):
 
     def get_queryset(self):
         return Categoria.objects.filter(usuario=self.request.user)
+
+
+class EditarMetaView(LoginRequiredMixin, UpdateView):
+    model = Meta
+    fields = ["titulo", "categoria"]
+    template_name = "metas/editar.html"
+    success_url = reverse_lazy("metas:listar")
+
+    def get_queryset(self):
+        return Meta.objects.filter(usuario=self.request.user)
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["categoria"].queryset = Categoria.objects.filter(
+            usuario=self.request.user
+        )
+        form.fields["categoria"].empty_label = "Nenhuma (Sem Categoria)"
+        return form
+
+
+class EditarCategoriaView(LoginRequiredMixin, UpdateView):
+    model = Categoria
+    fields = ["nome", "cor_identificacao"]
+    template_name = "metas/editar_categoria.html"
+    success_url = reverse_lazy("metas:listar_categorias")
+
+    def get_queryset(self):
+        return Categoria.objects.filter(usuario=self.request.user)
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["nome"].label = "Nome da Categoria"
+        form.fields["cor_identificacao"].label = "Cor da Categoria"
+        form.fields["cor_identificacao"].widget = forms.HiddenInput()
+        return form
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["editando"] = True
+        return context

@@ -124,27 +124,27 @@
 {% block tutorial_slides %}
     <div class="carousel-item active py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">🗑️</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Apagar Categoria</h3>
-        <p class="fs-3 text-dark lh-base">
-            Esta é a tela de confirmação. O sistema quer ter certeza de que você não clicou no botão de apagar sem querer!
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Apagar Categoria</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Esta tela serve para confirmar se você realmente <strong>deseja apagar esta categoria</strong>. O sistema pede essa confirmação para evitar que você apague algo sem querer!
         </p>
     </div>
 
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">⚠️</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">E as minhas metas?</h3>
-        <p class="fs-3 text-dark lh-base">
-            Fique tranquilo! Se você apagar esta categoria, <strong>as suas metas não serão perdidas</strong>. Elas apenas ficarão misturadas na aba "Sem categoria".
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">E as minhas metas?</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Fique tranquilo(a)! Ao apagar esta categoria, <strong>suas metas não serão perdidas</strong>. Elas continuarão existindo e serão movidas para a aba <strong>"Sem categoria"</strong>.
         </p>
     </div>
 
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">👆</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">O que fazer agora?</h3>
-        <p class="fs-3 text-dark lh-base mb-4">
-            Se você realmente quer excluir, clique no botão vermelho <strong>"Sim, apagar categoria"</strong>. Se mudou de ideia, clique em "Cancelar e Voltar".
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">O que fazer agora?</h3>
+        <p class="fs-3 text-dark lh-base mb-4 {{ global_tamanho_texto }}">
+            Se você tem certeza, <strong>clique no botão vermelho "Sim, apagar categoria"</strong>. Se mudou de ideia, clique em <strong>"Cancelar e Voltar"</strong>.
         </p>
-        <button type="button" class="btn btn-warm btn-lg px-5 py-3 shadow-sm fw-bold fs-3" data-bs-dismiss="modal">
+        <button type="button" class="btn btn-warm shadow-sm fw-bold {{ global_tamanho_botao|default:'btn-lg px-5 py-3 fs-3' }}" data-bs-dismiss="modal">
             Entendi! 👍
         </button>
     </div>

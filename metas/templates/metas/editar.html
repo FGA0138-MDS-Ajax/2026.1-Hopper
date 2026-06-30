@@ -103,20 +103,7 @@
         box-shadow: 0 0 0 0.25rem rgba(58, 90, 80, 0.25);
         background-color: #FFFFFF;
     }
-    
-    /* --- Link para criar categoria --- */
-    .link-categoria {
-        color: #E64500;
-        transition: color 0.2s;
-        display: inline-block;
-        padding: 4px 8px;
-        border-radius: 6px;
-    }
-    .link-categoria:hover {
-        color: #B33600;
-        background-color: #f8f9fa;
-        text-decoration: none !important;
-    }
+
 </style>
 
 <div class="row justify-content-center pb-5">
@@ -124,7 +111,7 @@
         <div class="card shadow-sm rounded-4 border-0 mt-5" style="background-color: #FFFFFF;">
             <div class="card-body p-5">
                 
-                <h2 class="text-warm fw-bolder mb-4 text-center" style="letter-spacing: -0.5px;">Criar Nova Meta</h2>
+                <h2 class="text-warm fw-bolder mb-4 text-center" style="letter-spacing: -0.5px;">Editar Meta</h2>
                 
                 <form method="POST">
                     {% csrf_token %}
@@ -134,19 +121,12 @@
                             <label for="{{ field.id_for_label }}" class="form-label fs-5 fw-bold" style="color: #374151;">{{ field.label }}</label>
                             
                             {{ field }}
-                            
-                            {% if field.name == 'categoria' %}
-                                <div class="text-end mt-2">
-                                    <a href="{% url 'metas:criar_categoria' %}" class="link-categoria fw-bold text-decoration-none">
-                                        + Criar nova categoria
-                                    </a>
-                                </div>
-                            {% endif %}
+
                         </div>
                     {% endfor %}
                     
                     <div class="d-flex flex-column mt-5 border-top pt-4">
-                        <button type="submit" class="btn-warm">Salvar Meta</button>
+                        <button type="submit" class="btn-warm">Salvar Alterações</button>
                         <a href="{% url 'metas:listar' %}" class="btn-cancelar">Cancelar</a>
                     </div>
                 </form>
@@ -158,38 +138,38 @@
 {% endblock %}
 
 {% block tutorial_slides %}
-    <div class="carousel-item active py-4" style="min-height: 280px;">
-        <div class="display-1 mb-4" aria-hidden="true">🎯</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Sua Nova Meta</h3>
-        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
-            Aqui você adiciona uma nova tarefa para o seu dia a dia! Pode ser algo como "Tomar o remédio" ou "Fazer caminhada".
-        </p>
-    </div>
-    
-    <div class="carousel-item py-4" style="min-height: 280px;">
-        <div class="display-1 mb-4" aria-hidden="true">✍️</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Como preencher?</h3>
-        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
-            Basta <strong>digitar o objetivo da sua meta na caixa de texto</strong>. Seja simples e direto para ficar fácil de lembrar depois.
-        </p>
-    </div>
-    
-    <div class="carousel-item py-4" style="min-height: 280px;">
-        <div class="display-1 mb-4" aria-hidden="true">📁</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Escolhendo a Categoria</h3>
-        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
-            Selecione um grupo para organizar sua meta. Se não encontrar o grupo que precisa, <strong>clique no link "+ Criar nova categoria"</strong> para cadastrar um novo.
-        </p>
-    </div>
+<div class="carousel-item active py-4" style="min-height: 280px;">
+    <div class="display-1 mb-4" aria-hidden="true">✏️</div>
+    <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Editando sua Meta</h3>
+    <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+        Nesta tela, você <strong>pode fazer ajustes em uma meta que já foi criada</strong>, como mudar o objetivo ou alterar o grupo (categoria) ao qual ela pertence.
+    </p>
+</div>
 
-    <div class="carousel-item py-4" style="min-height: 280px;">
-        <div class="display-1 mb-4" aria-hidden="true">💾</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Tudo pronto!</h3>
-        <p class="fs-3 text-dark lh-base mb-4 {{ global_tamanho_texto }}">
-            Quando terminar de escrever, <strong>clique no botão laranja "Salvar Meta"</strong> para criar sua meta. Ela aparecerá na sua lista principal! Se quiser desistir basta clicar em <strong> "Cancelar"</strong>.
-        </p>
-        <button type="button" class="btn btn-warm shadow-sm fw-bold {{ global_tamanho_botao|default:'btn-lg px-5 py-3 fs-3' }}" data-bs-dismiss="modal">
-            Entendi! 👍
-        </button>
-    </div>
+<div class="carousel-item py-4" style="min-height: 280px;">
+    <div class="display-1 mb-4" aria-hidden="true">✍️</div>
+    <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Ajuste o Objetivo</h3>
+    <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+        <strong>No campo de texto, você pode reescrever o nome da sua meta</strong>. Deixe o texto bem claro para que você saiba exatamente o que precisa fazer hoje!
+    </p>
+</div>
+
+<div class="carousel-item py-4" style="min-height: 280px;">
+    <div class="display-1 mb-4" aria-hidden="true">🏷️</div>
+    <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Troque de Categoria</h3>
+    <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+        Se a meta agora faz parte de outro grupo (por exemplo, mudou de "Casa" para "Saúde"), basta selecionar a nova opção na lista de <strong>Categorias</strong>.
+    </p>
+</div>
+
+<div class="carousel-item py-4" style="min-height: 280px;">
+    <div class="display-1 mb-4" aria-hidden="true">💾</div>
+    <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Finalizando</h3>
+    <p class="fs-3 text-dark lh-base mb-4 {{ global_tamanho_texto }}">
+        Quando estiver tudo certo, <strong>clique no botão laranja "Salvar Alterações"</strong> para atualizar sua meta. Se quiser descartar o que mudou, clique em <strong>"Cancelar"</strong>.
+    </p>
+    <button type="button" class="btn btn-warm shadow-sm fw-bold {{ global_tamanho_botao|default:'btn-lg px-5 py-3 fs-3' }}" data-bs-dismiss="modal">
+        Entendi! 👍
+    </button>
+</div>
 {% endblock %}

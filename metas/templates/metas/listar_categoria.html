@@ -99,15 +99,29 @@
             <div class="card-body p-4">
                 {% for categoria in categorias %}
                     <div class="d-flex justify-content-between align-items-center border-bottom py-3">
+
                         <div class="d-flex align-items-center gap-3">
                             <div style="width: 25px; height: 25px; background-color: {{ categoria.cor_identificacao }}; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></div>
                             <span class="fs-5 fw-bold text-dark">{{ categoria.nome }}</span>
                         </div>
-                        <a href="{% url 'metas:deletar_categoria' categoria.id %}" class="btn-perigo-sm">Apagar</a>
+
+                        <div class="d-flex gap-2">
+                            <a href="{% url 'metas:editar_categoria' categoria.id %}" class="btn-cancelar">
+                                Editar
+                            </a>
+
+                            <a href="{% url 'metas:deletar_categoria' categoria.id %}" class="btn-perigo-sm">
+                                Apagar
+                            </a>
+                        </div>
+
                     </div>
+
                 {% empty %}
                     <div class="text-center py-5">
-                        <p class="text-muted m-0 fs-5">Você ainda não tem categorias personalizadas.</p>
+                        <p class="text-muted m-0 fs-5">
+                            Você ainda não tem categorias personalizadas.
+                        </p>
                     </div>
                 {% endfor %}
                 
@@ -126,35 +140,35 @@
 {% block tutorial_slides %}
     <div class="carousel-item active py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">🗂️</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Suas Categorias</h3>
-        <p class="fs-3 text-dark lh-base">
-            Esta é a tela onde você gerencia todos os grupos que criou para organizar as suas metas.
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Suas Categorias</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Esta é a tela onde você <strong>gerencia todos os grupos que criou</strong> para organizar as suas metas.
         </p>
     </div>
 
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">➕</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Criando um novo grupo</h3>
-        <p class="fs-3 text-dark lh-base">
-            Precisa de uma categoria nova? É só clicar no botão laranja <strong>"Nova"</strong> no topo da tela.
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Criando um novo grupo</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Precisa de uma categoria nova? É só <strong>clicar no botão laranja "Nova"</strong> que aparece no topo da tela.
         </p>
     </div>
 
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">🗑️</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Apagar um grupo</h3>
-        <p class="fs-3 text-dark lh-base">
-            Se você não usa mais uma categoria, pode clicar no botão vermelho <strong>"Apagar"</strong> ao lado dela. Não se preocupe, isso não apaga as suas metas!
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Apagar um grupo</h3>
+        <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+            Se você não usa mais ou quer editar uma categoria, clique no botão <strong>"Editar"</strong> ou clique no botão vermelho <strong>"Apagar"</strong> ao lado. Não se preocupe: isso não apaga as suas metas, elas apenas ficarão <strong>"Sem categoria"</strong>.
         </p>
     </div>
 
     <div class="carousel-item py-4" style="min-height: 280px;">
         <div class="display-1 mb-4" aria-hidden="true">🔙</div>
-        <h3 class="fw-bolder text-hop-green mb-3 fs-2">Voltar para as metas</h3>
-        <p class="fs-3 text-dark lh-base mb-4">
-            Quando terminar de organizar as suas categorias, clique no botão branco <strong>"Voltar para Metas"</strong> no final da lista.
+        <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Voltar para as metas</h3>
+        <p class="fs-3 text-dark lh-base mb-4 {{ global_tamanho_texto }}">
+            Quando terminar de organizar, <strong>clique no botão "Voltar para Metas"</strong> que está no final da lista.
         </p>
-        <button type="button" class="btn btn-warm btn-lg px-5 py-3 shadow-sm fw-bold fs-3" data-bs-dismiss="modal">
+        <button type="button" class="btn btn-warm shadow-sm fw-bold {{ global_tamanho_botao|default:'btn-lg px-5 py-3 fs-3' }}" data-bs-dismiss="modal">
             Entendi! 👍
         </button>
     </div>
