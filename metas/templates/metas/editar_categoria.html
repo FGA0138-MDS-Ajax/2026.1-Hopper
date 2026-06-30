@@ -125,7 +125,7 @@
 
                     <div class="d-flex flex-column mt-5 border-top pt-4">
                         <button type="submit" class="btn-warm">Salvar Alterações</button>
-                        <a href="{% url 'metas:criar' %}" class="btn-cancelar">Cancelar</a>
+                        <a href="{% url 'metas:listar_categorias' %}" class="btn-cancelar">Cancelar</a>
                     </div>
                 </form>
 
@@ -173,36 +173,36 @@
 
 {% block tutorial_slides %}
 <div class="carousel-item active py-4" style="min-height: 280px;">
-    <div class="display-1 mb-4">📁</div>
-    <h3 class="fw-bolder text-hop-green mb-3 fs-2">Organize suas Metas</h3>
-    <p class="fs-3 text-dark lh-base">
-        Crie categorias para organizar suas metas do dia a dia.
+    <div class="display-1 mb-4" aria-hidden="true">✏️</div>
+    <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Editando sua Categoria</h3>
+    <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+        Aqui você pode alterar o nome ou a cor de uma categoria que você já criou anteriormente.
     </p>
 </div>
 
 <div class="carousel-item py-4" style="min-height: 280px;">
-    <div class="display-1 mb-4">✍️</div>
-    <h3 class="fw-bolder text-hop-green mb-3 fs-2">Nome da Categoria</h3>
-    <p class="fs-3 text-dark lh-base">
-        Dê um nome como "Saúde", "Casa", etc.
+    <div class="display-1 mb-4" aria-hidden="true">✍️</div>
+    <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Nome da Categoria</h3>
+    <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+        Se quiser, digite um novo nome na caixa de texto. Lembre-se: use um nome que ajude você a identificar o grupo de metas facilmente!
     </p>
 </div>
 
 <div class="carousel-item py-4" style="min-height: 280px;">
-    <div class="display-1 mb-4">🎨</div>
-    <h3 class="fw-bolder text-hop-green mb-3 fs-2">Escolha uma Cor</h3>
-    <p class="fs-3 text-dark lh-base">
-        Clique em uma bolinha para identificar melhor sua categoria.
+    <div class="display-1 mb-4" aria-hidden="true">🎨</div>
+    <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Trocar de Cor</h3>
+    <p class="fs-3 text-dark lh-base {{ global_tamanho_texto }}">
+        Basta <strong>clicar em uma das bolinhas coloridas</strong> abaixo. A cor que estiver selecionada será a nova identificação deste grupo.
     </p>
 </div>
 
 <div class="carousel-item py-4" style="min-height: 280px;">
-    <div class="display-1 mb-4">💾</div>
-    <h3 class="fw-bolder text-hop-green mb-3 fs-2">Salvar e Pronto!</h3>
-    <p class="fs-3 text-dark lh-base mb-4">
-        Clique em salvar ou cancele se quiser desistir.
+    <div class="display-1 mb-4" aria-hidden="true">💾</div>
+    <h3 class="fw-bolder text-hop-green mb-3 fs-2 {{ global_tamanho_texto }}">Salvar Alterações</h3>
+    <p class="fs-3 text-dark lh-base mb-4 {{ global_tamanho_texto }}">
+        Quando terminar de ajustar, <strong>clique no botão laranja "Salvar Alterações"</strong>. Se mudar de ideia e não quiser salvar, clique em "Cancelar".
     </p>
-    <button type="button" class="btn btn-warm btn-lg fs-3" data-bs-dismiss="modal">
+    <button type="button" class="btn btn-warm shadow-sm fw-bold {{ global_tamanho_botao|default:'btn-lg px-5 py-3 fs-3' }}" data-bs-dismiss="modal">
         Entendi! 👍
     </button>
 </div>

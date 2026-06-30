@@ -101,7 +101,7 @@ class CriarCategoriaView(LoginRequiredMixin, CreateView):
     model = Categoria
     fields = ["nome", "cor_identificacao"]
     template_name = "metas/criar_categoria.html"
-    success_url = reverse_lazy("metas:criar")
+    success_url = reverse_lazy("metas:listar")
 
     def form_valid(self, form):
         form.instance.usuario = self.request.user
