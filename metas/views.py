@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from gamificacao.models import PerfilGamificacao
 
 from .models import Categoria, Meta, RegistroDiario
 
@@ -172,3 +173,32 @@ class EditarCategoriaView(LoginRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context["editando"] = True
         return context
+
+@login_required
+def atualizar_status_diario(request, registro_id):
+
+    registro = get_object_or_404(
+        RegistroDiario,
+        id=registro_id,
+        meta__usuario=request.user,
+    )
+
+    novo_status = request.POST.get("status")
+    nova_nota = request.POST.get("nota", "")
+
+    if novo_status in ["check", "falha", "branco"]:
+        registro.status_conclusao = novo_status
+        
+        # --- LÓGICA DA OFENSIVA (STREAK) AQUI ---
+        if novo_status == "check":
+            # Pega o perfil de gamificação do usuário (ou cria se ele for novo)
+            perfil, _ = PerfilGamificacao.objects.get_or_create(usuario=request.user)
+            
+            # Aciona a função que soma o ponto. 
+            # A matemática do seu models.py já garante que ele só ganha 1 ponto por dia!
+            perfil.registrar_check_in()
+
+    registro.nota = nova_nota
+    registro.save()
+
+    return redirect("metas:listar")
